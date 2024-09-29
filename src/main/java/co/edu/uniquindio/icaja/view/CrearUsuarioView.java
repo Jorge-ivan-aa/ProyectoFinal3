@@ -91,8 +91,8 @@ public class CrearUsuarioView {
         String presupuestoMensual = txtPresupuestoMens.getText();
         String telefono = txtTelefono.getText();
 
-        if (!Tools.hayCamposVacios( nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
-            String resultado = UsuarioController.crearUsuario( nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual);
+        if (!Tools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
+            String resultado = UsuarioController.crearUsuario(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
             Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
         } else {
             Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
@@ -102,7 +102,10 @@ public class CrearUsuarioView {
         Tools.limpiarCampos(txtCedula,
                             txtNombre,
                             txtCorreo,
-                            txtTelefono);
+                            txtTelefono,
+                            txtClave,
+                            txtClaveTransaccional,
+                            txtPresupuestoMens);
     }
 
     @FXML
@@ -110,19 +113,25 @@ public class CrearUsuarioView {
         String nombre = txtNombre.getText();
         String cedula = txtCedula.getText();
         String correo = txtCorreo.getText();
+        String clave = txtClave.getText();
+        String claveTransaccional = txtClaveTransaccional.getText();
+        String presupuestoMensual = txtPresupuestoMens.getText();
         String telefono = txtTelefono.getText();
 
-        if (!Tools.hayCamposVacios(nombre, cedula, correo, telefono)) {
-            String resultado = UsuarioController.actualizarUsuario(cedula, nombre, correo, telefono);
+        if (!Tools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
+            String resultado = UsuarioController.actualizarUsuario(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual);
             Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
         } else {
             Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
 
         }
         Tools.limpiarCampos(txtCedula,
-                            txtNombre,
-                            txtCorreo,
-                            txtTelefono);
+                txtNombre,
+                txtCorreo,
+                txtTelefono,
+                txtClave,
+                txtClaveTransaccional,
+                txtPresupuestoMens);
     }
 
     @FXML
@@ -136,9 +145,13 @@ public class CrearUsuarioView {
             Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
         }
 
-        Tools.limpiarCampos(txtCorreo,
-                            txtNombre,
-                            txtTelefono);
+        Tools.limpiarCampos(txtCedula,
+                txtNombre,
+                txtCorreo,
+                txtTelefono,
+                txtClave,
+                txtClaveTransaccional,
+                txtPresupuestoMens);
     }
 
     @FXML
