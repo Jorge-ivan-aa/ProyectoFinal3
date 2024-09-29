@@ -1,4 +1,4 @@
-package co.edu.uniquindio.proyectofinal3;
+package co.edu.uniquindio.icaja;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
