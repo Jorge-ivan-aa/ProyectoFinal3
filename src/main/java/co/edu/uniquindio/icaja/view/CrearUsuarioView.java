@@ -94,6 +94,7 @@ public class CrearUsuarioView {
         } else {
             Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
 
+
         }
         Tools.limpiarCampos(txtCedula,
                             txtNombre,
@@ -126,7 +127,7 @@ public class CrearUsuarioView {
         String nombre = txtNombre.getText();
 
         if (!Tools.hayCamposVacios(nombre)) {
-            String resultado = UsuarioController.eliminarCliente(nombre);
+            String resultado = UsuarioController.eliminarUsuario(nombre);
             Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
         } else {
             Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
@@ -145,7 +146,7 @@ public class CrearUsuarioView {
     private void initview() {
         initDataBinging();
         tbUsuarios.getItems().clear();
-        tbUsuarios.setItems(UsuarioController.getListaDeUsuarios());
+        tbUsuarios.setItems(UsuarioController.getListaUsuarioObservable());
         listenerSelectionUsuario();
     }
 
