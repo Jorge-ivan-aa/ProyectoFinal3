@@ -86,10 +86,13 @@ public class CrearUsuarioView {
         String nombre = txtNombre.getText();
         String cedula = txtCedula.getText();
         String correo = txtCorreo.getText();
+        String clave = txtClave.getText();
+        String claveTransaccional = txtClaveTransaccional.getText();
+        String presupuestoMensual = txtPresupuestoMens.getText();
         String telefono = txtTelefono.getText();
 
-        if (!Tools.hayCamposVacios(cedula, nombre, correo, telefono)) {
-            String resultado = UsuarioController.crearUsuario(nombre, cedula, correo, telefono);
+        if (!Tools.hayCamposVacios( nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
+            String resultado = UsuarioController.crearUsuario( nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual);
             Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
         } else {
             Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
