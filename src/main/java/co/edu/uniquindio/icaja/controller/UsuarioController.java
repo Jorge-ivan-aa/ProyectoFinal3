@@ -20,14 +20,14 @@ public class UsuarioController {
 
     }
 
-    public ObservableList<Usuario> getListaUsuarioObservable() {
+    public static ObservableList<Usuario> getListaUsuarioObservable() {
         return listaUsuarioObservable;
     }
 
     private void sincronizarData() {
         // this.listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuario());
     }
-    public String eliminarUsuario(String nombre) {
+    public static String eliminarUsuario(String nombre) {
 
         if (this.consultarUsuario(nombre) == null) {
             return "El usuario ingresado no existe";
@@ -57,7 +57,7 @@ public class UsuarioController {
         return null;
     }
 
-    public String crearUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
+    public static String crearUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
         ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
 
         if (this.consultarUsuario(nombre) != null) {
@@ -70,7 +70,7 @@ public class UsuarioController {
         }
     }
 
-    public String actualizarUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
+    public static String actualizarUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
         ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
 
         if (this.consultarUsuario(nombre) == null) {
