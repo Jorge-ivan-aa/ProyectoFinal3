@@ -1,12 +1,10 @@
-package co.edu.uniquindio.proyectofinal3.controller;
+package co.edu.uniquindio.icaja.controller;
 
-import co.edu.uniquindio.proyectofinal3.factory.ModelFactory;
-import co.edu.uniquindio.proyectofinal3.model.Usuario;
+import co.edu.uniquindio.icaja.factory.ModelFactory;
+import co.edu.uniquindio.icaja.model.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-import java.util.Objects;
 public class UsuarioController {
 
     private final ModelFactory factory;

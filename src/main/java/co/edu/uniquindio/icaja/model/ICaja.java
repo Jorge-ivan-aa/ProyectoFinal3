@@ -1,4 +1,4 @@
-package co.edu.uniquindio.proyectofinal3.model;
+package co.edu.uniquindio.icaja.model;
 
 public class ICaja {
 

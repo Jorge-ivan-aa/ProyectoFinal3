@@ -1,6 +1,5 @@
-package co.edu.uniquindio.proyectofinal3.factory;
-
-import co.edu.uniquindio.proyectofinal3.model.ICaja;
+package co.edu.uniquindio.icaja.factory;
+import co.edu.uniquindio.icaja.model.ICaja;
 
 public class ModelFactory {
     private static ModelFactory instance;
