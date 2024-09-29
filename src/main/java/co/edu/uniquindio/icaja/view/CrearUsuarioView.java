@@ -3,12 +3,12 @@ package co.edu.uniquindio.icaja.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.icaja.controller.UsuarioController;
+import co.edu.uniquindio.icaja.model.Usuario;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class CrearUsuarioView {
     @FXML
@@ -27,22 +27,22 @@ public class CrearUsuarioView {
     private Button btnEliminarUsuario;
 
     @FXML
-    private TableView<?> tbUsuarios;
+    private TableView<Usuario> tbUsuarios;
 
     @FXML
-    private TableColumn<?, ?> tbcCedulaUsuario;
+    private TableColumn<Usuario, String> tbcCedulaUsuario;
 
     @FXML
-    private TableColumn<?, ?> tbcClaveTransaccional;
+    private TableColumn<Usuario, String> tbcClaveTransaccional;
 
     @FXML
-    private TableColumn<?, ?> tbcClaveUsuario;
+    private TableColumn<Usuario, String> tbcClaveUsuario;
 
     @FXML
-    private TableColumn<?, ?> tbcCorreoUsuario;
+    private TableColumn<Usuario, String> tbcCorreoUsuario;
 
     @FXML
-    private TableColumn<?, ?> tbcNombreUsuario;
+    private TableColumn<Usuario, String> tbcNombreUsuario;
 
     @FXML
     private TableColumn<?, ?> tbcPresupuestoMensual;
@@ -51,7 +51,7 @@ public class CrearUsuarioView {
     private TableColumn<?, ?> tbcSaldoTotal;
 
     @FXML
-    private TableColumn<?, ?> tbcTelefonoUsuario;
+    private TableColumn<Usuario, String> tbcTelefonoUsuario;
 
     @FXML
     private TextField txtCedula;
@@ -77,43 +77,98 @@ public class CrearUsuarioView {
     @FXML
     private TextField txtTelefono;
 
-    @FXML
-    void actualizarUsuario(ActionEvent event) {
-
+    public CrearUsuarioView(TableColumn<?, ?> tbcCedulaUsuario) {
+        this.tbcCedulaUsuario = (TableColumn<Usuario, String>) tbcCedulaUsuario;
     }
 
     @FXML
     void agregarUsuario(ActionEvent event) {
+        String nombre = txtNombre.getText();
+        String cedula = txtCedula.getText();
+        String correo = txtCorreo.getText();
+        String telefono = txtTelefono.getText();
 
+        if (!Tools.hayCamposVacios(cedula, nombre, correo, telefono)) {
+            String resultado = UsuarioController.crearUsuario(nombre, cedula, correo, telefono);
+            Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
+        } else {
+            Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+
+        }
+        Tools.limpiarCampos(txtCedula,
+                            txtNombre,
+                            txtCorreo,
+                            txtTelefono);
+    }
+
+    @FXML
+    void actualizarUsuario(ActionEvent event) {
+        String nombre = txtNombre.getText();
+        String cedula = txtCedula.getText();
+        String correo = txtCorreo.getText();
+        String telefono = txtTelefono.getText();
+
+        if (!Tools.hayCamposVacios(nombre, cedula, correo, telefono)) {
+            String resultado = UsuarioController.actualizarUsuario(cedula, nombre, correo, telefono);
+            Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
+        } else {
+            Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+
+        }
+        Tools.limpiarCampos(txtCedula,
+                            txtNombre,
+                            txtCorreo,
+                            txtTelefono);
     }
 
     @FXML
     void eliminarUsuario(ActionEvent event) {
+        String nombre = txtNombre.getText();
 
+        if (!Tools.hayCamposVacios(nombre)) {
+            String resultado = UsuarioController.eliminarCliente(nombre);
+            Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
+        } else {
+            Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+        }
+
+        Tools.limpiarCampos(txtCorreo,
+                            txtNombre,
+                            txtTelefono);
     }
 
     @FXML
     void initialize() {
-        assert btnActualizarUsuario != null : "fx:id=\"btnActualizarUsuario\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert btnAgregarUsuario != null : "fx:id=\"btnAgregarUsuario\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert btnEliminarUsuario != null : "fx:id=\"btnEliminarUsuario\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert tbUsuarios != null : "fx:id=\"tbUsuarios\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert tbcCedulaUsuario != null : "fx:id=\"tbcCedulaUsuario\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert tbcClaveTransaccional != null : "fx:id=\"tbcClaveTransaccional\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert tbcClaveUsuario != null : "fx:id=\"tbcClaveUsuario\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert tbcCorreoUsuario != null : "fx:id=\"tbcCorreoUsuario\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert tbcNombreUsuario != null : "fx:id=\"tbcNombreUsuario\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert tbcPresupuestoMensual != null : "fx:id=\"tbcPresupuestoMensual\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert tbcSaldoTotal != null : "fx:id=\"tbcSaldoTotal\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert tbcTelefonoUsuario != null : "fx:id=\"tbcTelefonoUsuario\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert txtCedula != null : "fx:id=\"txtCedula\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert txtClave != null : "fx:id=\"txtClave\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert txtClaveTransaccional != null : "fx:id=\"txtClaveTransaccional\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert txtCorreo != null : "fx:id=\"txtCorreo\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert txtNombre != null : "fx:id=\"txtNombre\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert txtPresupuestoMens != null : "fx:id=\"txtPresupuestoMens\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert txtSaldoTotal != null : "fx:id=\"txtSaldoTotal\" was not injected: check your FXML file 'crearUsuario.fxml'.";
-        assert txtTelefono != null : "fx:id=\"txtTelefono\" was not injected: check your FXML file 'crearUsuario.fxml'.";
+        initview();
+    }
 
+    private void initview() {
+        initDataBinging();
+        tbUsuarios.getItems().clear();
+        tbUsuarios.setItems(UsuarioController.getListaDeUsuarios());
+        listenerSelectionUsuario();
+    }
+
+    private void initDataBinging() {
+        tbcNombreUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+        tbcCorreoUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCorreo()));
+        tbcCedulaUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+        tbcClaveTransaccional.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClaveTransaccional()));
+        tbcTelefonoUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefono()));
+    }
+
+    private void listenerSelectionUsuario() {
+        tbUsuarios.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            this.mostrarInformacion((Usuario) newSelection);
+        });
+    }
+
+    private void mostrarInformacion(Usuario seleccionado) {
+        if (seleccionado != null) {
+            txtNombre.setText(seleccionado.getNombre());
+            txtCedula.setText(seleccionado.getCedula());
+            txtCorreo.setText(seleccionado.getCorreo());
+            txtTelefono.setText(seleccionado.getTelefono());
+        }
     }
 }
