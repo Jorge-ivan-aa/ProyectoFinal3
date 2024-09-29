@@ -85,11 +85,11 @@ public class UsuarioController {
             }
 
             if (index != -1) {
-                Usuario nuevoCliente = new Usuario(nombre,cedula, correo, telefono, clave, claveTransaccional,presupuestoMensual);
+                Usuario nuevoUsuario = new Usuario(nombre,cedula, correo, telefono, clave, claveTransaccional,presupuestoMensual);
                 Usuarios.remove(index);
-                Usuarios.add(nuevoCliente);
+                Usuarios.add(nuevoUsuario);
                 this.listaUsuarioObservable.remove(index);
-                this.listaUsuarioObservable.add(nuevoCliente);
+                this.listaUsuarioObservable.add(nuevoUsuario);
             }
 
             return "El Usuario fué actualizado correctamente";
