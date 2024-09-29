@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import co.edu.uniquindio.icaja.view.Tools;
 
 public class CrearUsuarioView {
     @FXML
@@ -119,7 +120,7 @@ public class CrearUsuarioView {
         String telefono = txtTelefono.getText();
 
         if (!Tools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
-            String resultado = UsuarioController.actualizarUsuario(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual);
+            String resultado = UsuarioController.actualizarUsuario(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
             Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
         } else {
             Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
