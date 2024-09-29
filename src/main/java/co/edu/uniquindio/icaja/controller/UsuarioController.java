@@ -11,7 +11,6 @@ import java.util.Objects;
 public class UsuarioController {
 
     private final ModelFactory factory;
-
     private final ObservableList<Usuario> listaUsuarioObservable;
 
     public UsuarioController(ModelFactory factory, ObservableList<Usuario> listaObservable) {
@@ -34,7 +33,7 @@ public class UsuarioController {
             return "El usuario ingresado no existe";
         } else {
             int index = -1;
-            ArrayList<Usuario> Clientes = factory.getIcaja().getListaUsuario();
+            ArrayList<Usuario> Clientes = factory.getIcaja().getListaUsuarios();
             for (int i = 0; i < Clientes.size(); i++) {
                 if (Objects.equals(Clientes.get(i).getNombre(), nombre)) {
                     index = i;
@@ -48,8 +47,8 @@ public class UsuarioController {
         }
     }
 
-    public Usuario consultarCliente(String nombre) {
-        ArrayList<Usuario> Usuarios = this.factory.getIcaja().getListaUsuario();
+    public Usuario consultarUsuario(String nombre) {
+        ArrayList<Usuario> Usuarios = this.factory.getIcaja().getListaUsuarios();
         for (Usuario value : Usuarios) {
             if (value.getNombre().equals(nombre)) {
                 return value;
@@ -58,21 +57,21 @@ public class UsuarioController {
         return null;
     }
 
-    public String crearUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double saldoTotal, double presupuestoMensual) {
-        ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuario();
+    public String crearUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
+        ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
 
         if (this.consultarUsuario(nombre) != null) {
             return "El usuario ingresado ya existe";
         } else {
-            Usuario nuevoUsuario = new Usuario(nombre, cedula, correo, telefono, clave, claveTransaccional, saldoTotal, presupuestoMensual);
+            Usuario nuevoUsuario = new Usuario(nombre, cedula, correo, telefono, clave, claveTransaccional, presupuestoMensual);
             this.factory.getIcaja().addUsuario(nuevoUsuario);
             this.listaUsuarioObservable.add(nuevoUsuario);
             return "Usuario registrado exitosamente";
         }
     }
 
-    public String actualizarUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double saldoTotal, double presupuestoMensual) {
-        ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuario();
+    public String actualizarUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
+        ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
 
         if (this.consultarUsuario(nombre) == null) {
             return "El usuario ingresado no existe";
@@ -86,7 +85,7 @@ public class UsuarioController {
             }
 
             if (index != -1) {
-                Usuario nuevoCliente = new Usuario(nombre,cedula, correo, telefono, clave, claveTransaccional,saldoTotal,presupuestoMensual);
+                Usuario nuevoCliente = new Usuario(nombre,cedula, correo, telefono, clave, claveTransaccional,presupuestoMensual);
                 Usuarios.remove(index);
                 Usuarios.add(nuevoCliente);
                 this.listaUsuarioObservable.remove(index);

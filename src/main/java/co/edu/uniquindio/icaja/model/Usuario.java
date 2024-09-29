@@ -15,14 +15,14 @@ public class Usuario {
     private double presupuestoMensual;
     private ArrayList<CuentaBancaria> listaCuentas;
 
-    public Usuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double saldoTotal, double presupuestoMensual) {
+    public Usuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.correo = correo;
         this.telefono = telefono;
         this.clave = clave;
         this.claveTransaccional = claveTransaccional;
-        this.saldoTotal = saldoTotal;
+        this.saldoTotal = 0;
         this.ingresos = 0;
         this.gastos = 0;
         this.presupuestoMensual = presupuestoMensual;
