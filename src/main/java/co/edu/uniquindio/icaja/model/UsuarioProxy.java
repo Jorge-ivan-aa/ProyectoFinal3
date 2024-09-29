@@ -3,6 +3,7 @@ package co.edu.uniquindio.icaja.model;
 import co.edu.uniquindio.icaja.exception.CredencialesNoCoinciden;
 import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
+import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class UsuarioProxy implements Login {
     }
 
     @Override
-    public boolean ingresar() throws UsuarioNoExiste, CredencialesNoCoinciden{
+    public TipoUsuario ingresar() throws UsuarioNoExiste, CredencialesNoCoinciden{
         if (this.usuario == null) {
             throw new UsuarioNoExiste("Usuario no encontrado, revisa la cedula ingresada.");
         } else if (!usuario.getClave().equals(clave)) {

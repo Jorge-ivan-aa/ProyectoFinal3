@@ -2,6 +2,7 @@ package co.edu.uniquindio.icaja.model;
 
 import co.edu.uniquindio.icaja.exception.CredencialesNoCoinciden;
 import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
+import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class Usuario implements Login {
     private double ingresos;
     private double gastos;
     private double presupuestoMensual;
+    private TipoUsuario tipoUsuario;
     private ArrayList<CuentaBancaria> listaCuentas;
 
     public Usuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
@@ -31,11 +33,24 @@ public class Usuario implements Login {
         this.gastos = 0;
         this.presupuestoMensual = presupuestoMensual;
         this.listaCuentas = new ArrayList<>();
+        this.tipoUsuario = TipoUsuario.NORMAL;
     }
 
     @Override
-    public boolean ingresar() {
-        return true;
+    public TipoUsuario ingresar() {
+        return getTipoUsuario();
+    }
+
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setAdministrador() {
+        this.tipoUsuario = TipoUsuario.ADMINISTRADOR;
+    }
+
+    public void setNormal() {
+        this.tipoUsuario = TipoUsuario.NORMAL;
     }
 
     public ArrayList<CuentaBancaria> getListaCuentas() {
