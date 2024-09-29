@@ -13,21 +13,21 @@ public class UsuarioController {
     private final ModelFactory factory;
     private final ObservableList<Usuario> listaUsuarioObservable;
 
-    public UsuarioController(ModelFactory factory, ObservableList<Usuario> listaObservable) {
+    public UsuarioController() {
         this.factory = ModelFactory.getInstance();
         this.listaUsuarioObservable = FXCollections.observableArrayList();
         this.sincronizarData();
 
     }
 
-    public static ObservableList<Usuario> getListaUsuarioObservable() {
+    public ObservableList<Usuario> getListaUsuarioObservable() {
         return listaUsuarioObservable;
     }
 
     private void sincronizarData() {
-        // this.listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuario());
+         this.listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
     }
-    public static String eliminarUsuario(String nombre) {
+    public String eliminarUsuario(String nombre) {
 
         if (this.consultarUsuario(nombre) == null) {
             return "El usuario ingresado no existe";
@@ -57,7 +57,7 @@ public class UsuarioController {
         return null;
     }
 
-    public static String crearUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
+    public String crearUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
         ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
 
         if (this.consultarUsuario(nombre) != null) {
@@ -70,7 +70,7 @@ public class UsuarioController {
         }
     }
 
-    public static String actualizarUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
+    public String actualizarUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
         ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
 
         if (this.consultarUsuario(nombre) == null) {

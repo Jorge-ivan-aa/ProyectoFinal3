@@ -12,6 +12,9 @@ import javafx.scene.control.*;
 import co.edu.uniquindio.icaja.view.Tools;
 
 public class CrearUsuarioView {
+
+    UsuarioController usuarioController = new UsuarioController();
+
     @FXML
     private ResourceBundle resources;
 
@@ -78,10 +81,6 @@ public class CrearUsuarioView {
     @FXML
     private TextField txtTelefono;
 
-    public CrearUsuarioView(TableColumn<?, ?> tbcCedulaUsuario) {
-        this.tbcCedulaUsuario = (TableColumn<Usuario, String>) tbcCedulaUsuario;
-    }
-
     @FXML
     void agregarUsuario(ActionEvent event) {
         String nombre = txtNombre.getText();
@@ -93,7 +92,7 @@ public class CrearUsuarioView {
         String telefono = txtTelefono.getText();
 
         if (!Tools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
-            String resultado = UsuarioController.crearUsuario(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
+            String resultado = usuarioController.crearUsuario(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
             Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
         } else {
             Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
@@ -120,7 +119,7 @@ public class CrearUsuarioView {
         String telefono = txtTelefono.getText();
 
         if (!Tools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
-            String resultado = UsuarioController.actualizarUsuario(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
+            String resultado = usuarioController.actualizarUsuario(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
             Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
         } else {
             Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
@@ -140,7 +139,7 @@ public class CrearUsuarioView {
         String nombre = txtNombre.getText();
 
         if (!Tools.hayCamposVacios(nombre)) {
-            String resultado = UsuarioController.eliminarUsuario(nombre);
+            String resultado = usuarioController.eliminarUsuario(nombre);
             Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
         } else {
             Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
@@ -163,7 +162,7 @@ public class CrearUsuarioView {
     private void initview() {
         initDataBinging();
         tbUsuarios.getItems().clear();
-        tbUsuarios.setItems(UsuarioController.getListaUsuarioObservable());
+        tbUsuarios.setItems(usuarioController.getListaUsuarioObservable());
         listenerSelectionUsuario();
     }
 
