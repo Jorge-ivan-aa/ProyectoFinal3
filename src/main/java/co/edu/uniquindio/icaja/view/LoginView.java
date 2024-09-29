@@ -3,6 +3,9 @@ package co.edu.uniquindio.icaja.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
+import co.edu.uniquindio.icaja.model.Usuario;
+import co.edu.uniquindio.icaja.model.UsuarioProxy;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -35,7 +38,12 @@ public class LoginView {
 
     @FXML
     void iniciarSesion(ActionEvent event) {
-
+        UsuarioProxy u = new UsuarioProxy("", "");
+        try {
+            u.ingresar();
+        } catch (UsuarioNoExiste e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML

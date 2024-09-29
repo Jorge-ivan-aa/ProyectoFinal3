@@ -1,8 +1,12 @@
 package co.edu.uniquindio.icaja.model;
 
+import co.edu.uniquindio.icaja.exception.CredencialesNoCoinciden;
+import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
+import co.edu.uniquindio.icaja.model.services.Login;
+
 import java.util.ArrayList;
 
-public class Usuario {
+public class Usuario implements Login {
     private String nombre;
     private String cedula;
     private String correo;
@@ -27,6 +31,11 @@ public class Usuario {
         this.gastos = 0;
         this.presupuestoMensual = presupuestoMensual;
         this.listaCuentas = new ArrayList<>();
+    }
+
+    @Override
+    public boolean ingresar() {
+        return true;
     }
 
     public ArrayList<CuentaBancaria> getListaCuentas() {
