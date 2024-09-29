@@ -4,34 +4,14 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-            <Tab text="Login">
-            </Tab>
-            <Tab text="Usuario ">
+            <Tab text="Gestionar Usuario ">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                <fx:include source="usuarioPrincipal.fxml"/>
-              </content>
-            </Tab>
-            <Tab text="Cuenta Bancaria">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                <fx:include source="cuentaBancaria.fxml"/>
-              </content>
-            </Tab>
-            <Tab text="Categoría">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                <fx:include source="categoria.fxml"/>
-              </content>
-            </Tab>
-            <Tab text="Transacción">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                <fx:include source="transaccion.fxml"/>
+                <fx:include source="gestionarUsuario.fxml" />
               </content>
             </Tab>
         </tabs>
