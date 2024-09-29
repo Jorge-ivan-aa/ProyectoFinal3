@@ -2,6 +2,7 @@ package co.edu.uniquindio.icaja.factory;
 
 
 import co.edu.uniquindio.icaja.model.ICaja;
+import co.edu.uniquindio.icaja.model.Usuario;
 
 public class ModelFactory {
     private static ModelFactory instance;
@@ -10,7 +11,7 @@ public class ModelFactory {
 
     private ModelFactory() {
         icaja = new ICaja();
-
+        generarAdmin();
     }
 
     public static ModelFactory getInstance() {
@@ -22,6 +23,12 @@ public class ModelFactory {
 
     public ICaja getIcaja() {
         return icaja;
+    }
+
+    public void generarAdmin() {
+        Usuario admin = new Usuario("admin", "1004827105", "jorgity345@gmail.com", "3175083079", "123", "12345", 0.0);
+        admin.setAdministrador();
+        icaja.addUsuario(admin);
     }
 
 }

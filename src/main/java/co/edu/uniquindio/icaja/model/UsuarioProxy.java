@@ -14,17 +14,17 @@ public class UsuarioProxy implements Login {
     private final String clave;
 
     public UsuarioProxy(String cedula, String clave) {
-        this.usuario = this.buscarUsuario();
+        this.usuario = this.buscarUsuario(cedula);
         this.cedula = cedula;
         this.clave = clave;
     }
 
-    public Usuario buscarUsuario() {
+    public Usuario buscarUsuario(String cedula) {
         ICaja icaja = ModelFactory.getInstance().getIcaja();
         ArrayList<Usuario> listaUsuarios = icaja.getListaUsuarios();
 
         for(Usuario usuario : listaUsuarios) {
-            if(usuario.getCedula().equals(this.cedula)) {
+            if(usuario.getCedula().equals(cedula)) {
                 return usuario;
             }
         }
@@ -41,5 +41,9 @@ public class UsuarioProxy implements Login {
         }
 
         return this.usuario.ingresar();
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
     }
 }

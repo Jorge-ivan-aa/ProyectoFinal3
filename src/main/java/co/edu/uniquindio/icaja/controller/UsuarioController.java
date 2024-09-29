@@ -20,6 +20,10 @@ public class UsuarioController {
 
     }
 
+    public ModelFactory getFactory() {
+        return factory;
+    }
+
     public ObservableList<Usuario> getListaUsuarioObservable() {
         return listaUsuarioObservable;
     }
