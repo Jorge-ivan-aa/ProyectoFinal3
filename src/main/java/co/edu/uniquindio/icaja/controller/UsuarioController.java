@@ -31,15 +31,15 @@ public class UsuarioController {
     private void sincronizarData() {
          this.listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
     }
-    public String eliminarUsuario(String nombre) {
+    public String eliminarUsuario(String cedula) {
 
-        if (this.consultarUsuario(nombre) == null) {
+        if (this.consultarUsuario(cedula) == null) {
             return "El usuario ingresado no existe";
         } else {
             int index = -1;
             ArrayList<Usuario> Clientes = factory.getIcaja().getListaUsuarios();
             for (int i = 0; i < Clientes.size(); i++) {
-                if (Objects.equals(Clientes.get(i).getNombre(), nombre)) {
+                if (Objects.equals(Clientes.get(i).getCedula(), cedula)) {
                     index = i;
                 }
             }
@@ -51,10 +51,10 @@ public class UsuarioController {
         }
     }
 
-    public Usuario consultarUsuario(String nombre) {
+    public Usuario consultarUsuario(String cedula) {
         ArrayList<Usuario> Usuarios = this.factory.getIcaja().getListaUsuarios();
         for (Usuario value : Usuarios) {
-            if (value.getNombre().equals(nombre)) {
+            if (value.getCedula().equals(cedula)) {
                 return value;
             }
         }
@@ -64,7 +64,7 @@ public class UsuarioController {
     public String crearUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
         ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
 
-        if (this.consultarUsuario(nombre) != null) {
+        if (this.consultarUsuario(cedula) != null) {
             return "El usuario ingresado ya existe";
         } else {
             Usuario nuevoUsuario = new Usuario(nombre, cedula, correo, telefono, clave, claveTransaccional, presupuestoMensual);
@@ -77,13 +77,13 @@ public class UsuarioController {
     public String actualizarUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
         ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
 
-        if (this.consultarUsuario(nombre) == null) {
+        if (this.consultarUsuario(cedula) == null) {
             return "El usuario ingresado no existe";
 
         } else {
             int index = -1;
             for (int i = 0; i < Usuarios.size(); i++) {
-                if (Objects.equals(Usuarios.get(i).getNombre(), nombre)) {
+                if (Objects.equals(Usuarios.get(i).getCedula(), cedula)) {
                     index = i;
                 }
             }

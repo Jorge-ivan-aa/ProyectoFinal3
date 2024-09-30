@@ -92,8 +92,9 @@ public class GestionarUsuarioView {
         } else {
             Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
 
-
         }
+
+
         Tools.limpiarCampos(txtCedulaAdmin,
                 txtNombreAdmin,
                 txtCorreoAdmin,
@@ -131,10 +132,10 @@ public class GestionarUsuarioView {
 
     @FXML
     void eliminarUsuario(ActionEvent event) {
-        String nombre = txtNombreAdmin.getText();
+        String cedula   = txtCedulaAdmin.getText();
 
-        if (!Tools.hayCamposVacios(nombre)) {
-            String resultado = usuarioController.eliminarUsuario(nombre);
+        if (!Tools.hayCamposVacios(cedula)) {
+            String resultado = usuarioController.eliminarUsuario(cedula);
             Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
         } else {
             Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
@@ -164,9 +165,11 @@ public class GestionarUsuarioView {
     private void initDataBinging() {
         tbcNombreUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
         tbcCorreoUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCorreo()));
-        tbcCedulaUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+        tbcCedulaUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCedula()));
         tbcClaveTransaccionalAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClaveTransaccional()));
         tbcTelefonoUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefono()));
+        tbcPresupuestoMensualAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getPresupuestoMensual())));
+        tbcClaveUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClave()));
     }
 
     private void listenerSelectionUsuario() {
@@ -181,6 +184,9 @@ public class GestionarUsuarioView {
             txtCedulaAdmin.setText(seleccionado.getCedula());
             txtCorreoAdmin.setText(seleccionado.getCorreo());
             txtTelefonoAdmin.setText(seleccionado.getTelefono());
+            txtClaveTransaccionalAdmin.setText(seleccionado.getClaveTransaccional());
+            txtClaveAdmin.setText(seleccionado.getClave());
+            txtPresupuestoMensualAdmin.setText(String.valueOf(seleccionado.getPresupuestoMensual()));
         }
     }
 }
