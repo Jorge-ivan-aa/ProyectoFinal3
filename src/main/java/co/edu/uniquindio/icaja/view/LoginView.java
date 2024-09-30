@@ -70,7 +70,8 @@ public class LoginView {
 
     @FXML
     void registrarUsuario(ActionEvent event) {
-
+        Tools.ventanaEmergente("templates/crearUsuario.fxml", "ICaja - Registro de usuario", "styles/main.css");
+        Tools.cerrarVentana(txtCedulaUsuario);
     }
 
     @FXML
