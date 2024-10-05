@@ -69,6 +69,7 @@ public class CrearUsuarioView {
     @FXML
     void volverAction(ActionEvent event) {
         Tools.ventanaEmergente("login.fxml", "ICaja :)", "styles/main.css");
+        Tools.cerrarVentana(txtCedulaUsuario);
 
 
     }
