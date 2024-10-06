@@ -2,7 +2,15 @@ package co.edu.uniquindio.icaja.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.NoArgsConstructor;
 
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class ICaja implements Serializable {
 
     private ArrayList<Usuario> listaUsuarios;
@@ -19,13 +27,6 @@ public class ICaja implements Serializable {
         this.sesion = null;
     }
 
-    public Sesion getSesion() {
-        return sesion;
-    }
-
-    public void setSesion(Sesion sesion) {
-        this.sesion = sesion;
-    }
 
     // agregar elementos -------------
     public void addUsuario(Usuario usuario) {
@@ -61,20 +62,5 @@ public class ICaja implements Serializable {
         this.listaCuentaBancarias.remove(index);
     }
 
-    // obtener listas -------------
-    public ArrayList<Usuario> getListaUsuarios() {
-        return listaUsuarios;
-    }
 
-    public ArrayList<Transaccion> getListaTransacciones() {
-        return listaTransacciones;
-    }
-
-    public ArrayList<Categoria> getListaCategorias() {
-        return listaCategorias;
-    }
-
-    public ArrayList<CuentaBancaria> getListaCuentaBancarias() {
-        return listaCuentaBancarias;
-    }
 }

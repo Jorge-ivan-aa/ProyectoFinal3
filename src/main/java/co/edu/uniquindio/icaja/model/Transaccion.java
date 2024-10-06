@@ -2,7 +2,15 @@ package co.edu.uniquindio.icaja.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.NoArgsConstructor;
 
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public abstract class Transaccion implements Serializable {
     private int id;
     private String fecha;
@@ -19,34 +27,9 @@ public abstract class Transaccion implements Serializable {
         this.cuenta = cuenta;
     }
 
-    public Transaccion() {
-    }
 
     public abstract void realizarMovimiento();
 
     public abstract String factura();
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public double getMonto() {
-        return monto;
-    }
-
-    public void setMonto(double monto) {
-        this.monto = monto;
-    }
 }
