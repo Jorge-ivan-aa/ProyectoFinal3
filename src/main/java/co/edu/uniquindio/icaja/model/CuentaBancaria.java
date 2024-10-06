@@ -3,7 +3,15 @@ package co.edu.uniquindio.icaja.model;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 
 import java.io.Serializable;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.NoArgsConstructor;
 
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class CuentaBancaria implements Serializable {
     private String entidad;
     private String numeroCuenta;
@@ -20,8 +28,7 @@ public class CuentaBancaria implements Serializable {
         this.limite = this.definirLimite(tipoCuenta, limite);
     }
 
-    public CuentaBancaria() {
-    }
+
 
     public double definirLimite(TipoCuenta tipoCuenta, double limite) {
         if (tipoCuenta == TipoCuenta.CREDITO) {
@@ -30,43 +37,5 @@ public class CuentaBancaria implements Serializable {
         return this.saldo;
     }
 
-    public String getEntidad() {
-        return entidad;
-    }
 
-    public void setEntidad(String entidad) {
-        this.entidad = entidad;
-    }
-
-    public String getNumeroCuenta() {
-        return numeroCuenta;
-    }
-
-    public void setNumeroCuenta(String numeroCuenta) {
-        this.numeroCuenta = numeroCuenta;
-    }
-
-    public TipoCuenta getTipoCuenta() {
-        return tipoCuenta;
-    }
-
-    public void setTipoCuenta(TipoCuenta tipoCuenta) {
-        this.tipoCuenta = tipoCuenta;
-    }
-
-    public double getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(double saldo) {
-        this.saldo = saldo;
-    }
-
-    public double getLimite() {
-        return limite;
-    }
-
-    public void setLimite(double limite) {
-        this.limite = limite;
-    }
 }

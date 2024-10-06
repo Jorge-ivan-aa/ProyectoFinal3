@@ -4,6 +4,15 @@ import co.edu.uniquindio.icaja.model.enums.TipoCategoria;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.NoArgsConstructor;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 
 public class Categoria implements Serializable {
     private String nombre;
@@ -19,8 +28,6 @@ public class Categoria implements Serializable {
         this.transacciones = new ArrayList<>();
     }
 
-    public Categoria() {
-    }
 
     public void addTransaccion(Transaccion transaccion) {
         transacciones.add(transaccion);
@@ -30,31 +37,5 @@ public class Categoria implements Serializable {
         transacciones.remove(transaccion);
     }
 
-    public ArrayList<Transaccion> getTransacciones() {
-        return transacciones;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public TipoCategoria getTipoCategoria() {
-        return tipoCategoria;
-    }
-
-    public void setTipoCategoria(TipoCategoria tipoCategoria) {
-        this.tipoCategoria = tipoCategoria;
-    }
+    
 }
