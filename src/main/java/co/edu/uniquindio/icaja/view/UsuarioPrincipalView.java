@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class UsuarioPrincipalView {
-    UsuarioController usuarioController= new UsuarioController();
 
     @FXML
     private ResourceBundle resources;
@@ -18,23 +17,20 @@ public class UsuarioPrincipalView {
     private URL location;
 
     @FXML
+    private Label lbPonerGastosUsuario;
+
+    @FXML
+    private Label lbPonerIngresosUsuario;
+
+    @FXML
     private Label lbPonerNombreUsuario;
 
     @FXML
     private Label lbPonerSaldoUsuario;
+    UsuarioController usuarioController= new UsuarioController();
 
     @FXML
     void DepositoAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void CerrarAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void HistorialAction(ActionEvent event) {
 
     }
 
