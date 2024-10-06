@@ -2,19 +2,24 @@ package co.edu.uniquindio.icaja.model;
 
 import co.edu.uniquindio.icaja.model.enums.TipoCategoria;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Categoria {
+public class Categoria implements Serializable {
     private String nombre;
     private String descripcion;
     private TipoCategoria tipoCategoria;
-    private final ArrayList<Transaccion> transacciones;
+    private ArrayList<Transaccion> transacciones;
+    public static final long serialVersionID = 1L;
 
-    public Categoria(String nombre, String descripcion, TipoCategoria tipoCategoria) {
+    public Categoria(String nombre, String descripcion, TipoCategoria tipoCategoria,ArrayList<Transaccion> transacciones ) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipoCategoria = tipoCategoria;
         this.transacciones = new ArrayList<>();
+    }
+
+    public Categoria() {
     }
 
     public void addTransaccion(Transaccion transaccion) {

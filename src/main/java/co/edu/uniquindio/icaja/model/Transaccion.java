@@ -1,13 +1,15 @@
 package co.edu.uniquindio.icaja.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Transaccion {
+public abstract class Transaccion implements Serializable {
     private int id;
     private String fecha;
     private double monto;
     private Categoria[] listacategoria;
     private CuentaBancaria cuenta;
+    public static final long serialVersionID = 3L;
 
     public Transaccion(int id, String fecha, double monto, Categoria[] listacategoria, CuentaBancaria cuenta) {
         this.id = id;
@@ -15,6 +17,9 @@ public abstract class Transaccion {
         this.monto = monto;
         this.listacategoria = listacategoria;
         this.cuenta = cuenta;
+    }
+
+    public Transaccion() {
     }
 
     public abstract void realizarMovimiento();

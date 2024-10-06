@@ -14,6 +14,7 @@ public class ModelFactory {
         generarUsuario();
     }
 
+
     public static ModelFactory getInstance() {
         if (instance == null) {
             instance = new ModelFactory();

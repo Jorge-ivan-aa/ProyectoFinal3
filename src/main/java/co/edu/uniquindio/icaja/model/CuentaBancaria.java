@@ -2,12 +2,15 @@ package co.edu.uniquindio.icaja.model;
 
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 
-public class CuentaBancaria {
+import java.io.Serializable;
+
+public class CuentaBancaria implements Serializable {
     private String entidad;
     private String numeroCuenta;
     private TipoCuenta tipoCuenta;
     private double saldo;
     private double limite;
+    public static final long serialVersionID = 7L;
 
     public CuentaBancaria(String entidad, String numeroCuenta, TipoCuenta tipoCuenta, double saldo, double limite) {
         this.entidad = entidad;
@@ -15,6 +18,9 @@ public class CuentaBancaria {
         this.tipoCuenta = tipoCuenta;
         this.saldo = saldo;
         this.limite = this.definirLimite(tipoCuenta, limite);
+    }
+
+    public CuentaBancaria() {
     }
 
     public double definirLimite(TipoCuenta tipoCuenta, double limite) {

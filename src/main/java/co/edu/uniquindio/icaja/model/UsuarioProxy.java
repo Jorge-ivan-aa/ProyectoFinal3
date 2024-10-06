@@ -6,18 +6,21 @@ import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UsuarioProxy implements Login {
+public class UsuarioProxy implements Serializable,Login {
     private final Usuario usuario;
     private final String cedula;
     private final String clave;
+    public static final long serialVersionID = 6L;
 
     public UsuarioProxy(String cedula, String clave) {
         this.usuario = this.buscarUsuario(cedula);
         this.cedula = cedula;
         this.clave = clave;
     }
+
 
     public Usuario buscarUsuario(String cedula) {
         ICaja icaja = ModelFactory.getInstance().getIcaja();
