@@ -68,6 +68,7 @@
       <AnchorPane fx:id="anchorUsuarioPrincipal" prefHeight="690.0" prefWidth="806.0" style="-fx-background-color: F3FAE1;" visible="false">
          <children>
             <Label text="usuarioPrincipal" />
+            <fx:include source="usuarioPrincipal.fxml" />
          </children>
       </AnchorPane>
 
