@@ -2,6 +2,7 @@ module co.edu.uniquindio.icaja {
     requires javafx.controls;
     requires javafx.fxml;
     requires static lombok;
+    requires java.logging;
 
 
     opens co.edu.uniquindio.icaja to javafx.fxml;

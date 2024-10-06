@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 public class ICaja implements Serializable {
 
     private ArrayList<Usuario> listaUsuarios;

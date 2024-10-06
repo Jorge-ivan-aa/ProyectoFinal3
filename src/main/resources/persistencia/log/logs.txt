@@ -1,0 +1,7 @@
+INFO [2024-10-06 13:46:12]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 14:28:07]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 14:59:35]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 14:59:45]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioAdminJorge ingresó satisfactoriamente
+INFO [2024-10-06 14:59:45]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 15:02:43]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+WARNING [2024-10-06 15:02:50]: co.edu.uniquindio.icaja.model.Sesion.ingresar(), Usuario no existe
