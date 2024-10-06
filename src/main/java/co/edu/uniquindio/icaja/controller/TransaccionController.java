@@ -45,11 +45,8 @@ public class TransaccionController {
         registrarLog(1,"Se ha creado una transacción de deposito");
 
         TransaccionDeposito transaccionDeposito = new TransaccionDeposito(id, fecha, monto, null, cuenta);
-
         this.factory.getIcaja().getListaTransacciones().add(transaccionDeposito);
-
         this.sincronizarData();
-
         return transaccionDeposito;
     }
 
@@ -58,11 +55,8 @@ public class TransaccionController {
         registrarLog(1,"Se ha creado una transacción de retiro");
 
         TransaccionRetiro transaccionRetiro = new TransaccionRetiro(id, fecha, monto, null, cuenta);
-
         this.factory.getIcaja().getListaTransacciones().add(transaccionRetiro);
-
         this.sincronizarData();
-
         return transaccionRetiro;
 
     }
@@ -72,11 +66,8 @@ public class TransaccionController {
         registrarLog(1,"Se ha creado una transacción de transferencia");
 
         TransaccionTransferencia transaccionTransferencia = new TransaccionTransferencia(id, fecha, monto, null, cuenta);
-
         this.factory.getIcaja().getListaTransacciones().add(transaccionTransferencia);
-
         this.sincronizarData();
-
         return transaccionTransferencia;
     }
 

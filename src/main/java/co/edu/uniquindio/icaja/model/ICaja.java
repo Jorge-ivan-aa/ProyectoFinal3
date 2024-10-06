@@ -2,6 +2,8 @@ package co.edu.uniquindio.icaja.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import co.edu.uniquindio.icaja.model.enums.TipoCategoria;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -60,6 +62,4 @@ public class ICaja implements Serializable {
     public void removeCuentaBancaria(int index) {
         this.listaCuentaBancarias.remove(index);
     }
-
-
 }

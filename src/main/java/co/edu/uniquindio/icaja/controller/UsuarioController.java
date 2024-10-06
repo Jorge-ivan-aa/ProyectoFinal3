@@ -38,6 +38,27 @@ public class UsuarioController {
         this.listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
         Seguimiento.registrarLog(1,"Se sincronizo la base de datos");
     }
+
+    public String crearUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
+        ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
+
+        if (this.consultarUsuario(cedula) != null) {
+
+            registrarLog(1,"El usuario ya existe");
+
+            return "El usuario ingresado ya existe";
+        } else {
+
+            registrarLog(1,"Se ha creado el usuario");
+
+            Usuario nuevoUsuario = new Usuario(nombre, cedula, correo, telefono, clave, claveTransaccional, presupuestoMensual);
+            this.factory.getIcaja().addUsuario(nuevoUsuario);
+            this.listaUsuarioObservable.add(nuevoUsuario);
+            return "Usuario registrado exitosamente";
+        }
+    }
+
+
     public String eliminarUsuario(String cedula) {
 
         if (this.consultarUsuario(cedula) == null) {
@@ -77,24 +98,6 @@ public class UsuarioController {
         return null;
     }
 
-    public String crearUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
-        ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
-
-        if (this.consultarUsuario(cedula) != null) {
-
-            registrarLog(1,"El usuario ya existe");
-
-            return "El usuario ingresado ya existe";
-        } else {
-
-            registrarLog(1,"Se ha creado el usuario");
-
-            Usuario nuevoUsuario = new Usuario(nombre, cedula, correo, telefono, clave, claveTransaccional, presupuestoMensual);
-            this.factory.getIcaja().addUsuario(nuevoUsuario);
-            this.listaUsuarioObservable.add(nuevoUsuario);
-            return "Usuario registrado exitosamente";
-        }
-    }
 
     public String actualizarUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
         ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
