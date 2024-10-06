@@ -3,6 +3,8 @@ module co.edu.uniquindio.icaja {
     requires javafx.fxml;
     requires static lombok;
     requires java.logging;
+    requires java.desktop;
+    requires org.mapstruct;
 
 
     opens co.edu.uniquindio.icaja to javafx.fxml;
