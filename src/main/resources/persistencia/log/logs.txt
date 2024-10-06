@@ -1,0 +1,1 @@
+INFO [2024-10-06 13:46:12]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
