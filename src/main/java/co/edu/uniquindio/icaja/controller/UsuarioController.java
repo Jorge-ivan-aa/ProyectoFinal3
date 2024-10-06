@@ -6,6 +6,8 @@ import co.edu.uniquindio.icaja.utils.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -30,12 +32,39 @@ public class UsuarioController {
     }
 
     private void sincronizarData() {
+
+        registrarLog(1,"Se sincronizo la base de datos");
+
         this.listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
         Seguimiento.registrarLog(1,"Se sincronizo la base de datos");
     }
+
+    public String crearUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
+        ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
+
+        if (this.consultarUsuario(cedula) != null) {
+
+            registrarLog(1,"El usuario ya existe");
+
+            return "El usuario ingresado ya existe";
+        } else {
+
+            registrarLog(1,"Se ha creado el usuario");
+
+            Usuario nuevoUsuario = new Usuario(nombre, cedula, correo, telefono, clave, claveTransaccional, presupuestoMensual);
+            this.factory.getIcaja().addUsuario(nuevoUsuario);
+            this.listaUsuarioObservable.add(nuevoUsuario);
+            return "Usuario registrado exitosamente";
+        }
+    }
+
+
     public String eliminarUsuario(String cedula) {
 
         if (this.consultarUsuario(cedula) == null) {
+
+            registrarLog(1,"El usuario que no existe");
+
             return "El usuario ingresado no existe";
         } else {
             int index = -1;
@@ -45,6 +74,9 @@ public class UsuarioController {
                     index = i;
                 }
             }
+
+            registrarLog(1,"Se elimino el usuario");
+
             if (index != -1) {
                 this.listaUsuarioObservable.remove(index);
                 Clientes.remove(index);
@@ -54,6 +86,9 @@ public class UsuarioController {
     }
 
     public Usuario consultarUsuario(String cedula) {
+
+        registrarLog(1,"Se consultó el usuario");
+
         ArrayList<Usuario> Usuarios = this.factory.getIcaja().getListaUsuarios();
         for (Usuario value : Usuarios) {
             if (value.getCedula().equals(cedula)) {
@@ -63,23 +98,14 @@ public class UsuarioController {
         return null;
     }
 
-    public String crearUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
-        ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
-
-        if (this.consultarUsuario(cedula) != null) {
-            return "El usuario ingresado ya existe";
-        } else {
-            Usuario nuevoUsuario = new Usuario(nombre, cedula, correo, telefono, clave, claveTransaccional, presupuestoMensual);
-            this.factory.getIcaja().addUsuario(nuevoUsuario);
-            this.listaUsuarioObservable.add(nuevoUsuario);
-            return "Usuario registrado exitosamente";
-        }
-    }
 
     public String actualizarUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
         ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
 
         if (this.consultarUsuario(cedula) == null) {
+
+            registrarLog(1,"El usuario no existe");
+
             return "El usuario ingresado no existe";
 
         } else {
@@ -91,6 +117,9 @@ public class UsuarioController {
             }
 
             if (index != -1) {
+
+                registrarLog(1,"Se actualizo el usuario");
+
                 Usuario nuevoUsuario = new Usuario(nombre,cedula, correo, telefono, clave, claveTransaccional,presupuestoMensual);
                 Usuarios.remove(index);
                 Usuarios.add(nuevoUsuario);
