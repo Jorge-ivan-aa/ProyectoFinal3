@@ -38,4 +38,13 @@ public class CuentaBancaria implements Serializable {
     }
 
 
+    public CuentaBancaria get(int i) {
+
+        return null;
+    }
+
+    public CuentaBancaria getSiguiente() {
+
+        return null;
+    }
 }

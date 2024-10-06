@@ -62,4 +62,8 @@ public class ICaja implements Serializable {
     public void removeCuentaBancaria(int index) {
         this.listaCuentaBancarias.remove(index);
     }
+
+    public CuentaBancaria getListaCuentasBancarias() {
+        return listaCuentasBancarias;
+    }
 }
