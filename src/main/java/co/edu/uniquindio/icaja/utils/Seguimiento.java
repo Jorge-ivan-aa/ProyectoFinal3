@@ -3,8 +3,6 @@ package co.edu.uniquindio.icaja.utils;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.logging.*;
 import java.nio.file.Paths;
 

@@ -5,12 +5,12 @@ import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
+import co.edu.uniquindio.icaja.utils.Seguimiento;
 
 import java.util.ArrayList;
 
 public class Sesion implements Login {
     private final Usuario usuario;
-    private final String cedula;
     private final String clave;
 
     public Sesion(String cedula, String clave) {
@@ -35,6 +35,7 @@ public class Sesion implements Login {
     @Override
     public TipoUsuario ingresar() throws UsuarioNoExiste, CredencialesNoCoinciden{
         if (this.usuario == null) {
+            Seguimiento.registrarLog(2, "Usuario no existe");
             throw new UsuarioNoExiste("Usuario no encontrado, revisa la cedula ingresada.");
         } else if (!usuario.getClave().equals(clave)) {
             throw new CredencialesNoCoinciden("Contraseña incorrecta, intenta nuevamente.");

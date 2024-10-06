@@ -30,7 +30,7 @@ public class UsuarioController {
     }
 
     private void sincronizarData() {
-         this.listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
+        this.listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
         Seguimiento.registrarLog(1,"Se sincronizo la base de datos");
     }
     public String eliminarUsuario(String cedula) {

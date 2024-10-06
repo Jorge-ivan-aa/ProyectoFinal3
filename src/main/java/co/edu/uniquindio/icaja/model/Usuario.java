@@ -5,6 +5,7 @@ import co.edu.uniquindio.icaja.model.services.Login;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import co.edu.uniquindio.icaja.utils.Seguimiento;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -46,6 +47,7 @@ public class Usuario implements Serializable, Login {
 
     @Override
     public TipoUsuario ingresar() {
+        Seguimiento.registrarLog(1, "El usuario" + nombre + " ingresó satisfactoriamente");
         return getTipoUsuario();
     }
 
