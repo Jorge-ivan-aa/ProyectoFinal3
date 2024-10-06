@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Setter
 @ToString
 @NoArgsConstructor
+
 public abstract class Transaccion implements Serializable {
     private int id;
     private String fecha;
@@ -26,7 +27,6 @@ public abstract class Transaccion implements Serializable {
         this.listacategoria = listacategoria;
         this.cuenta = cuenta;
     }
-
 
     public abstract void realizarMovimiento();
 
