@@ -1,6 +1,9 @@
 package co.edu.uniquindio.icaja.model;
 
-public class TransaccionFactory {
+import java.io.Serializable;
+
+public class TransaccionFactory implements Serializable {
+    public static final long serialVersionID = 4L;
 
     public Transaccion crearTransaccion(String tipo) {
         if (tipo.equalsIgnoreCase("deposito")) {
@@ -13,4 +16,6 @@ public class TransaccionFactory {
             return null;
     }
 
+    public TransaccionFactory() {
+    }
 }

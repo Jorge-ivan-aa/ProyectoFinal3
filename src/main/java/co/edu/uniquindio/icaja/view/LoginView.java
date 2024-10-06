@@ -63,14 +63,15 @@ public class LoginView {
                 Tools.ventanaEmergente("templates/mainAdministrador.fxml", "ICaja - Administrador", "styles/main.css");
                 break;
             case NORMAL:
-                Tools.ventanaEmergente("templates/mainNormal.fxml", "ICaja - " + usuario, "styles/main.css");
+                Tools.ventanaEmergente("templates/UsuarioPrincipal.fxml", "ICaja - " + usuario, "styles/main.css");
                 break;
         }
     }
 
     @FXML
     void registrarUsuario(ActionEvent event) {
-
+        Tools.ventanaEmergente("templates/crearUsuario.fxml", "ICaja - Registro de usuario", "styles/main.css");
+        Tools.cerrarVentana(txtCedulaUsuario);
     }
 
     @FXML

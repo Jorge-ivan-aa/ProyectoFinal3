@@ -4,16 +4,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.icaja.controller.UsuarioController;
-import co.edu.uniquindio.icaja.model.Usuario;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import co.edu.uniquindio.icaja.view.Tools;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 
 public class CrearUsuarioView {
-
-    UsuarioController usuarioController = new UsuarioController();
+    UsuarioController usuarioController= new UsuarioController();
 
     @FXML
     private ResourceBundle resources;
@@ -22,74 +19,35 @@ public class CrearUsuarioView {
     private URL location;
 
     @FXML
-    private Button btnActualizarUsuario;
+    private TextField txtCedulaUsuario;
 
     @FXML
-    private Button btnAgregarUsuario;
+    private TextField txtClaveTranUsuario;
 
     @FXML
-    private Button btnEliminarUsuario;
+    private TextField txtClaveUsuario;
 
     @FXML
-    private TableView<Usuario> tbUsuarios;
+    private TextField txtCorreoUsuario;
 
     @FXML
-    private TableColumn<Usuario, String> tbcCedulaUsuario;
+    private TextField txtNombreUsuario;
 
     @FXML
-    private TableColumn<Usuario, String> tbcClaveTransaccional;
+    private TextField txtPresupuestoUsuario;
 
     @FXML
-    private TableColumn<Usuario, String> tbcClaveUsuario;
+    private TextField txtTelefonoUsuario;
 
     @FXML
-    private TableColumn<Usuario, String> tbcCorreoUsuario;
-
-    @FXML
-    private TableColumn<Usuario, String> tbcNombreUsuario;
-
-    @FXML
-    private TableColumn<?, ?> tbcPresupuestoMensual;
-
-    @FXML
-    private TableColumn<?, ?> tbcSaldoTotal;
-
-    @FXML
-    private TableColumn<Usuario, String> tbcTelefonoUsuario;
-
-    @FXML
-    private TextField txtCedula;
-
-    @FXML
-    private TextField txtClave;
-
-    @FXML
-    private TextField txtClaveTransaccional;
-
-    @FXML
-    private TextField txtCorreo;
-
-    @FXML
-    private TextField txtNombre;
-
-    @FXML
-    private TextField txtPresupuestoMens;
-
-    @FXML
-    private TextField txtSaldoTotal;
-
-    @FXML
-    private TextField txtTelefono;
-
-    @FXML
-    void agregarUsuario(ActionEvent event) {
-        String nombre = txtNombre.getText();
-        String cedula = txtCedula.getText();
-        String correo = txtCorreo.getText();
-        String clave = txtClave.getText();
-        String claveTransaccional = txtClaveTransaccional.getText();
-        String presupuestoMensual = txtPresupuestoMens.getText();
-        String telefono = txtTelefono.getText();
+    void registrarUsuarioAction(ActionEvent event) {
+        String nombre = txtNombreUsuario.getText();
+        String cedula = txtCedulaUsuario.getText();
+        String correo = txtCorreoUsuario.getText();
+        String clave = txtClaveUsuario.getText();
+        String claveTransaccional = txtClaveTranUsuario.getText();
+        String presupuestoMensual = txtPresupuestoUsuario.getText();
+        String telefono = txtTelefonoUsuario.getText();
 
         if (!Tools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
             String resultado = usuarioController.crearUsuario(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
@@ -97,95 +55,30 @@ public class CrearUsuarioView {
         } else {
             Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
 
-
         }
-        Tools.limpiarCampos(txtCedula,
-                            txtNombre,
-                            txtCorreo,
-                            txtTelefono,
-                            txtClave,
-                            txtClaveTransaccional,
-                            txtPresupuestoMens);
+        Tools.limpiarCampos(txtCedulaUsuario,
+                txtNombreUsuario,
+                txtCorreoUsuario,
+                txtTelefonoUsuario,
+                txtClaveUsuario,
+                txtClaveTranUsuario,
+                txtPresupuestoUsuario);
+
     }
 
     @FXML
-    void actualizarUsuario(ActionEvent event) {
-        String nombre = txtNombre.getText();
-        String cedula = txtCedula.getText();
-        String correo = txtCorreo.getText();
-        String clave = txtClave.getText();
-        String claveTransaccional = txtClaveTransaccional.getText();
-        String presupuestoMensual = txtPresupuestoMens.getText();
-        String telefono = txtTelefono.getText();
+    void volverAction(ActionEvent event) {
+        Tools.ventanaEmergente("login.fxml", "ICaja :)", "styles/main.css");
+        Tools.cerrarVentana(txtCedulaUsuario);
 
-        if (!Tools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
-            String resultado = usuarioController.actualizarUsuario(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
-            Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
-        } else {
-            Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
 
-        }
-        Tools.limpiarCampos(txtCedula,
-                txtNombre,
-                txtCorreo,
-                txtTelefono,
-                txtClave,
-                txtClaveTransaccional,
-                txtPresupuestoMens);
     }
 
-    @FXML
-    void eliminarUsuario(ActionEvent event) {
-        String nombre = txtNombre.getText();
-
-        if (!Tools.hayCamposVacios(nombre)) {
-            String resultado = usuarioController.eliminarUsuario(nombre);
-            Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
-        } else {
-            Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
-        }
-
-        Tools.limpiarCampos(txtCedula,
-                txtNombre,
-                txtCorreo,
-                txtTelefono,
-                txtClave,
-                txtClaveTransaccional,
-                txtPresupuestoMens);
-    }
 
     @FXML
     void initialize() {
-        initview();
+
+
     }
 
-    private void initview() {
-        initDataBinging();
-        tbUsuarios.getItems().clear();
-        tbUsuarios.setItems(usuarioController.getListaUsuarioObservable());
-        listenerSelectionUsuario();
-    }
-
-    private void initDataBinging() {
-        tbcNombreUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
-        tbcCorreoUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCorreo()));
-        tbcCedulaUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
-        tbcClaveTransaccional.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClaveTransaccional()));
-        tbcTelefonoUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefono()));
-    }
-
-    private void listenerSelectionUsuario() {
-        tbUsuarios.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            this.mostrarInformacion((Usuario) newSelection);
-        });
-    }
-
-    private void mostrarInformacion(Usuario seleccionado) {
-        if (seleccionado != null) {
-            txtNombre.setText(seleccionado.getNombre());
-            txtCedula.setText(seleccionado.getCedula());
-            txtCorreo.setText(seleccionado.getCorreo());
-            txtTelefono.setText(seleccionado.getTelefono());
-        }
-    }
 }

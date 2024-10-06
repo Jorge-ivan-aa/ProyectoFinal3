@@ -5,9 +5,10 @@ import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Usuario implements Login {
+public class Usuario implements Serializable, Login {
     private String nombre;
     private String cedula;
     private String correo;
@@ -20,6 +21,7 @@ public class Usuario implements Login {
     private double presupuestoMensual;
     private TipoUsuario tipoUsuario;
     private ArrayList<CuentaBancaria> listaCuentas;
+    public static final long serialVersionID = 5L;
 
     public Usuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
         this.nombre = nombre;
@@ -34,6 +36,9 @@ public class Usuario implements Login {
         this.presupuestoMensual = presupuestoMensual;
         this.listaCuentas = new ArrayList<>();
         this.tipoUsuario = TipoUsuario.NORMAL;
+    }
+
+    public Usuario() {
     }
 
     @Override

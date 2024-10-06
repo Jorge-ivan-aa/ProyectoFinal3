@@ -1,14 +1,15 @@
 package co.edu.uniquindio.icaja.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ICaja {
+public class ICaja implements Serializable {
 
     private ArrayList<Usuario> listaUsuarios;
     private ArrayList<Transaccion> listaTransacciones;
     private ArrayList<Categoria> listaCategorias;
     private ArrayList<CuentaBancaria> listaCuentaBancarias;
-    private Sesion sesion;
+    private UsuarioProxy sesion;
 
     public ICaja() {
         this.listaUsuarios = new ArrayList<>();
@@ -18,11 +19,11 @@ public class ICaja {
         this.sesion = null;
     }
 
-    public Sesion getSesion() {
+    public UsuarioProxy getSesion() {
         return sesion;
     }
 
-    public void setSesion(Sesion sesion) {
+    public void setSesion(UsuarioProxy sesion) {
         this.sesion = sesion;
     }
 
