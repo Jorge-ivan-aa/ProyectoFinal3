@@ -1,13 +1,19 @@
 package co.edu.uniquindio.icaja.model;
 
-import co.edu.uniquindio.icaja.exception.CredencialesNoCoinciden;
-import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.NoArgsConstructor;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class Usuario implements Serializable, Login {
     private String nombre;
     private String cedula;
@@ -38,16 +44,9 @@ public class Usuario implements Serializable, Login {
         this.tipoUsuario = TipoUsuario.NORMAL;
     }
 
-    public Usuario() {
-    }
-
     @Override
     public TipoUsuario ingresar() {
         return getTipoUsuario();
-    }
-
-    public TipoUsuario getTipoUsuario() {
-        return tipoUsuario;
     }
 
     public void setAdministrador() {
@@ -58,95 +57,11 @@ public class Usuario implements Serializable, Login {
         this.tipoUsuario = TipoUsuario.NORMAL;
     }
 
-    public ArrayList<CuentaBancaria> getListaCuentas() {
-        return listaCuentas;
-    }
-
     public void addCuenta(CuentaBancaria cuenta) {
         this.listaCuentas.add(cuenta);
     }
 
     public void removeCuenta(CuentaBancaria cuenta) {
         this.listaCuentas.remove(cuenta);
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getClave() {
-        return clave;
-    }
-
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
-
-    public String getClaveTransaccional() {
-        return claveTransaccional;
-    }
-
-    public void setClaveTransaccional(String claveTransaccional) {
-        this.claveTransaccional = claveTransaccional;
-    }
-
-    public double getSaldoTotal() {
-        return saldoTotal;
-    }
-
-    public void setSaldoTotal(double saldoTotal) {
-        this.saldoTotal = saldoTotal;
-    }
-
-    public double getIngresos() {
-        return ingresos;
-    }
-
-    public void setIngresos(double ingresos) {
-        this.ingresos = ingresos;
-    }
-
-    public double getGastos() {
-        return gastos;
-    }
-
-    public void setGastos(double gastos) {
-        this.gastos = gastos;
-    }
-
-    public double getPresupuestoMensual() {
-        return presupuestoMensual;
-    }
-
-    public void setPresupuestoMensual(double presupuestoMensual) {
-        this.presupuestoMensual = presupuestoMensual;
     }
 }
