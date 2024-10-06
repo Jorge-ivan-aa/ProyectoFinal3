@@ -8,12 +8,12 @@ import co.edu.uniquindio.icaja.model.services.Login;
 
 import java.util.ArrayList;
 
-public class UsuarioProxy implements Login {
+public class Sesion implements Login {
     private final Usuario usuario;
     private final String cedula;
     private final String clave;
 
-    public UsuarioProxy(String cedula, String clave) {
+    public Sesion(String cedula, String clave) {
         this.usuario = this.buscarUsuario(cedula);
         this.cedula = cedula;
         this.clave = clave;

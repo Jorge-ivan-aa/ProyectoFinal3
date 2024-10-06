@@ -8,7 +8,7 @@ public class ICaja {
     private ArrayList<Transaccion> listaTransacciones;
     private ArrayList<Categoria> listaCategorias;
     private ArrayList<CuentaBancaria> listaCuentaBancarias;
-    private UsuarioProxy sesion;
+    private Sesion sesion;
 
     public ICaja() {
         this.listaUsuarios = new ArrayList<>();
@@ -18,11 +18,11 @@ public class ICaja {
         this.sesion = null;
     }
 
-    public UsuarioProxy getSesion() {
+    public Sesion getSesion() {
         return sesion;
     }
 
-    public void setSesion(UsuarioProxy sesion) {
+    public void setSesion(Sesion sesion) {
         this.sesion = sesion;
     }
 

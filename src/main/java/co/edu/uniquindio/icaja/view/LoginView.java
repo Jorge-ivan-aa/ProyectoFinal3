@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.icaja.controller.UsuarioController;
 import co.edu.uniquindio.icaja.exception.CredencialesNoCoinciden;
 import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
-import co.edu.uniquindio.icaja.model.UsuarioProxy;
+import co.edu.uniquindio.icaja.model.Sesion;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,7 +40,7 @@ public class LoginView {
         String cedula = txtCedulaUsuario.getText();
 
         if (!Tools.hayCamposVacios(clave, cedula)) {
-            UsuarioProxy sesion = new UsuarioProxy(cedula, clave);
+            Sesion sesion = new Sesion(cedula, clave);
 
             try {
                 TipoUsuario tipoUsuario = sesion.ingresar();
