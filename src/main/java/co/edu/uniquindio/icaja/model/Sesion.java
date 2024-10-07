@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Sesion implements Login {
     private final Usuario usuario;
     private final String clave;
+    private final String cedula;
 
     public Sesion(String cedula, String clave) {
         this.usuario = this.buscarUsuario(cedula);
