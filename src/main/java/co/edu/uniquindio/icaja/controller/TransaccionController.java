@@ -8,12 +8,14 @@ import co.edu.uniquindio.icaja.model.factories.TransaccionRetiro;
 import co.edu.uniquindio.icaja.model.factories.TransaccionTransferencia;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lombok.Getter;
 
 import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
+@Getter
 public class TransaccionController {
 
     private final ModelFactory factory;
@@ -26,13 +28,6 @@ public class TransaccionController {
         this.sincronizarData();
     }
 
-    public ModelFactory getFactory() {
-        return factory;
-    }
-
-    public ObservableList<Transaccion> getListaTransaccionObservable() {
-        return listaTransaccionObservable;
-    }
     public void sincronizarData() {
 
         registrarLog(1,"Se sincronizo la base de datos");

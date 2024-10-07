@@ -4,16 +4,17 @@ import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.model.Categoria;
 import co.edu.uniquindio.icaja.model.Transaccion;
 import co.edu.uniquindio.icaja.model.enums.TipoCategoria;
-import co.edu.uniquindio.icaja.model.ICaja;
 import co.edu.uniquindio.icaja.utils.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lombok.Getter;
 
 import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
+@Getter
 public class CategoriaController {
 
     private final ModelFactory factory;
@@ -23,14 +24,6 @@ public class CategoriaController {
         this.factory = ModelFactory.getInstance();
         this.listaCategoriasObservable = FXCollections.observableArrayList();
         this.sincronizarData();
-    }
-
-    public ModelFactory getFactory() {
-        return factory;
-    }
-
-    public ObservableList<Categoria> getListaCategoriasObservable() {
-        return listaCategoriasObservable;
     }
 
     private void sincronizarData() {

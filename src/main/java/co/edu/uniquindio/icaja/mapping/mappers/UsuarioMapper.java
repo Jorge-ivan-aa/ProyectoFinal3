@@ -1,21 +1,31 @@
 package co.edu.uniquindio.icaja.mapping.mappers;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.model.Usuario;
-import org.mapstruct.Mapper;
-import org.mapstruct.Named;
-import org.mapstruct.factory.Mappers;
 
 
-@Mapper
-public interface UsuarioMapper {
-    UsuarioMapper INSTANCE = Mappers.getMapper(UsuarioMapper.class);
+public class UsuarioMapper {
 
-    // MApeo de usuario a usuarioDTO
-    @Named("usuarioToUsuarioDto")
-    UsuarioDto usuarioToUsuarioDto(Usuario usuario);
+    public static UsuarioDto usuarioToUsuarioDTo(Usuario usuario) {
+        return new UsuarioDto(
+                usuario.getNombre(),
+                usuario.getCedula(),
+                usuario.getCorreo(),
+                usuario.getTelefono(),
+                usuario.getClave(),
+                usuario.getClaveTransaccional(),
+                usuario.getPresupuestoMensual()
+        );
+    }
 
-    // MApeo de usuarioDto a usuario
-    @Named("usuarioDtoToUsuario")
-    Usuario usuarioDtoToUsuario(UsuarioDto usuarioDto);
-
+    public static Usuario usuarioDtoToUsuario(UsuarioDto usuarioDto) {
+        return new Usuario(
+                usuarioDto.nombre(),
+                usuarioDto.cedula(),
+                usuarioDto.correo(),
+                usuarioDto.telefono(),
+                usuarioDto.clave(),
+                usuarioDto.claveTransaccional(),
+                usuarioDto.presupuestoMensual()
+        );
+    }
 }

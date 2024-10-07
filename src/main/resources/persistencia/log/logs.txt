@@ -5,3 +5,79 @@ INFO [2024-10-06 14:59:45]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El
 INFO [2024-10-06 14:59:45]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
 INFO [2024-10-06 15:02:43]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
 WARNING [2024-10-06 15:02:50]: co.edu.uniquindio.icaja.model.Sesion.ingresar(), Usuario no existe
+INFO [2024-10-06 18:45:56]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:45:56]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:46:10]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioAdminJorge ingresó satisfactoriamente
+INFO [2024-10-06 18:46:10]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:46:10]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:46:16]: co.edu.uniquindio.icaja.controller.UsuarioController.consultarUsuario(), Se consultó el usuario
+INFO [2024-10-06 18:46:16]: co.edu.uniquindio.icaja.controller.UsuarioController.crearUsuario(), El usuario ya existe
+INFO [2024-10-06 18:46:57]: co.edu.uniquindio.icaja.controller.UsuarioController.consultarUsuario(), Se consultó el usuario
+INFO [2024-10-06 18:46:57]: co.edu.uniquindio.icaja.controller.UsuarioController.crearUsuario(), Se ha creado el usuario
+INFO [2024-10-06 18:49:11]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:49:11]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:50:04]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:50:04]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:50:16]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioAdminJorge ingresó satisfactoriamente
+INFO [2024-10-06 18:50:16]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:50:16]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:50:26]: co.edu.uniquindio.icaja.controller.UsuarioController.consultarUsuario(), Se consultó el usuario
+INFO [2024-10-06 18:50:26]: co.edu.uniquindio.icaja.controller.UsuarioController.crearUsuario(), Se ha creado el usuario
+INFO [2024-10-06 18:51:29]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:51:29]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:51:36]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioAdminJorge ingresó satisfactoriamente
+INFO [2024-10-06 18:51:36]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:51:36]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:51:49]: co.edu.uniquindio.icaja.controller.UsuarioController.consultarUsuario(), Se consultó el usuario
+INFO [2024-10-06 18:51:49]: co.edu.uniquindio.icaja.controller.UsuarioController.crearUsuario(), Se ha creado el usuario
+INFO [2024-10-06 18:57:52]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:57:52]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:58:00]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioAdminJorge ingresó satisfactoriamente
+INFO [2024-10-06 18:58:00]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:58:00]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 18:58:08]: co.edu.uniquindio.icaja.controller.UsuarioController.consultarUsuario(), Se consultó el usuario
+INFO [2024-10-06 18:58:08]: co.edu.uniquindio.icaja.controller.UsuarioController.crearUsuario(), Se ha creado el usuario
+INFO [2024-10-06 19:22:31]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:22:31]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:22:39]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioAdminJorge ingresó satisfactoriamente
+INFO [2024-10-06 19:22:39]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:22:39]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:22:50]: co.edu.uniquindio.icaja.controller.UsuarioController.consultarUsuario(), Se consultó el usuario
+INFO [2024-10-06 19:22:50]: co.edu.uniquindio.icaja.controller.UsuarioController.crearUsuario(), Se ha creado el usuario
+INFO [2024-10-06 19:32:10]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:32:10]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:32:18]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioAdminJorge ingresó satisfactoriamente
+INFO [2024-10-06 19:32:18]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:32:18]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:32:28]: co.edu.uniquindio.icaja.controller.UsuarioController.consultarUsuario(), Se consultó el usuario
+INFO [2024-10-06 19:32:28]: co.edu.uniquindio.icaja.controller.UsuarioController.crearUsuario(), Se ha creado el usuario
+INFO [2024-10-06 19:33:27]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:33:27]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:33:56]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioAdminJorge ingresó satisfactoriamente
+INFO [2024-10-06 19:33:59]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:33:59]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:35:59]: co.edu.uniquindio.icaja.controller.UsuarioController.consultarUsuario(), Se consultó el usuario
+INFO [2024-10-06 19:36:05]: co.edu.uniquindio.icaja.controller.UsuarioController.crearUsuario(), Se ha creado el usuario
+INFO [2024-10-06 19:41:03]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:41:03]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:41:10]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioAdminJorge ingresó satisfactoriamente
+INFO [2024-10-06 19:41:10]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:41:10]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 19:41:18]: co.edu.uniquindio.icaja.controller.UsuarioController.consultarUsuario(), Se consultó el usuario
+INFO [2024-10-06 19:41:18]: co.edu.uniquindio.icaja.controller.UsuarioController.crearUsuario(), Se ha creado el usuario
+INFO [2024-10-06 20:08:17]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:08:17]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:08:32]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:08:32]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:08:39]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioAdminJorge ingresó satisfactoriamente
+INFO [2024-10-06 20:08:39]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:08:39]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:08:46]: co.edu.uniquindio.icaja.controller.UsuarioController.consultarUsuario(), Se consultó el usuario
+INFO [2024-10-06 20:08:46]: co.edu.uniquindio.icaja.controller.UsuarioController.crearUsuario(), Se ha creado el usuario
+INFO [2024-10-06 20:19:21]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:19:21]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:19:30]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioAdminJorge ingresó satisfactoriamente
+INFO [2024-10-06 20:19:30]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:19:30]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:19:38]: co.edu.uniquindio.icaja.controller.UsuarioController.consultarUsuario(), Se consultó el usuario
+INFO [2024-10-06 20:19:38]: co.edu.uniquindio.icaja.controller.UsuarioController.crearUsuario(), Se ha creado el usuario

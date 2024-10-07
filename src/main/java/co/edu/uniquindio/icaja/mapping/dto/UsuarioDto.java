@@ -7,8 +7,5 @@ public record UsuarioDto(
      String telefono,
      String clave,
      String claveTransaccional,
-     double saldoTotal,
-     double ingresos,
-     double gastos,
      double presupuestoMensual) {
 }

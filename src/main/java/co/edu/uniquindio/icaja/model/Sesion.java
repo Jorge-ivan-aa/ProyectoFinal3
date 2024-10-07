@@ -15,7 +15,6 @@ public class Sesion implements Login {
 
     public Sesion(String cedula, String clave) {
         this.usuario = this.buscarUsuario(cedula);
-        this.cedula = cedula;
         this.clave = clave;
     }
 

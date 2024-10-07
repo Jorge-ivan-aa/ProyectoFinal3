@@ -1,16 +1,21 @@
 package co.edu.uniquindio.icaja.controller;
 
 import co.edu.uniquindio.icaja.factory.ModelFactory;
+import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.icaja.mapping.mappers.UsuarioMapper;
 import co.edu.uniquindio.icaja.model.Usuario;
+import co.edu.uniquindio.icaja.model.ICaja;
 import co.edu.uniquindio.icaja.utils.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lombok.Getter;
 
 import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
+@Getter
 public class UsuarioController {
 
     private final ModelFactory factory;
@@ -23,14 +28,6 @@ public class UsuarioController {
 
     }
 
-    public ModelFactory getFactory() {
-        return factory;
-    }
-
-    public ObservableList<Usuario> getListaUsuarioObservable() {
-        return listaUsuarioObservable;
-    }
-
     private void sincronizarData() {
 
         registrarLog(1,"Se sincronizo la base de datos");
@@ -39,19 +36,15 @@ public class UsuarioController {
         Seguimiento.registrarLog(1,"Se sincronizo la base de datos");
     }
 
-    public String crearUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
-        ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
+    public String crearUsuario(UsuarioDto usuarioDto) {
 
-        if (this.consultarUsuario(cedula) != null) {
-
+        if (this.consultarUsuario(usuarioDto.cedula()) != null) {
             registrarLog(1,"El usuario ya existe");
-
             return "El usuario ingresado ya existe";
         } else {
-
             registrarLog(1,"Se ha creado el usuario");
+            Usuario nuevoUsuario = UsuarioMapper.usuarioDtoToUsuario(usuarioDto);
 
-            Usuario nuevoUsuario = new Usuario(nombre, cedula, correo, telefono, clave, claveTransaccional, presupuestoMensual);
             this.factory.getIcaja().addUsuario(nuevoUsuario);
             this.listaUsuarioObservable.add(nuevoUsuario);
             return "Usuario registrado exitosamente";
@@ -62,10 +55,9 @@ public class UsuarioController {
     public String eliminarUsuario(String cedula) {
 
         if (this.consultarUsuario(cedula) == null) {
-
             registrarLog(1,"El usuario que no existe");
-
             return "El usuario ingresado no existe";
+
         } else {
             int index = -1;
             ArrayList<Usuario> Clientes = factory.getIcaja().getListaUsuarios();
@@ -75,13 +67,13 @@ public class UsuarioController {
                 }
             }
 
-            registrarLog(1,"Se elimino el usuario");
-
             if (index != -1) {
                 this.listaUsuarioObservable.remove(index);
                 Clientes.remove(index);
             }
+            registrarLog(1,"Se elimino el usuario");
             return "El usuario fué eliminado correctamente";
+
         }
     }
 
@@ -99,19 +91,17 @@ public class UsuarioController {
     }
 
 
-    public String actualizarUsuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
+    public String actualizarUsuario(UsuarioDto usuarioDto) {
         ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
 
-        if (this.consultarUsuario(cedula) == null) {
-
+        if (this.consultarUsuario(usuarioDto.cedula()) == null) {
             registrarLog(1,"El usuario no existe");
-
             return "El usuario ingresado no existe";
 
         } else {
             int index = -1;
             for (int i = 0; i < Usuarios.size(); i++) {
-                if (Objects.equals(Usuarios.get(i).getCedula(), cedula)) {
+                if (Objects.equals(Usuarios.get(i).getCedula(), usuarioDto.cedula())) {
                     index = i;
                 }
             }
@@ -120,7 +110,7 @@ public class UsuarioController {
 
                 registrarLog(1,"Se actualizo el usuario");
 
-                Usuario nuevoUsuario = new Usuario(nombre,cedula, correo, telefono, clave, claveTransaccional,presupuestoMensual);
+                Usuario nuevoUsuario = UsuarioMapper.usuarioDtoToUsuario(usuarioDto);
                 Usuarios.remove(index);
                 Usuarios.add(nuevoUsuario);
                 this.listaUsuarioObservable.remove(index);

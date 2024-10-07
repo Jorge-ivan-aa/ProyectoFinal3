@@ -6,12 +6,14 @@ import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 import co.edu.uniquindio.icaja.utils.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import lombok.Getter;
 
 import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
+@Getter
 public class CuentaBancariaController {
 
     private final ModelFactory factory;
@@ -21,14 +23,6 @@ public class CuentaBancariaController {
         this.factory = ModelFactory.getInstance();
         this.listaCuentaBancariaObservable = FXCollections.observableArrayList();
         this.sincronizarData();
-    }
-
-    public ModelFactory getFactory() {
-        return factory;
-    }
-
-    public ObservableList<CuentaBancaria> getListaCuentaBancariaObservable() {
-        return listaCuentaBancariaObservable;
     }
 
     private void sincronizarData() {

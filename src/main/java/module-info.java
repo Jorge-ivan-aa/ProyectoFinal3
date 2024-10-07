@@ -4,10 +4,12 @@ module co.edu.uniquindio.icaja {
     requires static lombok;
     requires java.logging;
     requires java.desktop;
-    requires org.mapstruct;
 
 
+    exports co.edu.uniquindio.icaja.mapping.mappers;
+    exports co.edu.uniquindio.icaja.mapping.dto;
     opens co.edu.uniquindio.icaja to javafx.fxml;
+    exports co.edu.uniquindio.icaja.model;
     exports co.edu.uniquindio.icaja;
     exports co.edu.uniquindio.icaja.controller;
     opens co.edu.uniquindio.icaja.controller to javafx.fxml;
