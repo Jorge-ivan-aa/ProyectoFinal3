@@ -81,3 +81,15 @@ INFO [2024-10-06 20:19:30]: co.edu.uniquindio.icaja.controller.UsuarioController
 INFO [2024-10-06 20:19:30]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
 INFO [2024-10-06 20:19:38]: co.edu.uniquindio.icaja.controller.UsuarioController.consultarUsuario(), Se consultó el usuario
 INFO [2024-10-06 20:19:38]: co.edu.uniquindio.icaja.controller.UsuarioController.crearUsuario(), Se ha creado el usuario
+INFO [2024-10-06 20:43:52]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:43:52]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:44:01]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:44:01]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:44:36]: co.edu.uniquindio.icaja.controller.UsuarioController.consultarUsuario(), Se consultó el usuario
+INFO [2024-10-06 20:44:36]: co.edu.uniquindio.icaja.controller.UsuarioController.crearUsuario(), Se ha creado el usuario
+INFO [2024-10-06 20:44:38]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:44:38]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+WARNING [2024-10-06 20:44:45]: co.edu.uniquindio.icaja.model.Sesion.ingresar(), Usuario no existe
+INFO [2024-10-06 20:44:49]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuariosgsgg ingresó satisfactoriamente
+INFO [2024-10-06 20:44:49]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-06 20:44:50]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos

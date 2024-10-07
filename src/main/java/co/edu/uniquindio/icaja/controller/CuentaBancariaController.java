@@ -29,7 +29,7 @@ public class CuentaBancariaController {
 
         registrarLog(1,"Se sincronizo la base de datos");
 
-        this.listaCuentaBancariaObservable.addAll(this.factory.getIcaja().getListaCuentasBancarias());
+        this.listaCuentaBancariaObservable.addAll(this.factory.getIcaja().getListaCuentaBancarias());
         Seguimiento.registrarLog(1,"Se sincronizo la base de datos");
     }
 
