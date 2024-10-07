@@ -8,9 +8,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="626.0" prefWidth="1044.0" style="-fx-background-color: #5E2BFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.UsuarioPrincipalView">
+<AnchorPane prefHeight="626.0" prefWidth="1044.0" style="-fx-background-color: #5E2BFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.UsuarioPrincipalView">
    <children>
-      <AnchorPane prefHeight="626.0" prefWidth="1050.0" style="-fx-background-color: F3FAE1;">
+      <AnchorPane prefHeight="626.0" prefWidth="1050.0" style="-fx-background-color: F7F6C5; -fx-background-radius: 30;">
          <children>
             <Label layoutX="445.0" layoutY="20.0" text="Bienvenido :) ">
                <font>
@@ -60,7 +60,7 @@
                   <Font name="Georgia Italic" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="424.0" layoutY="459.0" mnemonicParsing="false" onAction="#DepositoAction" prefHeight="32.0" prefWidth="138.0" text="Deposito">
+            <Button layoutX="424.0" layoutY="459.0" mnemonicParsing="false" onAction="#DepositoAction" prefHeight="32.0" prefWidth="138.0" style="-fx-background-radius: 10;" text="Deposito">
                <font>
                   <Font name="Georgia Italic" size="15.0" />
                </font>
@@ -68,7 +68,7 @@
                   <DropShadow height="11.64" radius="4.75" width="9.36" />
                </effect>
             </Button>
-            <Button layoutX="603.0" layoutY="415.0" mnemonicParsing="false" onAction="#TransferirDineroAction" prefHeight="33.0" prefWidth="142.0" text="Transferir Dinero">
+            <Button layoutX="603.0" layoutY="415.0" mnemonicParsing="false" onAction="#TransferirDineroAction" prefHeight="33.0" prefWidth="142.0" style="-fx-background-radius: 10;" text="Transferir Dinero">
                <font>
                   <Font name="Georgia Italic" size="15.0" />
                </font>
@@ -76,7 +76,7 @@
                   <DropShadow height="9.36" radius="4.165" width="9.3" />
                </effect>
             </Button>
-            <Button layoutX="274.0" layoutY="414.0" mnemonicParsing="false" onAction="#RetirarAction" prefHeight="34.0" prefWidth="111.0" text="Retirar">
+            <Button layoutX="274.0" layoutY="414.0" mnemonicParsing="false" onAction="#RetirarAction" prefHeight="34.0" prefWidth="111.0" style="-fx-background-radius: 10;" text="Retirar">
                <font>
                   <Font name="Georgia Italic" size="15.0" />
                </font>
@@ -84,7 +84,7 @@
                   <DropShadow height="9.33" radius="4.165" width="9.33" />
                </effect>
             </Button>
-            <Button layoutX="436.0" layoutY="533.0" mnemonicParsing="false" onAction="#PresupuestoAction" prefHeight="37.0" prefWidth="114.0" text="Presupuestos">
+            <Button layoutX="436.0" layoutY="533.0" mnemonicParsing="false" onAction="#PresupuestoAction" prefHeight="37.0" prefWidth="114.0" style="-fx-background-radius: 10;" text="Presupuestos">
                <font>
                   <Font name="Georgia Italic" size="15.0" />
                </font>
