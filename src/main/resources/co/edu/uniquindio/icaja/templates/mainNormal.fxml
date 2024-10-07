@@ -6,66 +6,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="733.0" prefWidth="805.0" style="-fx-background-color: #5E2BFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.mainNormalView">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5E2BFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.mainNormalView">
    <children>
-
-            <HBox layoutX="140.0" layoutY="689.0" minWidth="93.0" prefHeight="42.0" prefWidth="543.0" style="-fx-background-color: green;">
-         <children>
-            <GridPane prefHeight="42.0" prefWidth="743.0">
-               <columnConstraints>
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="180.33334197998047" minWidth="10.0" prefWidth="167.53329315185547" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.1333282470703" minWidth="0.0" prefWidth="193.6667068481445" />
-                  <ColumnConstraints maxWidth="586.6667053222657" minWidth="130.66664428710942" prefWidth="186.0666717529296" />
-                  <ColumnConstraints maxWidth="927.7333557128907" minWidth="120.53329467773438" prefWidth="207.79995727539062" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <Button mnemonicParsing="false" onAction="#ponerUsuarioPrincipalAction" prefHeight="221.0" prefWidth="320.0" text=" ">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-
-                        <Button layoutX="122.0" layoutY="24.0" mnemonicParsing="false" onAction="#PonerCuentasUsuarioAction" prefHeight="146.0" prefWidth="320.0" text="Cuentas" GridPane.columnIndex="1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-
-                        <Button layoutX="330.0" layoutY="24.0" mnemonicParsing="false" onAction="#ponerDetallesUsuarioAction" prefHeight="95.0" prefWidth="491.0" text="detalles" GridPane.columnIndex="2">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-
-                        <Button layoutX="650.0" layoutY="24.0" mnemonicParsing="false" onAction="#ponerPerfilUsuarioAction" prefHeight="42.0" prefWidth="282.0" text="perfil" GridPane.columnIndex="3">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
-
-                        <FontAwesomeIconView glyphName="HOME" size="40" textAlignment="CENTER" wrappingWidth="36.7428617477417" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                     <font>
-                        <Font size="43.0" />
-                     </font>
-                  </FontAwesomeIconView>
-
-                        <FontAwesomeIconView glyphName="CREDIT-CARD" size="20" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-
-                        <FontAwesomeIconView glyphName="CHART" size="20" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-
-                        <FontAwesomeIconView glyphName="PERSON" size="20" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-               </children>
-            </GridPane>
-         </children>
-      </HBox>
-      <AnchorPane fx:id="anchorUsuarioPrincipal" prefHeight="690.0" prefWidth="806.0" style="-fx-background-color: F3FAE1;">
+      <AnchorPane fx:id="anchorUsuarioPrincipal" layoutX="181.0" layoutY="49.0" prefHeight="626.0" prefWidth="1054.0" style="-fx-background-color: F3FAE1;">
          <children>
             <Label text="usuarioPrincipal" />
             <fx:include source="usuarioPrincipal.fxml" />
@@ -89,5 +36,57 @@
             <Label layoutX="409.0" layoutY="431.0" text="perfil" />
          </children>
       </AnchorPane>
+      <VBox alignment="CENTER" layoutX="31.0" layoutY="51.0" prefHeight="626.0" prefWidth="100.0" style="-fx-background-color: F7F6C5;">
+         <children>
+            <GridPane alignment="CENTER" prefHeight="417.0" prefWidth="100.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button mnemonicParsing="false" onAction="#ponerUsuarioPrincipalAction" prefHeight="79.0" prefWidth="100.0" text=" ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+      
+                        <FontAwesomeIconView glyphName="HOME" size="40" textAlignment="CENTER" wrappingWidth="36.7428617477417" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="43.0" />
+                     </font>
+                  </FontAwesomeIconView>
+      
+                        <Button mnemonicParsing="false" onAction="#PonerCuentasUsuarioAction" prefHeight="76.0" prefWidth="100.0" text="Cuentas" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+      
+                        <FontAwesomeIconView glyphName="CREDIT-CARD" size="40" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+      
+                        <Button mnemonicParsing="false" onAction="#ponerDetallesUsuarioAction" prefHeight="79.0" prefWidth="100.0" text="detalles" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+      
+                        <FontAwesomeIconView glyphName="CHART" size="40" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+      
+                        <Button mnemonicParsing="false" onAction="#ponerPerfilUsuarioAction" prefHeight="75.0" prefWidth="100.0" text="perfil" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+      
+                        <FontAwesomeIconView glyphName="PERSON" size="40" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
