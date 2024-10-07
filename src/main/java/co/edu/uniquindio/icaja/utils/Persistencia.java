@@ -1,14 +1,13 @@
-package co.edu.uniquindio.icaja.utils.persistencia;
+package co.edu.uniquindio.icaja.utils;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
 import java.util.ArrayList;
 
-public abstract class Persistencia {
+public class Persistencia {
 
-    private final String RUTA = "src/main/resources/persistencia";
-
+    private static final String RUTA = "src/main/resources/persistencia/archivos/";
     public Persistencia() {
 
     }
@@ -17,9 +16,9 @@ public abstract class Persistencia {
      * Este metodo recibe una cadena con el contenido que se quiere guardar en el archivo
      * @param ruta es la ruta o path donde esta ubicado el archivo
      */
-    public static void guardarArchivo(String ruta,String contenido, Boolean flagAnexarContenido) throws IOException {
+    public static void guardarArchivo(String ruta, String contenido, Boolean flagAnexarContenido) throws IOException {
 
-        FileWriter fw = new FileWriter(ruta,flagAnexarContenido);
+        FileWriter fw = new FileWriter(RUTA+ruta,flagAnexarContenido);
         BufferedWriter bfw = new BufferedWriter(fw);
         bfw.write(contenido);
         bfw.close();
@@ -32,7 +31,7 @@ public abstract class Persistencia {
     public static ArrayList<String> leerArchivo(String ruta) throws IOException {
 
         ArrayList<String>  contenido = new ArrayList<String>();
-        FileReader fr=new FileReader(ruta);
+        FileReader fr=new FileReader(RUTA+ruta);
         BufferedReader bfr=new BufferedReader(fr);
         String linea="";
         while((linea = bfr.readLine())!=null)
@@ -98,5 +97,4 @@ public abstract class Persistencia {
         codificadorXML.close();
 
     }
-
 }

@@ -1,0 +1,7 @@
+Juan@@123456@@juan@example.com@@@@clave123@@transclave123@@1000.0@@500.0@@300.0@@0.0@@ADMINISTRADOR
+Jorge@@1004827105@@jorge@example.com@@@@123@@transclave123@@1000.0@@500.0@@300.0@@0.0@@ADMINISTRADOR
+Maria@@654321@@maria@example.com@@@@clave456@@transclave456@@2000.0@@1000.0@@600.0@@0.0@@NORMAL
+Carlos@@789012@@carlos@example.com@@@@clave789@@transclave789@@1500.0@@700.0@@400.0@@0.0@@NORMAL
+Ana@@345678@@ana@example.com@@@@clave987@@transclave987@@2500.0@@1200.0@@800.0@@0.0@@NORMAL
+Luis@@901234@@luis@example.com@@@@clave654@@transclave654@@1800.0@@800.0@@500.0@@0.0@@NORMAL
+jose@@12334@@asdsadas@sadasd@@123123@@123@@213123213@@0.0@@0.0@@0.0@@123123.0@@NORMAL

@@ -12,7 +12,9 @@ import lombok.Getter;
 
 import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Getter
@@ -33,6 +35,7 @@ public class UsuarioController {
         registrarLog(1,"Se sincronizo la base de datos");
 
         this.listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
+        this.guardarUsuario();
         Seguimiento.registrarLog(1,"Se sincronizo la base de datos");
     }
 
@@ -47,6 +50,7 @@ public class UsuarioController {
 
             this.factory.getIcaja().addUsuario(nuevoUsuario);
             this.listaUsuarioObservable.add(nuevoUsuario);
+            this.guardarUsuario();
             return "Usuario registrado exitosamente";
         }
     }
@@ -71,10 +75,12 @@ public class UsuarioController {
                 this.listaUsuarioObservable.remove(index);
                 Clientes.remove(index);
             }
+            this.guardarUsuario();
             registrarLog(1,"Se elimino el usuario");
             return "El usuario fué eliminado correctamente";
-
         }
+
+
     }
 
     public Usuario consultarUsuario(String cedula) {
@@ -115,10 +121,20 @@ public class UsuarioController {
                 Usuarios.add(nuevoUsuario);
                 this.listaUsuarioObservable.remove(index);
                 this.listaUsuarioObservable.add(nuevoUsuario);
+                this.guardarUsuario();
             }
 
             return "El Usuario fué actualizado correctamente";
 
+        }
+    }
+
+    public void guardarUsuario() {
+        List<Usuario> usuarios = this.factory.getIcaja().getListaUsuarios();
+        try {
+            new Usuario().guardar(usuarios);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
