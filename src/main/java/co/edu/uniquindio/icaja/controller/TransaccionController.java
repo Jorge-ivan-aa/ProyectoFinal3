@@ -56,15 +56,15 @@ public class TransaccionController {
 
     }
 
-    public Transaccion crearTransaccionTransferencia(int id, String fecha, double monto, String tipo, CuentaBancaria cuenta) {
-
-        registrarLog(1,"Se ha creado una transacción de transferencia");
-
-        Transferencia transferencia = new Transferencia(id, fecha, monto, null, cuenta);
-        this.factory.getIcaja().getListaTransacciones().add(transferencia);
-        this.sincronizarData();
-        return transferencia;
-    }
+//    public Transaccion crearTransaccionTransferencia(int id, String fecha, double monto, String tipo, CuentaBancaria cuenta) {
+//
+//        registrarLog(1,"Se ha creado una transacción de transferencia");
+//
+//        Transferencia transferencia = new Transferencia(id, fecha, monto, null, cuenta);
+//        this.factory.getIcaja().getListaTransacciones().add(transferencia);
+//        this.sincronizarData();
+//        return transferencia;
+//    }
 
     public Transaccion consultarTransaccion(int id) {
 

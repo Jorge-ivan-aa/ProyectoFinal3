@@ -22,11 +22,11 @@ public class TransaccionFactory implements Serializable {
 
     public <T> Transaccion crearTransaccion(T transaccionDto) {
         if (transaccionDto instanceof DepositoDto) {
-            return TransaccionMapper.depositoDtoToTransaccion(transaccionDto);
+            return TransaccionMapper.depositoDtoToTransaccion((DepositoDto) transaccionDto);
         } else if (transaccionDto instanceof RetiroDto) {
-            return TransaccionMapper.retiroDtoToTransaccion(transaccionDto);
+            return TransaccionMapper.retiroDtoToTransaccion((RetiroDto) transaccionDto);
         } else if (transaccionDto instanceof TransferenciaDto) {
-            return TransaccionMapper.transferenciaDtoToTransaccion(transaccionDto);
+            return TransaccionMapper.transferenciaDtoToTransaccion((TransferenciaDto) transaccionDto);
         }
             return null;
     }
