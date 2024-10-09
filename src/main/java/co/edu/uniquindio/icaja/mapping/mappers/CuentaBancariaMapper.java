@@ -7,5 +7,23 @@ import co.edu.uniquindio.icaja.model.CuentaBancaria;
 
 
 public class CuentaBancariaMapper {
+    public static CuentaBancariaDto cuentaBancariaToCuentaBancariaDto(CuentaBancaria cuentaBancaria){
+        return new CuentaBancariaDto(
+                cuentaBancaria.getEntidad(),
+                cuentaBancaria.getNumeroCuenta(),
+                cuentaBancaria.getTipoCuenta(),
+                cuentaBancaria.getSaldo(),
+                cuentaBancaria.getLimite()
+        );
+    }
+
+    public static CuentaBancaria cuentaBancariaDtoToCuentaBancaria(CuentaBancariaDto cuentaBancariaDto){
+        return new CuentaBancaria(
+                cuentaBancariaDto.entidad(),
+                cuentaBancariaDto.numeroCuenta(),
+                cuentaBancariaDto.tipoCuenta(),
+                cuentaBancariaDto.saldo(),
+                cuentaBancariaDto.limite());
+    }
 
 }
