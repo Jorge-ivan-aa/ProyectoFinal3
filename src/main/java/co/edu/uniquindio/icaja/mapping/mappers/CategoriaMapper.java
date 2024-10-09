@@ -8,4 +8,22 @@ import co.edu.uniquindio.icaja.model.Usuario;
 
 public class CategoriaMapper {
 
+    public static CategoriaDto categoriaToCategoriaDto(Categoria categoria){
+        return new CategoriaDto(
+                categoria.getNombre(),
+                categoria.getDescripcion(),
+                categoria.getTipoCategoria(),
+                categoria.getTransacciones()
+
+        );
+    }
+    public static Categoria categoriaDtoToCategoria(CategoriaDto categoriaDto){
+        return new Categoria(
+                categoriaDto.nombre(),
+                categoriaDto.descripcion(),
+                categoriaDto.tipoCategoria(),
+                categoriaDto.transacciones()
+        );
+    }
+
 }
