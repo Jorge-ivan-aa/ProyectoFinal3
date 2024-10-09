@@ -2,10 +2,10 @@ package co.edu.uniquindio.icaja.controller;
 
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.model.CuentaBancaria;
-import co.edu.uniquindio.icaja.model.Transaccion;
-import co.edu.uniquindio.icaja.model.factories.TransaccionDeposito;
-import co.edu.uniquindio.icaja.model.factories.TransaccionRetiro;
-import co.edu.uniquindio.icaja.model.factories.TransaccionTransferencia;
+import co.edu.uniquindio.icaja.model.factories.Transaccion;
+import co.edu.uniquindio.icaja.model.factories.Deposito;
+import co.edu.uniquindio.icaja.model.factories.Retiro;
+import co.edu.uniquindio.icaja.model.factories.Transferencia;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
@@ -39,7 +39,7 @@ public class TransaccionController {
 
         registrarLog(1,"Se ha creado una transacción de deposito");
 
-        TransaccionDeposito transaccionDeposito = new TransaccionDeposito(id, fecha, monto, null, cuenta);
+        Deposito transaccionDeposito = new Deposito(id, fecha, monto, null, cuenta);
         this.factory.getIcaja().getListaTransacciones().add(transaccionDeposito);
         this.sincronizarData();
         return transaccionDeposito;
@@ -49,10 +49,10 @@ public class TransaccionController {
 
         registrarLog(1,"Se ha creado una transacción de retiro");
 
-        TransaccionRetiro transaccionRetiro = new TransaccionRetiro(id, fecha, monto, null, cuenta);
-        this.factory.getIcaja().getListaTransacciones().add(transaccionRetiro);
+        Retiro retiro = new Retiro(id, fecha, monto, null, cuenta);
+        this.factory.getIcaja().getListaTransacciones().add(retiro);
         this.sincronizarData();
-        return transaccionRetiro;
+        return retiro;
 
     }
 
@@ -60,10 +60,10 @@ public class TransaccionController {
 
         registrarLog(1,"Se ha creado una transacción de transferencia");
 
-        TransaccionTransferencia transaccionTransferencia = new TransaccionTransferencia(id, fecha, monto, null, cuenta);
-        this.factory.getIcaja().getListaTransacciones().add(transaccionTransferencia);
+        Transferencia transferencia = new Transferencia(id, fecha, monto, null, cuenta);
+        this.factory.getIcaja().getListaTransacciones().add(transferencia);
         this.sincronizarData();
-        return transaccionTransferencia;
+        return transferencia;
     }
 
     public Transaccion consultarTransaccion(int id) {

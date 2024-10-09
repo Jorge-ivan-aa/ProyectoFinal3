@@ -145,3 +145,9 @@ INFO [2024-10-06 23:32:50]: co.edu.uniquindio.icaja.controller.UsuarioController
 INFO [2024-10-06 23:32:58]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuariojose ingresó satisfactoriamente
 INFO [2024-10-06 23:32:58]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
 INFO [2024-10-06 23:32:58]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-07 08:02:46]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-07 08:02:46]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-07 08:02:57]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-07 08:02:57]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-07 08:03:05]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-10-07 08:03:05]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos

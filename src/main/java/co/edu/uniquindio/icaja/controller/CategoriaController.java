@@ -2,7 +2,7 @@ package co.edu.uniquindio.icaja.controller;
 
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.model.Categoria;
-import co.edu.uniquindio.icaja.model.Transaccion;
+import co.edu.uniquindio.icaja.model.factories.Transaccion;
 import co.edu.uniquindio.icaja.model.enums.TipoCategoria;
 import co.edu.uniquindio.icaja.utils.Seguimiento;
 import javafx.collections.FXCollections;

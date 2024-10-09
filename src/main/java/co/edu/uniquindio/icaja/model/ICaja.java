@@ -3,11 +3,10 @@ package co.edu.uniquindio.icaja.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import co.edu.uniquindio.icaja.model.enums.TipoCategoria;
+import co.edu.uniquindio.icaja.model.factories.Transaccion;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.NoArgsConstructor;
 
 @Getter
 @Setter

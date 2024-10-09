@@ -17,4 +17,5 @@ module co.edu.uniquindio.icaja {
     opens co.edu.uniquindio.icaja.view to javafx.fxml;
     exports co.edu.uniquindio.icaja.factory;
     opens co.edu.uniquindio.icaja.factory to javafx.fxml;
+    exports co.edu.uniquindio.icaja.model.factories;
 }
