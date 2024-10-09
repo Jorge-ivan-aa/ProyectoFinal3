@@ -1,18 +1,11 @@
-package co.edu.uniquindio.icaja.view;
+package co.edu.uniquindio.icaja.view.views;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
+
 public class mainNormalView {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private AnchorPane anchorCuentasUsuario;
@@ -44,11 +37,6 @@ public class mainNormalView {
     @FXML
     void ponerUsuarioPrincipalAction(ActionEvent event) {
 
-    }
-
-    @FXML
-    void initialize() {
-      
     }
 
 }

@@ -8,6 +8,7 @@ import co.edu.uniquindio.icaja.exception.CredencialesNoCoinciden;
 import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
 import co.edu.uniquindio.icaja.model.Sesion;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
+import co.edu.uniquindio.icaja.utils.ViewTools;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -39,20 +40,20 @@ public class LoginView {
         String clave = txtClaveUsuario.getText();
         String cedula = txtCedulaUsuario.getText();
 
-        if (!Tools.hayCamposVacios(clave, cedula)) {
+        if (!ViewTools.hayCamposVacios(clave, cedula)) {
             Sesion sesion = new Sesion(cedula, clave);
 
             try {
                 TipoUsuario tipoUsuario = sesion.ingresar();
                 usuarioController.getFactory().getIcaja().setSesion(sesion);
                 seleccionarInterfax(tipoUsuario, sesion.getUsuario().getNombre());
-                Tools.cerrarVentana(txtCedulaUsuario);
+                ViewTools.cerrarVentana(txtCedulaUsuario);
 
             } catch (UsuarioNoExiste | CredencialesNoCoinciden e) {
-                Tools.mostrarMensaje("¡Lo sentimos!", null, e.getMessage(), Alert.AlertType.ERROR);
+                ViewTools.mostrarMensaje("¡Lo sentimos!", null, e.getMessage(), Alert.AlertType.ERROR);
             }
         } else {
-            Tools.mostrarMensaje("¡Lo sentimos!", null, "Hay campos vacios.", Alert.AlertType.ERROR);
+            ViewTools.mostrarMensaje("¡Lo sentimos!", null, "Hay campos vacios.", Alert.AlertType.ERROR);
         }
 
     }
@@ -60,18 +61,18 @@ public class LoginView {
     void seleccionarInterfax(TipoUsuario tipoUsuario, String usuario) {
         switch(tipoUsuario) {
             case ADMINISTRADOR:
-                Tools.ventanaEmergente("templates/mainAdministrador.fxml", "ICaja - Administrador", "styles/main.css");
+                ViewTools.ventanaEmergente("templates/mainAdmin.fxml", "ICaja - Administrador", "styles/main.css");
                 break;
             case NORMAL:
-                Tools.ventanaEmergente("templates/mainNormal.fxml", "ICaja - " + usuario, "styles/main.css");
+                ViewTools.ventanaEmergente("templates/mainNormal.fxml", "ICaja - " + usuario, "styles/main.css");
                 break;
         }
     }
 
     @FXML
     void registrarUsuario(ActionEvent event) {
-        Tools.ventanaEmergente("templates/crearUsuario.fxml", "ICaja - Registro de usuario", "styles/main.css");
-        Tools.cerrarVentana(txtCedulaUsuario);
+        ViewTools.ventanaEmergente("templates/registroUsuario.fxml", "ICaja - Registro de usuario", "styles/main.css");
+        ViewTools.cerrarVentana(txtCedulaUsuario);
     }
 
     @FXML

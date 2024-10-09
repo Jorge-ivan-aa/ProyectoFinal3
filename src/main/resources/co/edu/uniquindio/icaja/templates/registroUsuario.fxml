@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="733.0" prefWidth="805.0" style="-fx-background-color: #5E2BFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.CrearUsuarioView">
+<AnchorPane prefHeight="733.0" prefWidth="805.0" style="-fx-background-color: #5E2BFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.RegistroUsuarioView">
    <children>
       <AnchorPane layoutX="140.0" layoutY="-1.0" prefHeight="734.0" prefWidth="543.0" style="-fx-background-color: F3FAE1;">
          <children>

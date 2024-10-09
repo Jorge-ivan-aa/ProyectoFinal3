@@ -1,4 +1,4 @@
-package co.edu.uniquindio.icaja.view;
+package co.edu.uniquindio.icaja.view.views;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -6,12 +6,13 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.icaja.controller.UsuarioController;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.model.Usuario;
+import co.edu.uniquindio.icaja.utils.ViewTools;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class GestionarUsuarioView {
+public class mainAdminView {
 
     UsuarioController usuarioController = new UsuarioController();
 
@@ -87,18 +88,18 @@ public class GestionarUsuarioView {
         String presupuestoMensual = txtPresupuestoMensualAdmin.getText();
         String telefono = txtTelefonoAdmin.getText();
 
-        if (!Tools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
+        if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
             UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,
                     Double.parseDouble(presupuestoMensual));
             String resultado = usuarioController.crearUsuario(usuarioDto);
-            Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
+            ViewTools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
         } else {
-            Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
 
         }
 
 
-        Tools.limpiarCampos(txtCedulaAdmin,
+        ViewTools.limpiarCampos(txtCedulaAdmin,
                 txtNombreAdmin,
                 txtCorreoAdmin,
                 txtTelefonoAdmin,
@@ -117,16 +118,16 @@ public class GestionarUsuarioView {
         String presupuestoMensual = txtPresupuestoMensualAdmin.getText();
         String telefono = txtTelefonoAdmin.getText();
 
-        if (!Tools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
+        if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
             UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,
                     Double.parseDouble(presupuestoMensual));
             String resultado = usuarioController.actualizarUsuario(usuarioDto);
-            Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
+            ViewTools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
         } else {
-            Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
 
         }
-        Tools.limpiarCampos(txtCedulaAdmin,
+        ViewTools.limpiarCampos(txtCedulaAdmin,
                 txtNombreAdmin,
                 txtCorreoAdmin,
                 txtTelefonoAdmin,
@@ -139,14 +140,14 @@ public class GestionarUsuarioView {
     void eliminarUsuario(ActionEvent event) {
         String cedula   = txtCedulaAdmin.getText();
 
-        if (!Tools.hayCamposVacios(cedula)) {
+        if (!ViewTools.hayCamposVacios(cedula)) {
             String resultado = usuarioController.eliminarUsuario(cedula);
-            Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
+            ViewTools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
         } else {
-            Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
         }
 
-        Tools.limpiarCampos(txtCedulaAdmin,
+        ViewTools.limpiarCampos(txtCedulaAdmin,
                 txtNombreAdmin,
                 txtCorreoAdmin,
                 txtTelefonoAdmin,

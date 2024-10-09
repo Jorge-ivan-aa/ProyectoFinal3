@@ -1,4 +1,4 @@
-package co.edu.uniquindio.icaja.view;
+package co.edu.uniquindio.icaja.utils;
 
 import co.edu.uniquindio.icaja.App;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.Objects;
 
-public class Tools {
+public class ViewTools {
 
     public static void mostrarMensaje(String title, String header, String message, Alert.AlertType type){
         Alert alert = new Alert(type);

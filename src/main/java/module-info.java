@@ -18,4 +18,10 @@ module co.edu.uniquindio.icaja {
     exports co.edu.uniquindio.icaja.factory;
     opens co.edu.uniquindio.icaja.factory to javafx.fxml;
     exports co.edu.uniquindio.icaja.model.factories;
+    exports co.edu.uniquindio.icaja.utils;
+    opens co.edu.uniquindio.icaja.utils to javafx.fxml;
+    exports co.edu.uniquindio.icaja.view.views.admin;
+    opens co.edu.uniquindio.icaja.view.views.admin to javafx.fxml;
+    exports co.edu.uniquindio.icaja.view.views;
+    opens co.edu.uniquindio.icaja.view.views to javafx.fxml;
 }

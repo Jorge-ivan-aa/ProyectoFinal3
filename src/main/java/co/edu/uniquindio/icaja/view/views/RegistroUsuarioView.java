@@ -1,16 +1,17 @@
-package co.edu.uniquindio.icaja.view;
+package co.edu.uniquindio.icaja.view.views;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.icaja.controller.UsuarioController;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.icaja.utils.ViewTools;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
-public class CrearUsuarioView {
+public class RegistroUsuarioView {
     UsuarioController usuarioController= new UsuarioController();
 
     @FXML
@@ -50,17 +51,17 @@ public class CrearUsuarioView {
         String presupuestoMensual = txtPresupuestoUsuario.getText();
         String telefono = txtTelefonoUsuario.getText();
 
-        if (!Tools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
+        if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
             UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,
                     Double.parseDouble(presupuestoMensual));
             String resultado = usuarioController.crearUsuario(usuarioDto);
-            Tools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
+            ViewTools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
 
         } else {
-            Tools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
 
         }
-        Tools.limpiarCampos(txtCedulaUsuario,
+        ViewTools.limpiarCampos(txtCedulaUsuario,
                 txtNombreUsuario,
                 txtCorreoUsuario,
                 txtTelefonoUsuario,
@@ -72,8 +73,8 @@ public class CrearUsuarioView {
 
     @FXML
     void volverAction(ActionEvent event) {
-        Tools.ventanaEmergente("login.fxml", "ICaja :)", "styles/main.css");
-        Tools.cerrarVentana(txtCedulaUsuario);
+        ViewTools.ventanaEmergente("login.fxml", "ICaja :)", "styles/main.css");
+        ViewTools.cerrarVentana(txtCedulaUsuario);
 
 
     }

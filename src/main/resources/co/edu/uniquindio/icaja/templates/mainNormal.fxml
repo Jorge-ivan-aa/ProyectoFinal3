@@ -10,13 +10,103 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5E2BFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.mainNormalView">
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.ColorAdjust?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5E2BFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.mainNormalView">
    <children>
       <AnchorPane fx:id="anchorUsuarioPrincipal" layoutX="181.0" layoutY="49.0" prefHeight="626.0" prefWidth="1054.0" style="-fx-background-color: F3FAE1; -fx-background-radius: 30;">
-         <children>
-            <Label text="usuarioPrincipal" />
-            <fx:include source="usuarioPrincipal.fxml" />
-         </children>
+          <AnchorPane prefHeight="626.0" prefWidth="1044.0" style="-fx-background-color: #5E2BFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.UsuarioPrincipalView">
+              <children>
+                  <AnchorPane prefHeight="626.0" prefWidth="1050.0" style="-fx-background-color: F7F6C5; -fx-background-radius: 30;">
+                      <children>
+                          <Label layoutX="445.0" layoutY="20.0" text="Bienvenido :) ">
+                              <font>
+                                  <Font name="Georgia Italic" size="19.0" />
+                              </font>
+                          </Label>
+                          <Label fx:id="lbPonerNombreUsuario" layoutX="443.0" layoutY="61.0" text="poner nombre !">
+                              <font>
+                                  <Font name="Georgia Italic" size="18.0" />
+                              </font>
+                          </Label>
+                          <Circle fill="#bf4efcfe" layoutX="503.0" layoutY="188.0" radius="86.0" stroke="BLACK" strokeType="INSIDE" />
+                          <Label layoutX="433.0" layoutY="157.0" text="Saldo Disponible ">
+                              <font>
+                                  <Font name="Georgia Italic" size="18.0" />
+                              </font>
+                          </Label>
+                          <Label fx:id="lbPonerSaldoUsuario" layoutX="469.0" layoutY="204.0" text="#####">
+                              <font>
+                                  <Font name="Georgia Italic" size="18.0" />
+                              </font>
+                          </Label>
+                          <Circle fill="#bf4efca0" layoutX="671.0" layoutY="328.0" radius="74.0" stroke="BLACK" strokeType="INSIDE" />
+                          <Circle fill="#bf4efcab" layoutX="327.0" layoutY="329.0" radius="74.0" stroke="BLACK" strokeType="INSIDE" />
+                          <Label layoutX="635.0" layoutY="297.0" text="Ingresos">
+                              <font>
+                                  <Font name="Georgia Italic" size="18.0" />
+                              </font>
+                          </Label>
+                          <Label fx:id="lbPonerIngresosUsuario" layoutX="643.0" layoutY="324.0" text="#####">
+                              <font>
+                                  <Font name="Georgia Italic" size="18.0" />
+                              </font>
+                          </Label>
+                          <Label layoutX="299.0" layoutY="297.0" text="Gastos">
+                              <font>
+                                  <Font name="Georgia Italic" size="18.0" />
+                              </font>
+                          </Label>
+                          <Label fx:id="lbPonerGastosUsuario" layoutX="295.0" layoutY="331.0" text="#####">
+                              <font>
+                                  <Font name="Georgia Italic" size="18.0" />
+                              </font>
+                          </Label>
+                          <Label layoutX="421.0" layoutY="384.0" text="¿Qué haremos hoy ?">
+                              <font>
+                                  <Font name="Georgia Italic" size="18.0" />
+                              </font>
+                          </Label>
+                          <Button layoutX="424.0" layoutY="459.0" mnemonicParsing="false" onAction="#DepositoAction" prefHeight="32.0" prefWidth="138.0" style="-fx-background-radius: 10;" text="Deposito">
+                              <font>
+                                  <Font name="Georgia Italic" size="15.0" />
+                              </font>
+                              <effect>
+                                  <DropShadow height="11.64" radius="4.75" width="9.36" />
+                              </effect>
+                          </Button>
+                          <Button layoutX="603.0" layoutY="415.0" mnemonicParsing="false" onAction="#TransferirDineroAction" prefHeight="33.0" prefWidth="142.0" style="-fx-background-radius: 10;" text="Transferir Dinero">
+                              <font>
+                                  <Font name="Georgia Italic" size="15.0" />
+                              </font>
+                              <effect>
+                                  <DropShadow height="9.36" radius="4.165" width="9.3" />
+                              </effect>
+                          </Button>
+                          <Button layoutX="274.0" layoutY="414.0" mnemonicParsing="false" onAction="#RetirarAction" prefHeight="34.0" prefWidth="111.0" style="-fx-background-radius: 10;" text="Retirar">
+                              <font>
+                                  <Font name="Georgia Italic" size="15.0" />
+                              </font>
+                              <effect>
+                                  <DropShadow height="9.33" radius="4.165" width="9.33" />
+                              </effect>
+                          </Button>
+                          <Button layoutX="436.0" layoutY="533.0" mnemonicParsing="false" onAction="#PresupuestoAction" prefHeight="37.0" prefWidth="114.0" style="-fx-background-radius: 10;" text="Presupuestos">
+                              <font>
+                                  <Font name="Georgia Italic" size="15.0" />
+                              </font>
+                              <effect>
+                                  <DropShadow height="9.33" radius="4.165" width="9.33" />
+                              </effect>
+                          </Button>
+                      </children>
+                      <effect>
+                          <ColorAdjust />
+                      </effect>
+                  </AnchorPane>
+              </children>
+          </AnchorPane>
       </AnchorPane>
 
       <AnchorPane fx:id="anchorCuentasUsuario" prefHeight="689.0" prefWidth="806.0" style="-fx-background-color: F3FAE1;" visible="false">
