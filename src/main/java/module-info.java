@@ -1,12 +1,16 @@
 module co.edu.uniquindio.icaja {
-    requires javafx.controls;
     requires javafx.fxml;
+    requires transitive javafx.controls;
     requires static lombok;
     requires java.logging;
     requires java.desktop;
+    requires atlantafx.base;
 
 
     exports co.edu.uniquindio.icaja.mapping.mappers;
+    exports co.edu.uniquindio.icaja.model.enums;
+    exports co.edu.uniquindio.icaja.model.factories;
+    exports co.edu.uniquindio.icaja.model.services;
     exports co.edu.uniquindio.icaja.mapping.dto;
     opens co.edu.uniquindio.icaja to javafx.fxml;
     exports co.edu.uniquindio.icaja.model;
@@ -17,7 +21,6 @@ module co.edu.uniquindio.icaja {
     opens co.edu.uniquindio.icaja.view to javafx.fxml;
     exports co.edu.uniquindio.icaja.factory;
     opens co.edu.uniquindio.icaja.factory to javafx.fxml;
-    exports co.edu.uniquindio.icaja.model.factories;
     exports co.edu.uniquindio.icaja.utils;
     opens co.edu.uniquindio.icaja.utils to javafx.fxml;
     exports co.edu.uniquindio.icaja.view.views.admin;

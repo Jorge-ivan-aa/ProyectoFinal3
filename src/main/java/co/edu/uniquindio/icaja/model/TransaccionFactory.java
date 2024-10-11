@@ -6,7 +6,6 @@ import co.edu.uniquindio.icaja.mapping.dto.DepositoDto;
 import co.edu.uniquindio.icaja.mapping.dto.RetiroDto;
 import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
 import co.edu.uniquindio.icaja.mapping.mappers.TransaccionMapper;
-import co.edu.uniquindio.icaja.model.factories.Transaccion;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

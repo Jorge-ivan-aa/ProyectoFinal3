@@ -2,6 +2,7 @@ package co.edu.uniquindio.icaja.model.factories;
 
 import co.edu.uniquindio.icaja.model.Categoria;
 import co.edu.uniquindio.icaja.model.CuentaBancaria;
+import co.edu.uniquindio.icaja.model.Transaccion;
 import lombok.Getter;
 
 import java.util.Random;
@@ -10,8 +11,8 @@ import java.util.Random;
 public class Retiro extends Transaccion {
     private final String claveRetiro;
 
-    public Retiro(int id, String fecha, double monto, Categoria[] listacategoria, CuentaBancaria cuenta) {
-        super(id, fecha, monto, listacategoria, cuenta);
+    public Retiro(int id, String fecha, double monto, Categoria[] listacategoria, CuentaBancaria cuenta, String motivo) {
+        super(id, fecha, monto, listacategoria, cuenta, motivo);
         claveRetiro = generarClaveRetiro();
     }
 

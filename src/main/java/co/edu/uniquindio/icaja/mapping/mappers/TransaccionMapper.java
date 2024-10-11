@@ -3,41 +3,22 @@ package co.edu.uniquindio.icaja.mapping.mappers;
 
 import co.edu.uniquindio.icaja.mapping.dto.DepositoDto;
 import co.edu.uniquindio.icaja.mapping.dto.RetiroDto;
-import co.edu.uniquindio.icaja.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
 import co.edu.uniquindio.icaja.model.factories.Deposito;
 import co.edu.uniquindio.icaja.model.factories.Retiro;
-import co.edu.uniquindio.icaja.model.factories.Transaccion;
+import co.edu.uniquindio.icaja.model.Transaccion;
 import co.edu.uniquindio.icaja.model.factories.Transferencia;
 
 public class TransaccionMapper {
-//    public static TransaccionDto transaccionToTransaccionDto(Transaccion TransaccionDto) {
-//        return new TransaccionDto(
-//                TransaccionDto.getId(),
-//                TransaccionDto.getFecha(),
-//                TransaccionDto.getMonto(),
-//                TransaccionDto.getListacategoria(),
-//                TransaccionDto.getCuenta()
-//        );
-//    }
-
-//    public static Transaccion transaccionDtoToTransaccion(TransaccionDto transaccionDto) {
-//        return new Transaccion(
-//                transaccionDto.id(),
-//                transaccionDto.fecha(),
-//                transaccionDto.monto(),
-//                transaccionDto.listacategoria(),
-//                transaccionDto.cuenta()
-//        );
-//    }
-
     public static Transaccion retiroDtoToTransaccion(RetiroDto retiroDto){
         return new Retiro(
                 retiroDto.id(),
                 retiroDto.fecha(),
                 retiroDto.monto(),
                 retiroDto.listacategoria(),
-                retiroDto.cuenta());
+                retiroDto.cuenta(),
+                retiroDto.motivo()
+        );
 
     }
     public static Transaccion depositoDtoToTransaccion (DepositoDto depositoDto){
@@ -46,8 +27,9 @@ public class TransaccionMapper {
                 depositoDto.fecha(),
                 depositoDto.monto(),
                 depositoDto.listacategoria(),
-                depositoDto.cuenta()
-        ) ;
+                depositoDto.cuenta(),
+                depositoDto.motivo()
+        );
     }
     public static Transaccion transferenciaDtoToTransaccion (TransferenciaDto transferenciaDto){
       return new Transferencia(
@@ -56,6 +38,7 @@ public class TransaccionMapper {
               transferenciaDto.monto(),
               transferenciaDto.listacategoria(),
               transferenciaDto.cuenta(),
+              transferenciaDto.motivo(),
               transferenciaDto.esInterna(),
               transferenciaDto.cuentaDestino()
       ) ;

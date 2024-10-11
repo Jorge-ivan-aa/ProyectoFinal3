@@ -1,9 +1,7 @@
-package co.edu.uniquindio.icaja.model.factories;
+package co.edu.uniquindio.icaja.model;
 
 import java.io.Serializable;
 
-import co.edu.uniquindio.icaja.model.Categoria;
-import co.edu.uniquindio.icaja.model.CuentaBancaria;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -20,14 +18,16 @@ public abstract class Transaccion implements Serializable {
     private double monto;
     private Categoria[] listacategoria;
     private CuentaBancaria cuenta;
+    private String motivo;
     public static final long serialVersionID = 3L;
 
-    public Transaccion(int id, String fecha, double monto, Categoria[] listacategoria, CuentaBancaria cuenta) {
+    public Transaccion(int id, String fecha, double monto, Categoria[] listacategoria, CuentaBancaria cuenta, String motivo) {
         this.id = id;
         this.fecha = fecha;
         this.monto = monto;
         this.listacategoria = listacategoria;
         this.cuenta = cuenta;
+        this.motivo = motivo;
     }
 
     public abstract void realizarMovimiento();

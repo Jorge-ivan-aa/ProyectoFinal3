@@ -18,14 +18,16 @@ public class CuentaBancaria implements Serializable {
     private TipoCuenta tipoCuenta;
     private double saldo;
     private double limite;
+    private Usuario propietario;
     public static final long serialVersionID = 7L;
 
-    public CuentaBancaria(String entidad, String numeroCuenta, TipoCuenta tipoCuenta, double saldo, double limite) {
+    public CuentaBancaria(String entidad, String numeroCuenta, TipoCuenta tipoCuenta, double saldo, double limite, Usuario propietario) {
         this.entidad = entidad;
         this.numeroCuenta = numeroCuenta;
         this.tipoCuenta = tipoCuenta;
         this.saldo = saldo;
         this.limite = this.definirLimite(tipoCuenta, limite);
+        this.propietario = propietario;
     }
 
 

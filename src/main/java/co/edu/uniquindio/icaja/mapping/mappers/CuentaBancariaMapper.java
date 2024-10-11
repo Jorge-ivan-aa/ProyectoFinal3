@@ -13,7 +13,8 @@ public class CuentaBancariaMapper {
                 cuentaBancaria.getNumeroCuenta(),
                 cuentaBancaria.getTipoCuenta(),
                 cuentaBancaria.getSaldo(),
-                cuentaBancaria.getLimite()
+                cuentaBancaria.getLimite(),
+                cuentaBancaria.getPropietario()
         );
     }
 
@@ -23,7 +24,9 @@ public class CuentaBancariaMapper {
                 cuentaBancariaDto.numeroCuenta(),
                 cuentaBancariaDto.tipoCuenta(),
                 cuentaBancariaDto.saldo(),
-                cuentaBancariaDto.limite());
+                cuentaBancariaDto.limite(),
+                cuentaBancariaDto.propietario()
+        );
     }
 
 }

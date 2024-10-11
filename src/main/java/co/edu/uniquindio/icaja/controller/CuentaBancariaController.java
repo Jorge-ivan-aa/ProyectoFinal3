@@ -33,23 +33,23 @@ public class CuentaBancariaController {
         Seguimiento.registrarLog(1,"Se sincronizo la base de datos");
     }
 
-    public CuentaBancaria crearCuentaBancaria(String entidad, String numeroCuenta, TipoCuenta tipoCuenta, double saldo, double limite) {
-
-        if (this.consultarCuentaBancaria(numeroCuenta) != null) {
-
-            registrarLog(1,"La cuenta bancaria ya existe");
-
-            return null;
-        }else{
-
-            registrarLog(1,"Se ha creado una cuenta bancaria");
-
-            CuentaBancaria nuevaCuentaBancaria = new CuentaBancaria(entidad, numeroCuenta, tipoCuenta, saldo, limite);
-            this.factory.getIcaja().addCuentaBancaria(nuevaCuentaBancaria);
-            this.listaCuentaBancariaObservable.add(nuevaCuentaBancaria);
-            return nuevaCuentaBancaria;
-        }
-    }
+//    public CuentaBancaria crearCuentaBancaria(String entidad, String numeroCuenta, TipoCuenta tipoCuenta, double saldo, double limite) {
+//
+//        if (this.consultarCuentaBancaria(numeroCuenta) != null) {
+//
+//            registrarLog(1,"La cuenta bancaria ya existe");
+//
+//            return null;
+//        }else{
+//
+//            registrarLog(1,"Se ha creado una cuenta bancaria");
+//
+//            CuentaBancaria nuevaCuentaBancaria = new CuentaBancaria(entidad, numeroCuenta, tipoCuenta, saldo, limite);
+//            this.factory.getIcaja().addCuentaBancaria(nuevaCuentaBancaria);
+//            this.listaCuentaBancariaObservable.add(nuevaCuentaBancaria);
+//            return nuevaCuentaBancaria;
+//        }
+//    }
 
 
     public CuentaBancaria consultarCuentaBancaria(String numeroCuenta) {

@@ -7,5 +7,6 @@ public record RetiroDto(int id,
                         String fecha,
                         double monto,
                         Categoria[] listacategoria,
-                        CuentaBancaria cuenta) {
+                        CuentaBancaria cuenta,
+                        String motivo) {
 }

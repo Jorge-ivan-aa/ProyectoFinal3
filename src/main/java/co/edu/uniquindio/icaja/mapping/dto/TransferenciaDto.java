@@ -8,6 +8,7 @@ public record TransferenciaDto(int id,
                                double monto,
                                Categoria[] listacategoria,
                                CuentaBancaria cuenta,
+                               String motivo,
                                boolean esInterna,
                                CuentaBancaria cuentaDestino) {
 }
