@@ -210,5 +210,3 @@ INFO [2024-10-13 19:27:38]: co.edu.uniquindio.icaja.controller.UsuarioController
 INFO [2024-10-13 19:27:39]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
 INFO [2024-10-13 19:27:59]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
 INFO [2024-10-13 19:27:59]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
-INFO [2024-10-13 20:08:27]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
-INFO [2024-10-13 20:08:27]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
