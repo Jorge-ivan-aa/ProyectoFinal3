@@ -4,11 +4,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.icaja.controller.UsuarioController;
+import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
+import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.utils.ViewTools;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -79,7 +80,7 @@ public class mainAdminView {
 
 
     @FXML
-    void agregarUsuario(ActionEvent event) {
+    void crearUsuario() {
         String nombre = txtNombreAdmin.getText();
         String cedula = txtCedulaAdmin.getText();
         String correo = txtCorreoAdmin.getText();
@@ -88,16 +89,21 @@ public class mainAdminView {
         String presupuestoMensual = txtPresupuestoMensualAdmin.getText();
         String telefono = txtTelefonoAdmin.getText();
 
+
         if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
-            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,
-                    Double.parseDouble(presupuestoMensual));
-            String resultado = usuarioController.crearUsuario(usuarioDto);
-            ViewTools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
+            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
+
+            try {
+                usuarioController.crear(usuarioDto);
+                String msj = "Se ha creado el usuario " + nombre + "correctamente";
+                ViewTools.mostrarMensaje("Información: ", null, msj, Alert.AlertType.INFORMATION);
+            } catch (ElementoYaExiste e) {
+                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+            }
         } else {
             ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
 
         }
-
 
         ViewTools.limpiarCampos(txtCedulaAdmin,
                 txtNombreAdmin,
@@ -109,7 +115,7 @@ public class mainAdminView {
     }
 
     @FXML
-    void actualizarUsuario(ActionEvent event) {
+    void actualizarUsuario() {
         String nombre = txtNombreAdmin.getText();
         String cedula = txtCedulaAdmin.getText();
         String correo = txtCorreoAdmin.getText();
@@ -119,10 +125,16 @@ public class mainAdminView {
         String telefono = txtTelefonoAdmin.getText();
 
         if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
-            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,
-                    Double.parseDouble(presupuestoMensual));
-            String resultado = usuarioController.actualizarUsuario(usuarioDto);
-            ViewTools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
+            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
+
+            try {
+                usuarioController.actualizar(usuarioDto);
+                String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
+                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+
+            } catch (ElementoNoExiste e) {
+                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+            }
         } else {
             ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
 
@@ -137,12 +149,18 @@ public class mainAdminView {
     }
 
     @FXML
-    void eliminarUsuario(ActionEvent event) {
+    void eliminarUsuario() {
         String cedula   = txtCedulaAdmin.getText();
 
         if (!ViewTools.hayCamposVacios(cedula)) {
-            String resultado = usuarioController.eliminarUsuario(cedula);
-            ViewTools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
+            try {
+                usuarioController.eliminar(cedula);
+                String msj = "Se ha eliminado el usuario de cedula" + cedula + "correctamente";
+                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+            } catch (ElementoNoExiste e) {
+                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+            }
+
         } else {
             ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
         }
@@ -179,9 +197,8 @@ public class mainAdminView {
     }
 
     private void listenerSelectionUsuario() {
-        tbUsuariosAdmin.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            this.mostrarInformacion((Usuario) newSelection);
-        });
+        tbUsuariosAdmin.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection)
+                -> this.mostrarInformacion(newSelection));
     }
 
     private void mostrarInformacion(Usuario seleccionado) {

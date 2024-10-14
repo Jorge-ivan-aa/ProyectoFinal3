@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.icaja.controller.UsuarioController;
+import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.utils.ViewTools;
 import javafx.event.ActionEvent;
@@ -52,14 +53,18 @@ public class RegistroUsuarioView {
         String telefono = txtTelefonoUsuario.getText();
 
         if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
-            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,
-                    Double.parseDouble(presupuestoMensual));
-            String resultado = usuarioController.crearUsuario(usuarioDto);
-            ViewTools.mostrarMensaje("Información", null, resultado, Alert.AlertType.INFORMATION);
+            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
+            try {
+                usuarioController.crear(usuarioDto);
+                String msj = "El registro ha sido exitoso, ¡Bienvenido " + nombre + "!";
+                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+            } catch (ElementoYaExiste e) {
+                ViewTools.mostrarMensaje("¡Lo sentimos!", null, e.getMessage(), Alert.AlertType.ERROR);
+            }
+
 
         } else {
-            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
-
+            ViewTools.mostrarMensaje("¡Cuidado!", null, "Hay campos vacíos", Alert.AlertType.WARNING);
         }
         ViewTools.limpiarCampos(txtCedulaUsuario,
                 txtNombreUsuario,

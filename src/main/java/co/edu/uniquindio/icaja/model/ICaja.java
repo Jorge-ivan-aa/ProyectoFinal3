@@ -48,17 +48,30 @@ public class ICaja implements Serializable {
     public void removeUsuario(int index) {
         this.listaUsuarios.remove(index);
     }
+    public void removeUsuario(Usuario usuario) {
+        this.listaUsuarios.remove(usuario);
+    }
 
     public void removeTransaccion(int index) {
         this.listaTransacciones.remove(index);
+    }
+    public void removeTransaccion(Transaccion transaccion) {
+        this.listaTransacciones.remove(transaccion);
     }
 
     public void removeCategoria(int index) {
         this.listaCategorias.remove(index);
     }
+    public void removeCategoria(Categoria categoria) {
+        this.listaCategorias.remove(categoria);
+    }
 
     public void removeCuentaBancaria(int index) {
         this.listaCuentaBancarias.remove(index);
     }
+    public void removeCuentaBancaria(CuentaBancaria cuentaBancaria) {
+        this.listaCuentaBancarias.remove(cuentaBancaria);
+    }
+
 
 }

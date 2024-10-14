@@ -1,22 +1,20 @@
 package co.edu.uniquindio.icaja.controller;
 
+import co.edu.uniquindio.icaja.controller.services.GenericController;
+import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
+import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
+import co.edu.uniquindio.icaja.mapping.dto.CategoriaDto;
+import co.edu.uniquindio.icaja.mapping.mappers.CategoriaMapper;
 import co.edu.uniquindio.icaja.model.Categoria;
-import co.edu.uniquindio.icaja.model.Transaccion;
-import co.edu.uniquindio.icaja.model.enums.TipoCategoria;
-import co.edu.uniquindio.icaja.utils.Seguimiento;
+import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 
-import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
-
-import java.util.ArrayList;
-import java.util.Objects;
 
 @Getter
-public class CategoriaController {
-
+public class CategoriaController implements GenericController<CategoriaDto, Categoria> {
     private final ModelFactory factory;
     private final ObservableList<Categoria> listaCategoriasObservable;
 
@@ -26,69 +24,65 @@ public class CategoriaController {
         this.sincronizarData();
     }
 
-    private void sincronizarData() {
-
+    @Override
+    public void sincronizarData() {
+        listaCategoriasObservable.addAll(factory.getIcaja().getListaCategorias());
         registrarLog(1,"Se sincronizaron las categorias");
-
-        this.listaCategoriasObservable.addAll(this.factory.getIcaja().getListaCategorias());
-        Seguimiento.registrarLog(1,"Se sincronizo la base de datos");
     }
 
-    public Categoria crearCategoria(String nombre, String descripcion, TipoCategoria tipoCategoria,ArrayList<Transaccion> transacciones) {
+    @Override
+    public void crear(CategoriaDto categoriaDto) throws ElementoYaExiste {
 
-        if (this.consultarCategoria(nombre) != null) {
+        try {
+            this.consultar(categoriaDto.nombre());
+            registrarLog(2,"No se pudo crear el elemento, la categoria ya existe");
+            throw new ElementoYaExiste("No se pudo crear el elemento, la categoria ya existe");
 
-            registrarLog(1,"La categoria ya existe");
-
-            return null;
-        }else{
-
+        } catch (ElementoNoExiste ignored) {
+            Categoria nuevaCategoria = CategoriaMapper.categoriaDtoToCategoria(categoriaDto);
+            factory.getIcaja().addCategoria(nuevaCategoria);
+            listaCategoriasObservable.add(nuevaCategoria);
             registrarLog(1,"Se ha creado una categoria");
-
-            Categoria nuevaCategoria = new Categoria(nombre, descripcion, tipoCategoria, transacciones);
-            this.factory.getIcaja().addCategoria(nuevaCategoria);
-            this.listaCategoriasObservable.add(nuevaCategoria);
-            return nuevaCategoria;
         }
-
     }
 
-    public Categoria consultarCategoria(String nombre) {
-
+    @Override
+    public Categoria consultar(String nombre) throws ElementoNoExiste {
         registrarLog(1,"Se ha consultado una categoria");
 
-        for (Categoria categoria : this.factory.getIcaja().getListaCategorias()) {
-            if (Objects.equals(categoria.getNombre(), nombre)) {
+        for (Categoria categoria : factory.getIcaja().getListaCategorias()) {
+            if (categoria.getNombre().equals(nombre)) {
                 return categoria;
             }
         }
-        return null;
+
+        throw new ElementoNoExiste("la categoria consultada no existe.");
+
     }
 
-    public String eliminarCategoria(String nombre) {
+    @Override
+    public void eliminar(String nombre) throws ElementoNoExiste {
 
+        try {
+            Categoria eliminable = this.consultar(nombre); // consultar si existe, de lo contrario propaga una excepcion.
+            listaCategoriasObservable.remove(eliminable);
+            factory.getIcaja().removeCategoria(eliminable);
+            registrarLog(1,"Se eliminó la categoria");
 
-        if (this.consultarCategoria(nombre) == null) {
-
-            registrarLog(1,"La categoria no existe");
-
-            return "La categoria ingresada no existe";
-        } else {
-            int index = -1;
-            ArrayList<Categoria> Categorias = factory.getIcaja().getListaCategorias();
-            for (int i = 0; i < Categorias.size(); i++) {
-                if (Objects.equals(Categorias.get(i).getNombre(), nombre)) {
-                    index = i;
-                }
-            }
-            if (index != -1) {
-                registrarLog(1,"Se elimino la categoria");
-                this.listaCategoriasObservable.remove(index);
-                Categorias.remove(index);
-            }
-            return "La categoria fue eliminada correctamente";
+        } catch (ElementoNoExiste e) {
+            registrarLog(2,"No se pudo eliminar el elemento, " + e.getMessage());
+            throw new ElementoNoExiste("No se pudo eliminar el elemento, " + e.getMessage());
         }
+
     }
 
+    @Override
+    public void actualizar(CategoriaDto categoriaDto) throws ElementoNoExiste {
+        // No se necesita actualizar las categorias según la logica del negocio.
+    }
 
+    @Override
+    public void persistir() {
+
+    }
 }

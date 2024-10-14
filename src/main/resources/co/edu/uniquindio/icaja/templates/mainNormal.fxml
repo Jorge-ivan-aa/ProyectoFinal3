@@ -16,7 +16,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #5E2BFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.mainNormalView">
    <children>
       <AnchorPane fx:id="anchorUsuarioPrincipal" layoutX="181.0" layoutY="49.0" prefHeight="626.0" prefWidth="1054.0" style="-fx-background-color: F3FAE1; -fx-background-radius: 30;">
-          <AnchorPane prefHeight="626.0" prefWidth="1044.0" style="-fx-background-color: #5E2BFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.UsuarioPrincipalView">
+          <AnchorPane prefHeight="626.0" prefWidth="1044.0" style="-fx-background-color: #5E2BFF; -fx-background-radius: 30;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" >
               <children>
                   <AnchorPane prefHeight="626.0" prefWidth="1050.0" style="-fx-background-color: F7F6C5; -fx-background-radius: 30;">
                       <children>

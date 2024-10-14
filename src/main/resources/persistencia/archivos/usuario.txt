@@ -1,4 +1,1 @@
-Ana@@345678@@ana@example.com@@@@clave987@@transclave987@@2500.0@@1200.0@@800.0@@0.0@@NORMAL
-Maria@@654321@@maria@example.com@@@@clave456@@transclave456@@0.0@@0.0@@0.0@@0.0@@NORMAL
-Maria@@65432134@@maria@example.com@@@@clave456@@transclave456@@0.0@@0.0@@0.0@@0.0@@NORMAL
-Jorge@@1004827105@@maria@example.com@@@@clave456@@transclave456@@0.0@@0.0@@0.0@@0.0@@NORMAL
+po@@12345@@sdfsdfds@@12312312@@123@@32324324@@0.0@@0.0@@0.0@@0.0@@ADMINISTRADOR

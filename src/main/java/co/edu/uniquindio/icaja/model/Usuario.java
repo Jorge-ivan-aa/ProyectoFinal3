@@ -1,6 +1,6 @@
 package co.edu.uniquindio.icaja.model;
 
-import co.edu.uniquindio.icaja.exception.CredencialesNoCoinciden;
+import co.edu.uniquindio.icaja.exception.login.CredencialesNoCoinciden;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
 
@@ -52,9 +52,9 @@ public class Usuario implements Serializable, Login, Persistible<Usuario> {
     }
 
     @Override
-    public TipoUsuario ingresar() throws CredencialesNoCoinciden {
+    public TipoUsuario ingresar(String clave) throws CredencialesNoCoinciden {
         if (verificarCredenciales(this, clave)) {
-            Seguimiento.registrarLog(1, "El usuario" + nombre + " ingresó satisfactoriamente");
+            Seguimiento.registrarLog(1, "El usuario " + nombre + " ingresó satisfactoriamente");
         } else {
             throw new CredencialesNoCoinciden("Contraseña incorrecta, intenta nuevamente.");
         }
@@ -72,7 +72,7 @@ public class Usuario implements Serializable, Login, Persistible<Usuario> {
         String contenido = "";
         for(Usuario usuario:usuarios)
         {
-            contenido+= usuario.getNombre()+
+            contenido= usuario.getNombre()+
                     "@@"+usuario.getCedula()+
                     "@@"+usuario.getCorreo()+
                     "@@"+usuario.getTelefono()+
@@ -91,20 +91,20 @@ public class Usuario implements Serializable, Login, Persistible<Usuario> {
     public List<Usuario> leer(String ruta) throws IOException {
         ArrayList<Usuario> usuarios =new ArrayList<Usuario>();
         ArrayList<String> contenido = Persistencia.leerArchivo(ruta);
-        String linea="";
-        for (String s : contenido) {
-            linea = s;
+        String[] linea;
+        for (String texto : contenido) {
+            linea = texto.split("@@");
             Usuario usuario = new Usuario();
-            usuario.setNombre(linea.split("@@")[0]);
-            usuario.setCedula(linea.split("@@")[1]);
-            usuario.setCorreo(linea.split("@@")[2]);
-            usuario.setTelefono(linea.split("@")[3]);
-            usuario.setClave(linea.split("@@")[4]);
-            usuario.setClaveTransaccional(linea.split("@@")[5]);
-            usuario.setSaldoTotal(Double.parseDouble(linea.split("@@")[6]));
-            usuario.setIngresos(Double.parseDouble(linea.split("@@")[7]));
-            usuario.setGastos(Double.parseDouble(linea.split("@@")[8]));
-            usuario.setTipoUsuario(TipoUsuario.valueOf(linea.split("@@")[10]));
+            usuario.setNombre(linea[0]);
+            usuario.setCedula(linea[1]);
+            usuario.setCorreo(linea[2]);
+            usuario.setTelefono(linea[3]);
+            usuario.setClave(linea[4]);
+            usuario.setClaveTransaccional(linea[5]);
+            usuario.setSaldoTotal(Double.parseDouble(linea[6]));
+            usuario.setIngresos(Double.parseDouble(linea[7]));
+            usuario.setGastos(Double.parseDouble(linea[8]));
+            usuario.setTipoUsuario(TipoUsuario.valueOf(linea[10]));
             usuarios.add(usuario);
         }
         return usuarios;

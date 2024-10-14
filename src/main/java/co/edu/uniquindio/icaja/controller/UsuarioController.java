@@ -1,24 +1,22 @@
 package co.edu.uniquindio.icaja.controller;
 
+import co.edu.uniquindio.icaja.controller.services.GenericController;
+import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
+import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.mapping.mappers.UsuarioMapper;
 import co.edu.uniquindio.icaja.model.Usuario;
-import co.edu.uniquindio.icaja.model.ICaja;
-import co.edu.uniquindio.icaja.utils.Seguimiento;
+import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
-
-import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Getter
-public class UsuarioController {
+public class UsuarioController implements GenericController<UsuarioDto, Usuario> {
 
     private final ModelFactory factory;
     private final ObservableList<Usuario> listaUsuarioObservable;
@@ -27,106 +25,82 @@ public class UsuarioController {
         this.factory = ModelFactory.getInstance();
         this.listaUsuarioObservable = FXCollections.observableArrayList();
         this.sincronizarData();
-
     }
-
-    private void sincronizarData() {
+@Override
+    public void sincronizarData() {
+        this.listaUsuarioObservable.clear();
         this.listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
-        this.guardarUsuario();
-        Seguimiento.registrarLog(1,"Se sincronizaron los usuarios.");
+        this.persistir();
+        registrarLog(1,"Se sincronizaron los usuarios.");
     }
 
-    public String crearUsuario(UsuarioDto usuarioDto) {
-
-        if (this.consultarUsuario(usuarioDto.cedula()) != null) {
-            registrarLog(1,"El usuario ya existe");
-            return "El usuario ingresado ya existe";
-        } else {
-            registrarLog(1,"Se ha creado el usuario");
+    @Override
+    public void crear(UsuarioDto usuarioDto) throws ElementoYaExiste {
+        
+        try {
+            consultar(usuarioDto.cedula());
+            registrarLog(2,"No se puede crear el elemento, el usuario ya existe");
+            throw new ElementoYaExiste("No se puede crear el elemento, el usuario ya existe");
+            
+        } catch (ElementoNoExiste ignored) {
             Usuario nuevoUsuario = UsuarioMapper.usuarioDtoToUsuario(usuarioDto);
-
             this.factory.getIcaja().addUsuario(nuevoUsuario);
             this.listaUsuarioObservable.add(nuevoUsuario);
-            this.guardarUsuario();
-            return "Usuario registrado exitosamente";
+            this.sincronizarData();
+            registrarLog(1,"Se ha creado el usuario " + usuarioDto.nombre());
+            
         }
     }
 
-
-    public String eliminarUsuario(String cedula) {
-
-        if (this.consultarUsuario(cedula) == null) {
-            registrarLog(1,"El usuario que no existe");
-            return "El usuario ingresado no existe";
-
-        } else {
-            int index = -1;
-            ArrayList<Usuario> Clientes = factory.getIcaja().getListaUsuarios();
-            for (int i = 0; i < Clientes.size(); i++) {
-                if (Objects.equals(Clientes.get(i).getCedula(), cedula)) {
-                    index = i;
-                }
-            }
-
-            if (index != -1) {
-                this.listaUsuarioObservable.remove(index);
-                Clientes.remove(index);
-            }
-            this.guardarUsuario();
-            registrarLog(1,"Se elimino el usuario");
-            return "El usuario fué eliminado correctamente";
-        }
-
-
-    }
-
-    public Usuario consultarUsuario(String cedula) {
-
+    @Override
+    public Usuario consultar(String cedula) throws ElementoNoExiste {
         registrarLog(1,"Se consultó el usuario");
 
         ArrayList<Usuario> Usuarios = this.factory.getIcaja().getListaUsuarios();
-        for (Usuario value : Usuarios) {
-            if (value.getCedula().equals(cedula)) {
-                return value;
+        for (Usuario usuario : Usuarios) {
+            if (usuario.getCedula().equals(cedula)) {
+                return usuario;
             }
         }
-        return null;
-    }
+        
+        throw new ElementoNoExiste("El usuario no existe.");
+    }    
 
+    @Override
+    public void eliminar(String cedula) throws ElementoNoExiste {
+        try {
+            Usuario eliminable = consultar(cedula);
+            factory.getIcaja().removeUsuario(eliminable);
+            sincronizarData();
+            registrarLog(1,"Se eliminó el usuario de cedula " + cedula + ".");
 
-    public String actualizarUsuario(UsuarioDto usuarioDto) {
-        ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
-
-        if (this.consultarUsuario(usuarioDto.cedula()) == null) {
-            registrarLog(1,"El usuario no existe");
-            return "El usuario ingresado no existe";
-
-        } else {
-            int index = -1;
-            for (int i = 0; i < Usuarios.size(); i++) {
-                if (Objects.equals(Usuarios.get(i).getCedula(), usuarioDto.cedula())) {
-                    index = i;
-                }
-            }
-
-            if (index != -1) {
-
-                registrarLog(1,"Se actualizo el usuario");
-
-                Usuario nuevoUsuario = UsuarioMapper.usuarioDtoToUsuario(usuarioDto);
-                Usuarios.remove(index);
-                Usuarios.add(nuevoUsuario);
-                this.listaUsuarioObservable.remove(index);
-                this.listaUsuarioObservable.add(nuevoUsuario);
-                this.guardarUsuario();
-            }
-
-            return "El Usuario fué actualizado correctamente";
-
+        } catch (ElementoNoExiste e) {
+            registrarLog(2,"No se pudo eliminar el elemento, " + e.getMessage());
+            throw new ElementoNoExiste("No se pudo eliminar el elemento, " + e.getMessage());
         }
     }
 
-    public void guardarUsuario() {
+    @Override
+    public void actualizar(UsuarioDto usuarioDto) throws ElementoNoExiste {
+        try {
+            Usuario actualizable = consultar(usuarioDto.cedula());
+            actualizable.setNombre(usuarioDto.nombre());
+            actualizable.setTelefono(usuarioDto.telefono());
+            actualizable.setClave(usuarioDto.clave());
+            actualizable.setPresupuestoMensual(usuarioDto.presupuestoMensual());
+            actualizable.setClaveTransaccional(usuarioDto.claveTransaccional());
+            actualizable.setCorreo(usuarioDto.correo());
+            sincronizarData();
+            registrarLog(1,"Se actualizó el usuario de cedula " + actualizable.getCedula() + " correctamente.");
+
+        } catch (ElementoNoExiste e) {
+            registrarLog(2,"No se pudo actualizar el elemento, " + e.getMessage());
+            throw new ElementoNoExiste("No se pudo actualizar el elemento, " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void persistir() {
         List<Usuario> usuarios = this.factory.getIcaja().getListaUsuarios();
         try {
             new Usuario().guardar(usuarios);
@@ -134,4 +108,5 @@ public class UsuarioController {
             System.out.println(e.getMessage());
         }
     }
+
 }

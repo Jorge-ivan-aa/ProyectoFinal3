@@ -2,11 +2,11 @@ package co.edu.uniquindio.icaja.view.views;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 
 public class mainNormalView {
-
     @FXML
     private AnchorPane anchorCuentasUsuario;
 
@@ -20,7 +20,39 @@ public class mainNormalView {
     private AnchorPane anchorUsuarioPrincipal;
 
     @FXML
+    private Label lbPonerGastosUsuario;
+
+    @FXML
+    private Label lbPonerIngresosUsuario;
+
+    @FXML
+    private Label lbPonerNombreUsuario;
+
+    @FXML
+    private Label lbPonerSaldoUsuario;
+
+    @FXML
+    void DepositoAction(ActionEvent event) {
+
+    }
+
+    @FXML
     void PonerCuentasUsuarioAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void PresupuestoAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void RetirarAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void TransferirDineroAction(ActionEvent event) {
 
     }
 

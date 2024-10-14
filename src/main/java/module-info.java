@@ -11,7 +11,8 @@ module co.edu.uniquindio.icaja {
     exports co.edu.uniquindio.icaja.model.enums;
     exports co.edu.uniquindio.icaja.model.factories;
     exports co.edu.uniquindio.icaja.model.services;
-    exports co.edu.uniquindio.icaja.exception;
+    exports co.edu.uniquindio.icaja.exception.login;
+    exports co.edu.uniquindio.icaja.exception.crud;
     exports co.edu.uniquindio.icaja;
     exports co.edu.uniquindio.icaja.controller;
     opens co.edu.uniquindio.icaja.controller to javafx.fxml;

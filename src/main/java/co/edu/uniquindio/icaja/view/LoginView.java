@@ -4,8 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.icaja.controller.UsuarioController;
-import co.edu.uniquindio.icaja.exception.CredencialesNoCoinciden;
-import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
+import co.edu.uniquindio.icaja.exception.login.CredencialesNoCoinciden;
+import co.edu.uniquindio.icaja.exception.login.UsuarioNoExiste;
 import co.edu.uniquindio.icaja.model.Sesion;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.utils.ViewTools;
@@ -14,7 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
+
 public class LoginView {
 
     UsuarioController usuarioController = new UsuarioController();
@@ -42,10 +42,10 @@ public class LoginView {
         String cedula = txtCedulaUsuario.getText();
 
         if (!ViewTools.hayCamposVacios(clave, cedula)) {
-            Sesion sesion = new Sesion(cedula, clave);
+            Sesion sesion = new Sesion(cedula);
 
             try {
-                TipoUsuario tipoUsuario = sesion.ingresar();
+                TipoUsuario tipoUsuario = sesion.ingresar(clave);
                 usuarioController.getFactory().getIcaja().setSesion(sesion);
                 seleccionarInterfax(tipoUsuario, sesion.getUsuario().getNombre());
                 ViewTools.cerrarVentana(txtCedulaUsuario);

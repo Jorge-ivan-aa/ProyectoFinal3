@@ -1,7 +1,7 @@
 package co.edu.uniquindio.icaja.model;
 
-import co.edu.uniquindio.icaja.exception.CredencialesNoCoinciden;
-import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
+import co.edu.uniquindio.icaja.exception.login.CredencialesNoCoinciden;
+import co.edu.uniquindio.icaja.exception.login.UsuarioNoExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
@@ -10,15 +10,13 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 
+@Getter
 public class Sesion implements Login {
-    @Getter
     private final Usuario usuario;
-    private final String clave;
 
 
-    public Sesion(String cedula, String clave) {
+    public Sesion(String cedula) {
         this.usuario = this.buscarUsuario(cedula);
-        this.clave = clave;
     }
 
     public Usuario buscarUsuario(String cedula) {
@@ -35,13 +33,13 @@ public class Sesion implements Login {
     }
 
     @Override
-    public TipoUsuario ingresar() throws UsuarioNoExiste {
+    public TipoUsuario ingresar(String clave) throws UsuarioNoExiste {
         if (this.usuario == null) {
             Seguimiento.registrarLog(2, "Usuario no existe");
             throw new UsuarioNoExiste("Usuario no encontrado, revisa la cedula ingresada.");
         }
 
-        return this.usuario.ingresar();
+        return this.usuario.ingresar(clave);
 
     }
 }

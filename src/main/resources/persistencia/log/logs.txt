@@ -1,2 +1,122 @@
 INFO [2024-10-14 12:44:39]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
-INFO [2024-10-14 12:45:20]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 12:45:20]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.INFO [2024-10-14 16:57:55]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 16:58:26]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioJorge ingresó satisfactoriamente
+INFO [2024-10-14 16:58:44]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+WARNING [2024-10-14 16:58:48]: co.edu.uniquindio.icaja.model.Sesion.ingresar(), Usuario no existe
+INFO [2024-10-14 16:59:01]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioJorge ingresó satisfactoriamente
+INFO [2024-10-14 16:59:17]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 16:59:19]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 16:59:30]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 16:59:32]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 16:59:33]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 16:59:34]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 16:59:35]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 16:59:36]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 16:59:38]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 16:59:40]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 16:59:41]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:01:58]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+WARNING [2024-10-14 17:02:07]: co.edu.uniquindio.icaja.model.Sesion.ingresar(), Usuario no existe
+INFO [2024-10-14 17:03:45]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioJorge ingresó satisfactoriamente
+INFO [2024-10-14 17:04:13]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:04:22]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioJorge ingresó satisfactoriamente
+INFO [2024-10-14 17:04:29]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:04:39]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:10:26]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioJorge ingresó satisfactoriamente
+INFO [2024-10-14 17:16:10]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:16:31]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioJorge ingresó satisfactoriamente
+INFO [2024-10-14 17:16:37]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:17:23]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioJorge ingresó satisfactoriamente
+INFO [2024-10-14 17:22:18]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:22:28]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioJorge ingresó satisfactoriamente
+INFO [2024-10-14 17:23:42]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:23:55]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuarioJorge ingresó satisfactoriamente
+INFO [2024-10-14 17:23:55]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:24:23]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:24:23]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:24:23]: co.edu.uniquindio.icaja.controller.UsuarioController.eliminar(), Se eliminó la categoria
+INFO [2024-10-14 17:24:37]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:24:37]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:24:37]: co.edu.uniquindio.icaja.controller.UsuarioController.eliminar(), Se eliminó la categoria
+INFO [2024-10-14 17:25:06]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:25:06]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:25:06]: co.edu.uniquindio.icaja.controller.UsuarioController.eliminar(), Se eliminó la categoria
+INFO [2024-10-14 17:25:13]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+WARNING [2024-10-14 17:25:13]: co.edu.uniquindio.icaja.controller.UsuarioController.eliminar(), No se pudo eliminar el elemento, El usuario no existe.
+INFO [2024-10-14 17:25:18]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+WARNING [2024-10-14 17:25:18]: co.edu.uniquindio.icaja.controller.UsuarioController.eliminar(), No se pudo eliminar el elemento, El usuario no existe.
+INFO [2024-10-14 17:25:21]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:25:21]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:25:21]: co.edu.uniquindio.icaja.controller.UsuarioController.eliminar(), Se eliminó la categoria
+INFO [2024-10-14 17:30:46]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+WARNING [2024-10-14 17:31:03]: co.edu.uniquindio.icaja.model.Sesion.ingresar(), Usuario no existe
+INFO [2024-10-14 17:31:41]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:31:43]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:32:30]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:32:30]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:32:30]: co.edu.uniquindio.icaja.controller.UsuarioController.crear(), Se ha creado el usuario jorge
+INFO [2024-10-14 17:32:33]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:33:22]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuariojorge ingresó satisfactoriamente
+INFO [2024-10-14 17:33:32]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:33:40]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuariojorge ingresó satisfactoriamente
+INFO [2024-10-14 17:33:40]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:34:19]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:34:19]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:34:19]: co.edu.uniquindio.icaja.controller.UsuarioController.crear(), Se ha creado el usuario pepe
+INFO [2024-10-14 17:34:31]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:34:31]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:34:31]: co.edu.uniquindio.icaja.controller.UsuarioController.actualizar(), Se actualizó el usuario de cedula1004827105 correctamente.
+INFO [2024-10-14 17:34:59]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:34:59]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:34:59]: co.edu.uniquindio.icaja.controller.UsuarioController.crear(), Se ha creado el usuario juan
+INFO [2024-10-14 17:35:07]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:35:07]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:35:07]: co.edu.uniquindio.icaja.controller.UsuarioController.eliminar(), Se eliminó la categoria
+INFO [2024-10-14 17:35:15]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:35:15]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:35:15]: co.edu.uniquindio.icaja.controller.UsuarioController.eliminar(), Se eliminó la categoria
+INFO [2024-10-14 17:35:20]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:35:20]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:35:20]: co.edu.uniquindio.icaja.controller.UsuarioController.eliminar(), Se eliminó la categoria
+INFO [2024-10-14 17:37:54]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:41:59]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:42:03]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:42:31]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:42:31]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:42:31]: co.edu.uniquindio.icaja.controller.UsuarioController.crear(), Se ha creado el usuario carlitos
+INFO [2024-10-14 17:42:35]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:43:27]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:43:42]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuariocarlitos ingresó satisfactoriamente
+INFO [2024-10-14 17:43:42]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:46:55]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:46:57]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:47:18]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:47:18]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:47:18]: co.edu.uniquindio.icaja.controller.UsuarioController.crear(), Se ha creado el usuario asdasd
+INFO [2024-10-14 17:47:26]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:47:29]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:47:50]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:48:51]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:49:00]: co.edu.uniquindio.icaja.controller.UsuarioController.crear(), Se ha creado el usuario sadasd
+INFO [2024-10-14 17:49:39]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:53:37]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+WARNING [2024-10-14 17:53:47]: co.edu.uniquindio.icaja.model.Sesion.ingresar(), Usuario no existe
+INFO [2024-10-14 17:54:20]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuariocarlitos ingresó satisfactoriamente
+INFO [2024-10-14 17:54:20]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:55:02]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-14 17:55:02]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:55:02]: co.edu.uniquindio.icaja.controller.UsuarioController.crear(), Se ha creado el usuario po
+INFO [2024-10-14 17:55:44]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:56:03]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuariocarlitos ingresó satisfactoriamente
+INFO [2024-10-14 17:56:03]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:57:32]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 17:57:58]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuariocarlitos ingresó satisfactoriamente
+INFO [2024-10-14 17:57:58]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 18:02:06]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 18:02:15]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 18:02:26]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 18:07:26]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 18:08:26]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 18:09:02]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-14 18:09:10]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuariopo ingresó satisfactoriamente
+INFO [2024-10-14 18:09:10]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
