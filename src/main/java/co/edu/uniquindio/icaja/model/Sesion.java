@@ -6,10 +6,12 @@ import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
 import co.edu.uniquindio.icaja.utils.Seguimiento;
+import lombok.Getter;
 
 import java.util.ArrayList;
 
 public class Sesion implements Login {
+    @Getter
     private final Usuario usuario;
     private final String clave;
 
@@ -33,18 +35,13 @@ public class Sesion implements Login {
     }
 
     @Override
-    public TipoUsuario ingresar() throws UsuarioNoExiste, CredencialesNoCoinciden{
+    public TipoUsuario ingresar() throws UsuarioNoExiste {
         if (this.usuario == null) {
             Seguimiento.registrarLog(2, "Usuario no existe");
             throw new UsuarioNoExiste("Usuario no encontrado, revisa la cedula ingresada.");
-        } else if (!usuario.getClave().equals(clave)) {
-            throw new CredencialesNoCoinciden("Contraseña incorrecta, intenta nuevamente.");
         }
 
         return this.usuario.ingresar();
-    }
 
-    public Usuario getUsuario() {
-        return usuario;
     }
 }

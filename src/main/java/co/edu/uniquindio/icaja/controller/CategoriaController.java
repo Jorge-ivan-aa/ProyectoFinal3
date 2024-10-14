@@ -28,7 +28,7 @@ public class CategoriaController {
 
     private void sincronizarData() {
 
-        registrarLog(1,"Se sincronizo la base de datos");
+        registrarLog(1,"Se sincronizaron las categorias");
 
         this.listaCategoriasObservable.addAll(this.factory.getIcaja().getListaCategorias());
         Seguimiento.registrarLog(1,"Se sincronizo la base de datos");

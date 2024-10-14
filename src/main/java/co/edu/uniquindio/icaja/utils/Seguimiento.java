@@ -9,72 +9,63 @@ import java.nio.file.Paths;
 public class Seguimiento {
 
     private static final String RUTALOG = "src/main/resources/persistencia/log/logs.txt";
+    private static final Logger LOGGER = Logger.getLogger(Seguimiento.class.getName());
+
+    static {
+        // Configurar el logger para que no imprima en la consola por defecto
+        LOGGER.setUseParentHandlers(false);
+
+        // Eliminar todos los handlers existentes
+        for (Handler handler : LOGGER.getHandlers()) {
+            LOGGER.removeHandler(handler);
+        }
+
+        // Establecer el nivel del logger
+        LOGGER.setLevel(Level.ALL);
+
+        // Configurar el FileHandler
+        try {
+            FileHandler fileHandler = new FileHandler(RUTALOG, true);
+            fileHandler.setFormatter(new LogFormater());
+            LOGGER.addHandler(fileHandler);
+        } catch (IOException | SecurityException e) {
+            LOGGER.log(Level.SEVERE, "Error al configurar el FileHandler: " + e.getMessage(), e);
+        }
+
+        // Configurar un ConsoleHandler que use LogFormater
+        ConsoleHandler consoleHandler = new ConsoleHandler();
+        consoleHandler.setFormatter(new LogFormater()); // Usar el mismo formateador
+        consoleHandler.setLevel(Level.ALL); // Puedes ajustar el nivel si es necesario
+        LOGGER.addHandler(consoleHandler);
+    }
 
     public static void registrarLog(int nivel, String mensaje) {
-        Logger LOGGER = Logger.getLogger(Seguimiento.class.getName());
-        FileHandler fileHandler =  null;
         String contexto = obtenerRutaMetodos();
         mensaje = String.format("%s, %s", contexto, mensaje);
 
-        try {
-            // Verificar si el archivo de log existe, y crearlo si no
-            Path path = Paths.get(RUTALOG);
-            if (!Files.exists(path)) {
-                Files.createDirectories(path.getParent());
-                Files.createFile(path);
-            }
+        switch (nivel) {
+            case 1:
+                LOGGER.log(Level.INFO, mensaje);
+                break;
 
-            fileHandler = new FileHandler(RUTALOG,true);
-            fileHandler.setFormatter(new LogFormater());
-            LOGGER.addHandler(fileHandler);
+            case 2:
+                LOGGER.log(Level.WARNING, mensaje);
+                break;
 
-            switch (nivel) {
-                case 1:
-                    LOGGER.log(Level.INFO, mensaje);
-                    break;
+            case 3:
+                LOGGER.log(Level.SEVERE, mensaje);
+                break;
 
-                case 2:
-                    LOGGER.log(Level.WARNING, mensaje);
-                    break;
-
-                case 3:
-                    LOGGER.log(Level.SEVERE, mensaje);
-                    break;
-
-                default:
-                    break;
-            }
-
-        } catch (SecurityException e) {
-            LOGGER.log(Level.SEVERE, "Error al registrar el log: " + e.getMessage(), e);
-
-        } catch (IllegalArgumentException e) {
-            LOGGER.log(Level.WARNING, e.getMessage(), e);
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } finally {
-            if (fileHandler != null) {
-                try {
-                    fileHandler.close();
-
-                } catch (SecurityException e) {
-                    LOGGER.log(Level.SEVERE, "Error al cerrar el FileHandler: " + e.getMessage(), e);
-
-                }
-            }
+            default:
+                break;
         }
     }
 
     private static String obtenerRutaMetodos() {
         StringBuilder ruta = new StringBuilder();
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-        StackTraceElement element = stackTrace[3];
+        StackTraceElement element = stackTrace[3]; // Asegúrate de ajustar este índice si es necesario
         ruta.append(element.getClassName()).append(".").append(element.getMethodName()).append("()");
-        // Recorrer la pila de métodos, omitiendo los primeros elementos de la pila
         return ruta.toString();
     }
-
 }
-
-

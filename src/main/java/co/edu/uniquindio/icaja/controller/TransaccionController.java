@@ -29,7 +29,7 @@ public class TransaccionController {
 
     public void sincronizarData() {
 
-        registrarLog(1, "Se sincronizo la base de datos");
+        registrarLog(1, "Se sincronizaron las transacciones");
 
         this.listaTransaccionObservable.addAll(this.factory.getIcaja().getListaTransacciones());
     }

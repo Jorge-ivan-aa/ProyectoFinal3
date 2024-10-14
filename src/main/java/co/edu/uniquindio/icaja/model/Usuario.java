@@ -1,5 +1,6 @@
 package co.edu.uniquindio.icaja.model;
 
+import co.edu.uniquindio.icaja.exception.CredencialesNoCoinciden;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
 
@@ -51,9 +52,18 @@ public class Usuario implements Serializable, Login, Persistible<Usuario> {
     }
 
     @Override
-    public TipoUsuario ingresar() {
-        Seguimiento.registrarLog(1, "El usuario" + nombre + " ingresó satisfactoriamente");
+    public TipoUsuario ingresar() throws CredencialesNoCoinciden {
+        if (verificarCredenciales(this, clave)) {
+            Seguimiento.registrarLog(1, "El usuario" + nombre + " ingresó satisfactoriamente");
+        } else {
+            throw new CredencialesNoCoinciden("Contraseña incorrecta, intenta nuevamente.");
+        }
+
         return getTipoUsuario();
+    }
+
+    public boolean verificarCredenciales(Usuario usuario, String clave) {
+        return usuario.getClave().equals(clave);
     }
 
 

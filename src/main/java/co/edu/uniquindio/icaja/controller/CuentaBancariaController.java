@@ -27,7 +27,7 @@ public class CuentaBancariaController {
 
     private void sincronizarData() {
 
-        registrarLog(1,"Se sincronizo la base de datos");
+        registrarLog(1,"Se sincronizaron las cuentas bancarias");
 
         this.listaCuentaBancariaObservable.addAll(this.factory.getIcaja().getListaCuentaBancarias());
         Seguimiento.registrarLog(1,"Se sincronizo la base de datos");

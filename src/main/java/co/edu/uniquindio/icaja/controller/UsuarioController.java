@@ -31,12 +31,9 @@ public class UsuarioController {
     }
 
     private void sincronizarData() {
-
-        registrarLog(1,"Se sincronizo la base de datos");
-
         this.listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
         this.guardarUsuario();
-        Seguimiento.registrarLog(1,"Se sincronizo la base de datos");
+        Seguimiento.registrarLog(1,"Se sincronizaron los usuarios.");
     }
 
     public String crearUsuario(UsuarioDto usuarioDto) {
