@@ -2,6 +2,7 @@ module co.edu.uniquindio.icaja {
     requires static lombok;
     requires java.logging;
     requires MaterialFX;
+    requires atlantafx.base;
 
 
     exports co.edu.uniquindio.icaja.mapping.mappers;

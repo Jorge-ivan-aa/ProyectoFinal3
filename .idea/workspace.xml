@@ -5,7 +5,66 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1175ed9-e8ba-4d1e-a676-9e478e60b028" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/nbactions.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/LoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/log/logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/log/logs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/CategoriaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/CategoriaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/CuentaBancariaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/CuentaBancariaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/TransaccionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/TransaccionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/UsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/exception/CredencialesNoCoinciden.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/exception/CredencialesNoCoinciden.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/exception/UsuarioNoExiste.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/exception/UsuarioNoExiste.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/factory/ModelFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/factory/ModelFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/CategoriaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/CategoriaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/CuentaBancariaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/CuentaBancariaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/DepositoDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/DepositoDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/RetiroDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/RetiroDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/TransaccionDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/TransaccionDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/TransferenciaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/TransferenciaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/UsuarioDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/UsuarioDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/CategoriaMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/CategoriaMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/CuentaBancariaMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/CuentaBancariaMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/TransaccionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/TransaccionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/UsuarioMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/UsuarioMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Categoria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Categoria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/CuentaBancaria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/CuentaBancaria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/ICaja.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/ICaja.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Sesion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Sesion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Transaccion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Transaccion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/TransaccionFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/TransaccionFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/enums/TipoCategoria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/enums/TipoCategoria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/enums/TipoCuenta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/enums/TipoCuenta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/enums/TipoUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/enums/TipoUsuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/factories/Deposito.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/factories/Deposito.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/factories/Retiro.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/factories/Retiro.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/factories/Transferencia.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/factories/Transferencia.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/services/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/services/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/services/Persistible.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/services/Persistible.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/utils/LogFormater.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/utils/LogFormater.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/utils/Persistencia.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/utils/Persistencia.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/utils/Seguimiento.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/utils/Seguimiento.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/utils/ViewTools.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/utils/ViewTools.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/LoginView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/LoginView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/LoginView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/RegistroUsuarioView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/RegistroUsuarioView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/admin/CategoriaView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/admin/CategoriaView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/admin/CuentaView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/admin/CuentaView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/admin/TransaccionView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/admin/TransaccionView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/mainAdminView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/mainAdminView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/mainNormalView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/mainNormalView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/normal/CuentasUsuarioView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/normal/CuentasUsuarioView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/normal/EstadisticasUsuarioView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/normal/EstadisticasUsuarioView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/normal/PerfilUsuarioView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/normal/PerfilUsuarioView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/persistencia/log/logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistencia/log/logs.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,23 +105,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ProyectoFinal3 [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ProyectoFinal3 [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ProyectoFinal3 [test].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jorge/Downloads/ProyectoFinal3&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.HelloApplication.executor": "Run",
+    "Maven.ProyectoFinal3 [clean].executor": "Run",
+    "Maven.ProyectoFinal3 [compile].executor": "Run",
+    "Maven.ProyectoFinal3 [test].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "dev",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/jorge/Downloads/ProyectoFinal3",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.general"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="co.edu.uniquindio.icaja.App" />

@@ -9,6 +9,7 @@ import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
 import co.edu.uniquindio.icaja.model.Sesion;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.utils.ViewTools;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -22,7 +23,7 @@ public class LoginView {
     private TextField txtCedulaUsuario;
 
     @FXML
-    private PasswordField txtClaveUsuario;
+    private MFXPasswordField txtClaveUsuario;
 
     @FXML
     private ResourceBundle resources;

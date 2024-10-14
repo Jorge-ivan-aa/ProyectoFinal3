@@ -1,5 +1,6 @@
 package co.edu.uniquindio.icaja;
 
+import atlantafx.base.theme.PrimerLight;
 import io.github.palexdev.materialfx.theming.JavaFXThemes;
 import io.github.palexdev.materialfx.theming.MaterialFXStylesheets;
 import io.github.palexdev.materialfx.theming.UserAgentBuilder;
@@ -22,7 +23,7 @@ public class App extends Application {
 
 
         Scene scene = new Scene(fxmlLoader.load());
-
+        Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
         stage.setTitle("ICaja Wallet");
         stage.setScene(scene);
         stage.show();
