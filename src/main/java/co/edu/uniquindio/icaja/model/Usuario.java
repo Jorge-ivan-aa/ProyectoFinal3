@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Usuario implements Serializable, Login, Persistible<Usuario> {
+public class Usuario implements Serializable, Login {
     private String nombre;
     private String cedula;
     private String correo;
@@ -66,49 +66,6 @@ public class Usuario implements Serializable, Login, Persistible<Usuario> {
         return usuario.getClave().equals(clave);
     }
 
-
-    @Override
-    public void guardar(List<Usuario> usuarios) throws IOException {
-        String contenido = "";
-        for(Usuario usuario:usuarios)
-        {
-            contenido= usuario.getNombre()+
-                    "@@"+usuario.getCedula()+
-                    "@@"+usuario.getCorreo()+
-                    "@@"+usuario.getTelefono()+
-                    "@@"+usuario.getClave()+
-                    "@@"+usuario.getClaveTransaccional()+
-                    "@@"+usuario.getSaldoTotal()+
-                    "@@"+usuario.getIngresos()+
-                    "@@"+usuario.getGastos()+
-                    "@@"+usuario.getPresupuestoMensual()+
-                    "@@"+usuario.getTipoUsuario()+"\n";
-        }
-        Persistencia.guardarArchivo("usuario.txt", contenido, false);
-    }
-
-    @Override
-    public List<Usuario> leer(String ruta) throws IOException {
-        ArrayList<Usuario> usuarios =new ArrayList<Usuario>();
-        ArrayList<String> contenido = Persistencia.leerArchivo(ruta);
-        String[] linea;
-        for (String texto : contenido) {
-            linea = texto.split("@@");
-            Usuario usuario = new Usuario();
-            usuario.setNombre(linea[0]);
-            usuario.setCedula(linea[1]);
-            usuario.setCorreo(linea[2]);
-            usuario.setTelefono(linea[3]);
-            usuario.setClave(linea[4]);
-            usuario.setClaveTransaccional(linea[5]);
-            usuario.setSaldoTotal(Double.parseDouble(linea[6]));
-            usuario.setIngresos(Double.parseDouble(linea[7]));
-            usuario.setGastos(Double.parseDouble(linea[8]));
-            usuario.setTipoUsuario(TipoUsuario.valueOf(linea[10]));
-            usuarios.add(usuario);
-        }
-        return usuarios;
-    }
 
     public void setAdministrador() {
         this.tipoUsuario = TipoUsuario.ADMINISTRADOR;

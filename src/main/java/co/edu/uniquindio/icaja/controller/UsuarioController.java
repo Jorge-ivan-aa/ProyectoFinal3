@@ -8,6 +8,8 @@ import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.mapping.mappers.UsuarioMapper;
 import co.edu.uniquindio.icaja.model.Usuario;
 import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
+
+import co.edu.uniquindio.icaja.model.persistencia.UsuarioPersistente;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
@@ -28,9 +30,9 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
     }
 @Override
     public void sincronizarData() {
-        this.listaUsuarioObservable.clear();
-        this.listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
-        this.persistir();
+        listaUsuarioObservable.clear();
+        listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
+        persistir();
         registrarLog(1,"Se sincronizaron los usuarios.");
     }
 
@@ -44,9 +46,9 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
             
         } catch (ElementoNoExiste ignored) {
             Usuario nuevoUsuario = UsuarioMapper.usuarioDtoToUsuario(usuarioDto);
-            this.factory.getIcaja().addUsuario(nuevoUsuario);
-            this.listaUsuarioObservable.add(nuevoUsuario);
-            this.sincronizarData();
+            factory.getIcaja().addUsuario(nuevoUsuario);
+            listaUsuarioObservable.add(nuevoUsuario);
+            sincronizarData();
             registrarLog(1,"Se ha creado el usuario " + usuarioDto.nombre());
             
         }
@@ -101,9 +103,9 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
 
     @Override
     public void persistir() {
-        List<Usuario> usuarios = this.factory.getIcaja().getListaUsuarios();
+        List<Usuario> usuarios = factory.getIcaja().getListaUsuarios();
         try {
-            new Usuario().guardar(usuarios);
+            factory.getUsuarioPersistente().guardar(usuarios);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
