@@ -164,3 +164,11 @@ INFO [2024-10-14 19:07:01]: co.edu.uniquindio.icaja.controller.UsuarioController
 INFO [2024-10-14 19:07:20]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
 INFO [2024-10-14 19:07:20]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
 INFO [2024-10-14 19:07:20]: co.edu.uniquindio.icaja.controller.UsuarioController.crear(), Se ha creado el usuario WEQWE
+INFO [2024-10-15 12:21:07]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-15 12:21:31]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-15 14:02:03]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-15 14:02:51]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-15 14:02:51]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-15 14:03:06]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
+INFO [2024-10-15 14:03:06]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-15 14:03:06]: co.edu.uniquindio.icaja.controller.UsuarioController.eliminar(), Se eliminó el usuario de cedula 12345.
