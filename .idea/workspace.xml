@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1175ed9-e8ba-4d1e-a676-9e478e60b028" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/admin/UsuarioView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/normal/PrincipalUsuarioView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/admin/usuario.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/normal/principalUsuario.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.$maquetaInterfaces.png.bkp" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.$maquetaInterfaces.png.bkp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/maquetaInterfaces.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/maquetaInterfaces.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/usuario.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/usuario.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/mainAdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/mainAdminView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/mainAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/mainAdmin.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/log/logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/log/logs.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,10 +24,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Record" />
         <option value="Interface" />
         <option value="Exception" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>

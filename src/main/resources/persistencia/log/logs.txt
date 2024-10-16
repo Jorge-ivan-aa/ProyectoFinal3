@@ -172,3 +172,11 @@ INFO [2024-10-15 14:02:51]: co.edu.uniquindio.icaja.controller.UsuarioController
 INFO [2024-10-15 14:03:06]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), Se consultó el usuario
 INFO [2024-10-15 14:03:06]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
 INFO [2024-10-15 14:03:06]: co.edu.uniquindio.icaja.controller.UsuarioController.eliminar(), Se eliminó el usuario de cedula 12345.
+INFO [2024-10-16 10:11:26]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-16 10:16:03]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-16 13:08:06]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-16 13:08:15]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-16 13:08:15]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-16 13:18:03]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-16 13:18:08]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-16 13:18:08]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
