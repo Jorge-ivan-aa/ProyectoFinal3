@@ -180,3 +180,9 @@ INFO [2024-10-16 13:08:15]: co.edu.uniquindio.icaja.controller.UsuarioController
 INFO [2024-10-16 13:18:03]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
 INFO [2024-10-16 13:18:08]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
 INFO [2024-10-16 13:18:08]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-16 15:14:36]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-16 15:14:41]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-16 15:14:41]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-16 15:14:48]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-16 15:14:50]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-16 15:15:02]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.

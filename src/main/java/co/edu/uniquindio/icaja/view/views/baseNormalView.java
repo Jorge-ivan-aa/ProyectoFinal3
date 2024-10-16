@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 
-public class mainNormalView {
+public class baseNormalView {
     @FXML
     private AnchorPane anchorCuentasUsuario;
 

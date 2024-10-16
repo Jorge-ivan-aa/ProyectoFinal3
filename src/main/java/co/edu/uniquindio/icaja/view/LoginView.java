@@ -62,10 +62,10 @@ public class LoginView {
     void seleccionarInterfax(TipoUsuario tipoUsuario, String usuario) {
         switch(tipoUsuario) {
             case ADMINISTRADOR:
-                ViewTools.ventanaEmergente("templates/mainAdmin.fxml", "ICaja - Administrador", "styles/main.css");
+                ViewTools.ventanaEmergente("templates/baseAdmin.fxml", "ICaja - Administrador", "styles/main.css");
                 break;
             case NORMAL:
-                ViewTools.ventanaEmergente("templates/mainNormal.fxml", "ICaja - " + usuario, "styles/main.css");
+                ViewTools.ventanaEmergente("templates/baseNormal.fxml", "ICaja - " + usuario, "styles/main.css");
                 break;
         }
     }
