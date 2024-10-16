@@ -18,9 +18,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.mainAdminView">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.mainAdminView">
     <children>
-      <AnchorPane fx:id="panelUsuario" layoutX="168.0" layoutY="54.0" prefHeight="615.0" prefWidth="1058.0">
+      <AnchorPane fx:id="panelUsuario" layoutX="168.0" layoutY="54.0" prefHeight="615.0" prefWidth="1058.0" visible="false">
          <children>
               <SplitPane dividerPositions="0.5474683544303798" orientation="VERTICAL" prefHeight="615.0" prefWidth="1058.0">
                   <items>
@@ -138,11 +138,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="69.0" prefWidth="78.0" style="-fx-background-radius: 50;" text="Usuario" />
-            <Button mnemonicParsing="false" prefHeight="69.0" prefWidth="78.0" style="-fx-background-radius: 50;" text="Cuenta" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="69.0" prefWidth="78.0" style="-fx-background-radius: 50;" text="Transacción" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="69.0" prefWidth="78.0" style="-fx-background-radius: 50;" text="Categoria" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" prefHeight="69.0" prefWidth="78.0" style="-fx-background-radius: 50;" text="Back" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+            <Button mnemonicParsing="false" onAction="#ponerUsuarioAction" prefHeight="69.0" prefWidth="78.0" style="-fx-background-radius: 50;" text="Usuario" />
+            <Button mnemonicParsing="false" onAction="#ponerCuentaAction" prefHeight="69.0" prefWidth="78.0" style="-fx-background-radius: 50;" text="Cuenta" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#ponerTransaccionAction" prefHeight="69.0" prefWidth="78.0" style="-fx-background-radius: 50;" text="Transacción" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#ponerCategoriaAction" prefHeight="69.0" prefWidth="78.0" style="-fx-background-radius: 50;" text="Categoria" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" onAction="#VolverAction" prefHeight="69.0" prefWidth="78.0" style="-fx-background-radius: 50;" text="Back" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <AnchorPane fx:id="panelCuenta" layoutX="168.0" layoutY="54.0" prefHeight="615.0" prefWidth="1058.0" style="-fx-background-radius: 10;" visible="false">
@@ -192,43 +192,43 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <ComboBox prefHeight="31.0" prefWidth="153.0" style="-fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-                              <TextField alignment="CENTER" prefWidth="166.0" style="-fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                              <ComboBox fx:id="cbTipoCuentaAdmin" onAction="#seleccionTipoCuentaAction" prefHeight="31.0" prefWidth="153.0" style="-fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                              <TextField fx:id="txtEntidadAdmin" alignment="CENTER" prefWidth="166.0" style="-fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField style="-fx-background-radius: 10;" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                              <TextField fx:id="txtLimiteAdmin" style="-fx-background-radius: 10;" GridPane.rowIndex="3" GridPane.valignment="TOP">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField style="-fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                              <TextField fx:id="txtNumeroCuentaAdmin" style="-fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <TextField style="-fx-background-radius: 10;" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                              <TextField fx:id="txtSaldoAdmin" style="-fx-background-radius: 10;" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
                               </TextField>
-                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="114.0" style="-fx-background-radius: 10;" text="Crear " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                              <Button mnemonicParsing="false" onAction="#crearCuentaAction" prefHeight="40.0" prefWidth="114.0" style="-fx-background-radius: 10;" text="Crear " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="116.0" style="-fx-background-radius: 10;" text="Actualizar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                              <Button mnemonicParsing="false" onAction="#ActualizarCuentaAction" prefHeight="40.0" prefWidth="116.0" style="-fx-background-radius: 10;" text="Actualizar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="116.0" style="-fx-background-radius: 10;" text="Eliminar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                              <Button mnemonicParsing="false" onAction="#eliminarCuentaAction" prefHeight="40.0" prefWidth="116.0" style="-fx-background-radius: 10;" text="Eliminar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Button>
-                              <MFXComboBox floatMode="BORDER" prefHeight="13.0" prefWidth="165.0" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                              <MFXComboBox fx:id="cbPropietarioAdmin" floatMode="BORDER" onAction="#seleccionPropietarioAction" prefHeight="13.0" prefWidth="165.0" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP" />
                               <Label prefHeight="18.0" prefWidth="114.0" text="Propietario:" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                                  <font>
                                     <Font size="18.0" />
@@ -240,13 +240,13 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-radius: 10;">
                      <children>
-                        <TableView layoutX="1.0" layoutY="-4.0" prefHeight="302.0" prefWidth="1055.0" style="-fx-background-radius: 10;">
+                        <TableView fx:id="tvTablaCuentasAdmin" layoutX="1.0" layoutY="-4.0" prefHeight="302.0" prefWidth="1055.0" style="-fx-background-radius: 10;">
                           <columns>
-                            <TableColumn prefWidth="176.53329157829285" style="-fx-background-radius: 10;" text="Entidad" />
-                            <TableColumn prefWidth="189.86671447753906" style="-fx-background-radius: 10;" text="N. Cuenta" />
-                              <TableColumn prefWidth="224.0" style="-fx-background-radius: 10;" text="Saldo" />
-                              <TableColumn prefWidth="215.20001220703125" style="-fx-background-radius: 10;" text="Límite" />
-                              <TableColumn prefWidth="250.66656494140625" style="-fx-background-radius: 10;" text="Tipo Cuenta" />
+                            <TableColumn fx:id="tcEntidadAdmin" prefWidth="176.53329157829285" style="-fx-background-radius: 10;" text="Entidad" />
+                            <TableColumn fx:id="tcNumeroCuentaAdmin" prefWidth="189.86671447753906" style="-fx-background-radius: 10;" text="N. Cuenta" />
+                              <TableColumn fx:id="tcSaldoAdmin" prefWidth="224.0" style="-fx-background-radius: 10;" text="Saldo" />
+                              <TableColumn fx:id="tcLimiteAdmin" prefWidth="215.20001220703125" style="-fx-background-radius: 10;" text="Límite" />
+                              <TableColumn fx:id="tcTipoCuentaAdmin" prefWidth="250.66656494140625" style="-fx-background-radius: 10;" text="Tipo Cuenta" />
                           </columns>
                         </TableView>
                      </children>
@@ -255,7 +255,7 @@
             </SplitPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="transaccionLabel" layoutX="168.0" layoutY="54.0" prefHeight="615.0" prefWidth="1058.0" visible="false">
+      <AnchorPane fx:id="transaccionPanel" layoutX="168.0" layoutY="54.0" prefHeight="615.0" prefWidth="1058.0" visible="false">
          <children>
             <SplitPane dividerPositions="0.5" layoutY="-2.0" orientation="VERTICAL" prefHeight="615.0" prefWidth="1058.0">
               <items>
@@ -277,10 +277,10 @@
                               <RowConstraints maxHeight="91.60002746582029" minHeight="10.0" prefHeight="78.80002441406248" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <MFXTextField floatMode="DISABLED" prefHeight="32.0" prefWidth="201.0" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                              <MFXTextField floatMode="DISABLED" prefHeight="32.0" prefWidth="201.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                              <MFXTextField floatMode="DISABLED" prefHeight="32.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                              <MFXTextField floatMode="DISABLED" prefHeight="34.0" prefWidth="197.0" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                              <MFXTextField fx:id="txtIdTransaccionAdmin" floatMode="DISABLED" prefHeight="32.0" prefWidth="201.0" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                              <MFXTextField fx:id="txtFechaTransaccionAdmin" floatMode="DISABLED" prefHeight="32.0" prefWidth="201.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                              <MFXTextField fx:id="txtMontoTransaccionAdmin" floatMode="DISABLED" prefHeight="32.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                              <MFXTextField fx:id="txtMotivoTransaccionAdmin" floatMode="DISABLED" prefHeight="34.0" prefWidth="197.0" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP" />
                               <Label text="Id:" GridPane.valignment="BOTTOM">
                                  <font>
                                     <Font size="18.0" />
@@ -311,19 +311,19 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <MFXComboBox floatMode="BORDER" prefHeight="34.0" prefWidth="184.0" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-                              <MFXComboBox floatMode="BORDER" prefHeight="34.0" prefWidth="187.0" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-                              <MFXButton buttonType="RAISED" depthLevel="LEVEL1" prefHeight="40.0" prefWidth="115.0" text="Crear" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                              <MFXComboBox fx:id="cbTipoTransaccionAdmin" floatMode="BORDER" prefHeight="34.0" prefWidth="184.0" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                              <MFXComboBox fx:id="tcCuentaTransaccionAdmin" floatMode="BORDER" prefHeight="34.0" prefWidth="187.0" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                              <MFXButton buttonType="RAISED" depthLevel="LEVEL1" onAction="#crearTransaccionAction" prefHeight="40.0" prefWidth="115.0" text="Crear" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </MFXButton>
-                              <MFXButton buttonType="RAISED" depthLevel="LEVEL1" prefHeight="40.0" prefWidth="115.0" text="Eliminar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                              <MFXButton buttonType="RAISED" depthLevel="LEVEL1" onAction="#eliminarTransaccionAction" prefHeight="40.0" prefWidth="115.0" text="Eliminar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </MFXButton>
-                              <MFXButton buttonType="RAISED" depthLevel="LEVEL1" prefHeight="40.0" prefWidth="115.0" text="Consultar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                              <MFXButton buttonType="RAISED" depthLevel="LEVEL1" onAction="#consultarTransaccionAction" prefHeight="40.0" prefWidth="115.0" text="Consultar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -333,13 +333,13 @@
                      </children></AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <TableView layoutX="-1.0" layoutY="2.0" prefHeight="303.0" prefWidth="1058.0">
+                        <TableView fx:id="tvTablaTransaccionaAdmin" layoutX="-1.0" layoutY="2.0" prefHeight="303.0" prefWidth="1058.0">
                           <columns>
-                            <TableColumn prefWidth="185.06664735078812" text="ID" />
-                            <TableColumn prefWidth="153.5999298095703" text="Fecha" />
-                              <TableColumn prefWidth="170.66665649414062" text="Monto" />
-                              <TableColumn prefWidth="410.933349609375" text="Motivo" />
-                              <TableColumn prefWidth="141.06674194335938" text="Categoria" />
+                            <TableColumn fx:id="tcIdTransaccionAdmin" prefWidth="185.06664735078812" text="ID" />
+                            <TableColumn fx:id="tcFechaTransaccionAdmin" prefWidth="153.5999298095703" text="Fecha" />
+                              <TableColumn fx:id="tcMontoTransaccionAdmin" prefWidth="170.66665649414062" text="Monto" />
+                              <TableColumn fx:id="tcMotivoTransaccionAdmin" prefWidth="410.933349609375" text="Motivo" />
+                              <TableColumn fx:id="tcCategoriaTransaccionAdmin" prefWidth="141.06674194335938" text="Categoria" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
@@ -347,7 +347,7 @@
             </SplitPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="categorialLabel" layoutX="168.0" layoutY="54.0" prefHeight="615.0" prefWidth="1058.0" visible="false">
+      <AnchorPane fx:id="categorialpanel" layoutX="168.0" layoutY="54.0" prefHeight="615.0" prefWidth="1058.0">
          <children>
             <SplitPane dividerPositions="0.5" layoutX="2.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="615.0" prefWidth="1058.0">
               <items>
@@ -380,22 +380,22 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <MFXTextField floatMode="ABOVE" prefHeight="35.0" prefWidth="210.0" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                              <MFXTextField floatMode="ABOVE" prefHeight="35.0" prefWidth="207.0" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-                              <TextArea prefHeight="106.0" prefWidth="235.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                              <MFXTextField fx:id="txtNombreCategoriaAdmin" floatMode="ABOVE" prefHeight="35.0" prefWidth="210.0" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                              <MFXTextField fx:id="txtTipoCategoriaAdmin" floatMode="ABOVE" prefHeight="35.0" prefWidth="207.0" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                              <TextArea fx:id="txaDescripcionCategoriaAdmin" prefHeight="106.0" prefWidth="235.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
                            </children>
                         </GridPane>
-                        <MFXButton layoutX="501.0" layoutY="250.0" text="Crear">
+                        <MFXButton layoutX="501.0" layoutY="250.0" onAction="#crearCategoriaAction" prefHeight="34.0" prefWidth="100.0" text="Crear">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </MFXButton>
-                        <MFXButton layoutX="708.0" layoutY="250.0" text="Consultar">
+                        <MFXButton layoutX="708.0" layoutY="250.0" onAction="#consultarCategoriaAction" prefHeight="34.0" prefWidth="100.0" text="Consultar">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </MFXButton>
-                        <MFXButton layoutX="915.0" layoutY="250.0" text="Eliminar">
+                        <MFXButton layoutX="897.0" layoutY="250.0" onAction="#EliminarCategoriaAction" prefHeight="34.0" prefWidth="100.0" text="Eliminar">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -404,11 +404,11 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
-                        <TableView layoutX="-2.0" layoutY="2.0" prefHeight="306.0" prefWidth="1059.0">
+                        <TableView fx:id="tvCategoriaAdmin" layoutX="-2.0" layoutY="2.0" prefHeight="306.0" prefWidth="1059.0">
                           <columns>
-                            <TableColumn prefWidth="209.06673884391785" text="Nombre" />
-                            <TableColumn prefWidth="254.93324279785156" text="Tipo" />
-                              <TableColumn prefWidth="596.2667541503906" text="Descripción" />
+                            <TableColumn fx:id="tcNombreCategoriaAdmin" prefWidth="209.06673884391785" text="Nombre" />
+                            <TableColumn fx:id="tcTipoCategoriaAdmin" prefWidth="254.93324279785156" text="Tipo" />
+                              <TableColumn fx:id="tcDescripcionCategoriaAdmin" prefWidth="596.2667541503906" text="Descripción" />
                           </columns>
                         </TableView>
                      </children>
