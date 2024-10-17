@@ -3,6 +3,7 @@ package co.edu.uniquindio.icaja.factory;
 import co.edu.uniquindio.icaja.model.ICaja;
 import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.model.persistencia.UsuarioPersistente;
+import co.edu.uniquindio.icaja.utils.respaldo.ICajaSerializado;
 import lombok.Getter;
 import java.io.IOException;
 import java.util.List;
@@ -10,15 +11,20 @@ import java.util.List;
 @Getter
 public class ModelFactory {
     private static ModelFactory instance;
-    private final ICaja icaja;
+    private ICaja icaja;
 
     // PERSISTENCIA
     private final UsuarioPersistente usuarioPersistente;
 
     private ModelFactory() {
-        icaja = new ICaja();
+        icaja = cargaRespaldo();
         usuarioPersistente = new UsuarioPersistente();
-        loadData();
+
+        if (icaja == null) {
+            icaja = new ICaja();
+            loadData();
+        }
+
     }
 
 
@@ -42,5 +48,16 @@ public class ModelFactory {
                 icaja.addUsuario(usuario);
             }
         }
+
+        guardarRespaldo();
+    }
+
+    public ICaja cargaRespaldo() {
+        return ICajaSerializado.cargarRecursoICajaXML();
+    }
+
+    public void guardarRespaldo() {
+        ICajaSerializado.guardarRecursoICajaBinario(icaja);
+        ICajaSerializado.guardarRecursoICajaXML(icaja);
     }
 }

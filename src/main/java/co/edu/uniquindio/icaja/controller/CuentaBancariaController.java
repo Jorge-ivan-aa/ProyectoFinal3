@@ -2,13 +2,12 @@ package co.edu.uniquindio.icaja.controller;
 
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.model.*;
-import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
-import co.edu.uniquindio.icaja.utils.Seguimiento;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 
-import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
+import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 
 import java.util.ArrayList;
 import java.util.Objects;

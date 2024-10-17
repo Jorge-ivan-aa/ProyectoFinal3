@@ -1,58 +1,20 @@
-package co.edu.uniquindio.icaja.utils;
+package co.edu.uniquindio.icaja.utils.respaldo;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
-import java.util.ArrayList;
 
-public class Persistencia {
-
-    private static final String RUTA = "src/main/resources/persistencia/archivos/";
-    public Persistencia() {
-
-    }
-
-    /**
-     * Este metodo recibe una cadena con el contenido que se quiere guardar en el archivo
-     * @param ruta es la ruta o path donde esta ubicado el archivo
-     */
-    public static void guardarArchivo(String ruta, String contenido, Boolean flagAnexarContenido) throws IOException {
-
-        FileWriter fw = new FileWriter(RUTA+ruta,flagAnexarContenido);
-        BufferedWriter bfw = new BufferedWriter(fw);
-        bfw.write(contenido);
-        bfw.close();
-        fw.close();
-    }
-
-    /**
-     * ESte metodo retorna el contendio del archivo ubicado en una ruta,con la lista de cadenas.
-     */
-    public static ArrayList<String> leerArchivo(String ruta) throws IOException {
-
-        ArrayList<String>  contenido = new ArrayList<String>();
-        FileReader fr=new FileReader(RUTA+ruta);
-        BufferedReader bfr=new BufferedReader(fr);
-        String linea="";
-        while((linea = bfr.readLine())!=null)
-        {
-            contenido.add(linea);
-        }
-        bfr.close();
-        fr.close();
-        return contenido;
-    }
-
-
+public class Serializado {
     //------------------------------------SERIALIZACIÓN  y XML
     /**
      * Escribe en el fichero que se le pasa el objeto que se le envia
      *
      * @param rutaArchivo
      *            path del fichero que se quiere escribir
+     * @throws IOException
      */
 
-    public static Object cargarRecursoSerializado(String rutaArchivo)throws Exception
+    public static Object cargarRecursoSerializado(String rutaArchivo)throws IOException
     {
         Object aux = null;
 //		Empresa empresa = null;
@@ -61,8 +23,8 @@ public class Persistencia {
 
             aux = ois.readObject();
 
-        } catch (Exception e2) {
-            throw e2;
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return aux;
     }
@@ -75,6 +37,9 @@ public class Persistencia {
             throw e;
         }
     }
+
+
+
 
     public static Object cargarRecursoSerializadoXML(String rutaArchivo) throws IOException {
 
@@ -97,4 +62,6 @@ public class Persistencia {
         codificadorXML.close();
 
     }
+
+
 }

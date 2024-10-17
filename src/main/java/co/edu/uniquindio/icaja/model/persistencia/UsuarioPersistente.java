@@ -3,7 +3,7 @@ package co.edu.uniquindio.icaja.model.persistencia;
 import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Persistible;
-import co.edu.uniquindio.icaja.utils.Persistencia;
+import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
 
 import java.io.IOException;
 import java.util.ArrayList;

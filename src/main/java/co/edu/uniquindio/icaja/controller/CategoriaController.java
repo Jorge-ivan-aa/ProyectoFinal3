@@ -7,7 +7,7 @@ import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.CategoriaDto;
 import co.edu.uniquindio.icaja.mapping.mappers.CategoriaMapper;
 import co.edu.uniquindio.icaja.model.Categoria;
-import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
+import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;

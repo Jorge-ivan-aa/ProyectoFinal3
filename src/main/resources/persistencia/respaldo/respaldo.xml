@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="21.0.4" class="java.beans.XMLDecoder">
+ <object class="co.edu.uniquindio.icaja.model.ICaja" id="ICaja0">
+  <void property="listaUsuarios">
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
+      <string>123</string>
+     </void>
+     <void property="clave">
+      <string>12</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>34534534</string>
+     </void>
+     <void property="correo">
+      <string>SDFASFGSDF</string>
+     </void>
+     <void property="nombre">
+      <string>KJHDF</string>
+     </void>
+     <void property="telefono">
+      <string>234234234</string>
+     </void>
+     <void property="tipoUsuario">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.TipoUsuario</class>
+       <string>ADMINISTRADOR</string>
+      </object>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
+      <string>1234</string>
+     </void>
+     <void property="clave">
+      <string>12</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>32523233</string>
+     </void>
+     <void property="correo">
+      <string>ASDASDASD</string>
+     </void>
+     <void property="nombre">
+      <string>SDFDSAS</string>
+     </void>
+     <void property="telefono">
+      <string>124552153</string>
+     </void>
+     <void property="tipoUsuario">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.TipoUsuario</class>
+       <string>NORMAL</string>
+      </object>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

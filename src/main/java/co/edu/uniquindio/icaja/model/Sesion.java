@@ -1,11 +1,10 @@
 package co.edu.uniquindio.icaja.model;
 
-import co.edu.uniquindio.icaja.exception.login.CredencialesNoCoinciden;
 import co.edu.uniquindio.icaja.exception.login.UsuarioNoExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
-import co.edu.uniquindio.icaja.utils.Seguimiento;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import lombok.Getter;
 
 import java.util.ArrayList;

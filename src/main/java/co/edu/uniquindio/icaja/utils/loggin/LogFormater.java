@@ -1,4 +1,4 @@
-package co.edu.uniquindio.icaja.utils;
+package co.edu.uniquindio.icaja.utils.loggin;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

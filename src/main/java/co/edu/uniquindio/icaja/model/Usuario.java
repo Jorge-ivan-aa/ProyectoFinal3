@@ -4,14 +4,10 @@ import co.edu.uniquindio.icaja.exception.login.CredencialesNoCoinciden;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
-import co.edu.uniquindio.icaja.model.services.Persistible;
-import co.edu.uniquindio.icaja.utils.Seguimiento;
-import co.edu.uniquindio.icaja.utils.Persistencia;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

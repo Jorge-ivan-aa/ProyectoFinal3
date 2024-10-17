@@ -1,10 +1,7 @@
-package co.edu.uniquindio.icaja.utils;
+package co.edu.uniquindio.icaja.utils.loggin;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.logging.*;
-import java.nio.file.Paths;
 
 public class Seguimiento {
 
@@ -64,7 +61,7 @@ public class Seguimiento {
     private static String obtenerRutaMetodos() {
         StringBuilder ruta = new StringBuilder();
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-        StackTraceElement element = stackTrace[3]; // Asegúrate de ajustar este índice si es necesario
+        StackTraceElement element = stackTrace[3];
         ruta.append(element.getClassName()).append(".").append(element.getMethodName()).append("()");
         return ruta.toString();
     }
