@@ -1,11 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.TransaccionView">
+<AnchorPane fx:id="transaccionPanel" prefHeight="615.0" prefWidth="1058.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller= "co.edu.uniquindio.icaja.view.views.admin.TransaccionView">
    <children>
-      <Label layoutX="286.0" layoutY="159.0" text="aqui va transaccion" />
+      <SplitPane dividerPositions="0.5" layoutY="-2.0" orientation="VERTICAL" prefHeight="615.0" prefWidth="1058.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="135.0" prefWidth="158.0">
+               <children>
+                  <GridPane layoutX="27.0" layoutY="7.0" prefHeight="279.0" prefWidth="1003.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="59.59999313354492" minHeight="10.0" prefHeight="47.06666107177735" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="81.99999084472657" minHeight="10.0" prefHeight="44.133338928222656" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="96.33330383300782" minHeight="10.0" prefHeight="40.00001525878905" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="108.4" minHeight="10.0" prefHeight="63.59998168945313" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="91.60002746582029" minHeight="10.0" prefHeight="78.80002441406248" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <MFXTextField fx:id="txtIdTransaccionAdmin" floatMode="DISABLED" prefHeight="32.0" prefWidth="201.0" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <MFXTextField fx:id="txtFechaTransaccionAdmin" floatMode="DISABLED" prefHeight="32.0" prefWidth="201.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <MFXTextField fx:id="txtMontoTransaccionAdmin" floatMode="DISABLED" prefHeight="32.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <MFXTextField fx:id="txtMotivoTransaccionAdmin" floatMode="DISABLED" prefHeight="34.0" prefWidth="197.0" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                        <Label text="Id:" GridPane.valignment="BOTTOM">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Tipo:" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Fecha:" GridPane.columnIndex="2" GridPane.valignment="BOTTOM">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Monto:" GridPane.columnIndex="4" GridPane.valignment="BOTTOM">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Motivo:" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Cuenta:" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <MFXComboBox fx:id="cbTipoTransaccionAdmin" floatMode="BORDER" prefHeight="34.0" prefWidth="184.0" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                        <MFXComboBox fx:id="tcCuentaTransaccionAdmin" floatMode="BORDER" prefHeight="34.0" prefWidth="187.0" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                        <MFXButton buttonType="RAISED" depthLevel="LEVEL1" onAction="#crearTransaccionAction" prefHeight="40.0" prefWidth="115.0" text="Crear" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton buttonType="RAISED" depthLevel="LEVEL1" onAction="#eliminarTransaccionAction" prefHeight="40.0" prefWidth="115.0" text="Eliminar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton buttonType="RAISED" depthLevel="LEVEL1" onAction="#consultarTransaccionAction" prefHeight="40.0" prefWidth="115.0" text="Consultar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </MFXButton>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TableView fx:id="tvTablaTransaccionaAdmin" layoutX="-1.0" layoutY="2.0" prefHeight="303.0" prefWidth="1058.0">
+                     <columns>
+                        <TableColumn fx:id="tcIdTransaccionAdmin" prefWidth="185.06664735078812" text="ID" />
+                        <TableColumn fx:id="tcFechaTransaccionAdmin" prefWidth="153.5999298095703" text="Fecha" />
+                        <TableColumn fx:id="tcMontoTransaccionAdmin" prefWidth="170.66665649414062" text="Monto" />
+                        <TableColumn fx:id="tcMotivoTransaccionAdmin" prefWidth="410.933349609375" text="Motivo" />
+                        <TableColumn fx:id="tcCategoriaTransaccionAdmin" prefWidth="141.06674194335938" text="Categoria" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
    </children>
 </AnchorPane>

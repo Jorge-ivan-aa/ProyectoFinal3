@@ -1,14 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="co.edu.uniquindio.icaja.view.views.admin."
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane fx:id="panelUsuario" prefHeight="615.0" prefWidth="1058.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.UsuarioView">
+   <children>
+      <SplitPane dividerPositions="0.5474683544303798" orientation="VERTICAL" prefHeight="615.0" prefWidth="1058.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="196.0" prefWidth="607.0">
+               <children>
+                  <GridPane layoutX="6.0" layoutY="9.0" prefHeight="302.0" prefWidth="1034.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="304.0" minWidth="10.0" prefWidth="197.86666870117188" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="359.00004882812505" minWidth="0.0" prefWidth="247.00004882812502" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="229.60003662109375" minWidth="10.0" prefWidth="143.06662597656248" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.6" minWidth="10.0" prefWidth="195.3333740234375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="311.0" minWidth="10.0" prefWidth="283.46660156250005" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Nombre:" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <font>
+                              <Font name="Georgia Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtNombreAdmin" prefHeight="31.0" prefWidth="262.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" />
+                        <Label text="Cédula:" GridPane.columnIndex="3" GridPane.halignment="CENTER">
+                           <font>
+                              <Font name="Georgia Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtCedulaAdmin" prefHeight="31.0" prefWidth="188.0" style="-fx-background-radius: 10;" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.hgrow="SOMETIMES" GridPane.vgrow="SOMETIMES">
+                           <GridPane.margin>
+                              <Insets left="5.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Label text="Correo:" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Georgia Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtCorreoAdmin" prefHeight="31.0" prefWidth="262.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Telefono:" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Georgia Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtTelefonoAdmin" prefHeight="31.0" prefWidth="189.0" style="-fx-background-radius: 10;" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+                        <Label text="Clave:" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Georgia Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtClaveAdmin" prefHeight="31.0" prefWidth="262.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="Clave Transaccional:" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Georgia Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtClaveTransaccionalAdmin" prefHeight="31.0" prefWidth="189.0" style="-fx-background-radius: 10;" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                        <Label text="Presupuesto:" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Georgia Italic" size="18.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="txtPresupuestoMensualAdmin" prefHeight="31.0" prefWidth="262.0" style="-fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
+                        <Button fx:id="btnAgregarUsuarioAdmin" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#crearUsuario" prefHeight="40.0" prefWidth="117.0" style="-fx-background-radius: 10;" text="Agregar" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnActualizarUsuarioAdmin" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#actualizarUsuario" prefHeight="40.0" prefWidth="133.0" style="-fx-background-radius: 10;" text="Actualizar" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnEliminarUsuarioAdmin" alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="40.0" prefWidth="135.0" style="-fx-background-radius: 10;" text="Eliminar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                           <font>
+                              <Font name="Georgia Bold Italic" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="221.0" prefWidth="605.0">
+               <children>
+                  <TableView fx:id="tbUsuariosAdmin" layoutX="1.0" prefHeight="273.0" prefWidth="1125.0">
+                     <columns>
+                        <TableColumn fx:id="tbcNombreUsuarioAdmin" prefWidth="192.53326106071472" style="-fx-background-radius: 10;" text="Nombre" />
+                        <TableColumn fx:id="tbcCedulaUsuarioAdmin" prefWidth="171.4667510986328" style="-fx-background-radius: 10;" text="Cédula " />
+                        <TableColumn fx:id="tbcCorreoUsuarioAdmin" prefWidth="201.60003662109375" style="-fx-background-radius: 10;" text="Correo" />
+                        <TableColumn fx:id="tbcTelefonoUsuarioAdmin" prefWidth="178.6666259765625" style="-fx-background-radius: 10;" text="Telefono" />
+                        <TableColumn fx:id="tbcClaveUsuarioAdmin" prefWidth="85.06640625" style="-fx-background-radius: 10;" text="Clave" />
+                        <TableColumn fx:id="tbcClaveTransaccionalAdmin" prefWidth="302.13348388671875" style="-fx-background-radius: 10;" text="Clave Transaccional" />
+                        <TableColumn fx:id="tbcPresupuestoMensualAdmin" prefWidth="205.5999755859375" style="-fx-background-radius: 10;" text="Presupuesto Mensual" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
 </AnchorPane>

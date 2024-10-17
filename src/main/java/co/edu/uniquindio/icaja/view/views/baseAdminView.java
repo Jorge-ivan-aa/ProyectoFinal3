@@ -272,100 +272,100 @@ public class baseAdminView {
 
     }
 
-    @FXML
-    void crearUsuario() {
-        String nombre = txtNombreAdmin.getText();
-        String cedula = txtCedulaAdmin.getText();
-        String correo = txtCorreoAdmin.getText();
-        String clave = txtClaveAdmin.getText();
-        String claveTransaccional = txtClaveTransaccionalAdmin.getText();
-        String presupuestoMensual = txtPresupuestoMensualAdmin.getText();
-        String telefono = txtTelefonoAdmin.getText();
-
-
-        if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
-            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
-
-            try {
-                usuarioController.crear(usuarioDto);
-                String msj = "Se ha creado el usuario " + nombre + "correctamente";
-                ViewTools.mostrarMensaje("Información: ", null, msj, Alert.AlertType.INFORMATION);
-            } catch (ElementoYaExiste e) {
-                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
-            }
-        } else {
-            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
-
-        }
-
-        ViewTools.limpiarCampos(txtCedulaAdmin,
-                txtNombreAdmin,
-                txtCorreoAdmin,
-                txtTelefonoAdmin,
-                txtClaveAdmin,
-                txtClaveTransaccionalAdmin,
-                txtPresupuestoMensualAdmin);
-    }
-
-    @FXML
-    void actualizarUsuario() {
-        String nombre = txtNombreAdmin.getText();
-        String cedula = txtCedulaAdmin.getText();
-        String correo = txtCorreoAdmin.getText();
-        String clave = txtClaveAdmin.getText();
-        String claveTransaccional = txtClaveTransaccionalAdmin.getText();
-        String presupuestoMensual = txtPresupuestoMensualAdmin.getText();
-        String telefono = txtTelefonoAdmin.getText();
-
-        if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
-            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
-
-            try {
-                usuarioController.actualizar(usuarioDto);
-                String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
-                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
-
-            } catch (ElementoNoExiste e) {
-                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
-            }
-        } else {
-            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
-
-        }
-        ViewTools.limpiarCampos(txtCedulaAdmin,
-                txtNombreAdmin,
-                txtCorreoAdmin,
-                txtTelefonoAdmin,
-                txtClaveAdmin,
-                txtClaveTransaccionalAdmin,
-                txtPresupuestoMensualAdmin);
-    }
-
-    @FXML
-    void eliminarUsuario() {
-        String cedula   = txtCedulaAdmin.getText();
-
-        if (!ViewTools.hayCamposVacios(cedula)) {
-            try {
-                usuarioController.eliminar(cedula);
-                String msj = "Se ha eliminado el usuario de cedula" + cedula + "correctamente";
-                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
-            } catch (ElementoNoExiste e) {
-                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
-            }
-
-        } else {
-            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
-        }
-
-        ViewTools.limpiarCampos(txtCedulaAdmin,
-                txtNombreAdmin,
-                txtCorreoAdmin,
-                txtTelefonoAdmin,
-                txtClaveAdmin,
-                txtClaveTransaccionalAdmin,
-                txtPresupuestoMensualAdmin);
-    }
+//    @FXML
+//    void crearUsuario() {
+//        String nombre = txtNombreAdmin.getText();
+//        String cedula = txtCedulaAdmin.getText();
+//        String correo = txtCorreoAdmin.getText();
+//        String clave = txtClaveAdmin.getText();
+//        String claveTransaccional = txtClaveTransaccionalAdmin.getText();
+//        String presupuestoMensual = txtPresupuestoMensualAdmin.getText();
+//        String telefono = txtTelefonoAdmin.getText();
+//
+//
+//        if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
+//            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
+//
+//            try {
+//                usuarioController.crear(usuarioDto);
+//                String msj = "Se ha creado el usuario " + nombre + "correctamente";
+//                ViewTools.mostrarMensaje("Información: ", null, msj, Alert.AlertType.INFORMATION);
+//            } catch (ElementoYaExiste e) {
+//                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+//            }
+//        } else {
+//            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+//
+//        }
+//
+//        ViewTools.limpiarCampos(txtCedulaAdmin,
+//                txtNombreAdmin,
+//                txtCorreoAdmin,
+//                txtTelefonoAdmin,
+//                txtClaveAdmin,
+//                txtClaveTransaccionalAdmin,
+//                txtPresupuestoMensualAdmin);
+//    }
+//
+//    @FXML
+//    void actualizarUsuario() {
+//        String nombre = txtNombreAdmin.getText();
+//        String cedula = txtCedulaAdmin.getText();
+//        String correo = txtCorreoAdmin.getText();
+//        String clave = txtClaveAdmin.getText();
+//        String claveTransaccional = txtClaveTransaccionalAdmin.getText();
+//        String presupuestoMensual = txtPresupuestoMensualAdmin.getText();
+//        String telefono = txtTelefonoAdmin.getText();
+//
+//        if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
+//            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
+//
+//            try {
+//                usuarioController.actualizar(usuarioDto);
+//                String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
+//                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+//
+//            } catch (ElementoNoExiste e) {
+//                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+//            }
+//        } else {
+//            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+//
+//        }
+//        ViewTools.limpiarCampos(txtCedulaAdmin,
+//                txtNombreAdmin,
+//                txtCorreoAdmin,
+//                txtTelefonoAdmin,
+//                txtClaveAdmin,
+//                txtClaveTransaccionalAdmin,
+//                txtPresupuestoMensualAdmin);
+//    }
+//
+//    @FXML
+//    void eliminarUsuario() {
+//        String cedula   = txtCedulaAdmin.getText();
+//
+//        if (!ViewTools.hayCamposVacios(cedula)) {
+//            try {
+//                usuarioController.eliminar(cedula);
+//                String msj = "Se ha eliminado el usuario de cedula" + cedula + "correctamente";
+//                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+//            } catch (ElementoNoExiste e) {
+//                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+//            }
+//
+//        } else {
+//            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+//        }
+//
+//        ViewTools.limpiarCampos(txtCedulaAdmin,
+//                txtNombreAdmin,
+//                txtCorreoAdmin,
+//                txtTelefonoAdmin,
+//                txtClaveAdmin,
+//                txtClaveTransaccionalAdmin,
+//                txtPresupuestoMensualAdmin);
+//    }
 
     @FXML
     void initialize() {
@@ -373,36 +373,36 @@ public class baseAdminView {
     }
 
     private void initview() {
-        initDataBinging();
-        tbUsuariosAdmin.getItems().clear();
-        tbUsuariosAdmin.setItems(usuarioController.getListaUsuarioObservable());
-        listenerSelectionUsuario();
+//        initDataBinging();
+//        tbUsuariosAdmin.getItems().clear();
+//        tbUsuariosAdmin.setItems(usuarioController.getListaUsuarioObservable());
+//        listenerSelectionUsuario();
     }
 
-    private void initDataBinging() {
-        tbcNombreUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
-        tbcCorreoUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCorreo()));
-        tbcCedulaUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCedula()));
-        tbcClaveTransaccionalAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClaveTransaccional()));
-        tbcTelefonoUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefono()));
-        tbcPresupuestoMensualAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getPresupuestoMensual())));
-        tbcClaveUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClave()));
-    }
+//    private void initDataBinging() {
+//        tbcNombreUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+//        tbcCorreoUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCorreo()));
+//        tbcCedulaUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCedula()));
+//        tbcClaveTransaccionalAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClaveTransaccional()));
+//        tbcTelefonoUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefono()));
+//        tbcPresupuestoMensualAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getPresupuestoMensual())));
+//        tbcClaveUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClave()));
+//    }
+//
+//    private void listenerSelectionUsuario() {
+//        tbUsuariosAdmin.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection)
+//                -> this.mostrarInformacion((Usuario) newSelection));
+//    }
 
-    private void listenerSelectionUsuario() {
-        tbUsuariosAdmin.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection)
-                -> this.mostrarInformacion((Usuario) newSelection));
-    }
-
-    private void mostrarInformacion(Usuario seleccionado) {
-        if (seleccionado != null) {
-            txtNombreAdmin.setText(seleccionado.getNombre());
-            txtCedulaAdmin.setText(seleccionado.getCedula());
-            txtCorreoAdmin.setText(seleccionado.getCorreo());
-            txtTelefonoAdmin.setText(seleccionado.getTelefono());
-            txtClaveTransaccionalAdmin.setText(seleccionado.getClaveTransaccional());
-            txtClaveAdmin.setText(seleccionado.getClave());
-            txtPresupuestoMensualAdmin.setText(String.valueOf(seleccionado.getPresupuestoMensual()));
-        }
-    }
+//    private void mostrarInformacion(Usuario seleccionado) {
+//        if (seleccionado != null) {
+//            txtNombreAdmin.setText(seleccionado.getNombre());
+//            txtCedulaAdmin.setText(seleccionado.getCedula());
+//            txtCorreoAdmin.setText(seleccionado.getCorreo());
+//            txtTelefonoAdmin.setText(seleccionado.getTelefono());
+//            txtClaveTransaccionalAdmin.setText(seleccionado.getClaveTransaccional());
+//            txtClaveAdmin.setText(seleccionado.getClave());
+//            txtPresupuestoMensualAdmin.setText(String.valueOf(seleccionado.getPresupuestoMensual()));
+//        }
+//    }
 }
