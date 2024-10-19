@@ -86,6 +86,11 @@
                               <Font size="16.0" />
                            </font>
                         </MFXButton>
+                        <MFXButton buttonType="RAISED" depthLevel="LEVEL1" onAction="#LimpiarCamposTransaccionAction" prefHeight="40.0" prefWidth="115.0" text="Limpiar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </MFXButton>
                      </children>
                   </GridPane>
                </children>

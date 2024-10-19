@@ -111,6 +111,15 @@ public class TransaccionView {
     void eliminarTransaccionAction(ActionEvent event) {
 
     }
+    @FXML
+    void LimpiarCamposTransaccionAction(ActionEvent event) {
+        ViewTools.limpiarCampos(txtIdTransaccionAdmin,
+                txtFechaTransaccionAdmin,
+                txtMontoTransaccionAdmin,
+                cbTipoTransaccionAdmin,
+                cbCuentaTransaccionAdmin,
+                txtMotivoTransaccionAdmin);
+    }
 
     @FXML
     void initialize() {

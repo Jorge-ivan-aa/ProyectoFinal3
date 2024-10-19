@@ -216,5 +216,15 @@ public class UsuarioView {
             txtPresupuestoMensualAdmin.setText(String.valueOf(seleccionado.getPresupuestoMensual()));
         }
     }
+    @FXML
+    void limpiarCamposUsuarioAction(ActionEvent event) {
+        ViewTools.limpiarCampos(txtCedulaAdmin,
+                txtNombreAdmin,
+                txtCorreoAdmin,
+                txtTelefonoAdmin,
+                txtClaveAdmin,
+                txtClaveTransaccionalAdmin,
+                txtPresupuestoMensualAdmin);
+    }
 
 }

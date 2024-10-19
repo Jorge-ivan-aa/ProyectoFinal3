@@ -161,6 +161,13 @@ public class CuentaView {
                 txtLimiteAdmin);
 
     }
+    @FXML
+    void LimpiarCamposCuentaAction(ActionEvent event) {
+        ViewTools.limpiarCampos(txtEntidadAdmin,
+                txtNumeroCuentaAdmin,
+                txtSaldoAdmin,
+                txtLimiteAdmin);
+    }
 
     @FXML
     void seleccionPropietarioAction(ActionEvent event) {
