@@ -64,7 +64,7 @@ public class CuentaBancariaController {
     public String eliminarCuentaBancaria(String numeroCuenta) {
         if (this.consultarCuentaBancaria(numeroCuenta) == null) {
 
-            registrarLog(1,"El usuario que no existe");
+            registrarLog(1,"La cuenta que no existe");
 
             return "No existe la cuenta bancaria";
         } else {
@@ -76,13 +76,13 @@ public class CuentaBancariaController {
                 }
             }
 
-            registrarLog(1,"Se elimino el usuario");
+            registrarLog(1,"Se elimino la cuenta");
 
             if (index != -1) {
                 this.listaCuentaBancariaObservable.remove(index);
                 CuentaBancarias.remove(index);
             }
-            return "El usuario fué eliminado correctamente";
+            return "La cuenta fué eliminada correctamente :)";
         }
     }
 
