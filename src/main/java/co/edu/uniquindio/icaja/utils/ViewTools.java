@@ -90,7 +90,7 @@ public class ViewTools {
 
     // Animaciones
     public static void fadeOut(Node node) {
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), node);
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.125), node);
         fadeTransition.setFromValue(1.0); // Opacidad inicial
         fadeTransition.setToValue(0.0);    // Opacidad final
         fadeTransition.play();
@@ -98,7 +98,7 @@ public class ViewTools {
 
     public static void fadeIn(Node node) {
         node.setOpacity(0.0); // Asegúrate de que el nodo esté completamente invisible antes de iniciar
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.5), node);
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.125), node);
         fadeTransition.setFromValue(0.0);
         fadeTransition.setToValue(1.0);
         fadeTransition.play();

@@ -51,10 +51,41 @@
       <string>124552153</string>
      </void>
      <void property="tipoUsuario">
-      <object class="java.lang.Enum" method="valueOf">
+      <object class="java.lang.Enum" id="TipoUsuario0" method="valueOf">
        <class>co.edu.uniquindio.icaja.model.enums.TipoUsuario</class>
        <string>NORMAL</string>
       </object>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
+      <string>1004827105</string>
+     </void>
+     <void property="clave">
+      <string>123</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>7984234235</string>
+     </void>
+     <void property="correo">
+      <string>jorgei.acostaa@uqvirtual.edu.co</string>
+     </void>
+     <void property="listaCuentas">
+      <object class="java.util.ArrayList"/>
+     </void>
+     <void property="nombre">
+      <string>jorge</string>
+     </void>
+     <void property="presupuestoMensual">
+      <double>2000000.0</double>
+     </void>
+     <void property="telefono">
+      <string>3175083079</string>
+     </void>
+     <void property="tipoUsuario">
+      <object idref="TipoUsuario0"/>
      </void>
     </object>
    </void>

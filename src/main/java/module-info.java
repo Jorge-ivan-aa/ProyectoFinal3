@@ -1,8 +1,9 @@
 module co.edu.uniquindio.icaja {
     requires static lombok;
-    requires java.logging;
     requires MaterialFX;
     requires atlantafx.base;
+    requires de.jensd.fx.glyphs.fontawesome;
+    requires java.logging;
 
     exports co.edu.uniquindio.icaja.mapping.mappers;
     exports co.edu.uniquindio.icaja.mapping.dto;
