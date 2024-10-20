@@ -56,6 +56,10 @@ public class CategoriaView {
     void crearCategoriaAction(ActionEvent event) {
 
     }
+    @FXML
+    void limpiarCamposCategoriaAction(ActionEvent event) {
+
+    }
 
     @FXML
     void initialize() {

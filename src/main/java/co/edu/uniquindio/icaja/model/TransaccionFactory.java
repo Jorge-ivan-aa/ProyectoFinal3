@@ -19,7 +19,7 @@ public class TransaccionFactory implements Serializable {
 
     public static final long serialVersionID = 4L;
 
-    public <T> Transaccion crearTransaccion(T transaccionDto) {
+    public static  <T> Transaccion crearTransaccion(T transaccionDto) {
         if (transaccionDto instanceof DepositoDto) {
             return TransaccionMapper.depositoDtoToTransaccion((DepositoDto) transaccionDto);
         } else if (transaccionDto instanceof RetiroDto) {

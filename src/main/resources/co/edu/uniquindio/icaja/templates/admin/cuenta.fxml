@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -61,7 +61,6 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="cbTipoCuentaAdmin" onAction="#seleccionTipoCuentaAction" prefHeight="31.0" prefWidth="153.0" style="-fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP" />
                         <TextField fx:id="txtEntidadAdmin" alignment="CENTER" prefWidth="166.0" style="-fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                            <font>
                               <Font size="15.0" />
@@ -103,6 +102,12 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
+                        <MFXComboBox fx:id="cbTipoCuentaAdmin" floatMode="ABOVE" onAction="#seleccionTipoCuentaAction" prefHeight="15.0" prefWidth="184.0" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                        <MFXButton depthLevel="LEVEL1" onAction="#LimpiarCamposCuentaAction" prefHeight="40.0" prefWidth="114.0" text="Limpiar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </MFXButton>
                      </children>
                   </GridPane>
                </children>
@@ -111,11 +116,12 @@
                <children>
                   <TableView fx:id="tvTablaCuentasAdmin" layoutX="1.0" layoutY="-4.0" prefHeight="302.0" prefWidth="1055.0" style="-fx-background-radius: 10;">
                      <columns>
-                        <TableColumn fx:id="tcEntidadAdmin" prefWidth="176.53329157829285" style="-fx-background-radius: 10;" text="Entidad" />
-                        <TableColumn fx:id="tcNumeroCuentaAdmin" prefWidth="189.86671447753906" style="-fx-background-radius: 10;" text="N. Cuenta" />
-                        <TableColumn fx:id="tcSaldoAdmin" prefWidth="224.0" style="-fx-background-radius: 10;" text="Saldo" />
-                        <TableColumn fx:id="tcLimiteAdmin" prefWidth="215.20001220703125" style="-fx-background-radius: 10;" text="Límite" />
-                        <TableColumn fx:id="tcTipoCuentaAdmin" prefWidth="250.66656494140625" style="-fx-background-radius: 10;" text="Tipo Cuenta" />
+                        <TableColumn fx:id="tcEntidadAdmin" prefWidth="131.2000060081482" style="-fx-background-radius: 10;" text="Entidad" />
+                        <TableColumn fx:id="tcNumeroCuentaAdmin" prefWidth="160.00006103515625" style="-fx-background-radius: 10;" text="N. Cuenta" />
+                        <TableColumn fx:id="tcSaldoAdmin" prefWidth="185.60003662109375" style="-fx-background-radius: 10;" text="Saldo" />
+                        <TableColumn fx:id="tcLimiteAdmin" prefWidth="192.800048828125" style="-fx-background-radius: 10;" text="Límite" />
+                        <TableColumn fx:id="tcTipoCuentaAdmin" prefWidth="149.60009765625" style="-fx-background-radius: 10;" text="Tipo Cuenta" />
+                        <TableColumn fx:id="tcPropietarioAdmin" prefWidth="75.0" text="Propietario" />
                      </columns>
                   </TableView>
                </children>

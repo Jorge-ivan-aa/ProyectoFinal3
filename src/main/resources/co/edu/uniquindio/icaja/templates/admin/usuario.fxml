@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -96,6 +97,11 @@
                               <Font name="Georgia Bold Italic" size="18.0" />
                            </font>
                         </Button>
+                        <MFXButton onAction="#limpiarCamposUsuarioAction" prefHeight="40.0" prefWidth="135.0" text="Limpiar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </MFXButton>
                      </children>
                   </GridPane>
                </children>
