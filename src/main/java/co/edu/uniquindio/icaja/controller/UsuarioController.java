@@ -9,6 +9,7 @@ import co.edu.uniquindio.icaja.mapping.mappers.UsuarioMapper;
 import co.edu.uniquindio.icaja.model.Usuario;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
@@ -34,6 +35,7 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
         persistir();
         factory.guardarRespaldo();
         registrarLog(1,"Se sincronizaron los usuarios.");
+        Seguimiento.registrarLog(1,"Se sincronizó la base de datos");
     }
 
     @Override

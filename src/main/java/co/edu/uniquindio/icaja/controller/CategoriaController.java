@@ -8,6 +8,8 @@ import co.edu.uniquindio.icaja.mapping.dto.CategoriaDto;
 import co.edu.uniquindio.icaja.mapping.mappers.CategoriaMapper;
 import co.edu.uniquindio.icaja.model.Categoria;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
+
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
@@ -28,6 +30,7 @@ public class CategoriaController implements GenericController<CategoriaDto, Cate
     public void sincronizarData() {
         listaCategoriasObservable.addAll(factory.getIcaja().getListaCategorias());
         registrarLog(1,"Se sincronizaron las categorias");
+        Seguimiento.registrarLog(1,"Se sincronizó la base de datos");
     }
 
     @Override

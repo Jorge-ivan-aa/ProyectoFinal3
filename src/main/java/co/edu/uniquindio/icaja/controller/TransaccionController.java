@@ -1,7 +1,17 @@
 package co.edu.uniquindio.icaja.controller;
 
+import co.edu.uniquindio.icaja.controller.services.GenericController;
+import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
+import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
+import co.edu.uniquindio.icaja.mapping.dto.CuentaBancariaDto;
+import co.edu.uniquindio.icaja.mapping.dto.TransaccionDto;
+import co.edu.uniquindio.icaja.mapping.mappers.CuentaBancariaMapper;
+import co.edu.uniquindio.icaja.mapping.mappers.TransaccionMapper;
+import co.edu.uniquindio.icaja.model.CuentaBancaria;
 import co.edu.uniquindio.icaja.model.Transaccion;
+import co.edu.uniquindio.icaja.model.TransaccionFactory;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
@@ -9,7 +19,7 @@ import lombok.Getter;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 
 @Getter
-public class TransaccionController {
+public class TransaccionController implements GenericController<TransaccionDto, Transaccion> {
 
     private final ModelFactory factory;
 
@@ -20,12 +30,100 @@ public class TransaccionController {
         this.listaTransaccionObservable = FXCollections.observableArrayList();
         this.sincronizarData();
     }
-
     public void sincronizarData() {
 
         registrarLog(1, "Se sincronizaron las transacciones");
 
         this.listaTransaccionObservable.addAll(this.factory.getIcaja().getListaTransacciones());
+        Seguimiento.registrarLog(1,"Se sincronizó la base de datos");
+    }
+// Crear Transferencia
+    @Override
+    public void crear(TransaccionDto transaccionDto) throws ElementoYaExiste {
+        try {
+            this.consultar(String.valueOf(transaccionDto.id()));
+            registrarLog(2,"No se pudo crear el elemento, la transferencia ya existe :(");
+            throw new ElementoYaExiste("No se pudo crear el elemento, la transferencia ya existe");
+
+        } catch (ElementoNoExiste ignored) {
+//            Transaccion nuevaTransaccion = TransaccionMapper.transferenciaDtoToTransaccion(transaccionDto);
+//            factory.getIcaja().addTransaccion(nuevaTransaccion);
+//            listaTransaccionObservable.add(nuevaTransaccion);
+//            registrarLog(1,"Se ha creado una transferencia exitosamente :)");
+        }
+
+    }
+    // Crear Deposito
+    //@Override
+    //public void crear(TransaccionDto transaccionDto) throws ElementoYaExiste {
+    //    try {
+    //        this.consultar(String.valueOf(transaccionDto.id()));
+    //        registrarLog(2,"No se pudo crear el elemento, el deposito ya existe :(");
+    //        throw new ElementoYaExiste("No se pudo crear el elemento,el deposito ya existe");
+    //
+    //    } catch (ElementoNoExiste ignored) {
+    //        Transaccion nuevaTransaccion = TransaccionMapper.depositoDtoToTransaccion(transaccionDto);
+    //        factory.getIcaja().addTransaccion(nuevaTransaccion);
+    //        listaTransaccionObservable.add(nuevaTransaccion);
+    //        registrarLog(1,"Se ha creado un deposito exitosamente :)");
+    //    }
+    //
+    //}
+//Crear Retiro
+//    @Override
+//    public void crear(TransaccionDto transaccionDto) throws ElementoYaExiste {
+//        try {
+//            this.consultar(String.valueOf(transaccionDto.id()));
+//            registrarLog(2,"No se pudo crear el elemento, el retiro ya existe :(");
+//            throw new ElementoYaExiste("No se pudo crear el elemento, el retiro ya existe");
+//
+//        } catch (ElementoNoExiste ignored) {
+////            Transaccion nuevaTransaccion = TransaccionMapper.retiroDtoToTransaccion(transaccionDto);
+////            factory.getIcaja().addTransaccion(nuevaTransaccion);
+////            listaTransaccionObservable.add(nuevaTransaccion);
+////            registrarLog(1,"Se ha creado un retiro exitosamente :)");
+//        }
+//
+//    }
+
+    @Override
+    public Transaccion consultar(String identificador) throws ElementoNoExiste {
+        registrarLog(1,"Se ha consultado una transacción");
+
+        for (Transaccion transaccion : factory.getIcaja().getListaTransacciones()) {
+            if (String.valueOf(transaccion.getId()).equals(identificador)) {
+                return transaccion;
+            }
+        }
+
+        throw new ElementoNoExiste("la transacción consultada no existe.");
+
+    }
+
+    @Override
+    public void eliminar(String identificador) throws ElementoNoExiste {
+        try {
+            Transaccion eliminable = this.consultar(identificador); // consultar si existe, de lo contrario propaga una excepcion.
+            listaTransaccionObservable.remove(eliminable);
+            factory.getIcaja().removeTransaccion(eliminable);
+            registrarLog(1,"Se eliminó la transacción :)");
+
+        } catch (ElementoNoExiste e) {
+            registrarLog(2,"No se pudo eliminar el elemento, " + e.getMessage());
+            throw new ElementoNoExiste("No se pudo eliminar el elemento, " + e.getMessage());
+        }
+
+    }
+
+    @Override
+    public void actualizar(TransaccionDto transaccionDto) throws ElementoNoExiste {
+        //No se necesita actualizar las categorias según la logica del negocio.
+    }
+
+
+    @Override
+    public void persistir() {
+
     }
 
 //    public Transaccion crearTransaccionDeposito(int id, String fecha, double monto, String tipo, CuentaBancaria cuenta) {
