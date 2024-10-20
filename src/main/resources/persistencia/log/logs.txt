@@ -189,11 +189,27 @@ INFO [2024-10-16 15:15:02]: co.edu.uniquindio.icaja.controller.UsuarioController
 INFO [2024-10-17 09:57:56]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
 INFO [2024-10-17 09:58:00]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
 INFO [2024-10-17 09:58:00]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
-SEVERE [2024-10-17 11:08:10]: co.edu.uniquindio.icaja.utils.respaldo.ICajaSerializado.cargarRecursoICajaXML(), src/main/resources/persistencia/respaldo (Is a directory)
-SEVERE [2024-10-17 11:08:10]: co.edu.uniquindio.icaja.utils.respaldo.ICajaSerializado.guardarRecursoICajaBinario(), src/main/resources/persistencia/respaldo (Is a directory)
-SEVERE [2024-10-17 11:08:10]: co.edu.uniquindio.icaja.utils.respaldo.ICajaSerializado.guardarRecursoICajaXML(), src/main/resources/persistencia/respaldo (Is a directory)
+SEVERE [2024-10-17 11:08:10]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), src/main/resources/persistencia/respaldo (Is a directory)
+SEVERE [2024-10-17 11:08:10]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), src/main/resources/persistencia/respaldo (Is a directory)
+SEVERE [2024-10-17 11:08:10]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), src/main/resources/persistencia/respaldo (Is a directory)
 INFO [2024-10-17 11:08:10]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
-SEVERE [2024-10-17 11:13:24]: co.edu.uniquindio.icaja.utils.respaldo.ICajaSerializado.cargarRecursoICajaXML(), src/main/resources/persistencia/respaldo/respaldo.xml (No such file or directory)
-INFO [2024-10-17 11:13:24]: co.edu.uniquindio.icaja.utils.respaldo.ICajaSerializado.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
-INFO [2024-10-17 11:13:24]: co.edu.uniquindio.icaja.utils.respaldo.ICajaSerializado.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+SEVERE [2024-10-17 11:13:24]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), src/main/resources/persistencia/respaldo/respaldo.xml (No such file or directory)
+INFO [2024-10-17 11:13:24]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-17 11:13:24]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
 INFO [2024-10-17 11:13:24]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-18 10:03:41]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-18 10:03:41]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-18 10:03:41]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-18 10:03:41]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-18 12:34:46]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-18 12:34:46]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-18 12:34:46]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-18 12:34:46]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-19 20:52:52]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-19 20:52:52]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-19 20:52:52]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-19 20:52:52]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-19 20:52:57]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+SEVERE [2024-10-19 20:52:57]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), co.edu.uniquindio.icaja.model.Sesion
+INFO [2024-10-19 20:52:57]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-19 20:52:57]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.

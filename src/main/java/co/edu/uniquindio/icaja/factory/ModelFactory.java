@@ -3,7 +3,7 @@ package co.edu.uniquindio.icaja.factory;
 import co.edu.uniquindio.icaja.model.ICaja;
 import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.model.persistencia.UsuarioPersistente;
-import co.edu.uniquindio.icaja.utils.respaldo.ICajaSerializado;
+import co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo;
 import lombok.Getter;
 import java.io.IOException;
 import java.util.List;
@@ -53,11 +53,11 @@ public class ModelFactory {
     }
 
     public ICaja cargaRespaldo() {
-        return ICajaSerializado.cargarRecursoICajaXML();
+        return ICajaRespaldo.cargarRecursoICajaXML();
     }
 
     public void guardarRespaldo() {
-        ICajaSerializado.guardarRecursoICajaBinario(icaja);
-        ICajaSerializado.guardarRecursoICajaXML(icaja);
+        ICajaRespaldo.guardarRecursoICajaBinario(icaja);
+        ICajaRespaldo.guardarRecursoICajaXML(icaja);
     }
 }

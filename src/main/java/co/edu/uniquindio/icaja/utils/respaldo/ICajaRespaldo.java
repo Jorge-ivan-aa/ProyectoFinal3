@@ -3,7 +3,7 @@ package co.edu.uniquindio.icaja.utils.respaldo;
 import co.edu.uniquindio.icaja.model.ICaja;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 
-public class ICajaSerializado {
+public class ICajaRespaldo {
 
     private static final String RUTA_RESPALDO_DAT = "src/main/resources/persistencia/respaldo/respaldo.dat";
     private static final String RUTA_RESPALDO_XML = "src/main/resources/persistencia/respaldo/respaldo.xml";

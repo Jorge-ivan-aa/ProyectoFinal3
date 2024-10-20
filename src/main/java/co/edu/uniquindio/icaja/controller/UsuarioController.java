@@ -32,6 +32,7 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
         listaUsuarioObservable.clear();
         listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
         persistir();
+        factory.guardarRespaldo();
         registrarLog(1,"Se sincronizaron los usuarios.");
     }
 
@@ -106,7 +107,7 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
         try {
             factory.getUsuarioPersistente().guardar(usuarios);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            registrarLog(3, "Error, no se pudo guardar la información de usuario: " + e.getMessage());
         }
     }
 
