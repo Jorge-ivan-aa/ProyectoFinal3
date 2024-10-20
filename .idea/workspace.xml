@@ -5,24 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1175ed9-e8ba-4d1e-a676-9e478e60b028" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/mapping/services/ITransaccionDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/controller/TransaccionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/controller/TransaccionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/mapping/dto/DepositoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/mapping/dto/DepositoDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/mapping/dto/RetiroDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/mapping/dto/RetiroDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/mapping/dto/TransaccionDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/mapping/dto/TransferenciaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/mapping/dto/TransferenciaDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/mapping/mappers/TransaccionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/mapping/mappers/TransaccionMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/Sesion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/Sesion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/Transaccion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/Transaccion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/factories/Deposito.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/factories/Deposito.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/factories/Retiro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/factories/Retiro.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/factories/Transferencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/factories/Transferencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/enums/TipoCuenta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/enums/TipoCuenta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/utils/ViewTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/utils/ViewTools.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/admin/CuentaView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/admin/CuentaView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/admin/TransaccionView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/admin/TransaccionView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/baseAdminView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/baseAdminView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/admin/categoria.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/admin/categoria.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/admin/cuenta.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/admin/cuenta.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/admin/transaccion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/admin/transaccion.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/admin/usuario.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/admin/usuario.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/baseAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/baseAdmin.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/log/logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/log/logs.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/respaldo/respaldo.dat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/respaldo/respaldo.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/respaldo/respaldo.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,23 +59,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ProyectoFinal3 [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ProyectoFinal3 [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ProyectoFinal3 [test].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jorge/Projects/java/banco_javafx&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.HelloApplication.executor": "Run",
+    "Maven.ProyectoFinal3 [clean].executor": "Run",
+    "Maven.ProyectoFinal3 [compile].executor": "Run",
+    "Maven.ProyectoFinal3 [test].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "dev",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/jorge/Projects/java/banco_javafx",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.general"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="co.edu.uniquindio.icaja.App" />
@@ -143,26 +138,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/LoginView.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/LoginView.java</url>
-          <line>52</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/LoginView.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/LoginView.java</url>
-          <line>40</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/persistencia/UsuarioPersistente.java</url>
           <line>15</line>
@@ -172,7 +147,39 @@
           </properties>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/factory/ModelFactory.java</url>
+          <line>54</line>
+          <properties class="co.edu.uniquindio.icaja.factory.ModelFactory" method="cargaRespaldo">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/factory/ModelFactory.java</url>
+          <line>58</line>
+          <properties class="co.edu.uniquindio.icaja.factory.ModelFactory" method="guardarRespaldo">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/utils/respaldo/ICajaRespaldo.java</url>
+          <line>39</line>
+          <properties class="co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo" method="cargarRecursoICajaXML">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="co.edu.uniquindio.icaja.factory.ModelFactory" memberName="icaja" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

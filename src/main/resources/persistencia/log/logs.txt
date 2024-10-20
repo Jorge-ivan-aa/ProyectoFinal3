@@ -228,3 +228,189 @@ INFO [2024-10-20 11:07:08]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo
 INFO [2024-10-20 11:07:09]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
 INFO [2024-10-20 11:07:09]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
 INFO [2024-10-20 11:07:09]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 11:28:46]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 11:28:46]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 11:28:46]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 11:28:46]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 11:28:46]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 11:31:18]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 11:31:19]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 11:31:19]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 11:31:19]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 11:31:19]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 11:32:24]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+SEVERE [2024-10-20 11:33:48]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), src/main/resources/persistencia/respaldo/respaldo.xml (No such file or directory)
+INFO [2024-10-20 11:33:48]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 11:33:48]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 11:33:48]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 11:33:48]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 11:33:48]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 11:33:48]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 11:34:23]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 11:35:46]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:02:40]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:02:40]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:02:40]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:02:40]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:02:40]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:02:44]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 12:03:02]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:03:02]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:03:02]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:03:02]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:03:02]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:03:07]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 12:37:21]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:37:21]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:37:22]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:37:22]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:37:22]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:37:26]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 12:37:26]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:37:26]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:37:26]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:37:26]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:42:05]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:42:05]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:42:05]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:42:05]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:42:05]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:42:11]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 12:42:11]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:42:11]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:42:11]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:42:11]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:42:11]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizaron las cuentas bancarias
+INFO [2024-10-20 12:42:11]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:42:51]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:42:51]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:42:51]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:42:51]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:42:51]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:42:56]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 12:42:56]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:42:56]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:42:56]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:42:56]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:42:56]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizaron las cuentas bancarias
+INFO [2024-10-20 12:42:56]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:46:51]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:46:51]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:46:51]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:46:51]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:46:51]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:46:56]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 12:46:56]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:46:56]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:46:56]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:46:56]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:46:56]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizaron las cuentas bancarias
+INFO [2024-10-20 12:46:56]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizó la base de datos
+SEVERE [2024-10-20 12:47:00]: co.edu.uniquindio.icaja.utils.ViewTools.ventanaEmergente(), No se pudó cargar la interfaz
+/home/jorge/Projects/java/ProyectoFinal3/target/classes/co/edu/uniquindio/icaja/templates/admin/cuenta.fxml:105
+/home/jorge/Projects/java/ProyectoFinal3/target/classes/co/edu/uniquindio/icaja/templates/baseAdmin.fxml:35
+
+INFO [2024-10-20 12:48:51]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:48:51]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:48:51]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:48:51]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:48:51]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:48:55]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 12:48:55]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:48:55]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:48:55]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:48:55]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:48:55]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizaron las cuentas bancarias
+INFO [2024-10-20 12:48:55]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:48:55]: co.edu.uniquindio.icaja.controller.TransaccionController.sincronizarData(), Se sincronizaron las transacciones
+INFO [2024-10-20 12:48:55]: co.edu.uniquindio.icaja.controller.TransaccionController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:52:19]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:52:19]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:52:19]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:52:19]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:52:19]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:52:24]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 12:52:24]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:52:24]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:52:24]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:52:24]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:55:35]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:55:35]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:55:35]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:55:35]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:55:35]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:55:39]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 12:55:39]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:55:39]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:55:39]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:55:39]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:58:08]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:58:08]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:58:08]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:58:08]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:58:08]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:58:12]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 12:58:12]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 12:58:12]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 12:58:12]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 12:58:12]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:58:13]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizaron las cuentas bancarias
+INFO [2024-10-20 12:58:13]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 12:58:13]: co.edu.uniquindio.icaja.controller.TransaccionController.sincronizarData(), Se sincronizaron las transacciones
+INFO [2024-10-20 12:58:13]: co.edu.uniquindio.icaja.controller.TransaccionController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:00:36]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 13:00:36]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 13:00:36]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 13:00:36]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 13:00:36]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:00:40]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 13:00:40]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 13:00:40]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 13:00:40]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 13:00:40]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:00:40]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizaron las cuentas bancarias
+INFO [2024-10-20 13:00:40]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:00:40]: co.edu.uniquindio.icaja.controller.TransaccionController.sincronizarData(), Se sincronizaron las transacciones
+INFO [2024-10-20 13:00:40]: co.edu.uniquindio.icaja.controller.TransaccionController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:15:41]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 13:15:41]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 13:15:41]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 13:15:41]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 13:15:41]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:15:44]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 13:15:44]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 13:15:44]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 13:15:44]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 13:15:44]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:15:45]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizaron las cuentas bancarias
+INFO [2024-10-20 13:15:45]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:15:45]: co.edu.uniquindio.icaja.controller.TransaccionController.sincronizarData(), Se sincronizaron las transacciones
+INFO [2024-10-20 13:15:45]: co.edu.uniquindio.icaja.controller.TransaccionController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:18:14]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 13:18:14]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 13:18:14]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 13:18:14]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 13:18:14]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:18:18]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 13:18:18]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 13:18:18]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 13:18:18]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 13:18:18]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:18:19]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizaron las cuentas bancarias
+INFO [2024-10-20 13:18:19]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:18:19]: co.edu.uniquindio.icaja.controller.TransaccionController.sincronizarData(), Se sincronizaron las transacciones
+INFO [2024-10-20 13:18:19]: co.edu.uniquindio.icaja.controller.TransaccionController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:28:11]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.cargarRecursoICajaXML(), Se cargó el recurso de respaldo xml correctamente
+INFO [2024-10-20 13:28:11]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 13:28:11]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 13:28:11]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 13:28:11]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:28:14]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario KJHDF ingresó satisfactoriamente
+INFO [2024-10-20 13:28:14]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaBinario(), Se guardó el recurso de respaldo binario correctamente
+INFO [2024-10-20 13:28:14]: co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-10-20 13:28:14]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizaron los usuarios.
+INFO [2024-10-20 13:28:14]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:28:14]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizaron las cuentas bancarias
+INFO [2024-10-20 13:28:14]: co.edu.uniquindio.icaja.controller.CuentaBancariaController.sincronizarData(), Se sincronizó la base de datos
+INFO [2024-10-20 13:28:14]: co.edu.uniquindio.icaja.controller.TransaccionController.sincronizarData(), Se sincronizaron las transacciones
+INFO [2024-10-20 13:28:14]: co.edu.uniquindio.icaja.controller.TransaccionController.sincronizarData(), Se sincronizó la base de datos

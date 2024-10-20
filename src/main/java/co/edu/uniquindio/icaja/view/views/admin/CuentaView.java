@@ -32,7 +32,7 @@ public class CuentaView {
     private MFXComboBox<CuentaBancaria> cbPropietarioAdmin;
 
     @FXML
-    private ComboBox<CuentaBancaria> cbTipoCuentaAdmin;
+    private MFXComboBox<CuentaBancaria> cbTipoCuentaAdmin;
 
     @FXML
     private AnchorPane panelCuenta;
