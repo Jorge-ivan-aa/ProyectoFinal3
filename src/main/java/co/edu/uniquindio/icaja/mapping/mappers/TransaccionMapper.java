@@ -12,7 +12,6 @@ import co.edu.uniquindio.icaja.model.factories.Transferencia;
 public class TransaccionMapper {
     public static Transaccion retiroDtoToTransaccion(RetiroDto retiroDto){
         return new Retiro(
-                retiroDto.id(),
                 retiroDto.fecha(),
                 retiroDto.monto(),
                 retiroDto.listacategoria(),
@@ -23,7 +22,6 @@ public class TransaccionMapper {
     }
     public static Transaccion depositoDtoToTransaccion (DepositoDto depositoDto){
         return new Deposito(
-                depositoDto.id(),
                 depositoDto.fecha(),
                 depositoDto.monto(),
                 depositoDto.listacategoria(),
@@ -33,7 +31,6 @@ public class TransaccionMapper {
     }
     public static Transaccion transferenciaDtoToTransaccion (TransferenciaDto transferenciaDto){
       return new Transferencia(
-              transferenciaDto.id(),
               transferenciaDto.fecha(),
               transferenciaDto.monto(),
               transferenciaDto.listacategoria(),

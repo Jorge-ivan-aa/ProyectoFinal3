@@ -4,11 +4,11 @@ import co.edu.uniquindio.icaja.controller.services.GenericController;
 import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
-import co.edu.uniquindio.icaja.mapping.dto.CuentaBancariaDto;
-import co.edu.uniquindio.icaja.mapping.dto.TransaccionDto;
-import co.edu.uniquindio.icaja.mapping.mappers.CuentaBancariaMapper;
+import co.edu.uniquindio.icaja.mapping.dto.DepositoDto;
+import co.edu.uniquindio.icaja.mapping.dto.RetiroDto;
+import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
 import co.edu.uniquindio.icaja.mapping.mappers.TransaccionMapper;
-import co.edu.uniquindio.icaja.model.CuentaBancaria;
+import co.edu.uniquindio.icaja.mapping.services.ITransaccionDto;
 import co.edu.uniquindio.icaja.model.Transaccion;
 import co.edu.uniquindio.icaja.model.TransaccionFactory;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
@@ -19,7 +19,7 @@ import lombok.Getter;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 
 @Getter
-public class TransaccionController implements GenericController<TransaccionDto, Transaccion> {
+public class TransaccionController implements GenericController<ITransaccionDto, Transaccion> {
 
     private final ModelFactory factory;
 
@@ -39,52 +39,20 @@ public class TransaccionController implements GenericController<TransaccionDto, 
     }
 // Crear Transferencia
     @Override
-    public void crear(TransaccionDto transaccionDto) throws ElementoYaExiste {
+    public void crear(ITransaccionDto transaccionDto) throws ElementoYaExiste {
         try {
             this.consultar(String.valueOf(transaccionDto.id()));
-            registrarLog(2,"No se pudo crear el elemento, la transferencia ya existe :(");
-            throw new ElementoYaExiste("No se pudo crear el elemento, la transferencia ya existe");
+            registrarLog(2,"No se pudo crear el elemento, "+ transaccionDto.tipo() +" ya existe :(");
+            throw new ElementoYaExiste("No se pudo crear el elemento, "+ transaccionDto.tipo() +" ya existe");
 
         } catch (ElementoNoExiste ignored) {
-//            Transaccion nuevaTransaccion = TransaccionMapper.transferenciaDtoToTransaccion(transaccionDto);
-//            factory.getIcaja().addTransaccion(nuevaTransaccion);
-//            listaTransaccionObservable.add(nuevaTransaccion);
-//            registrarLog(1,"Se ha creado una transferencia exitosamente :)");
+            Transaccion nuevaTransaccion = TransaccionFactory.crearTransaccion(transaccionDto);
+            factory.getIcaja().addTransaccion(nuevaTransaccion);
+            listaTransaccionObservable.add(nuevaTransaccion);
+            registrarLog(1,"Se ha realizado una transaccion exitosamente :)");
         }
 
     }
-    // Crear Deposito
-    //@Override
-    //public void crear(TransaccionDto transaccionDto) throws ElementoYaExiste {
-    //    try {
-    //        this.consultar(String.valueOf(transaccionDto.id()));
-    //        registrarLog(2,"No se pudo crear el elemento, el deposito ya existe :(");
-    //        throw new ElementoYaExiste("No se pudo crear el elemento,el deposito ya existe");
-    //
-    //    } catch (ElementoNoExiste ignored) {
-    //        Transaccion nuevaTransaccion = TransaccionMapper.depositoDtoToTransaccion(transaccionDto);
-    //        factory.getIcaja().addTransaccion(nuevaTransaccion);
-    //        listaTransaccionObservable.add(nuevaTransaccion);
-    //        registrarLog(1,"Se ha creado un deposito exitosamente :)");
-    //    }
-    //
-    //}
-//Crear Retiro
-//    @Override
-//    public void crear(TransaccionDto transaccionDto) throws ElementoYaExiste {
-//        try {
-//            this.consultar(String.valueOf(transaccionDto.id()));
-//            registrarLog(2,"No se pudo crear el elemento, el retiro ya existe :(");
-//            throw new ElementoYaExiste("No se pudo crear el elemento, el retiro ya existe");
-//
-//        } catch (ElementoNoExiste ignored) {
-////            Transaccion nuevaTransaccion = TransaccionMapper.retiroDtoToTransaccion(transaccionDto);
-////            factory.getIcaja().addTransaccion(nuevaTransaccion);
-////            listaTransaccionObservable.add(nuevaTransaccion);
-////            registrarLog(1,"Se ha creado un retiro exitosamente :)");
-//        }
-//
-//    }
 
     @Override
     public Transaccion consultar(String identificador) throws ElementoNoExiste {
@@ -116,8 +84,8 @@ public class TransaccionController implements GenericController<TransaccionDto, 
     }
 
     @Override
-    public void actualizar(TransaccionDto transaccionDto) throws ElementoNoExiste {
-        //No se necesita actualizar las categorias según la logica del negocio.
+    public void actualizar(ITransaccionDto transaccionDto) throws ElementoNoExiste {
+        //No se necesita actualizar las transacciones según la logica del negocio.
     }
 
 
@@ -126,69 +94,5 @@ public class TransaccionController implements GenericController<TransaccionDto, 
 
     }
 
-//    public Transaccion crearTransaccionDeposito(int id, String fecha, double monto, String tipo, CuentaBancaria cuenta) {
-//
-//        registrarLog(1,"Se ha creado una transacción de deposito");
-//
-//        Deposito transaccionDeposito = new Deposito(id, fecha, monto, null, cuenta);
-//        this.factory.getIcaja().getListaTransacciones().add(transaccionDeposito);
-//        this.sincronizarData();
-//        return transaccionDeposito;
-//    }
-//
-//    public Transaccion crearTransaccionRetiro(int id, String fecha, double monto, String tipo, CuentaBancaria cuenta) {
-//
-//        registrarLog(1,"Se ha creado una transacción de retiro");
-//
-//        Retiro retiro = new Retiro(id, fecha, monto, null, cuenta);
-//        this.factory.getIcaja().getListaTransacciones().add(retiro);
-//        this.sincronizarData();
-//        return retiro;
 
-//    }
-
-//    public Transaccion crearTransaccionTransferencia(int id, String fecha, double monto, String tipo, CuentaBancaria cuenta) {
-//
-//        registrarLog(1,"Se ha creado una transacción de transferencia");
-//
-//        Transferencia transferencia = new Transferencia(id, fecha, monto, null, cuenta);
-//        this.factory.getIcaja().getListaTransacciones().add(transferencia);
-//        this.sincronizarData();
-//        return transferencia;
-//    }
-
-//    public Transaccion consultarTransaccion(int id) {
-//
-//        registrarLog(1,"Se ha consultado una transacción");
-//
-//        ArrayList<Transaccion> Transacciones = this.factory.getIcaja().getListaTransacciones();
-//        for (Transaccion value : Transacciones) {
-//            if (value.getId() == id) {
-//                return value;
-//            }
-//        }
-//        return null;
-//    }
-
-//    public String eliminarTransaccion(int id) {
-//
-//        registrarLog(1,"Se ha eliminado una transacción");
-//
-//        if (this.consultarTransaccion(id) == null) {
-//            return "La transacción no existe";
-//        } else {
-//            int index = -1;
-//            ArrayList<Transaccion> Transacciones = factory.getIcaja().getListaTransacciones();
-//            for (int i = 0; i < Transacciones.size(); i++) {
-//                if (Objects.equals(Transacciones.get(i).getId(), id)) {
-//                    index = i;
-//                }
-//            }
-//            if (index != -1) {
-//                this.listaTransaccionObservable.remove(index);
-//                Transacciones.remove(index);
-//            }
-//            return "La transacción fue eliminada correctamente";
-//        }
-//    }
 }

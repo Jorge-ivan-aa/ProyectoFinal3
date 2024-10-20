@@ -12,8 +12,8 @@ public class Transferencia extends Transaccion {
     private boolean esInterna;
     private CuentaBancaria cuentaDestino;
 
-    public Transferencia(int id, String fecha, double monto, Categoria[] listacategoria, CuentaBancaria cuenta, String motivo, boolean esInterna, CuentaBancaria cuentaDestino) {
-        super(id, fecha, monto, listacategoria, cuenta, motivo);
+    public Transferencia(String fecha, double monto, Categoria[] listacategoria, CuentaBancaria cuenta, String motivo, boolean esInterna, CuentaBancaria cuentaDestino) {
+        super(fecha, monto, listacategoria, cuenta, motivo);
         this.esInterna = esInterna;
         this.cuentaDestino = cuentaDestino;
     }

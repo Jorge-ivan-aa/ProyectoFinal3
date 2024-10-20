@@ -144,7 +144,7 @@ public class CuentaView {
 
         if (!ViewTools.hayCamposVacios(numeroCuenta)) {
             try {
-                cuentaBancariaController.eliminarCuentaBancaria(numeroCuenta);
+                cuentaBancariaController.eliminar(numeroCuenta);
                 String msj = "Se ha eliminado la cuenta de numero " + numeroCuenta + " correctamente";
                 ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
             } catch (ElementoNoExiste e) {

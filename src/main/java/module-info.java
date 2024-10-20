@@ -6,6 +6,7 @@ module co.edu.uniquindio.icaja {
 
     exports co.edu.uniquindio.icaja.mapping.mappers;
     exports co.edu.uniquindio.icaja.mapping.dto;
+    exports co.edu.uniquindio.icaja.mapping.services;
     opens co.edu.uniquindio.icaja to javafx.fxml;
     exports co.edu.uniquindio.icaja.model;
     exports co.edu.uniquindio.icaja.model.enums;

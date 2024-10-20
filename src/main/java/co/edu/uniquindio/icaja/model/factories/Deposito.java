@@ -9,12 +9,9 @@ import lombok.Getter;
 @Getter
 public class Deposito extends Transaccion {
 
-    public Deposito(int id, String fecha, double monto, Categoria[] listacategoria, CuentaBancaria cuenta, String motivo) {
-        super(id, fecha, monto, listacategoria, cuenta, motivo);
-
+    public Deposito(String fecha, double monto, Categoria[] listacategoria, CuentaBancaria cuenta, String motivo) {
+        super(fecha, monto, listacategoria, cuenta, motivo);
     }
-
-
 
     @Override
     public String factura() {
