@@ -38,5 +38,24 @@ public class Categoria implements Serializable {
         transacciones.remove(transaccion);
     }
 
-    
+
+    public void setTransacciones(String s) {
+
+        this.transacciones = new ArrayList<>();
+
+        String[] transacciones = s.split(",");
+        for (String t : transacciones) {
+            this.transacciones.add(new Transaccion(t) {
+                @Override
+                public void realizarMovimiento() {
+
+                }
+
+                @Override
+                public String factura() {
+                    return null;
+                }
+            });
+        }
+    }
 }

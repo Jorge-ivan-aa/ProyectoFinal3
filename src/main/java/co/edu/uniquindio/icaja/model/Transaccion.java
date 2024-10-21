@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @ToString
 @NoArgsConstructor
 
+
 public abstract class Transaccion implements Serializable {
     private String id;
     private String fecha;
@@ -29,6 +30,10 @@ public abstract class Transaccion implements Serializable {
         this.listacategoria = listacategoria;
         this.cuenta = cuenta;
         this.motivo = motivo;
+
+    }
+
+    public Transaccion(String t) {
     }
 
 
@@ -39,5 +44,6 @@ public abstract class Transaccion implements Serializable {
     public abstract void realizarMovimiento();
 
     public abstract String factura();
+
 
 }
