@@ -1,0 +1,22 @@
+
+@font-face {
+    font-family: 'montserrat-bold';
+    src: url('fonts/Montserrat-Bold.ttf');
+}
+
+.left_aside {
+    -fx-background-color: #C80459;
+}
+
+.inicio_title {
+    -fx-font-family: 'montserrat-bold';
+    -fx-font-size: 24px;
+}
+
+.no_cuenta_label, .registro_link {
+    -fx-font-size: 14px;
+}
+
+.registro_link {
+    -fx-text-fill: C80459;
+}

@@ -35,7 +35,6 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
         persistir();
         factory.guardarRespaldo();
         registrarLog(1,"Se sincronizaron los usuarios.");
-        Seguimiento.registrarLog(1,"Se sincronizó la base de datos");
     }
 
     @Override

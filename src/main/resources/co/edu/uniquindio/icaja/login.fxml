@@ -2,23 +2,43 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.LoginView">
+<Pane prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.LoginView">
    <children>
       <HBox prefHeight="720.0" prefWidth="1280.0">
          <children>
-            <Region style="-fx-background-color: #5E2BFF;" HBox.hgrow="ALWAYS" />
-            <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: #fff;" HBox.hgrow="ALWAYS">
+            <Pane prefHeight="200.0" prefWidth="444.0" styleClass="left_aside">
+               <children>
+                  <ImageView fitHeight="323.0" fitWidth="306.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/control.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="140.0" fitWidth="266.0" layoutX="89.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/login_image.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="201.0" fitWidth="210.0" layoutX="-85.0" layoutY="-71.0" pickOnBounds="true" preserveRatio="true" rotate="155.2">
+                     <image>
+                        <Image url="@images/patron_login.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefWidth="836.0" style="-fx-background-color: #fff;" HBox.hgrow="ALWAYS">
                <children>
                   <GridPane maxWidth="450.0" prefHeight="449.0" prefWidth="238.0">
                     <columnConstraints>
@@ -33,11 +53,11 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="70.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="80.0" minHeight="0.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="52.0" minHeight="1.0" prefHeight="36.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="111.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="52.0" minHeight="1.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="111.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="438.0" text="Inicio de sesion" textOverrun="CENTER_ELLIPSIS">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="438.0" styleClass="inicio_title" text="Inicio de sesion" textOverrun="CENTER_ELLIPSIS">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -53,33 +73,48 @@
                            </font>
                         </Label>
                         <TextField fx:id="txtCedulaUsuario" prefHeight="20.0" promptText="1200XXXXXX" GridPane.rowIndex="3" />
+                        <MFXPasswordField fx:id="txtClaveUsuario" prefHeight="20.0" prefWidth="542.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
                         <VBox prefHeight="107.0" prefWidth="450.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.valignment="CENTER">
                            <children>
-                              <GridPane>
+                              <GridPane prefHeight="142.0" prefWidth="452.0">
                                 <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="203.0" minWidth="10.0" prefWidth="203.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="97.0" />
                                 </columnConstraints>
                                 <rowConstraints>
-                                  <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="24.0" minHeight="1.0" prefHeight="12.0" vgrow="SOMETIMES" />
-                                  <RowConstraints maxHeight="55.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="48.0" minHeight="0.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="44.0" minHeight="0.0" prefHeight="12.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="55.0" minHeight="0.0" prefHeight="21.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#registrarUsuario" prefHeight="28.0" prefWidth="114.0" text="Registrarse" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                    <Label prefHeight="20.0" prefWidth="153.0" styleClass="no_cuenta_label" text="¿No tienes cuenta?" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Hyperlink onAction="#registrarUsuario" styleClass="registro_link" text="Registrate" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                     <Button mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="34.0" prefWidth="150.0" text="Iniciar Sesión" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                                  </children>
                               </GridPane>
                            </children>
                         </VBox>
-                        <MFXPasswordField fx:id="txtClaveUsuario" prefHeight="20.0" prefWidth="542.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
                      </children>
                   </GridPane>
                </children>
             </VBox>
-            <Region style="-fx-background-color: #5E2BFF;" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
+      <ImageView blendMode="SRC_ATOP" depthTest="DISABLE" fitHeight="238.0" fitWidth="235.0" layoutX="310.0" layoutY="605.0" nodeOrientation="INHERIT" preserveRatio="true">
+         <image>
+            <Image url="@images/patron_login.png" />
+         </image>
+      </ImageView>
+      <ImageView blendMode="SRC_ATOP" depthTest="DISABLE" fitHeight="201.0" fitWidth="210.0" layoutX="1168.0" layoutY="-73.0" nodeOrientation="RIGHT_TO_LEFT" preserveRatio="true" rotate="-151.7">
+         <image>
+            <Image url="@images/patron_login.png" />
+         </image>
+      </ImageView>
    </children>
-</AnchorPane>
+</Pane>

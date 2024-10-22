@@ -13,7 +13,7 @@ import java.util.ArrayList;
 @Getter
 public class Sesion implements Login, Serializable {
     private Usuario usuario;
-    public static final long serialVersionID = 2L;
+    public static final long serialVersionID = 5L;
 
     public Sesion(String cedula) {
         this.usuario = this.buscarUsuario(cedula);

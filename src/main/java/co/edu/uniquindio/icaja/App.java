@@ -7,9 +7,11 @@ import io.github.palexdev.materialfx.theming.UserAgentBuilder;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class App extends Application {
     @Override
@@ -24,6 +26,8 @@ public class App extends Application {
 
         Scene scene = new Scene(fxmlLoader.load());
         Application.setUserAgentStylesheet(new PrimerLight().getUserAgentStylesheet());
+        scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource("styles/main.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource("styles/login.css")).toExternalForm());
         stage.setTitle("ICaja Wallet");
         stage.setScene(scene);
         stage.show();

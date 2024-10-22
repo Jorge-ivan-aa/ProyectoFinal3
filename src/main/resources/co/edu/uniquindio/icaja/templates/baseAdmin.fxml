@@ -26,28 +26,40 @@
                 <FontAwesomeIconView glyphName="USER" size="24" styleClass="icon" />
             </graphic>
             <tooltip>
-                <Tooltip text="Este botón realiza una nueva transacción"/>
+                <Tooltip text="Usuarios"/>
             </tooltip>
         </Button>
         <Button mnemonicParsing="false" onAction="#irCuentaAction" prefHeight="43.0" prefWidth="43.0" GridPane.rowIndex="1">
             <graphic>
                 <FontAwesomeIconView glyphName="CREDIT_CARD" size="24" styleClass="icon" />
             </graphic>
+            <tooltip>
+                <Tooltip text="Cuentas Bancarias"/>
+            </tooltip>
         </Button>
         <Button mnemonicParsing="false" onAction="#irTransaccionAction" prefHeight="43.0" prefWidth="43.0" GridPane.rowIndex="2">
             <graphic>
                 <FontAwesomeIconView glyphName="EXCHANGE" size="24" styleClass="icon" />
             </graphic>
+            <tooltip>
+                <Tooltip text="Transacciones"/>
+            </tooltip>
         </Button>
         <Button mnemonicParsing="false" onAction="#irCategoriaAction" prefHeight="43.0" prefWidth="43.0" GridPane.rowIndex="3">
             <graphic>
                 <FontAwesomeIconView glyphName="TAG" size="24" styleClass="icon" />
             </graphic>
+            <tooltip>
+                <Tooltip text="Categorias"/>
+            </tooltip>
         </Button>
         <Button mnemonicParsing="false" onAction="#VolverAction" prefHeight="43.0" prefWidth="43.0" GridPane.halignment="CENTER" GridPane.rowIndex="4">
             <graphic>
                 <FontAwesomeIconView glyphName="SIGN_OUT" size="24" styleClass="icon" />
             </graphic>
+            <tooltip>
+                <Tooltip text="Cerrar sesion"/>
+            </tooltip>
         </Button>
     </GridPane>
     <AnchorPane fx:id="usuarioBox" layoutX="162.0" layoutY="47.0" prefHeight="626.0" prefWidth="1073.0">

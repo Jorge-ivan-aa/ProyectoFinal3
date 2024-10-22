@@ -1,1 +1,60 @@
-/*esto  es una prueba*/
+/* Definir fuente global */
+
+@font-face {
+    font-family: 'montserrat-regular';
+    src: url('fonts/Montserrat-Regular.ttf');
+}
+
+/* Aplica el estilo de fuente a todos los elementos de texto en JavaFX */
+Label,
+.mfx-password-field .text-field,
+Text,
+TextField,
+TextArea,
+Button,
+ToggleButton,
+CheckBox,
+RadioButton,
+MenuItem,
+Menu,
+Hyperlink {
+    -fx-font-family: 'montserrat-regular';
+    -fx-font-size: 16px;
+    -fx-text-fill: #FC6DAB;
+}
+
+
+TextField, .mfx-password-field .text-field {
+    -fx-border-radius: 8;               /* Bordes redondeados */
+    -fx-border-color: #FC6DAB;          /* Color del borde */
+    -fx-border-width: 1;                 /* Ancho del borde */
+    -fx-outline: none; /* Elimina el contorno */
+}
+
+.mfx-password-field .mfx-icon-wrapper {
+    -fx-pref-width: 35px;
+    -fx-pref-height: 35px;
+    -fx-alignment: BOTTOM_CENTER;
+    -fx-text-fill: #FC6DAB;
+}
+
+.mfx-password-field .mfx-icon-wrapper .mfx-font-icon {
+    -fx-pref-width: 100%;
+    -fx-pref-height: 100%;
+}
+
+.mfx-password-field .eye-icon {
+    -mfx-color: #FC6DAB;
+}
+
+.text-field:focused, .mfx-password-field .text-field:focused {
+    -fx-border-color: #039B59;          /* Color del borde al enfocar */
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: transparent; /* Cambia a otro color o elimina */
+    -fx-outline: #039B59;     ; /* Elimina el contorno */
+}
+
+.text-field:active {
+    -fx-border-color: red;
+    -fx-outline: #039B59;/* Cambia <tu_color> al color que desees para el texto */
+}
