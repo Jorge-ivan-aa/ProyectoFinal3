@@ -89,6 +89,37 @@
      </void>
     </object>
    </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
+      <string>1004871460</string>
+     </void>
+     <void property="clave">
+      <string>2325</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>2325</string>
+     </void>
+     <void property="correo">
+      <string>hernandezluis1185@gmail.com</string>
+     </void>
+     <void property="listaCuentas">
+      <object class="java.util.ArrayList"/>
+     </void>
+     <void property="nombre">
+      <string>Luis Alejandro</string>
+     </void>
+     <void property="presupuestoMensual">
+      <double>1000000.0</double>
+     </void>
+     <void property="telefono">
+      <string>3128174880</string>
+     </void>
+     <void property="tipoUsuario">
+      <object idref="TipoUsuario0"/>
+     </void>
+    </object>
+   </void>
   </void>
  </object>
 </java>

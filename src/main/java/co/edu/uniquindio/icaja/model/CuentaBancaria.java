@@ -31,7 +31,6 @@ public class CuentaBancaria implements Serializable {
     }
 
 
-
     public double definirLimite(TipoCuenta tipoCuenta, double limite) {
         if (tipoCuenta == TipoCuenta.CREDITO) {
             return limite;
