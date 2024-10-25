@@ -10,7 +10,8 @@ import co.edu.uniquindio.icaja.model.Transaccion;
 import co.edu.uniquindio.icaja.model.factories.Transferencia;
 
 public class TransaccionMapper {
-    public static Transaccion retiroDtoToTransaccion(RetiroDto retiroDto){
+
+    public static Transaccion toTransaccion(RetiroDto retiroDto){
         return new Retiro(
                 retiroDto.fecha(),
                 retiroDto.monto(),
@@ -20,7 +21,7 @@ public class TransaccionMapper {
         );
 
     }
-    public static Transaccion depositoDtoToTransaccion (DepositoDto depositoDto){
+    public static Transaccion toTransaccion(DepositoDto depositoDto){
         return new Deposito(
                 depositoDto.fecha(),
                 depositoDto.monto(),
@@ -29,7 +30,7 @@ public class TransaccionMapper {
                 depositoDto.motivo()
         );
     }
-    public static Transaccion transferenciaDtoToTransaccion (TransferenciaDto transferenciaDto){
+    public static Transaccion toTransaccion(TransferenciaDto transferenciaDto){
       return new Transferencia(
               transferenciaDto.fecha(),
               transferenciaDto.monto(),

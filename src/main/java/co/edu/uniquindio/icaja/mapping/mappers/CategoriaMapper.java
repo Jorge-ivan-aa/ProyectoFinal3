@@ -1,14 +1,12 @@
 package co.edu.uniquindio.icaja.mapping.mappers;
 
 import co.edu.uniquindio.icaja.mapping.dto.CategoriaDto;
-import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.model.Categoria;
-import co.edu.uniquindio.icaja.model.Usuario;
 
 
 public class CategoriaMapper {
 
-    public static CategoriaDto categoriaToCategoriaDto(Categoria categoria){
+    public static CategoriaDto toDto(Categoria categoria){
         return new CategoriaDto(
                 categoria.getNombre(),
                 categoria.getDescripcion(),
@@ -17,7 +15,7 @@ public class CategoriaMapper {
 
         );
     }
-    public static Categoria categoriaDtoToCategoria(CategoriaDto categoriaDto){
+    public static Categoria toCategoria(CategoriaDto categoriaDto){
         return new Categoria(
                 categoriaDto.nombre(),
                 categoriaDto.descripcion(),

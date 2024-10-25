@@ -5,7 +5,7 @@ import co.edu.uniquindio.icaja.model.Usuario;
 
 public class UsuarioMapper {
 
-    public static UsuarioDto usuarioToUsuarioDTo(Usuario usuario) {
+    public static UsuarioDto toDto(Usuario usuario) {
         return new UsuarioDto(
                 usuario.getNombre(),
                 usuario.getCedula(),
@@ -17,7 +17,7 @@ public class UsuarioMapper {
         );
     }
 
-    public static Usuario usuarioDtoToUsuario(UsuarioDto usuarioDto) {
+    public static Usuario toUsuario(UsuarioDto usuarioDto) {
         return new Usuario(
                 usuarioDto.nombre(),
                 usuarioDto.cedula(),

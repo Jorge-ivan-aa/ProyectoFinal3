@@ -15,7 +15,6 @@ import javafx.collections.ObservableList;
 import lombok.Getter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Getter
@@ -49,7 +48,7 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
             throw new ElementoYaExiste("No se puede crear el elemento, el usuario ya existe");
             
         } catch (ElementoNoExiste ignored) {
-            Usuario nuevoUsuario = UsuarioMapper.usuarioDtoToUsuario(usuarioDto);
+            Usuario nuevoUsuario = UsuarioMapper.toUsuario(usuarioDto);
             factory.getIcaja().addUsuario(nuevoUsuario);
             listaUsuarioObservable.add(nuevoUsuario);
             sincronizarData();

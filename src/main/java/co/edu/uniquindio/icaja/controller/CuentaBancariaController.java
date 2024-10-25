@@ -5,18 +5,13 @@ import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.CuentaBancariaDto;
-import co.edu.uniquindio.icaja.mapping.mappers.CategoriaMapper;
 import co.edu.uniquindio.icaja.mapping.mappers.CuentaBancariaMapper;
 import co.edu.uniquindio.icaja.model.*;
-import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
-
-import java.util.ArrayList;
-import java.util.Objects;
 
 @Getter
 public class CuentaBancariaController implements GenericController<CuentaBancariaDto,CuentaBancaria> {
@@ -43,7 +38,7 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
             throw new ElementoYaExiste("No se pudo crear el elemento, la cuenta bancaria ya existe");
 
         } catch (ElementoNoExiste ignored) {
-            CuentaBancaria nuevaCuentaBancaria = CuentaBancariaMapper.cuentaBancariaDtoToCuentaBancaria(cuentaBancariaDto);
+            CuentaBancaria nuevaCuentaBancaria = CuentaBancariaMapper.toCuentaBancaria(cuentaBancariaDto);
             factory.getIcaja().addCuentaBancaria(nuevaCuentaBancaria);
             listaCuentaBancariaObservable.add(nuevaCuentaBancaria);
             registrarLog(1,"Se ha creado una cuenta bancaria exitosamente :)");

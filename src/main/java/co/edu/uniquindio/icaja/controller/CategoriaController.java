@@ -9,7 +9,6 @@ import co.edu.uniquindio.icaja.mapping.mappers.CategoriaMapper;
 import co.edu.uniquindio.icaja.model.Categoria;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 
-import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
@@ -41,7 +40,7 @@ public class CategoriaController implements GenericController<CategoriaDto, Cate
             throw new ElementoYaExiste("No se pudo crear el elemento, la categoria ya existe");
 
         } catch (ElementoNoExiste ignored) {
-            Categoria nuevaCategoria = CategoriaMapper.categoriaDtoToCategoria(categoriaDto);
+            Categoria nuevaCategoria = CategoriaMapper.toCategoria(categoriaDto);
             factory.getIcaja().addCategoria(nuevaCategoria);
             listaCategoriasObservable.add(nuevaCategoria);
             registrarLog(1,"Se ha creado una categoria");
