@@ -9,12 +9,13 @@ import co.edu.uniquindio.icaja.mapping.mappers.UsuarioMapper;
 import co.edu.uniquindio.icaja.model.Usuario;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 
-import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
+import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Getter
@@ -28,10 +29,12 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
         this.listaUsuarioObservable = FXCollections.observableArrayList();
         this.sincronizarData();
     }
+
 @Override
     public void sincronizarData() {
         listaUsuarioObservable.clear();
         listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
+        excluirAdmin(listaUsuarioObservable);
         persistir();
         factory.guardarRespaldo();
         registrarLog(1,"Se sincronizaron los usuarios.");
@@ -104,7 +107,8 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
 
     @Override
     public void persistir() {
-        List<Usuario> usuarios = factory.getIcaja().getListaUsuarios();
+        List<Usuario> usuarios = new ArrayList<>(factory.getIcaja().getListaUsuarios());
+        excluirAdmin(usuarios);
         try {
             factory.getUsuarioPersistente().guardar(usuarios);
         } catch (IOException e) {
@@ -112,4 +116,11 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
         }
     }
 
+    /**
+     * Metodo para eliminar todos los usuarios de tipo administrador de una lista.
+     * @param usuarios lista de usuario.
+     */
+    public void excluirAdmin(List<Usuario> usuarios) {
+        usuarios.removeIf(usuario -> usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR));
+    }
 }

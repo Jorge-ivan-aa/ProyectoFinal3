@@ -3,7 +3,9 @@ package co.edu.uniquindio.icaja.factory;
 import co.edu.uniquindio.icaja.model.ICaja;
 import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.model.persistencia.UsuarioPersistente;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo;
+import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
 import lombok.Getter;
 import java.io.IOException;
 import java.util.List;
@@ -24,7 +26,7 @@ public class ModelFactory {
             icaja = new ICaja();
             loadData();
         }
-
+    loadConfig();
     }
 
 
@@ -50,6 +52,20 @@ public class ModelFactory {
         }
 
         guardarRespaldo();
+    }
+
+    public void loadConfig() {
+        String cedula = Persistencia.cargarConfiguracion("admin");
+        String contrasena = Persistencia.cargarConfiguracion("contrasena");
+
+        Usuario admin = new Usuario();
+        admin.setNombre("Administrador");
+        admin.setCedula(cedula);
+        admin.setClave(contrasena);
+        admin.setAdministrador();
+
+        icaja.addUsuario(admin);
+        Seguimiento.registrarLog(1,"Se cargó la configuracion de las credenciales de administrador");
     }
 
     public ICaja cargaRespaldo() {

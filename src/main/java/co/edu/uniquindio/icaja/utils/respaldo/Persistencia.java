@@ -5,13 +5,34 @@ import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 public class Persistencia {
 
     private static final String RUTA_ARCHIVOS = "src/main/resources/persistencia/archivos/";
+    private static ResourceBundle CONFIG;
+
+    static {
+        try {
+            CONFIG = ResourceBundle.getBundle("persistencia.config");
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "No se pudó cargar la configuración:" + e.getMessage());
+        }
+    }
+
 
     public Persistencia() {
 
+    }
+
+
+    /**
+    * Este metodo se usa para cargar datos del archivo de propiedades.
+    *
+    * @param propiedad es la configuracion que se quiere cargar
+    */
+    public static String cargarConfiguracion(String propiedad) {
+        return  CONFIG.getString(propiedad);
     }
 
     /**

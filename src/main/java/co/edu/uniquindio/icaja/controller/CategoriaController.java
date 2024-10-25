@@ -30,7 +30,6 @@ public class CategoriaController implements GenericController<CategoriaDto, Cate
     public void sincronizarData() {
         listaCategoriasObservable.addAll(factory.getIcaja().getListaCategorias());
         registrarLog(1,"Se sincronizaron las categorias");
-        Seguimiento.registrarLog(1,"Se sincronizó la base de datos");
     }
 
     @Override

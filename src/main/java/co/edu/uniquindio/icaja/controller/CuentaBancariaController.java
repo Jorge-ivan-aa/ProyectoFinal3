@@ -31,11 +31,8 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
     }
 
     public void sincronizarData() {
-
-        registrarLog(1,"Se sincronizaron las cuentas bancarias");
-
         this.listaCuentaBancariaObservable.addAll(this.factory.getIcaja().getListaCuentaBancarias());
-        Seguimiento.registrarLog(1,"Se sincronizó la base de datos");
+        registrarLog(1,"Se sincronizaron las cuentas bancarias");
     }
 
     @Override

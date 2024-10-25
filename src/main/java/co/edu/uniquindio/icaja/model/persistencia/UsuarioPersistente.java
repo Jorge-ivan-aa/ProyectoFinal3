@@ -27,8 +27,7 @@ public class UsuarioPersistente implements Persistible<Usuario> {
                     .append(usuario.getSaldoTotal()).append("@@")
                     .append(usuario.getIngresos()).append("@@")
                     .append(usuario.getGastos()).append("@@")
-                    .append(usuario.getPresupuestoMensual()).append("@@")
-                    .append(usuario.getTipoUsuario()).append("\n");
+                    .append(usuario.getPresupuestoMensual()).append("@@").append("\n");
         }
         Persistencia.guardarArchivo("usuario.txt", contenido.toString(), false);
     }
@@ -50,7 +49,7 @@ public class UsuarioPersistente implements Persistible<Usuario> {
             usuario.setSaldoTotal(Double.parseDouble(linea[6]));
             usuario.setIngresos(Double.parseDouble(linea[7]));
             usuario.setGastos(Double.parseDouble(linea[8]));
-            usuario.setTipoUsuario(TipoUsuario.valueOf(linea[10]));
+            usuario.setTipoUsuario(TipoUsuario.NORMAL);
             usuarios.add(usuario);
         }
         return usuarios;

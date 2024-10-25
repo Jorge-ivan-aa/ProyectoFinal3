@@ -32,11 +32,10 @@ public class TransaccionController implements GenericController<ITransaccionDto,
     }
     public void sincronizarData() {
 
-        registrarLog(1, "Se sincronizaron las transacciones");
-
         this.listaTransaccionObservable.addAll(this.factory.getIcaja().getListaTransacciones());
-        Seguimiento.registrarLog(1,"Se sincronizó la base de datos");
+        registrarLog(1, "Se sincronizaron las transacciones");
     }
+
 // Crear Transferencia
     @Override
     public void crear(ITransaccionDto transaccionDto) throws ElementoYaExiste {
