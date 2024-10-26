@@ -73,32 +73,32 @@ public class ViewTools {
     }
 
     // Metodo para cambiar entre varias paneles
-    public static void cambiarPantalla(Pane primario, Pane... secundarios) {
+    public static void cambiarPantalla(Pane primario, double duracion, Pane... secundarios) {
         // Verificación simple para evitar errores
         if (primario == null || secundarios == null) {
             Seguimiento.registrarLog(3, "No se pudo cambiar de pantalla, algun panel es nulo.");
         } else {
             for (Pane secundario : secundarios) {
                 secundario.setVisible(false);
-                fadeOut(secundario);
+                fadeOut(secundario, duracion);
             }
             primario.setVisible(true);
-            fadeIn(primario);
+            fadeIn(primario, duracion);
         }
 
     }
 
     // Animaciones
-    public static void fadeOut(Node node) {
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.125), node);
+    public static void fadeOut(Node node, double duracion) {
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(duracion), node);
         fadeTransition.setFromValue(1.0); // Opacidad inicial
         fadeTransition.setToValue(0.0);    // Opacidad final
         fadeTransition.play();
     }
 
-    public static void fadeIn(Node node) {
+    public static void fadeIn(Node node, double duracion) {
         node.setOpacity(0.0); // Asegúrate de que el nodo esté completamente invisible antes de iniciar
-        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(0.125), node);
+        FadeTransition fadeTransition = new FadeTransition(Duration.seconds(duracion), node);
         fadeTransition.setFromValue(0.0);
         fadeTransition.setToValue(1.0);
         fadeTransition.play();

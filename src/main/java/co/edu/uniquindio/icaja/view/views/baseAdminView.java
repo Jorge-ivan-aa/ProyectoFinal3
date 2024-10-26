@@ -34,26 +34,26 @@ public class baseAdminView {
 
     @FXML
     void irCategoriaAction(ActionEvent event) {
-        ViewTools.cambiarPantalla(categoriaBox, cuentaBancariaBox, transaccionBox, usuarioBox);
+        ViewTools.cambiarPantalla(categoriaBox, 0.125, cuentaBancariaBox, transaccionBox, usuarioBox);
     }
 
     @FXML
     void irCuentaAction(ActionEvent event) {
-        ViewTools.cambiarPantalla(cuentaBancariaBox, categoriaBox, transaccionBox, usuarioBox);
+        ViewTools.cambiarPantalla(cuentaBancariaBox,0.125, categoriaBox, transaccionBox, usuarioBox);
     }
 
     @FXML
     void irTransaccionAction(ActionEvent event) {
-        ViewTools.cambiarPantalla(transaccionBox, cuentaBancariaBox, categoriaBox, usuarioBox);
+        ViewTools.cambiarPantalla(transaccionBox,0.125, cuentaBancariaBox, categoriaBox, usuarioBox);
     }
 
     @FXML
     void irUsuarioAction(ActionEvent event) {
-        ViewTools.cambiarPantalla(usuarioBox, transaccionBox, cuentaBancariaBox, categoriaBox);
+        ViewTools.cambiarPantalla(usuarioBox,0.125, transaccionBox, cuentaBancariaBox, categoriaBox);
     }
 
     @FXML
     void initialize() {
-        ViewTools.cambiarPantalla(usuarioBox, transaccionBox, cuentaBancariaBox, categoriaBox);
+        ViewTools.cambiarPantalla(usuarioBox,0.125, transaccionBox, cuentaBancariaBox, categoriaBox);
     }
 }

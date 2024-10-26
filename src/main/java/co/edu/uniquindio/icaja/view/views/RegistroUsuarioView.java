@@ -11,9 +11,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 public class RegistroUsuarioView {
     UsuarioController usuarioController= new UsuarioController();
+
+    @FXML
+    private Pane pane1;
+
+    @FXML
+    private Pane pane2;
+
+    @FXML
+    private Pane pane3;
 
     @FXML
     private ResourceBundle resources;
@@ -29,6 +39,9 @@ public class RegistroUsuarioView {
 
     @FXML
     private TextField txtClaveUsuario;
+
+    @FXML
+    private TextField txtClaveUsuario1;
 
     @FXML
     private TextField txtCorreoUsuario;
@@ -77,6 +90,18 @@ public class RegistroUsuarioView {
     }
 
     @FXML
+    void continuar1Action(ActionEvent event) {
+        ViewTools.cambiarPantalla(pane2,0.225, pane1, pane3);
+    }
+
+    @FXML
+    void continuar2Action(ActionEvent event) {
+        ViewTools.cambiarPantalla(pane3,0.225, pane1, pane2);
+
+    }
+
+
+        @FXML
     void volverAction(ActionEvent event) {
         ViewTools.ventanaEmergente("login.fxml", "ICaja :)", "styles/main.css");
         ViewTools.cerrarVentana(txtCedulaUsuario);
@@ -87,8 +112,7 @@ public class RegistroUsuarioView {
 
     @FXML
     void initialize() {
-
-
+        ViewTools.cambiarPantalla(pane1,0.225, pane3, pane2);
     }
 
 }

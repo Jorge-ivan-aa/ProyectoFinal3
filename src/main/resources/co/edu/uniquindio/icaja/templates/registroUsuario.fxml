@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.RegistroUsuarioView">
 
-<AnchorPane prefHeight="733.0" prefWidth="805.0" style="-fx-background-color: #5E2BFF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.RegistroUsuarioView">
-   <children>
-      <AnchorPane layoutX="140.0" layoutY="-1.0" prefHeight="734.0" prefWidth="543.0" style="-fx-background-color: F3FAE1;">
-         <children>
-            <GridPane layoutX="139.0" layoutY="8.0" prefHeight="625.0" prefWidth="264.0">
+      <Pane fx:id="pane1" layoutX="200.0" layoutY="48.0" prefHeight="625.0" prefWidth="880.0">
+
+            <GridPane layoutX="87.0" layoutY="133.0" prefHeight="314.0" prefWidth="712.0">
               <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="328.0" minWidth="10.0" prefWidth="292.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="239.0" minWidth="0.0" prefWidth="60.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="444.0" minWidth="10.0" prefWidth="315.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -30,131 +32,85 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
-               <children>
-                  <Label text="Registrar Usuario :)">
+
+                  <Label text="Nombre" GridPane.halignment="LEFT">
                      <font>
                         <Font name="Georgia Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Nombre :" GridPane.rowIndex="1">
+                  <Label text="Cédula" GridPane.columnIndex="2" GridPane.halignment="LEFT">
                      <font>
                         <Font name="Georgia Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Cédula :" GridPane.rowIndex="3">
+                  <Label text="Correo" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                      <font>
                         <Font name="Georgia Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Correo :" GridPane.rowIndex="5">
+                  <Label text="Telefono" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3">
                      <font>
                         <Font name="Georgia Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Telefono :" GridPane.rowIndex="7">
+                  <Label text="Contraseña" GridPane.halignment="LEFT" GridPane.rowIndex="6">
                      <font>
                         <Font name="Georgia Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Clave : " GridPane.rowIndex="9">
+                  <TextField fx:id="txtNombreUsuario" prefHeight="26.0" prefWidth="337.0" promptText="Juan" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtCedulaUsuario" prefHeight="26.0" prefWidth="337.0" promptText="1002XXXXXX" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <TextField fx:id="txtCorreoUsuario" prefHeight="26.0" prefWidth="337.0" promptText="juan@ejemplo.com" GridPane.rowIndex="4" />
+                  <TextField fx:id="txtTelefonoUsuario" prefHeight="26.0" prefWidth="337.0" promptText="3XX-XXX-XXXX" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <TextField fx:id="txtClaveUsuario" prefHeight="26.0" prefWidth="337.0" GridPane.rowIndex="7" />
+                  <TextField fx:id="txtClaveUsuario1" layoutX="10.0" layoutY="260.0" prefHeight="26.0" prefWidth="337.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                  <Label layoutX="10.0" layoutY="228.0" text="Confirmar Contraseña" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="6">
                      <font>
                         <Font name="Georgia Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Clave Transaccional : " GridPane.rowIndex="11">
-                     <font>
-                        <Font name="Georgia Italic" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label text="Presupuesto Mensual :" GridPane.rowIndex="13">
-                     <font>
-                        <Font name="Georgia Italic" size="15.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="txtNombreUsuario" prefHeight="26.0" prefWidth="337.0" text="Ingrese nombre" GridPane.rowIndex="2">
-                     <effect>
-                        <InnerShadow height="12.25" radius="10.1525" width="30.36">
-                           <color>
-                              <Color opacity="0.4984802305698395" />
-                           </color>
-                        </InnerShadow>
-                     </effect>
-                  </TextField>
-                  <TextField fx:id="txtCedulaUsuario" prefHeight="26.0" prefWidth="337.0" text="Ingrese cédula" GridPane.rowIndex="4">
-                     <effect>
-                        <InnerShadow height="12.25" radius="10.1525" width="30.36">
-                           <color>
-                              <Color opacity="0.4984802305698395" />
-                           </color>
-                        </InnerShadow>
-                     </effect>
-                  </TextField>
-                  <TextField fx:id="txtCorreoUsuario" prefHeight="26.0" prefWidth="337.0" text="Ingrese correo" GridPane.rowIndex="6">
-                     <effect>
-                        <InnerShadow height="12.25" radius="10.1525" width="30.36">
-                           <color>
-                              <Color opacity="0.4984802305698395" />
-                           </color>
-                        </InnerShadow>
-                     </effect>
-                  </TextField>
-                  <TextField fx:id="txtTelefonoUsuario" prefHeight="26.0" prefWidth="337.0" text="Ingrese telefono" GridPane.rowIndex="8">
-                     <effect>
-                        <InnerShadow height="12.25" radius="10.1525" width="30.36">
-                           <color>
-                              <Color opacity="0.4984802305698395" />
-                           </color>
-                        </InnerShadow>
-                     </effect>
-                  </TextField>
-                  <TextField fx:id="txtClaveUsuario" prefHeight="26.0" prefWidth="337.0" text="Ingrese clave" GridPane.rowIndex="10">
-                     <effect>
-                        <InnerShadow height="12.25" radius="10.1525" width="30.36">
-                           <color>
-                              <Color opacity="0.4984802305698395" />
-                           </color>
-                        </InnerShadow>
-                     </effect>
-                  </TextField>
-                  <TextField fx:id="txtClaveTranUsuario" prefHeight="26.0" prefWidth="337.0" text="Ingrese clave transaccional" GridPane.rowIndex="12">
-                     <effect>
-                        <InnerShadow height="12.25" radius="10.1525" width="30.36">
-                           <color>
-                              <Color opacity="0.4984802305698395" />
-                           </color>
-                        </InnerShadow>
-                     </effect>
-                  </TextField>
-                  <TextField fx:id="txtPresupuestoUsuario" prefHeight="26.0" prefWidth="337.0" text="Ingrese presupuesto" GridPane.rowIndex="14">
-                     <effect>
-                        <InnerShadow height="12.25" radius="10.1525" width="30.36">
-                           <color>
-                              <Color opacity="0.4984802305698395" />
-                           </color>
-                        </InnerShadow>
-                     </effect>
-                  </TextField>
-               </children>
+
             </GridPane>
-            <Button layoutX="361.0" layoutY="638.0" mnemonicParsing="false" onAction="#registrarUsuarioAction" prefHeight="32.0" prefWidth="104.0" text="Registrar">
+            <Button layoutX="358.0" layoutY="482.0" mnemonicParsing="false" onAction="#continuar1Action" prefHeight="32.0" prefWidth="157.0" text="Continuar">
                <font>
                   <Font name="Georgia Italic" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="89.0" layoutY="639.0" mnemonicParsing="false" onAction="#volverAction" prefHeight="32.0" prefWidth="104.0" text="Volver">
+            <Hyperlink layoutX="390.0" layoutY="555.0" onAction="#volverAction" text="Iniciar sesion" />
+         <ImageView fitHeight="150.0" fitWidth="105.0" layoutX="390.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../images/carga1.png" />
+         </ImageView>
+      <Label alignment="CENTER" layoutX="320.0" layoutY="539.0" prefHeight="16.0" prefWidth="233.0" text="¿Ya estas registrado?" textAlignment="CENTER" />
+      <Label layoutX="14.0" layoutY="88.0" text="Para empezar llenemos algunos datos basicos:" />
+
+      </Pane>
+      <Pane fx:id="pane2" layoutX="200.0" layoutY="48.0" prefHeight="580.0" prefWidth="880.0" visible="false">
+
+            <TextField fx:id="txtPresupuestoUsuario" layoutX="334.0" layoutY="342.0" prefHeight="26.0" prefWidth="198.0" promptText="99999999" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="220.0" layoutY="208.0" prefHeight="84.0" prefWidth="445.0" text="¿Cuál es tu presupuesto mensual? Te avisaremos en cuanto estes por llegar para que disfrutes sin preocupaciones." textAlignment="CENTER" wrapText="true" />
+            <Label layoutX="334.0" layoutY="324.0" text="Presupuesto" />
+            <Button layoutX="359.0" layoutY="483.0" mnemonicParsing="false" onAction="#continuar2Action" prefHeight="30.0" prefWidth="157.0" text="Continuar" />
+         <ImageView fitHeight="150.0" fitWidth="105.0" layoutX="390.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../images/carga2.png" />
+         </ImageView>
+
+      </Pane>
+      <Pane fx:id="pane3" layoutX="200.0" layoutY="48.0" prefHeight="580.0" prefWidth="880.0" visible="false">
+
+            <TextField fx:id="txtClaveTranUsuario" layoutX="327.0" layoutY="326.0" prefHeight="26.0" prefWidth="233.0" />
+            <Button layoutX="358.0" layoutY="481.0" mnemonicParsing="false" onAction="#registrarUsuarioAction" prefHeight="32.0" prefWidth="157.0" text="Registrarse">
                <font>
                   <Font name="Georgia Italic" size="15.0" />
                </font>
             </Button>
-         </children>
-      </AnchorPane>
-   </children>
+            <Label layoutX="197.0" layoutY="213.0" prefHeight="48.0" prefWidth="492.0" text="¡Ya casi terminamos! Crea una clave transaccional, la cual vas a usar en todos tus movimientos bancarios." textAlignment="CENTER" wrapText="true" />
+            <Label layoutX="327.0" layoutY="298.0" text="Clave Transaccional" />
+         <ImageView fitHeight="150.0" fitWidth="105.0" layoutX="390.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../images/carga3.png" />
+         </ImageView>
+
+      </Pane>
+
 </AnchorPane>

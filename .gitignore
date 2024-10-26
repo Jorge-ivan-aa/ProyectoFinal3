@@ -1,3 +1,6 @@
+## logs
+**/logs.txt
+
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -40,6 +43,3 @@ build/
 ### drawio
 *.bkp
 *.dtmp
-
-## logs
-**/logs.txt
