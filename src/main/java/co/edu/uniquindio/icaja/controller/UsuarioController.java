@@ -33,7 +33,7 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
     public void sincronizarData() {
         listaUsuarioObservable.clear();
         listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
-        excluirAdmin(listaUsuarioObservable);
+        factory.getIcaja().excluirAdmin(listaUsuarioObservable);
         persistir();
         factory.guardarRespaldo();
         registrarLog(1,"Se sincronizaron los usuarios.");
@@ -91,9 +91,16 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
             Usuario actualizable = consultar(usuarioDto.cedula());
             actualizable.setNombre(usuarioDto.nombre());
             actualizable.setTelefono(usuarioDto.telefono());
-            actualizable.setClave(usuarioDto.clave());
             actualizable.setPresupuestoMensual(usuarioDto.presupuestoMensual());
-            actualizable.setClaveTransaccional(usuarioDto.claveTransaccional());
+
+            if (!usuarioDto.clave().isEmpty()) {
+                actualizable.setClave(usuarioDto.clave());
+            }
+
+            if (!usuarioDto.claveTransaccional().isEmpty()) {
+                actualizable.setClaveTransaccional(usuarioDto.claveTransaccional());
+            }
+
             actualizable.setCorreo(usuarioDto.correo());
             sincronizarData();
             registrarLog(1,"Se actualizó el usuario de cedula " + actualizable.getCedula() + " correctamente.");
@@ -107,7 +114,7 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
     @Override
     public void persistir() {
         List<Usuario> usuarios = new ArrayList<>(factory.getIcaja().getListaUsuarios());
-        excluirAdmin(usuarios);
+        factory.getIcaja().excluirAdmin(usuarios);
         try {
             factory.getUsuarioPersistente().guardar(usuarios);
         } catch (IOException e) {
@@ -115,11 +122,4 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
         }
     }
 
-    /**
-     * Metodo para eliminar todos los usuarios de tipo administrador de una lista.
-     * @param usuarios lista de usuario.
-     */
-    public void excluirAdmin(List<Usuario> usuarios) {
-        usuarios.removeIf(usuario -> usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR));
-    }
 }

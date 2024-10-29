@@ -12,6 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.NoArgsConstructor;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Getter
 @Setter
@@ -37,8 +38,9 @@ public class Usuario implements Serializable, Login {
         this.cedula = cedula;
         this.correo = correo;
         this.telefono = telefono;
-        this.clave = clave;
-        this.claveTransaccional = claveTransaccional;
+        this.clave = encriptarClave(clave);
+        System.out.println("para el usuario: "+ nombre + "se genero el hash: " + this.clave);
+        this.claveTransaccional = encriptarClave(claveTransaccional);
         this.saldoTotal = 0;
         this.ingresos = 0;
         this.gastos = 0;
@@ -48,8 +50,8 @@ public class Usuario implements Serializable, Login {
     }
 
     @Override
-    public TipoUsuario ingresar(String clave) throws CredencialesNoCoinciden {
-        if (verificarCredenciales(this, clave)) {
+    public TipoUsuario ingresar(String clave_ingresada) throws CredencialesNoCoinciden {
+        if (verificarCredenciales(this.getClave(), clave_ingresada)) {
             Seguimiento.registrarLog(1, "El usuario " + nombre + " ingresó satisfactoriamente");
         } else {
             throw new CredencialesNoCoinciden("Contraseña incorrecta, intenta nuevamente.");
@@ -58,17 +60,17 @@ public class Usuario implements Serializable, Login {
         return getTipoUsuario();
     }
 
-    public boolean verificarCredenciales(Usuario usuario, String clave) {
-        return usuario.getClave().equals(clave);
+    public boolean verificarCredenciales(String hash_almacenado, String clave) {
+        return BCrypt.checkpw(clave, hash_almacenado);
+    }
+
+    public String encriptarClave(String clave) {
+        return BCrypt.hashpw(clave, BCrypt.gensalt());
     }
 
 
     public void setAdministrador() {
         this.tipoUsuario = TipoUsuario.ADMINISTRADOR;
-    }
-
-    public void setNormal() {
-        this.tipoUsuario = TipoUsuario.NORMAL;
     }
 
     public void addCuenta(CuentaBancaria cuenta) {
@@ -79,4 +81,19 @@ public class Usuario implements Serializable, Login {
         this.listaCuentas.remove(cuenta);
     }
 
+    public void setClave(String clave) {
+        this.clave = encriptarClave(clave);
+    }
+
+    public void setClaveTransaccional(String claveTransaccional) {
+        this.claveTransaccional = encriptarClave(claveTransaccional);
+    }
+
+    public void setHashclave(String hashclave) {
+        this.clave = hashclave;
+    }
+
+    public void  setHashclaveTransaccional(String hashclaveTransaccional) {
+        this.claveTransaccional = hashclaveTransaccional;
+    }
 }

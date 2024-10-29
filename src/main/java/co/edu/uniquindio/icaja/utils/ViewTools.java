@@ -59,6 +59,7 @@ public class ViewTools {
     public static void limpiarCampos(TextField... campoDeTexto) {
         for (TextField texto : campoDeTexto) {
             texto.setText("");
+            texto.setPromptText("");
         }
     }
 

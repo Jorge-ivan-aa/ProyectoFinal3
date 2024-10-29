@@ -4,6 +4,7 @@ module co.edu.uniquindio.icaja {
     requires atlantafx.base;
     requires de.jensd.fx.glyphs.fontawesome;
     requires java.logging;
+    requires jbcrypt;
 
     exports co.edu.uniquindio.icaja.mapping.mappers;
     exports co.edu.uniquindio.icaja.mapping.dto;

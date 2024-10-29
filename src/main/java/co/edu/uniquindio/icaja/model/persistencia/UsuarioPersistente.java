@@ -44,8 +44,8 @@ public class UsuarioPersistente implements Persistible<Usuario> {
             usuario.setCedula(linea[1]);
             usuario.setCorreo(linea[2]);
             usuario.setTelefono(linea[3]);
-            usuario.setClave(linea[4]);
-            usuario.setClaveTransaccional(linea[5]);
+            usuario.setHashclave(linea[4]);
+            usuario.setHashclaveTransaccional(linea[5]);
             usuario.setSaldoTotal(Double.parseDouble(linea[6]));
             usuario.setIngresos(Double.parseDouble(linea[7]));
             usuario.setGastos(Double.parseDouble(linea[8]));

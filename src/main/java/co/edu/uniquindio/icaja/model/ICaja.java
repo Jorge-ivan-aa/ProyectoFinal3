@@ -2,7 +2,9 @@ package co.edu.uniquindio.icaja.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
+import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -73,5 +75,12 @@ public class ICaja implements Serializable {
         this.listaCuentaBancarias.remove(cuentaBancaria);
     }
 
+    /**
+     * Metodo para eliminar todos los usuarios de tipo administrador de una lista.
+     * @param usuarios lista de usuario.
+     */
+    public void excluirAdmin(List<Usuario> usuarios) {
+        usuarios.removeIf(usuario -> usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR));
+    }
 
 }

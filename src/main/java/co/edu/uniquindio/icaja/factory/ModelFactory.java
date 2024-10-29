@@ -26,6 +26,7 @@ public class ModelFactory {
             icaja = new ICaja();
             loadData();
         }
+
     loadConfig();
     }
 
@@ -57,6 +58,8 @@ public class ModelFactory {
     public void loadConfig() {
         String cedula = Persistencia.cargarConfiguracion("admin");
         String contrasena = Persistencia.cargarConfiguracion("contrasena");
+
+        icaja.excluirAdmin(icaja.getListaUsuarios());
 
         Usuario admin = new Usuario();
         admin.setNombre("Administrador");

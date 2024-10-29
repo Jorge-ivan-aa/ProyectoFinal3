@@ -91,9 +91,10 @@ public class UsuarioView {
         String presupuestoMensual = txtPresupuestoMensualAdmin.getText();
         String telefono = txtTelefonoAdmin.getText();
 
-        if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
-            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
+        boolean cambioClaves =  !clave.isEmpty() || !claveTransaccional.isEmpty();
 
+        if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  presupuestoMensual) && cambioClaves) {
+                UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
             try {
                 usuarioController.actualizar(usuarioDto);
                 String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
@@ -211,8 +212,8 @@ public class UsuarioView {
             txtCedulaAdmin.setText(seleccionado.getCedula());
             txtCorreoAdmin.setText(seleccionado.getCorreo());
             txtTelefonoAdmin.setText(seleccionado.getTelefono());
-            txtClaveTransaccionalAdmin.setText(seleccionado.getClaveTransaccional());
-            txtClaveAdmin.setText(seleccionado.getClave());
+            txtClaveTransaccionalAdmin.setPromptText(seleccionado.getClaveTransaccional());
+            txtClaveAdmin.setPromptText(seleccionado.getClave());
             txtPresupuestoMensualAdmin.setText(String.valueOf(seleccionado.getPresupuestoMensual()));
         }
     }
