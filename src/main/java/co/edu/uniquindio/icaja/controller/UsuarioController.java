@@ -20,11 +20,11 @@ import java.util.List;
 @Getter
 public class UsuarioController implements GenericController<UsuarioDto, Usuario> {
 
-    private final ModelFactory factory;
+    private ModelFactory factory;
     private final ObservableList<Usuario> listaUsuarioObservable;
 
     public UsuarioController() {
-        this.factory = ModelFactory.getInstance();
+        factory = ModelFactory.getInstance();
         this.listaUsuarioObservable = FXCollections.observableArrayList();
         this.sincronizarData();
     }
@@ -32,7 +32,7 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
 @Override
     public void sincronizarData() {
         listaUsuarioObservable.clear();
-        listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
+        listaUsuarioObservable.addAll(factory.getIcaja().getListaUsuarios());
         factory.getIcaja().excluirAdmin(listaUsuarioObservable);
         persistir();
         factory.guardarRespaldo();
@@ -61,7 +61,7 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
     public Usuario consultar(String cedula) throws ElementoNoExiste {
         registrarLog(1,"Se consultó el usuario");
 
-        ArrayList<Usuario> Usuarios = this.factory.getIcaja().getListaUsuarios();
+        ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
         for (Usuario usuario : Usuarios) {
             if (usuario.getCedula().equals(cedula)) {
                 return usuario;
@@ -121,5 +121,10 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
             registrarLog(3, "Error, no se pudo guardar la información de usuario: " + e.getMessage());
         }
     }
+
+    public void cerrarSesion() {
+        factory.getIcaja().getSesion().cerrarSesion();
+    }
+
 
 }

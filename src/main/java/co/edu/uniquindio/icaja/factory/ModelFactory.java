@@ -68,7 +68,7 @@ public class ModelFactory {
         admin.setAdministrador();
 
         icaja.addUsuario(admin);
-        Seguimiento.registrarLog(1,"Se cargó la configuracion de las credenciales de administrador");
+        Seguimiento.registrarLog(1,"Se cargó la configuración de las credenciales de administrador");
     }
 
     public ICaja cargaRespaldo() {

@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class baseAdminView {
 
+    UsuarioController usuarioController = new UsuarioController();
 
     public FontAwesomeIconView icono;
     @FXML
@@ -30,6 +31,9 @@ public class baseAdminView {
     @FXML
     void VolverAction(ActionEvent event) {
 
+        usuarioController.cerrarSesion();
+        ViewTools.ventanaEmergente("login.fxml", "ICaja Wallet", "styles/main.css", "styles/login.css");
+        ViewTools.cerrarVentana(categoriaBox);
     }
 
     @FXML
@@ -55,5 +59,10 @@ public class baseAdminView {
     @FXML
     void initialize() {
         ViewTools.cambiarPantalla(usuarioBox,0.125, transaccionBox, cuentaBancariaBox, categoriaBox);
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            System.out.println("El programa está a punto de cerrarse...");
+            // Aquí puedes poner el código que quieras ejecutar antes de salir
+        }));
     }
 }

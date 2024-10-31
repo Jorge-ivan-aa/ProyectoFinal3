@@ -30,13 +30,16 @@ public class ViewTools {
     }
 
     // Metodo para abrir ventana
-    public static void ventanaEmergente(String url, String title, String style) {
+    public static void ventanaEmergente(String url, String title, String... styles) {
         Scene scene = new Scene(new Pane());
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(url));
             scene = new Scene(fxmlLoader.load());
-            scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource(style)).toExternalForm());
+            for (String style: styles) {
+                scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource(style)).toExternalForm());
+            }
+
         }catch (Exception e){
             mostrarMensaje("Error", "Error al cargar la interfaz grafica", e.getMessage(), Alert.AlertType.ERROR);
             Seguimiento.registrarLog(3, "No se pudó cargar la interfaz" + e.getMessage());
@@ -50,7 +53,7 @@ public class ViewTools {
 
 
     // Metodo para cerrar una venta segun un nodo dado
-    public static void cerrarVentana(TextField context) {
+    public static void cerrarVentana(Node context) {
         Stage stage = (Stage) ((Node) context).getScene().getWindow();
         stage.close();
     }
