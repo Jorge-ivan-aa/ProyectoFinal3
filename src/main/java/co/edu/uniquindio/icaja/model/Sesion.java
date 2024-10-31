@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
  @Getter
+ @NoArgsConstructor
 public class Sesion implements Login, Serializable {
     private Usuario usuario;
     public static final long serialVersionID = 7L;
@@ -42,11 +43,6 @@ public class Sesion implements Login, Serializable {
 
         return this.usuario.ingresar(clave);
 
-    }
-
-    public void cerrarSesion() {
-        this.usuario = null;
-        Seguimiento.registrarLog(2, "Se cerró la sesion correctamente");
     }
 
 }

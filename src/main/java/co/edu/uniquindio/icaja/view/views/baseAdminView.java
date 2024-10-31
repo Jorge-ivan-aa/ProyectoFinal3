@@ -62,6 +62,7 @@ public class baseAdminView {
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             usuarioController.cerrarSesion();
+            System.out.println("Se cerro la sesion aparentemente");
         }));
     }
 }

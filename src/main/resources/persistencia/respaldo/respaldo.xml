@@ -33,7 +33,7 @@
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$yN9oDYzGNa2B8MhIPql7.uk6kpumwOJq1fqdePcpofT82oirCjqvK</string>
+      <string>$2a$10$P238SPiasV5Rrnr2lxF.C.UJvl2GOBJ0hBr8XTwyOP5ug/9y3/Ify</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>
@@ -46,9 +46,6 @@
      </void>
     </object>
    </void>
-  </void>
-  <void property="sesion">
-   <object class="co.edu.uniquindio.icaja.model.Sesion"/>
   </void>
  </object>
 </java>

@@ -42,6 +42,7 @@ public class LoginView {
         String cedula = txtCedulaUsuario.getText();
 
         if (!ViewTools.hayCamposVacios(clave, cedula)) {
+
             Sesion sesion = new Sesion(cedula);
 
             try {
@@ -78,6 +79,5 @@ public class LoginView {
 
     @FXML
     void initialize() {
-
     }
 }
