@@ -20,7 +20,7 @@
       <string>317234234234</string>
      </void>
      <void property="tipoUsuario">
-      <object class="java.lang.Enum" method="valueOf">
+      <object class="java.lang.Enum" id="TipoUsuario0" method="valueOf">
        <class>co.edu.uniquindio.icaja.model.enums.TipoUsuario</class>
        <string>NORMAL</string>
       </object>
@@ -30,10 +30,38 @@
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.Usuario">
      <void property="cedula">
+      <string>100035323</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$okOdlpTUN3Vz3KWfsnC6fu8/jlt3uR8pe5DqznxkAzf72dRgBKrei</string>
+     </void>
+     <void property="correo">
+      <string>juanito@gmail.com</string>
+     </void>
+     <void property="listaCuentas">
+      <object class="java.util.ArrayList"/>
+     </void>
+     <void property="nombre">
+      <string>juanito</string>
+     </void>
+     <void property="presupuestoMensual">
+      <double>5000000.0</double>
+     </void>
+     <void property="telefono">
+      <string>320145313953</string>
+     </void>
+     <void property="tipoUsuario">
+      <object idref="TipoUsuario0"/>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$SVyKpXUxaze8naQw0W513eRGRAWxR5MOHy8MGNaPzjuoGZQETJvfC</string>
+      <string>$2a$10$tIRdyGag0p.vjEsIAdMOqumnDdmbbKnwqJr3Q/hVvGZFrwWjf.t4S</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>

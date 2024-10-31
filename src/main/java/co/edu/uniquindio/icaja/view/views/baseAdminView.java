@@ -30,7 +30,6 @@ public class baseAdminView {
 
     @FXML
     void VolverAction() {
-
         usuarioController.cerrarSesion();
         ViewTools.ventanaEmergente("login.fxml", "ICaja Wallet", "carga.fxml", "styles/main.css", "styles/login.css");
         ViewTools.cerrarVentana(categoriaBox);
@@ -62,7 +61,6 @@ public class baseAdminView {
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             usuarioController.cerrarSesion();
-            System.out.println("Se cerro la sesion aparentemente");
         }));
     }
 }

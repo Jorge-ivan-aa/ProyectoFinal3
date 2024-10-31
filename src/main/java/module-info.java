@@ -28,6 +28,8 @@ module co.edu.uniquindio.icaja {
     opens co.edu.uniquindio.icaja.utils to javafx.fxml;
     exports co.edu.uniquindio.icaja.view.views.admin;
     opens co.edu.uniquindio.icaja.view.views.admin to javafx.fxml;
+    exports co.edu.uniquindio.icaja.view.views.normal;
+    opens co.edu.uniquindio.icaja.view.views.normal to javafx.fxml;
     exports co.edu.uniquindio.icaja.view.views;
     opens co.edu.uniquindio.icaja.view.views to javafx.fxml;
     exports co.edu.uniquindio.icaja.utils.loggin;

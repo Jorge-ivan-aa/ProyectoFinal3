@@ -1,5 +1,7 @@
 package co.edu.uniquindio.icaja.view.views;
 
+import co.edu.uniquindio.icaja.controller.UsuarioController;
+import co.edu.uniquindio.icaja.utils.ViewTools;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,68 +9,56 @@ import javafx.scene.layout.AnchorPane;
 
 
 public class baseNormalView {
-    @FXML
-    private AnchorPane anchorCuentasUsuario;
+
+    UsuarioController usuarioController = new UsuarioController();
 
     @FXML
-    private AnchorPane anchorDetallesUsuario;
+    private AnchorPane cuentasUsuarioBox;
 
     @FXML
-    private AnchorPane anchorPerfilUsuario;
+    private AnchorPane estadisticasUsuarioBox;
 
     @FXML
-    private AnchorPane anchorUsuarioPrincipal;
+    private AnchorPane perfilUsuarioBox;
 
     @FXML
-    private Label lbPonerGastosUsuario;
+    private AnchorPane principalUsuarioBox;
 
     @FXML
-    private Label lbPonerIngresosUsuario;
-
-    @FXML
-    private Label lbPonerNombreUsuario;
-
-    @FXML
-    private Label lbPonerSaldoUsuario;
-
-    @FXML
-    void DepositoAction(ActionEvent event) {
-
+    void VolverAction(ActionEvent event) {
+        usuarioController.cerrarSesion();
+        ViewTools.ventanaEmergente("login.fxml", "ICaja Wallet", "carga.fxml", "styles/main.css", "styles/login.css");
+        ViewTools.cerrarVentana(principalUsuarioBox);
     }
 
     @FXML
-    void PonerCuentasUsuarioAction(ActionEvent event) {
-
+    void irCuentasAction(ActionEvent event) {
+        ViewTools.cambiarPantalla(cuentasUsuarioBox, 0.125, principalUsuarioBox, estadisticasUsuarioBox, perfilUsuarioBox);
     }
 
     @FXML
-    void PresupuestoAction(ActionEvent event) {
-
+    void irEstadisticasAction(ActionEvent event) {
+        ViewTools.cambiarPantalla(estadisticasUsuarioBox, 0.125, principalUsuarioBox, cuentasUsuarioBox, perfilUsuarioBox);
     }
 
     @FXML
-    void RetirarAction(ActionEvent event) {
-
+    void irPerfilAction(ActionEvent event) {
+        ViewTools.cambiarPantalla(perfilUsuarioBox, 0.125, principalUsuarioBox, cuentasUsuarioBox, estadisticasUsuarioBox);
     }
 
     @FXML
-    void TransferirDineroAction(ActionEvent event) {
-
+    void irPrincipalAction(ActionEvent event) {
+        ViewTools.cambiarPantalla(principalUsuarioBox, 0.125, cuentasUsuarioBox, estadisticasUsuarioBox, perfilUsuarioBox);
     }
 
     @FXML
-    void ponerDetallesUsuarioAction(ActionEvent event) {
+    void initialize() {
 
-    }
+        ViewTools.cambiarPantalla(principalUsuarioBox, 0.125, cuentasUsuarioBox, estadisticasUsuarioBox, perfilUsuarioBox);
 
-    @FXML
-    void ponerPerfilUsuarioAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void ponerUsuarioPrincipalAction(ActionEvent event) {
-
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            usuarioController.cerrarSesion();
+        }));
     }
 
 }
