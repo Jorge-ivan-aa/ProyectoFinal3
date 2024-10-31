@@ -6,11 +6,12 @@ import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-@Getter
+ @Getter
 public class Sesion implements Login, Serializable {
     private Usuario usuario;
     public static final long serialVersionID = 7L;

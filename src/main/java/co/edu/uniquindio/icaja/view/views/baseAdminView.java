@@ -29,30 +29,30 @@ public class baseAdminView {
     private AnchorPane usuarioBox;
 
     @FXML
-    void VolverAction(ActionEvent event) {
+    void VolverAction() {
 
         usuarioController.cerrarSesion();
-        ViewTools.ventanaEmergente("login.fxml", "ICaja Wallet", "styles/main.css", "styles/login.css");
+        ViewTools.ventanaEmergente("login.fxml", "ICaja Wallet", "carga.fxml", "styles/main.css", "styles/login.css");
         ViewTools.cerrarVentana(categoriaBox);
     }
 
     @FXML
-    void irCategoriaAction(ActionEvent event) {
+    void irCategoriaAction() {
         ViewTools.cambiarPantalla(categoriaBox, 0.125, cuentaBancariaBox, transaccionBox, usuarioBox);
     }
 
     @FXML
-    void irCuentaAction(ActionEvent event) {
+    void irCuentaAction() {
         ViewTools.cambiarPantalla(cuentaBancariaBox,0.125, categoriaBox, transaccionBox, usuarioBox);
     }
 
     @FXML
-    void irTransaccionAction(ActionEvent event) {
+    void irTransaccionAction() {
         ViewTools.cambiarPantalla(transaccionBox,0.125, cuentaBancariaBox, categoriaBox, usuarioBox);
     }
 
     @FXML
-    void irUsuarioAction(ActionEvent event) {
+    void irUsuarioAction() {
         ViewTools.cambiarPantalla(usuarioBox,0.125, transaccionBox, cuentaBancariaBox, categoriaBox);
     }
 
@@ -61,8 +61,7 @@ public class baseAdminView {
         ViewTools.cambiarPantalla(usuarioBox,0.125, transaccionBox, cuentaBancariaBox, categoriaBox);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            System.out.println("El programa está a punto de cerrarse...");
-            // Aquí puedes poner el código que quieras ejecutar antes de salir
+            usuarioController.cerrarSesion();
         }));
     }
 }

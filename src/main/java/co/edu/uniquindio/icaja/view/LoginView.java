@@ -62,17 +62,17 @@ public class LoginView {
     void seleccionarInterfax(TipoUsuario tipoUsuario, String usuario) {
         switch(tipoUsuario) {
             case ADMINISTRADOR:
-                ViewTools.ventanaEmergente("templates/baseAdmin.fxml", "ICaja - Administrador", "styles/main.css");
+                ViewTools.ventanaEmergente("templates/baseAdmin.fxml", "ICaja - Administrador", "carga.fxml",  "styles/main.css");
                 break;
             case NORMAL:
-                ViewTools.ventanaEmergente("templates/baseNormal.fxml", "ICaja - " + usuario, "styles/main.css");
+                ViewTools.ventanaEmergente("templates/baseNormal.fxml", "ICaja - " + usuario, "carga.fxml", "styles/main.css");
                 break;
         }
     }
 
     @FXML
     void registrarUsuario(ActionEvent event) {
-        ViewTools.ventanaEmergente("templates/registroUsuario.fxml", "ICaja - Registro de usuario", "styles/main.css");
+        ViewTools.ventanaEmergente("templates/registroUsuario.fxml", "ICaja - Registro de usuario", "carga.fxml", "styles/main.css");
         ViewTools.cerrarVentana(txtCedulaUsuario);
     }
 

@@ -1,6 +1,7 @@
 package co.edu.uniquindio.icaja;
 
 import atlantafx.base.theme.PrimerLight;
+import co.edu.uniquindio.icaja.utils.ViewTools;
 import io.github.palexdev.materialfx.theming.JavaFXThemes;
 import io.github.palexdev.materialfx.theming.MaterialFXStylesheets;
 import io.github.palexdev.materialfx.theming.UserAgentBuilder;
@@ -30,6 +31,8 @@ public class App extends Application {
         stage.setTitle("ICaja Wallet");
         stage.setScene(scene);
         stage.show();
+
+
     }
 
     public static void main(String[] args) {
