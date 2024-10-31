@@ -76,6 +76,7 @@ public class ModelFactory {
     }
 
     public void guardarRespaldo() {
+        icaja.setSesion(null);
         ICajaRespaldo.guardarRecursoICajaBinario(icaja);
         ICajaRespaldo.guardarRecursoICajaXML(icaja);
     }
