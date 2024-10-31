@@ -2,9 +2,8 @@ package co.edu.uniquindio.icaja.view.views;
 
 import co.edu.uniquindio.icaja.controller.UsuarioController;
 import co.edu.uniquindio.icaja.utils.ViewTools;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 
@@ -25,29 +24,29 @@ public class baseNormalView {
     private AnchorPane principalUsuarioBox;
 
     @FXML
-    void VolverAction(ActionEvent event) {
+    void VolverAction() {
         usuarioController.cerrarSesion();
         ViewTools.ventanaEmergente("login.fxml", "ICaja Wallet", "carga.fxml", "styles/main.css", "styles/login.css");
         ViewTools.cerrarVentana(principalUsuarioBox);
     }
 
     @FXML
-    void irCuentasAction(ActionEvent event) {
+    void irCuentasAction() {
         ViewTools.cambiarPantalla(cuentasUsuarioBox, 0.125, principalUsuarioBox, estadisticasUsuarioBox, perfilUsuarioBox);
     }
 
     @FXML
-    void irEstadisticasAction(ActionEvent event) {
+    void irEstadisticasAction() {
         ViewTools.cambiarPantalla(estadisticasUsuarioBox, 0.125, principalUsuarioBox, cuentasUsuarioBox, perfilUsuarioBox);
     }
 
     @FXML
-    void irPerfilAction(ActionEvent event) {
+    void irPerfilAction() {
         ViewTools.cambiarPantalla(perfilUsuarioBox, 0.125, principalUsuarioBox, cuentasUsuarioBox, estadisticasUsuarioBox);
     }
 
     @FXML
-    void irPrincipalAction(ActionEvent event) {
+    void irPrincipalAction() {
         ViewTools.cambiarPantalla(principalUsuarioBox, 0.125, cuentasUsuarioBox, estadisticasUsuarioBox, perfilUsuarioBox);
     }
 

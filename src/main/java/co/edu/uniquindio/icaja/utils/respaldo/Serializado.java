@@ -11,18 +11,14 @@ public class Serializado {
      *
      * @param rutaArchivo
      *            path del fichero que se quiere escribir
-     * @throws IOException
+     *
      */
 
     public static Object cargarRecursoSerializado(String rutaArchivo)throws IOException
     {
-        Object aux = null;
-//		Empresa empresa = null;
+        Object aux;
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(rutaArchivo))) {
-            // Se crea un ObjectInputStream
-
             aux = ois.readObject();
-
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -34,7 +30,7 @@ public class Serializado {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(rutaArchivo))) {
             oos.writeObject(object);
         } catch (Exception e) {
-            throw e;
+            throw new Exception(e);
         }
     }
 

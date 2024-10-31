@@ -1,7 +1,6 @@
 package co.edu.uniquindio.icaja;
 
 import atlantafx.base.theme.PrimerLight;
-import co.edu.uniquindio.icaja.utils.ViewTools;
 import io.github.palexdev.materialfx.theming.JavaFXThemes;
 import io.github.palexdev.materialfx.theming.MaterialFXStylesheets;
 import io.github.palexdev.materialfx.theming.UserAgentBuilder;

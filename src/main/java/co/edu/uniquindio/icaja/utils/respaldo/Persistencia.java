@@ -1,8 +1,6 @@
 package co.edu.uniquindio.icaja.utils.respaldo;
 
-import co.edu.uniquindio.icaja.model.ICaja;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
