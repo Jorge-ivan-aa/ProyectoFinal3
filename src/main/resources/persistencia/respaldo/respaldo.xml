@@ -5,25 +5,28 @@
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.Usuario">
      <void property="cedula">
-      <string>123</string>
+      <string>1004827105</string>
      </void>
      <void property="clave">
-      <string>$2a$10$eazvCNeE2Ch0WLcs8bo.Vu7VYbl2UwWI71GMPIODeTcmvzQ6.6pDO</string>
-     </void>
-     <void property="claveTransaccional">
-      <string>$2a$10$y8CuNISnTdYy.f/prMJqeu23j3ZYC543PQxW2w8/dX9uUqYBt1G4W</string>
+      <string>$2a$10$agy/S7piy/csJb0W9mHeSOPlNRcENUBS3.iLCC9VNkxk1CYJrGVF2</string>
      </void>
      <void property="correo">
-      <string>dsfsdfsd</string>
+      <string>jorge@gmail.com</string>
+     </void>
+     <void property="listaCuentas">
+      <object class="java.util.ArrayList"/>
      </void>
      <void property="nombre">
       <string>jorge</string>
      </void>
+     <void property="presupuestoMensual">
+      <double>2.345645654645E12</double>
+     </void>
      <void property="telefono">
-      <string>31750802312</string>
+      <string>317234234234</string>
      </void>
      <void property="tipoUsuario">
-      <object class="java.lang.Enum" id="TipoUsuario0" method="valueOf">
+      <object class="java.lang.Enum" method="valueOf">
        <class>co.edu.uniquindio.icaja.model.enums.TipoUsuario</class>
        <string>NORMAL</string>
       </object>
@@ -33,72 +36,10 @@
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.Usuario">
      <void property="cedula">
-      <string>1234</string>
-     </void>
-     <void property="clave">
-      <string>$2a$10$/b4dpd9xiA.eoAxYgQroH.1c0KEnGzBQ.7Ms8./Ogb8cHpDrEpeNe</string>
-     </void>
-     <void property="claveTransaccional">
-      <string>$2a$10$NpdISFOR1UlSQI4wwhnPFuXIsL2ofl21utLpqQ3zvriWmyODBuKg6</string>
-     </void>
-     <void property="correo">
-      <string>sadasd</string>
-     </void>
-     <void property="listaCuentas">
-      <object class="java.util.ArrayList"/>
-     </void>
-     <void property="nombre">
-      <string>asdsa</string>
-     </void>
-     <void property="presupuestoMensual">
-      <double>3.45345345E8</double>
-     </void>
-     <void property="telefono">
-      <string>4123123213</string>
-     </void>
-     <void property="tipoUsuario">
-      <object idref="TipoUsuario0"/>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Usuario">
-     <void property="cedula">
-      <string>12345</string>
-     </void>
-     <void property="clave">
-      <string>$2a$10$sVWfuTQKqYdZ8q3wsvyGvOQxatPzxYoEmzJLYkl9AXtLyfs7rbsnS</string>
-     </void>
-     <void property="claveTransaccional">
-      <string>$2a$10$7ctlzLf0SQpHwAn1t9qXDeEHw6K9htGAmbDmLqGoYR8kkYE8Ckp8m</string>
-     </void>
-     <void property="correo">
-      <string>dsfsdfsdf</string>
-     </void>
-     <void property="listaCuentas">
-      <object class="java.util.ArrayList"/>
-     </void>
-     <void property="nombre">
-      <string>k,jhmgn</string>
-     </void>
-     <void property="presupuestoMensual">
-      <double>2.3432324E7</double>
-     </void>
-     <void property="telefono">
-      <string>3453634634</string>
-     </void>
-     <void property="tipoUsuario">
-      <object idref="TipoUsuario0"/>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Usuario">
-     <void property="cedula">
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$TUWNJCpCQpBf8v/.6WCCyuVKWc7UhmiPOmGdI7DxXEGXxxW8UXHAi</string>
+      <string>$2a$10$L3yK/fhTloe4RK17Vvl3FuOq1HkR6kx6JFoRvmWq.mNgHCFcQc3Um</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>

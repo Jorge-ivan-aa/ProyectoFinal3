@@ -64,7 +64,7 @@ public class ModelFactory {
         Usuario admin = new Usuario();
         admin.setNombre("Administrador");
         admin.setCedula(cedula);
-        admin.setClave(contrasena);
+        admin.setHashclave(contrasena);
         admin.setAdministrador();
 
         icaja.addUsuario(admin);

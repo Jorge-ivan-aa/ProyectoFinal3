@@ -94,11 +94,11 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
             actualizable.setPresupuestoMensual(usuarioDto.presupuestoMensual());
 
             if (!usuarioDto.clave().isEmpty()) {
-                actualizable.setClave(usuarioDto.clave());
+                actualizable.setHashclave(usuarioDto.clave());
             }
 
             if (!usuarioDto.claveTransaccional().isEmpty()) {
-                actualizable.setClaveTransaccional(usuarioDto.claveTransaccional());
+                actualizable.setHashclaveTransaccional(usuarioDto.claveTransaccional());
             }
 
             actualizable.setCorreo(usuarioDto.correo());

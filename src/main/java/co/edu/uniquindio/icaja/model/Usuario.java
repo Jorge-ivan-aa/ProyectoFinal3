@@ -81,19 +81,14 @@ public class Usuario implements Serializable, Login {
         this.listaCuentas.remove(cuenta);
     }
 
-    public void setClave(String clave) {
-        this.clave = encriptarClave(clave);
-    }
-
     public void setClaveTransaccional(String claveTransaccional) {
-        this.claveTransaccional = encriptarClave(claveTransaccional);
     }
 
     public void setHashclave(String hashclave) {
-        this.clave = hashclave;
+        this.clave = encriptarClave(hashclave);
     }
 
     public void  setHashclaveTransaccional(String hashclaveTransaccional) {
-        this.claveTransaccional = hashclaveTransaccional;
+        this.claveTransaccional = encriptarClave(hashclaveTransaccional);
     }
 }
