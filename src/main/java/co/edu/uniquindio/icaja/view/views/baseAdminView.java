@@ -24,7 +24,7 @@ public class baseAdminView {
     @FXML
     void VolverAction() {
         usuarioController.cerrarSesion();
-        ViewTools.ventanaEmergente("login.fxml", "ICaja Wallet", "carga.fxml", "styles/main.css", "styles/login.css");
+        ViewTools.generarVentana("login.fxml", "ICaja Wallet", "carga.fxml", "styles/main.css", "styles/login.css");
         ViewTools.cerrarVentana(categoriaBox);
     }
 

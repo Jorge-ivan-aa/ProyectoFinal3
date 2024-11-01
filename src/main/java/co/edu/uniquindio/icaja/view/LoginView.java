@@ -26,7 +26,7 @@ public class LoginView {
         String clave = txtClaveUsuario.getText();
         String cedula = txtCedulaUsuario.getText();
 
-        if (!ViewTools.hayCamposVacios(clave, cedula)) {
+        if (ViewTools.NoHayCamposVacios(clave, cedula)) {
 
             Sesion sesion = new Sesion(cedula);
 
@@ -48,17 +48,17 @@ public class LoginView {
     void seleccionarInterfax(TipoUsuario tipoUsuario, String usuario) {
         switch(tipoUsuario) {
             case ADMINISTRADOR:
-                ViewTools.ventanaEmergente("templates/baseAdmin.fxml", "ICaja - Administrador", "carga.fxml",  "styles/main.css");
+                ViewTools.generarVentana("templates/baseAdmin.fxml", "ICaja - Administrador", "carga.fxml",  "styles/main.css");
                 break;
             case NORMAL:
-                ViewTools.ventanaEmergente("templates/baseNormal.fxml", "ICaja - " + usuario, "carga.fxml", "styles/main.css");
+                ViewTools.generarVentana("templates/baseNormal.fxml", "ICaja - " + usuario, "carga.fxml", "styles/main.css");
                 break;
         }
     }
 
     @FXML
     void registrarUsuario() {
-        ViewTools.ventanaEmergente("templates/registroUsuario.fxml", "ICaja - Registro de usuario", "carga.fxml", "styles/main.css");
+        ViewTools.generarVentana("templates/registroUsuario.fxml", "ICaja - Registro de usuario", "carga.fxml", "styles/main.css");
         ViewTools.cerrarVentana(txtCedulaUsuario);
     }
 

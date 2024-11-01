@@ -16,20 +16,28 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
+import java.io.IOException;
 import java.util.Objects;
 
 public class ViewTools {
 
-    // Metodo para mostrar un mensaje en pantalla
+    /**
+     * Muestra un mensaje para dar información del usuario
+     *
+     * @param title El titulo de la ventana.
+     * @param header Subtitulo de la ventana.
+     * @param message Mensaje que describe la información a dar
+     * @param type El tipo de mensaje: Alert.Alertype.<Enumeracion>, donde Enumeracion puede ser:
+     *             NONE,
+     *             INFORMATION,
+     *             WARNING,
+     *             CONFIRMATION,
+     *             ERROR;
+     */
+
     public static void mostrarMensaje(String title, String header, String message, Alert.AlertType type){
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -38,42 +46,19 @@ public class ViewTools {
         alert.showAndWait();
     }
 
-    // Metodo para abrir ventana
-//    public static void ventanaEmergente(String url, String title, String... styles) {
-//        Scene scene = new Scene(new Pane());
-//
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(url));
-//            scene = new Scene(fxmlLoader.load());
-//
-//            for (String style: styles) {
-//                scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource(style)).toExternalForm());
-//            }
-//
-//        }catch (Exception e){
-//            mostrarMensaje("Error", "Error al cargar la interfaz grafica", e.getMessage(), Alert.AlertType.ERROR);
-//            Seguimiento.registrarLog(3, "No se pudó cargar la interfaz" + e.getMessage());
-//        }
-//
-//        Stage stage = new Stage();
-//        stage.setScene(scene);
-//        stage.setTitle(title);
-//        stage.show();
-//    }
 
-    public static void ventanaEmergente(String url, String title, String urlCarga, String... styles) {
-
-        Scene escenaCarga;
-
-        if (urlCarga != null) {
-            escenaCarga = crearEscenaCarga(urlCarga);
-        } else {
-            escenaCarga = new Scene(new Pane());
-        }
-
+    /**
+     * Genera una ventana con una escena de carga y luego carga la escena principal en segundo plano.
+     * Muestra una animación de desvanecimiento (fade) durante la transición entre la escena de carga y la escena principal.
+     *
+     * @param url Ruta del archivo FXML para la escena principal.
+     * @param title Título de la ventana para la escena principal.
+     * @param urlCarga Ruta del archivo FXML de la escena de carga.
+     * @param styles Opcional. Las rutas a los archivos CSS que se deben aplicar a ambas escenas.
+     */
+    public static void generarVentana(String url, String title, String urlCarga, String... styles) {
+        Scene escenaCarga = generarEscenaCarga(urlCarga, styles);
         Stage stage = new Stage();
-
-        // Mostrar la pantalla de carga mientras se carga el contenido principal
         stage.setScene(escenaCarga);
         stage.setTitle("Cargando...");
         stage.show();
@@ -82,13 +67,8 @@ public class ViewTools {
 
         Task<Scene> cargarEscenaTask = new Task<>() {
             @Override
-            protected Scene call() throws Exception {
-                FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(url));
-                Scene scene = new Scene(fxmlLoader.load());
-                for (String style : styles) {
-                    scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource(style)).toExternalForm());
-                }
-                return scene;
+            protected Scene call() {
+                return cargarEscena(url, styles);
             }
 
             @Override
@@ -116,21 +96,40 @@ public class ViewTools {
         new Thread(cargarEscenaTask).start();
     }
 
-
-    // metodo para crear escena de carga
-    public static Scene crearEscenaCarga(String rutaFXML) {
-        Pane rootCarga;
-
+    public static Scene cargarEscena(String url, String... styles) {
         try {
-            // Cargar el diseño de la pantalla de carga desde el archivo FXML
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(rutaFXML));
-            rootCarga = fxmlLoader.load();
-        } catch (Exception e) {
-            mostrarMensaje("Error", "Error al cargar la pantalla de carga", e.getMessage(), Alert.AlertType.ERROR);
-            Seguimiento.registrarLog(3, "No se pudo cargar la pantalla de carga: " + e.getMessage());
-            rootCarga = new StackPane();  // Fallback si el FXML falla
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(url));
+            Scene scene = new Scene(fxmlLoader.load());
+            for (String style : styles) {
+                scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource(style)).toExternalForm());
+            }
+            return scene;
+        } catch (IOException ignore) {
+            return new Scene(new Pane(), 600, 400);
         }
+    }
 
+
+    /**
+     * Cierra la ventana actual a partir de un nodo de contexto.
+     *
+     * @param context Nodo dentro de la ventana que se desea cerrar.
+     */
+    public static void cerrarVentana(Node context) {
+        Stage stage = (Stage) (context).getScene().getWindow();
+        stage.close();
+    }
+
+
+    /**
+     * Genera una escena de carga con una animación de rueda giratoria.
+     *
+     * @param rutaFXML La ruta del archivo FXML que define la escena de carga.
+     * @param styles Opcional. Las rutas a los archivos de estilo CSS para aplicar a la escena.
+     * @return Una escena que muestra un indicador de carga.
+     */
+    public static Scene generarEscenaCarga(String rutaFXML, String... styles) {
+        Scene escenaCarga = cargarEscena(rutaFXML, styles);
 
         // Crear una rueda de carga
         Arc rueda = new Arc(0, 0, 40, 40, 0, 270); // Un arco de 270 grados
@@ -149,19 +148,18 @@ public class ViewTools {
         // Asegurar que el círculo se centre
         StackPane.setAlignment(rueda, Pos.CENTER);
 
-        // Agregar el círculo al diseño FXML dentro de un StackPane
-        StackPane rootCompleto = new StackPane(rootCarga, rueda);
-        return new Scene(rootCompleto);  // Ajusta el tamaño según necesites
+        // Revisar si el root es un StackPane
+        Pane root = (Pane) escenaCarga.getRoot();
+        StackPane rootCompleto = new StackPane(root, rueda);
+        return new Scene(rootCompleto, root.getPrefWidth(), root.getPrefHeight());
     }
 
 
-    // Metodo para cerrar una venta segun un nodo dado
-    public static void cerrarVentana(Node context) {
-        Stage stage = (Stage) ((Node) context).getScene().getWindow();
-        stage.close();
-    }
-
-    // Metodo para limpiar campos de texto
+    /**
+     * Limpia el texto y el texto de sugerencia (prompt) de uno o más campos de texto.
+     *
+     * @param campoDeTexto Los campos de texto que se desean limpiar.
+     */
     public static void limpiarCampos(TextField... campoDeTexto) {
         for (TextField texto : campoDeTexto) {
             texto.setText("");
@@ -169,17 +167,30 @@ public class ViewTools {
         }
     }
 
-    // Metodo para verificar si hay campos de texto vacios
-    public static boolean hayCamposVacios(String... camposDeTexto) {
+
+    /**
+     * Verifica si alguno de los campos de texto proporcionados está vacío.
+     *
+     * @param camposDeTexto Texto de los campos a verificar.
+     * @return true si todos los campos contienen texto; false si alguno está vacío.
+     */
+    public static boolean NoHayCamposVacios(String... camposDeTexto) {
         for (String texto : camposDeTexto) {
             if (texto.isEmpty() || texto.equals(" ")) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
-    // Metodo para cambiar entre varias paneles
+
+    /**
+     * Cambia la visibilidad entre paneles en una misma ventana.
+     *
+     * @param primario El panel que se debe hacer visible.
+     * @param duracion Duración en segundos de la transición de desvanecimiento.
+     * @param secundarios Los paneles que se deben ocultar.
+     */
     public static void cambiarPantalla(Pane primario, double duracion, Pane... secundarios) {
         // Verificación simple para evitar errores
         if (primario == null || secundarios == null) {
@@ -195,7 +206,13 @@ public class ViewTools {
 
     }
 
-    // Animaciones
+
+    /**
+     * Aplica una animación de desvanecimiento gradual a un nodo, haciéndolo desaparecer.
+     *
+     * @param node Nodo al cual aplicar la animación.
+     * @param duracion Duración en segundos de la animación.
+     */
     public static void fadeOut(Node node, double duracion) {
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(duracion), node);
         fadeTransition.setFromValue(1.0); // Opacidad inicial
@@ -203,6 +220,13 @@ public class ViewTools {
         fadeTransition.play();
     }
 
+
+    /**
+     * Aplica una animación de desvanecimiento gradual a un nodo, haciéndolo aparecer.
+     *
+     * @param node Nodo al cual aplicar la animación.
+     * @param duracion Duración en segundos de la animación.
+     */
     public static void fadeIn(Node node, double duracion) {
         node.setOpacity(0.0); // Asegúrate de que el nodo esté completamente invisible antes de iniciar
         FadeTransition fadeTransition = new FadeTransition(Duration.seconds(duracion), node);
@@ -210,5 +234,4 @@ public class ViewTools {
         fadeTransition.setToValue(1.0);
         fadeTransition.play();
     }
-
 }

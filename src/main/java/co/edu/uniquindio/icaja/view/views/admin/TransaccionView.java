@@ -79,7 +79,7 @@ public class TransaccionView {
         String tipo = cbTipoTransaccionAdmin.getSelectedText();
         String cuenta = String.valueOf(TipoCuenta.valueOf(cbCuentaTransaccionAdmin.getSelectedText()));
         String motivo = txtMotivoTransaccionAdmin.getText();
-        if (!ViewTools.hayCamposVacios(id,fecha,monto,motivo)) {
+        if (ViewTools.NoHayCamposVacios(id, fecha, monto, motivo)) {
            // TransaccionDto transaccionDto = new TransaccionDto(Integer.parseInt(id),fecha,Double.parseDouble(monto),tipo, TipoCuenta.valueOf(cuenta),motivo);
 
             try {

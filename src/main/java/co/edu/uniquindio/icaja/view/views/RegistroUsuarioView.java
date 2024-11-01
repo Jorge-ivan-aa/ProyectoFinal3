@@ -57,7 +57,7 @@ public class RegistroUsuarioView {
         String presupuestoMensual = txtPresupuestoUsuario.getText();
         String telefono = txtTelefonoUsuario.getText();
 
-        if (!ViewTools.hayCamposVacios(claveTransaccional)) {
+        if (ViewTools.NoHayCamposVacios(claveTransaccional)) {
             UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
             try {
                 usuarioController.crear(usuarioDto);
@@ -80,7 +80,7 @@ public class RegistroUsuarioView {
                 txtClaveTranUsuario,
                 txtPresupuestoUsuario);
 
-        ViewTools.ventanaEmergente("login.fxml", "ICaja :)", "carga.fxml", "styles/main.css", "styles/login.css");
+        ViewTools.generarVentana("login.fxml", "ICaja :)", "carga.fxml", "styles/main.css", "styles/login.css");
         ViewTools.cerrarVentana(txtCedulaUsuario);
     }
 
@@ -93,7 +93,7 @@ public class RegistroUsuarioView {
         String claveConfirmacion =  txtClaveUsuario1.getText();
         String telefono = txtTelefonoUsuario.getText();
 
-        if(!ViewTools.hayCamposVacios(nombre, cedula, correo, telefono, clave, claveConfirmacion)){
+        if(ViewTools.NoHayCamposVacios(nombre, cedula, correo, telefono, clave, claveConfirmacion)){
             if (clave.equals(claveConfirmacion)){
                 ViewTools.cambiarPantalla(pane2,0.225, pane1, pane3);
             } else {
@@ -108,7 +108,7 @@ public class RegistroUsuarioView {
     void continuar2Action() {
         String presupuestoMensual = txtPresupuestoUsuario.getText();
 
-        if(!ViewTools.hayCamposVacios(presupuestoMensual)){
+        if(ViewTools.NoHayCamposVacios(presupuestoMensual)){
             try {
                 int number = Integer.parseInt(presupuestoMensual);
                 if (number > 0) {
@@ -128,7 +128,7 @@ public class RegistroUsuarioView {
 
     @FXML
     void volverAction() {
-        ViewTools.ventanaEmergente("login.fxml", "ICaja :)", "carga.fxml", "styles/main.css", "styles/login.css");
+        ViewTools.generarVentana("login.fxml", "ICaja :)", "carga.fxml", "styles/main.css", "styles/login.css");
         ViewTools.cerrarVentana(txtCedulaUsuario);
     }
 

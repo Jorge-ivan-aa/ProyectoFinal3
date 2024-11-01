@@ -3,10 +3,7 @@ package co.edu.uniquindio.icaja.view.views.admin;
 import co.edu.uniquindio.icaja.controller.CuentaBancariaController;
 import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
-import co.edu.uniquindio.icaja.mapping.dto.CuentaBancariaDto;
-import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.model.CuentaBancaria;
-import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 import co.edu.uniquindio.icaja.utils.ViewTools;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -80,7 +77,7 @@ public class CuentaView {
 
 
 
-        if (!ViewTools.hayCamposVacios(entidad,numeroCuenta,saldo,tipoCuenta,limite,propietario)) {
+        if (ViewTools.NoHayCamposVacios(entidad, numeroCuenta, saldo, tipoCuenta, limite, propietario)) {
        //     CuentaBancariaDto cuentaBancariaDto = new CuentaBancariaDto(entidad,numeroCuenta, TipoCuenta.valueOf(tipoCuenta),Double.parseDouble(saldo),Double.parseDouble(limite), propietario);
 
             try {
@@ -114,7 +111,7 @@ public class CuentaView {
 
 
 
-        if (!ViewTools.hayCamposVacios(entidad,numeroCuenta,saldo,tipoCuenta,limite,propietario)) {
+        if (ViewTools.NoHayCamposVacios(entidad, numeroCuenta, saldo, tipoCuenta, limite, propietario)) {
             System.out.println("error aqui (cuentaview linea 118)");
            // CuentaBancariaDto cuentaBancariaDto = new CuentaBancariaDto(entidad,numeroCuenta, TipoCuenta.valueOf(tipoCuenta),Double.parseDouble(saldo),Double.parseDouble(limite), propietario);
 
@@ -142,7 +139,7 @@ public class CuentaView {
     void eliminarCuentaAction(ActionEvent event) {
         String numeroCuenta   = txtNumeroCuentaAdmin.getText();
 
-        if (!ViewTools.hayCamposVacios(numeroCuenta)) {
+        if (ViewTools.NoHayCamposVacios(numeroCuenta)) {
             try {
                 cuentaBancariaController.eliminar(numeroCuenta);
                 String msj = "Se ha eliminado la cuenta de numero " + numeroCuenta + " correctamente";

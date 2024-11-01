@@ -93,7 +93,7 @@ public class UsuarioView {
 
         boolean cambioClaves =  !clave.isEmpty() || !claveTransaccional.isEmpty();
 
-        if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  presupuestoMensual) && cambioClaves) {
+        if (ViewTools.NoHayCamposVacios(nombre, cedula, correo, telefono, presupuestoMensual) && cambioClaves) {
                 UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
             try {
                 usuarioController.actualizar(usuarioDto);
@@ -128,7 +128,7 @@ public class UsuarioView {
         String telefono = txtTelefonoAdmin.getText();
 
 
-        if (!ViewTools.hayCamposVacios(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional,  presupuestoMensual)) {
+        if (ViewTools.NoHayCamposVacios(nombre, cedula, correo, telefono, clave, claveTransaccional, presupuestoMensual)) {
             UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
 
             try {
@@ -157,7 +157,7 @@ public class UsuarioView {
     void eliminarUsuario(ActionEvent event) {
         String cedula   = txtCedulaAdmin.getText();
 
-        if (!ViewTools.hayCamposVacios(cedula)) {
+        if (ViewTools.NoHayCamposVacios(cedula)) {
             try {
                 usuarioController.eliminar(cedula);
                 String msj = "Se ha eliminado el usuario de cedula" + cedula + "correctamente";
