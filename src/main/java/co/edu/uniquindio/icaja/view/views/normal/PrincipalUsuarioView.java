@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 
 public class PrincipalUsuarioView {
@@ -35,7 +36,8 @@ public class PrincipalUsuarioView {
     private Label lbSaltoLinea;
 
     @FXML
-    private TableView<Transaccion> tvUltimasTransaccionesUsuario;
+    private ListView<Transaccion> lvListaTransaccionesUsuario;
+
 
     @FXML
     void CharlarConIaAction(ActionEvent event) {
