@@ -1,7 +1,11 @@
 package co.edu.uniquindio.icaja.factory;
 
+import co.edu.uniquindio.icaja.model.Categoria;
+import co.edu.uniquindio.icaja.model.CuentaBancaria;
 import co.edu.uniquindio.icaja.model.ICaja;
 import co.edu.uniquindio.icaja.model.Usuario;
+import co.edu.uniquindio.icaja.model.persistencia.CategoriaPersistente;
+import co.edu.uniquindio.icaja.model.persistencia.CuentaBancariaPersistente;
 import co.edu.uniquindio.icaja.model.persistencia.UsuarioPersistente;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo;
@@ -17,10 +21,14 @@ public class ModelFactory {
 
     // PERSISTENCIA
     private final UsuarioPersistente usuarioPersistente;
+    private final CuentaBancariaPersistente cuentaBancariaPersistente;
+    private final CategoriaPersistente categoriaPersistente;
 
     private ModelFactory() {
         icaja = cargaRespaldo();
         usuarioPersistente = new UsuarioPersistente();
+        cuentaBancariaPersistente = new CuentaBancariaPersistente();
+        categoriaPersistente = new CategoriaPersistente();
 
         if (icaja == null) {
             icaja = new ICaja();
@@ -40,20 +48,38 @@ public class ModelFactory {
 
     public void loadData() {
         List<Usuario> usuarios = null;
+        List<CuentaBancaria> cuentasBancarias = null;
+        List<Categoria> categorias = null;
         try {
             usuarios = usuarioPersistente.leer("usuario.txt");
+            cuentasBancarias = cuentaBancariaPersistente.leer("cuenta.txt");
+            categorias = categoriaPersistente.leer("categoria.txt");
+            
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Seguimiento.registrarLog(3, "No se han podido cargar los archivos de persistencia: " + e.getMessage());
         }
 
-        if (usuarios != null) {
-            for (Usuario usuario : usuarios) {
-                icaja.addUsuario(usuario);
-            }
-        }
+        agregarElementos(usuarios);
+        agregarElementos(cuentasBancarias);
+        agregarElementos(categorias);
 
         guardarRespaldo();
     }
+    
+    private <T> void agregarElementos(List<T> listaElementos) {
+        if (listaElementos != null) {
+            for (T elemento :listaElementos) {
+                if (elemento instanceof Usuario) {
+                    icaja.addUsuario((Usuario) elemento);
+                } else if (elemento instanceof  CuentaBancaria) {
+                    icaja.addCuentaBancaria((CuentaBancaria) elemento);
+                } else if (elemento instanceof  Categoria) {
+                    icaja.addCategoria((Categoria) elemento);
+                }
+            }
+        }
+    }
+    
 
     public void loadConfig() {
         String cedula = Persistencia.cargarConfiguracion("admin");

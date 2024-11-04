@@ -11,6 +11,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 
 @Getter
@@ -100,61 +104,12 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
 
     @Override
     public void persistir() {
-
+        List<CuentaBancaria> cuentas = new ArrayList<>(factory.getIcaja().getListaCuentaBancarias());
+        try {
+            factory.getCuentaBancariaPersistente().guardar(cuentas);
+        } catch (IOException e) {
+            registrarLog(3, "Error, no se pudo guardar la información de las cuentas bancarias: " + e.getMessage());
+        }
     }
-
-//    public CuentaBancaria crearCuentaBancaria(String entidad, String numeroCuenta, TipoCuenta tipoCuenta, double saldo, double limite) {
-//
-//        if (this.consultarCuentaBancaria(numeroCuenta) != null) {
-//
-//            registrarLog(1,"La cuenta bancaria ya existe");
-//
-//            return null;
-//        }else{
-//
-//            registrarLog(1,"Se ha creado una cuenta bancaria");
-//
-//            CuentaBancaria nuevaCuentaBancaria = new CuentaBancaria(entidad, numeroCuenta, tipoCuenta, saldo, limite);
-//            this.factory.getIcaja().addCuentaBancaria(nuevaCuentaBancaria);
-//            this.listaCuentaBancariaObservable.add(nuevaCuentaBancaria);
-//            return nuevaCuentaBancaria;
-//        }
-//    }
-
-
-//    public CuentaBancaria consultarCuentaBancaria(String numeroCuenta) {
-//        for (CuentaBancaria cuentaBancaria = this.factory.getIcaja().getListaCuentaBancarias().get(0); cuentaBancaria != null; cuentaBancaria = cuentaBancaria.getSiguiente()) {
-//            if (Objects.equals(cuentaBancaria.getNumeroCuenta(), numeroCuenta)) {
-//                return cuentaBancaria;
-//            }
-//        }
-//        return null;
-//    }
-//
-//
-//    public String eliminarCuentaBancaria(String numeroCuenta) {
-//        if (this.consultarCuentaBancaria(numeroCuenta) == null) {
-//
-//            registrarLog(1,"La cuenta que no existe");
-//
-//            return "No existe la cuenta bancaria";
-//        } else {
-//            int index = -1;
-//            ArrayList<CuentaBancaria> CuentaBancarias = factory.getIcaja().getListaCuentaBancarias();
-//            for (int i = 0; i < CuentaBancarias.size(); i++) {
-//                if (Objects.equals(CuentaBancarias.get(i).getNumeroCuenta(), numeroCuenta)) {
-//                    index = i;
-//                }
-//            }
-//
-//            registrarLog(1,"Se elimino la cuenta");
-//
-//            if (index != -1) {
-//                this.listaCuentaBancariaObservable.remove(index);
-//                CuentaBancarias.remove(index);
-//            }
-//            return "La cuenta fué eliminada correctamente :)";
-//        }
-//    }
-
+    
 }
