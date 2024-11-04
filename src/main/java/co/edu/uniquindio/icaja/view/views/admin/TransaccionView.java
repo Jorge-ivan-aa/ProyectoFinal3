@@ -7,7 +7,6 @@ import co.edu.uniquindio.icaja.model.TransaccionFactory;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 import co.edu.uniquindio.icaja.utils.ViewTools;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
-import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 public class TransaccionView {
@@ -55,16 +55,16 @@ public class TransaccionView {
     private TableView<Transaccion> tvTablaTransaccionaAdmin;
 
     @FXML
-    private MFXTextField txtFechaTransaccionAdmin;
+    private TextField txtFechaTransaccionAdmin;
 
     @FXML
-    private MFXTextField txtIdTransaccionAdmin;
+    private TextField txtIdTransaccionAdmin;
 
     @FXML
-    private MFXTextField txtMontoTransaccionAdmin;
+    private TextField txtMontoTransaccionAdmin;
 
     @FXML
-    private MFXTextField txtMotivoTransaccionAdmin;
+    private TextField txtMotivoTransaccionAdmin;
 
     @FXML
     void consultarTransaccionAction(ActionEvent event) {
