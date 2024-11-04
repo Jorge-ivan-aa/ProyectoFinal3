@@ -19,7 +19,7 @@
       <children>
          <MFXButton alignment="CENTER" onAction="#limpiarCamposCuentaAction" prefHeight="30.0" prefWidth="100.0" text=" " HBox.hgrow="ALWAYS">
             <graphic>
-               <FontAwesomeIconView glyphName="ERASER" size="24" styleClass="icon" />
+               <FontAwesomeIconView glyphName="ERASER" size="20" styleClass="icon" text="" />
             </graphic>
             <tooltip>
                <Tooltip text="Limpiar campos." />
@@ -29,7 +29,7 @@
             <HBox.margin>
                <Insets left="20.0" />
             </HBox.margin></MFXButton>
-            <MFXButton alignment="CENTER" onAction="#actualizarCuentaAction" prefHeight="30.0" prefWidth="100.0" text="Consultar" HBox.hgrow="ALWAYS">
+            <MFXButton alignment="CENTER" onAction="#actualizarCuentaAction" prefHeight="30.0" prefWidth="100.0" text="Actualizar" HBox.hgrow="ALWAYS">
             <HBox.margin>
                <Insets left="20.0" />
             </HBox.margin></MFXButton>
@@ -43,7 +43,7 @@
       <children>
          <Label prefHeight="40.0" prefWidth="96.0" text="Entidad:" />
          <TextField fx:id="txtEntidadAdmin" />
-         <Region prefHeight="34.0" prefWidth="208.0" />
+         <Region prefHeight="21.0" prefWidth="249.0" />
          <Label prefHeight="40.0" prefWidth="96.0" text="Limite:" />
          <TextField fx:id="txtLimiteAdmin" />
       </children>
@@ -58,11 +58,11 @@
          <TableColumn fx:id="tcPropietarioAdmin" prefWidth="190.66668701171875" text="Propietario" />
       </columns>
    </TableView>
-   <VBox layoutX="410.0" layoutY="32.0" prefHeight="271.0" prefWidth="249.0">
+   <VBox layoutX="410.0" layoutY="32.0" prefHeight="203.0" prefWidth="249.0">
       <children>
          <Label prefHeight="40.0" prefWidth="151.0" text="Numero de cuenta:" />
          <TextField fx:id="txtNumeroCuentaAdmin" />
-         <Region prefHeight="34.0" prefWidth="208.0" />
+         <Region prefHeight="21.0" prefWidth="249.0" />
          <Label prefHeight="40.0" prefWidth="96.0" text="Propietario:" />
          <ComboBox fx:id="cbxPropietarioCuentaAdmin" prefHeight="36.0" prefWidth="251.0" />
       </children>
@@ -71,7 +71,7 @@
       <children>
          <Label prefHeight="40.0" prefWidth="96.0" text="Saldo:" />
          <TextField fx:id="txtSaldoAdmin" />
-         <Region prefHeight="34.0" prefWidth="208.0" />
+         <Region prefHeight="21.0" prefWidth="249.0" />
          <Label prefHeight="40.0" prefWidth="141.0" text="Tipo de cuenta:" />
          <ComboBox fx:id="cbxTipoCuentaAdmin" prefHeight="36.0" prefWidth="251.0" />
       </children>
