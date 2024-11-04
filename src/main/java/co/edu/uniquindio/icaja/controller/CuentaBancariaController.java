@@ -76,17 +76,48 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
 
     @Override
     public void actualizar(CuentaBancariaDto cuentaBancariaDto) throws ElementoNoExiste {
-//        try {
-//            this.consultar(cuentaBancariaDto.entidad());
-//            registrarLog(2,"No se pudo Actualizar el elemento, la cuenta bancaria no existe :(");
-//            throw new ElementoYaExiste("No se pudo crear el elemento, la cuenta bancaria ya existe");
-//
-//        } catch (ElementoNoExiste ignored) {
-//            CuentaBancaria nuevaCuentaBancaria = CuentaBancariaMapper.cuentaBancariaDtoToCuentaBancaria(cuentaBancariaDto);
-//            factory.getIcaja().addCuentaBancaria(nuevaCuentaBancaria);
-//            listaCuentaBancariaObservable.add(nuevaCuentaBancaria);
-//            registrarLog(1,"Se ha actualizado una cuenta bancaria exitosamente :)");
-//        }
+        try {
+            CuentaBancaria actualizable = this.consultar(cuentaBancariaDto.entidad());
+            actualizable.setEntidad(cuentaBancariaDto.entidad());
+            actualizable.setLimite(cuentaBancariaDto.limite());
+            actualizable.setSaldo(cuentaBancariaDto.saldo());
+            actualizable.setTipoCuenta(cuentaBancariaDto.tipoCuenta());
+            actualizable.setPropietario(cuentaBancariaDto.propietario());
+
+            if (!cuentaBancariaDto.entidad().equals(actualizable.getEntidad())) {
+                actualizable.setEntidad(cuentaBancariaDto.entidad());
+            }
+
+            if (!cuentaBancariaDto.limite().equals(actualizable.getLimite())) {
+                actualizable.setLimite(cuentaBancariaDto.limite());
+            }
+
+            if (!cuentaBancariaDto.saldo().equals(actualizable.getSaldo())) {
+                actualizable.setSaldo(cuentaBancariaDto.saldo());
+            }
+
+            if (!cuentaBancariaDto.tipoCuenta().equals(actualizable.getTipoCuenta())) {
+                actualizable.setTipoCuenta(cuentaBancariaDto.tipoCuenta());
+            }
+
+            if (!cuentaBancariaDto.propietario().equals(actualizable.getPropietario())) {
+                actualizable.setPropietario(cuentaBancariaDto.propietario());
+            }
+
+            actualizable.setEntidad(cuentaBancariaDto.entidad());
+            sincronizarData();
+            registrarLog(1,"Se ha actualizado una cuenta bancaria exitosamente :)");
+
+            this.consultar(cuentaBancariaDto.entidad());
+            registrarLog(2,"No se pudo Actualizar el elemento, la cuenta bancaria no existe :(");
+            throw new ElementoYaExiste("No se pudo crear el elemento, la cuenta bancaria ya existe");
+
+        } catch (ElementoNoExiste ignored) {
+            CuentaBancaria nuevaCuentaBancaria = CuentaBancariaMapper.cuentaBancariaDtoToCuentaBancaria(cuentaBancariaDto);
+            factory.getIcaja().addCuentaBancaria(nuevaCuentaBancaria);
+            listaCuentaBancariaObservable.add(nuevaCuentaBancaria);
+            registrarLog(1,"Se ha actualizado una cuenta bancaria exitosamente :)");
+        }
     }
 
 

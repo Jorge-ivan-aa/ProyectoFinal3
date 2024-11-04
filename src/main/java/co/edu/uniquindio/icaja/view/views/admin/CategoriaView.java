@@ -1,6 +1,7 @@
 package co.edu.uniquindio.icaja.view.views.admin;
 
 import io.github.palexdev.materialfx.controls.MFXTextField;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -71,7 +72,6 @@ public class CategoriaView {
     private TextField txtNombreCategoriaAdmin;
 
 
-
     @FXML
     void consultarCategoriaAction() {
 
@@ -80,10 +80,10 @@ public class CategoriaView {
     @FXML
     void limpiarCamposCategoriaAction() {
 //Funcionando
-        ViewTools.limpiarCampos(txtNombreCategoriaAdmin, 
+        ViewTools.limpiarCampos(txtNombreCategoriaAdmin,
                 txaDescripcionCategoriaAdmin);
 
-        cbxTipoCategoriaAdmin.getSelectionModel().select(NINGUNO);
+        cbxTipoCategoriaAdmin.getSelectionModel().clearSelection();
 
     }
 
@@ -95,28 +95,23 @@ public class CategoriaView {
 
 
         if (ViewTools.NoHayCamposVacios(nombre, descripcion)) {
-            if (!tipo.equals(TipoCategoria.NINGUNO)) {
 
-                CategoriaDto categoriaDto = new CategoriaDto(nombre, descripcion, tipo);
+            CategoriaDto categoriaDto = new CategoriaDto(nombre, descripcion, tipo);
 
-                try {
-                    categoriaController.crear(categoriaDto);
-                    String msj = "Se ha creado la categoria con exito " + nombre + ".";
-                    ViewTools.mostrarMensaje("Informacion: ", null, msj, Alert.AlertType.INFORMATION);
-                } catch (ElementoYaExiste e) {
-                    ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
-                }
-            }else {
-                ViewTools.mostrarMensaje("Error", null, "El tipo de categoria no puede ser NINGUNO", Alert.AlertType.ERROR);
+            try {
+                categoriaController.crear(categoriaDto);
+                String msj = "Se ha creado la categoria con exito " + nombre + ".";
+                ViewTools.mostrarMensaje("Informacion: ", null, msj, Alert.AlertType.INFORMATION);
+            } catch (ElementoYaExiste e) {
+                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
             }
         } else {
             ViewTools.mostrarMensaje("Error", null, "Hay campos vacios", Alert.AlertType.ERROR);
 
         }
 
-        ViewTools.limpiarCampos(txtNombreCategoriaAdmin, 
+        ViewTools.limpiarCampos(txtNombreCategoriaAdmin,
                 txaDescripcionCategoriaAdmin);
-
 
     }
 
@@ -160,14 +155,14 @@ public class CategoriaView {
 
     private void initDataBinging() {
         tcNombreCategoriaAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
-        tcTipoCategoriaAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<TipoCategoria>(cellData.getValue().getTipoCategoria()));
+        tcTipoCategoriaAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTipoCategoria()));
         tcDescripcionCategoriaAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescripcion()));
     }
 
     private void listenerSelectionCategorias() {
 
         tvCategoriaAdmin.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection)
-                -> this.mostrarInformacion((Categoria)newSelection));
+                -> this.mostrarInformacion((Categoria) newSelection));
     }
 
     private void mostrarInformacion(Categoria seleccionado) {
@@ -179,7 +174,6 @@ public class CategoriaView {
             cbxTipoCategoriaAdmin.setValue(seleccionado.getTipoCategoria());
         }
     }
-
 
 
 }
