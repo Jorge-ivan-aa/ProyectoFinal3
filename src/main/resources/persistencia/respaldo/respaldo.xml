@@ -5,79 +5,16 @@
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.Categoria">
      <void property="descripcion">
-      <string>sdasdas</string>
+      <string>Se paga nomina empleados suteq</string>
      </void>
      <void property="nombre">
-      <string>sdas</string>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Categoria">
-     <void property="descripcion">
-      <string>ddd</string>
-     </void>
-     <void property="nombre">
-      <string>ddd</string>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Categoria">
-     <void property="descripcion">
-      <string>hg</string>
-     </void>
-     <void property="nombre">
-      <string>lkjj</string>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Categoria">
-     <void property="descripcion">
-      <string>dfa</string>
-     </void>
-     <void property="nombre">
-      <string>dfad</string>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Categoria">
-     <void property="descripcion">
-      <string>fadf</string>
-     </void>
-     <void property="nombre">
-      <string>dfaf</string>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Categoria">
-     <void property="descripcion">
-      <string>dfa</string>
-     </void>
-     <void property="nombre">
-      <string>adfa</string>
+      <string>PagoNomina</string>
      </void>
      <void property="tipoCategoria">
-      <object class="java.lang.Enum" id="TipoCategoria0" method="valueOf">
+      <object class="java.lang.Enum" method="valueOf">
        <class>co.edu.uniquindio.icaja.model.enums.TipoCategoria</class>
        <string>AHORRO</string>
       </object>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Categoria">
-     <void property="descripcion">
-      <string>asas</string>
-     </void>
-     <void property="nombre">
-      <string>asas</string>
-     </void>
-     <void property="tipoCategoria">
-      <object idref="TipoCategoria0"/>
      </void>
     </object>
    </void>
@@ -170,7 +107,7 @@
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$9U6hnvCHuXqLc359pTjizeLz2JEics/ufBS52YkoWSquxkcdGHmXW</string>
+      <string>$2a$10$EybOp0wfwTxG4uhxaCWUk.Gyg4oNupxCnFI5Me9v.IhImK1ChavCa</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>

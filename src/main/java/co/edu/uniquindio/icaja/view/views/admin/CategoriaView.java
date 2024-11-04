@@ -12,12 +12,14 @@ import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.mapping.dto.CategoriaDto;
 import co.edu.uniquindio.icaja.model.Categoria;
 import co.edu.uniquindio.icaja.utils.ViewTools;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import javafx.scene.control.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -48,13 +50,16 @@ public class CategoriaView {
     private AnchorPane categorialpanel;
 
     @FXML
+    private ComboBox<TipoCategoria> cbxTipoCategoriaAdmin;
+
+    @FXML
     private TableColumn<Categoria, String> tcDescripcionCategoriaAdmin;
 
     @FXML
     private TableColumn<Categoria, String> tcNombreCategoriaAdmin;
 
     @FXML
-    private TableColumn<Categoria, String> tcTipoCategoriaAdmin;
+    private TableColumn<Categoria, TipoCategoria> tcTipoCategoriaAdmin;
 
     @FXML
     private TableView<Categoria> tvCategoriaAdmin;
@@ -63,105 +68,60 @@ public class CategoriaView {
     private TextArea txaDescripcionCategoriaAdmin;
 
     @FXML
-    private MFXTextField txtNombreCategoriaAdmin;
-
-    @FXML
-    private MFXTextField txtTipoCategoriaAdmin;
+    private TextField txtNombreCategoriaAdmin;
 
 
 
     @FXML
-    void consultarCategoriaAction(ActionEvent event) {
+    void consultarCategoriaAction() {
 
     }
 
     @FXML
-    void crearCategoriaAction(ActionEvent event) {
+    void limpiarCamposCategoriaAction() {
+//Funcionando
+        ViewTools.limpiarCampos(txtNombreCategoriaAdmin, 
+                txaDescripcionCategoriaAdmin);
+
+        cbxTipoCategoriaAdmin.getSelectionModel().select(NINGUNO);
+
+    }
+
+    @FXML
+    void crearCategoriaAction() {
         String nombre = txtNombreCategoriaAdmin.getText();
         String descripcion = txaDescripcionCategoriaAdmin.getText();
-        String tipo = txtTipoCategoriaAdmin.getText();
+        TipoCategoria tipo = cbxTipoCategoriaAdmin.getValue();
 
 
-        if (ViewTools.NoHayCamposVacios(nombre, descripcion, tipo)) {
-            CategoriaDto categoriaDto = new CategoriaDto(nombre, descripcion, TipoCategoria.AHORRO);
+        if (ViewTools.NoHayCamposVacios(nombre, descripcion)) {
+            if (!tipo.equals(TipoCategoria.NINGUNO)) {
 
-            if (tipo.equals("gastos")) {
+                CategoriaDto categoriaDto = new CategoriaDto(nombre, descripcion, tipo);
 
-                categoriaDto = new CategoriaDto(nombre, descripcion, GASTO);
-
-            } else if (tipo.equals("ingresos")) {
-
-                categoriaDto = new CategoriaDto(nombre, descripcion, TipoCategoria.INGRESO);
-
-            } else if (tipo.equals("ahorros")) {
-
-                categoriaDto = new CategoriaDto(nombre, descripcion, AHORRO);
+                try {
+                    categoriaController.crear(categoriaDto);
+                    String msj = "Se ha creado la categoria con exito " + nombre + ".";
+                    ViewTools.mostrarMensaje("Informacion: ", null, msj, Alert.AlertType.INFORMATION);
+                } catch (ElementoYaExiste e) {
+                    ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+                }
+            }else {
+                ViewTools.mostrarMensaje("Error", null, "El tipo de categoria no puede ser NINGUNO", Alert.AlertType.ERROR);
             }
-            try {
-                categoriaController.crear(categoriaDto);
-                String msj = "Se ha creado la categoria con exito " + nombre + ".";
-                ViewTools.mostrarMensaje("Informacion: ", null, msj, Alert.AlertType.INFORMATION);
-            } catch (ElementoYaExiste e) {
-                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
-            }
-
         } else {
             ViewTools.mostrarMensaje("Error", null, "Hay campos vacios", Alert.AlertType.ERROR);
 
         }
 
-        ViewTools.limpiarCampos(txtNombreCategoriaAdmin,
-                txtTipoCategoriaAdmin);
+        ViewTools.limpiarCampos(txtNombreCategoriaAdmin, 
+                txaDescripcionCategoriaAdmin);
 
-        ViewTools.limpiarCamposArea(txaDescripcionCategoriaAdmin);
 
     }
 
-//    @FXML
-//    void actualizarCategoriaAction(ActionEvent event) {
-//
-//        String nombre = txtNombreCategoriaAdmin.getText();
-//        String descripcion = txaDescripcionCategoriaAdmin.getText();
-//        String tipo = txtTipoCategoriaAdmin.getText();
-//
-//        TipoCategoria tipoReal = null;
-//
-//        if (tipo.equals("gastos")) {
-//
-//            tipoReal = TipoCategoria.GASTO;
-//
-//        } else if (tipo.equals("ingresos")) {
-//
-//            tipoReal = TipoCategoria.INGRESO;
-//
-//        } else if (tipo.equals("ahorros")) {
-//
-//            tipoReal = TipoCategoria.AHORRO;
-//        }
-//
-//        if (ViewTools.NoHayCamposVacios(nombre, descripcion, tipo)) {
-//            CategoriaDto categoriaDto = new CategoriaDto(nombre, descripcion, tipoReal);
-//
-//            try {
-//                categoriaController.actualizar(categoriaDto);
-//                String msj = "Se ha actualizado la categoria con exito " + nombre + ".";
-//                ViewTools.mostrarMensaje("Informacion: ", null, msj, Alert.AlertType.INFORMATION);
-//            } catch (ElementoNoExiste e) {
-//                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
-//            }
-//
-//        } else {
-//            ViewTools.mostrarMensaje("Error", null, "Hay campos vacios", Alert.AlertType.ERROR);
-//        }
-//
-//        ViewTools.limpiarCampos(txtNombreCategoriaAdmin,
-//                txtTipoCategoriaAdmin);
-//
-//        ViewTools.limpiarCamposArea(txaDescripcionCategoriaAdmin);
-//    }
-
     @FXML
-    void EliminarCategoriaAction(ActionEvent event) {
+    void eliminarCategoriaAction() {
 
         String nombre = txtNombreCategoriaAdmin.getText();
 
@@ -180,14 +140,14 @@ public class CategoriaView {
 
 
         ViewTools.limpiarCampos(txtNombreCategoriaAdmin,
-                txtTipoCategoriaAdmin);
+                txaDescripcionCategoriaAdmin);
 
-        ViewTools.limpiarCamposArea(txaDescripcionCategoriaAdmin);
 
     }
 
     @FXML
     void initialize() {
+        cbxTipoCategoriaAdmin.getItems().addAll(TipoCategoria.values());
         initview();
     }
 
@@ -200,7 +160,7 @@ public class CategoriaView {
 
     private void initDataBinging() {
         tcNombreCategoriaAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
-        tcTipoCategoriaAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoCategoria().toString()));
+        tcTipoCategoriaAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<TipoCategoria>(cellData.getValue().getTipoCategoria()));
         tcDescripcionCategoriaAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescripcion()));
     }
 
@@ -216,18 +176,10 @@ public class CategoriaView {
 
             txtNombreCategoriaAdmin.setText(seleccionado.getNombre());
             txaDescripcionCategoriaAdmin.setText(seleccionado.getDescripcion());
-            txtTipoCategoriaAdmin.setText(seleccionado.getTipoCategoria().toString());
+            cbxTipoCategoriaAdmin.setValue(seleccionado.getTipoCategoria());
         }
     }
 
-    @FXML
-    void limpiarCamposCategoriaAction(ActionEvent event) {
-//Funcionando
-        ViewTools.limpiarCampos(txtNombreCategoriaAdmin,
-                txtTipoCategoriaAdmin);
 
-//        ViewTools.limpiarCamposArea(txaDescripcionCategoriaAdmin);
-
-    }
 
 }
