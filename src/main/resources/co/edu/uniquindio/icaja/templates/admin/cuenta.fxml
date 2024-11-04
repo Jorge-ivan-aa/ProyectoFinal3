@@ -1,132 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
-<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="panelCuenta" prefHeight="626" prefWidth="1073" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.CuentaView">
-   <children>
-      <SplitPane dividerPositions="0.5" layoutX="-1.0" orientation="VERTICAL" prefHeight="615.0" prefWidth="1058.0">
-         <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-radius: 10;">
-               <children>
-                  <GridPane layoutX="16.0" layoutY="-1.0" prefHeight="307.0" prefWidth="1025.0" style="-fx-background-radius: 10;">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="201.73330688476562" minWidth="10.0" prefWidth="194.2666015625" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.7333984375" minWidth="10.0" prefWidth="185.7333984375" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="210.8665771484375" minWidth="10.0" prefWidth="210.8665771484375" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="212.46661376953125" minWidth="10.0" prefWidth="198.93342285156245" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.06658935546875" minWidth="10.0" prefWidth="197.53338623046875" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Label text="Entidad:" GridPane.valignment="BOTTOM">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Número de cuenta:" GridPane.columnIndex="2" GridPane.valignment="BOTTOM">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Saldo:" GridPane.columnIndex="4" GridPane.valignment="BOTTOM">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Límite:" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Tipo de Cuenta:" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="txtEntidadAdmin" alignment="CENTER" prefWidth="166.0" style="-fx-background-radius: 10;" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="txtLimiteAdmin" style="-fx-background-radius: 10;" GridPane.rowIndex="3" GridPane.valignment="TOP">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="txtNumeroCuentaAdmin" style="-fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="txtSaldoAdmin" style="-fx-background-radius: 10;" GridPane.columnIndex="4" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </TextField>
-                        <Button mnemonicParsing="false" onAction="#crearCuentaAction" prefHeight="40.0" prefWidth="114.0" style="-fx-background-radius: 10;" text="Crear " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#ActualizarCuentaAction" prefHeight="40.0" prefWidth="116.0" style="-fx-background-radius: 10;" text="Actualizar" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#eliminarCuentaAction" prefHeight="40.0" prefWidth="116.0" style="-fx-background-radius: 10;" text="Eliminar" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <MFXComboBox fx:id="cbPropietarioAdmin" floatMode="BORDER" onAction="#seleccionPropietarioAction" prefHeight="13.0" prefWidth="165.0" GridPane.columnIndex="4" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-                        <Label prefHeight="18.0" prefWidth="114.0" text="Propietario:" GridPane.columnIndex="4" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <MFXComboBox fx:id="cbTipoCuentaAdmin" floatMode="ABOVE" onAction="#seleccionTipoCuentaAction" prefHeight="15.0" prefWidth="184.0" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="TOP" />
-                        <MFXButton depthLevel="LEVEL1" onAction="#LimpiarCamposCuentaAction" prefHeight="40.0" prefWidth="114.0" text="Limpiar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </MFXButton>
-                     </children>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-radius: 10;">
-               <children>
-                  <TableView fx:id="tvTablaCuentasAdmin" layoutX="14.0" layoutY="14.0" prefHeight="302.0" prefWidth="1055.0" style="-fx-background-radius: 10;">
-                     <columns>
-                        <TableColumn fx:id="tcEntidadAdmin" prefWidth="131.2000060081482" style="-fx-background-radius: 10;" text="Entidad" />
-                        <TableColumn fx:id="tcNumeroCuentaAdmin" prefWidth="160.00006103515625" style="-fx-background-radius: 10;" text="N. Cuenta" />
-                        <TableColumn fx:id="tcSaldoAdmin" prefWidth="185.60003662109375" style="-fx-background-radius: 10;" text="Saldo" />
-                        <TableColumn fx:id="tcLimiteAdmin" prefWidth="192.800048828125" style="-fx-background-radius: 10;" text="Límite" />
-                        <TableColumn fx:id="tcTipoCuentaAdmin" prefWidth="149.60009765625" style="-fx-background-radius: 10;" text="Tipo Cuenta" />
-                        <TableColumn fx:id="tcPropietarioAdmin" prefWidth="75.0" text="Propietario" />
-                     </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-         </items>
-      </SplitPane>
-   </children>
+<AnchorPane fx:id="panelCuenta" prefHeight="626" prefWidth="1073" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.CuentaView">
+   <HBox alignment="CENTER" layoutX="281.0" layoutY="243.0" prefHeight="47.0" prefWidth="510.0">
+      <children>
+         <MFXButton alignment="CENTER" onAction="#limpiarCamposCuentaAction" prefHeight="30.0" prefWidth="100.0" text=" " HBox.hgrow="ALWAYS">
+            <graphic>
+               <FontAwesomeIconView glyphName="ERASER" size="24" styleClass="icon" />
+            </graphic>
+            <tooltip>
+               <Tooltip text="Limpiar campos." />
+            </tooltip>
+         </MFXButton>
+            <MFXButton alignment="CENTER" onAction="#crearCuentaAction" prefHeight="30.0" prefWidth="100.0" text="Crear" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+               <Insets left="20.0" />
+            </HBox.margin></MFXButton>
+            <MFXButton alignment="CENTER" onAction="#actualizarCuentaAction" prefHeight="30.0" prefWidth="100.0" text="Consultar" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+               <Insets left="20.0" />
+            </HBox.margin></MFXButton>
+            <MFXButton alignment="CENTER" onAction="#eliminarCuentaAction" prefHeight="30.0" prefWidth="100.0" text="Eliminar" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+               <Insets left="20.0" />
+            </HBox.margin></MFXButton>
+      </children>
+   </HBox>
+   <VBox layoutX="18.0" layoutY="33.0" prefHeight="271.0" prefWidth="249.0">
+      <children>
+         <Label prefHeight="40.0" prefWidth="96.0" text="Entidad:" />
+         <TextField fx:id="txtEntidadAdmin" />
+         <Region prefHeight="34.0" prefWidth="208.0" />
+         <Label prefHeight="40.0" prefWidth="96.0" text="Limite:" />
+         <TextField fx:id="txtLimiteAdmin" />
+      </children>
+   </VBox>
+   <TableView fx:id="tvTablaCuentasAdmin" layoutX="14.0" layoutY="316.0" prefHeight="302.0" prefWidth="1046.0" style="-fx-background-radius: 10;">
+      <columns>
+         <TableColumn fx:id="tcEntidadAdmin" prefWidth="131.2000060081482" style="-fx-background-radius: 10;" text="Entidad" />
+         <TableColumn fx:id="tcNumeroCuentaAdmin" prefWidth="160.00006103515625" style="-fx-background-radius: 10;" text="N. Cuenta" />
+         <TableColumn fx:id="tcSaldoAdmin" prefWidth="185.60003662109375" style="-fx-background-radius: 10;" text="Saldo" />
+         <TableColumn fx:id="tcLimiteAdmin" prefWidth="192.800048828125" style="-fx-background-radius: 10;" text="Límite" />
+         <TableColumn fx:id="tcTipoCuentaAdmin" prefWidth="181.33331298828125" style="-fx-background-radius: 10;" text="Tipo Cuenta" />
+         <TableColumn fx:id="tcPropietarioAdmin" prefWidth="190.66668701171875" text="Propietario" />
+      </columns>
+   </TableView>
+   <VBox layoutX="410.0" layoutY="32.0" prefHeight="271.0" prefWidth="249.0">
+      <children>
+         <Label prefHeight="40.0" prefWidth="151.0" text="Numero de cuenta:" />
+         <TextField fx:id="txtNumeroCuentaAdmin" />
+         <Region prefHeight="34.0" prefWidth="208.0" />
+         <Label prefHeight="40.0" prefWidth="96.0" text="Propietario:" />
+         <ComboBox fx:id="cbxPropietarioCuentaAdmin" prefHeight="36.0" prefWidth="251.0" />
+      </children>
+   </VBox>
+   <VBox layoutX="809.0" layoutY="32.0" prefHeight="271.0" prefWidth="249.0">
+      <children>
+         <Label prefHeight="40.0" prefWidth="96.0" text="Saldo:" />
+         <TextField fx:id="txtSaldoAdmin" />
+         <Region prefHeight="34.0" prefWidth="208.0" />
+         <Label prefHeight="40.0" prefWidth="141.0" text="Tipo de cuenta:" />
+         <ComboBox fx:id="cbxTipoCuentaAdmin" prefHeight="36.0" prefWidth="251.0" />
+      </children>
+   </VBox>
 </AnchorPane>
