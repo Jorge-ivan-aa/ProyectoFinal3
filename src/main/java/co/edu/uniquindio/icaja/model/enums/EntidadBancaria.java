@@ -14,8 +14,9 @@ public enum EntidadBancaria {
     SCOTIABANK_COLPATRIA("Scotiabank Colpatria"),
     ITAU("Itaú"),
     BANCO_GNB_SUDAMERIS("Banco GNB Sudameris"),
-    CITI_BANK("Citi Bank"),
-    BANCO_AGRARIO("Banco Agrario");
+    CITY_BANK("Citi Bank"),
+    BANCO_AGRARIO("Banco Agrario"),
+    LULOBANK("Lulobank");
 
     private final String nombre;
     EntidadBancaria(String nombre) {

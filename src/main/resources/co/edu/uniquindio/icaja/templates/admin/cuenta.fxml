@@ -42,7 +42,7 @@
    <VBox layoutX="18.0" layoutY="33.0" prefHeight="271.0" prefWidth="249.0">
       <children>
          <Label prefHeight="40.0" prefWidth="96.0" text="Entidad:" />
-         <TextField fx:id="txtEntidadAdmin" />
+         <ComboBox fx:id="cbxEntidadAdmin" prefHeight="36.0" prefWidth="251.0" />
          <Region prefHeight="21.0" prefWidth="249.0" />
          <Label prefHeight="40.0" prefWidth="96.0" text="Limite:" />
          <TextField fx:id="txtLimiteAdmin" />

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.icaja.model;
 
+import co.edu.uniquindio.icaja.model.enums.EntidadBancaria;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 
 import java.io.Serializable;
@@ -13,7 +14,7 @@ import lombok.NoArgsConstructor;
 @ToString
 @NoArgsConstructor
 public class CuentaBancaria implements Serializable {
-    private String entidad;
+    private EntidadBancaria entidad;
     private String numeroCuenta;
     private TipoCuenta tipoCuenta;
     private double saldo;
@@ -21,7 +22,7 @@ public class CuentaBancaria implements Serializable {
     private Usuario propietario;
     public static final long serialVersionID = 7L;
 
-    public CuentaBancaria(String entidad, String numeroCuenta, TipoCuenta tipoCuenta, double saldo, double limite, Usuario propietario) {
+    public CuentaBancaria(EntidadBancaria entidad, String numeroCuenta, TipoCuenta tipoCuenta, double saldo, double limite, Usuario propietario) {
         this.entidad = entidad;
         this.numeroCuenta = numeroCuenta;
         this.tipoCuenta = tipoCuenta;

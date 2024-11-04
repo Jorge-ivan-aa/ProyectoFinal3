@@ -23,7 +23,10 @@
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.CuentaBancaria">
      <void property="entidad">
-      <string>Nu</string>
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.EntidadBancaria</class>
+       <string>DAVIVIENDA</string>
+      </object>
      </void>
      <void property="limite">
       <double>700000.0</double>
@@ -62,7 +65,7 @@
      <void property="tipoCuenta">
       <object class="java.lang.Enum" method="valueOf">
        <class>co.edu.uniquindio.icaja.model.enums.TipoCuenta</class>
-       <string>CREDITO</string>
+       <string>DEBITO</string>
       </object>
      </void>
     </object>
@@ -70,10 +73,13 @@
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.CuentaBancaria">
      <void property="entidad">
-      <string>Bancolombia</string>
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.EntidadBancaria</class>
+       <string>BANCO_DE_BOGOTA</string>
+      </object>
      </void>
      <void property="limite">
-      <double>3000.0</double>
+      <double>4000000.0</double>
      </void>
      <void property="numeroCuenta">
       <string>70098003234</string>
@@ -82,12 +88,12 @@
       <object idref="Usuario0"/>
      </void>
      <void property="saldo">
-      <double>3000.0</double>
+      <double>4500000.0</double>
      </void>
      <void property="tipoCuenta">
       <object class="java.lang.Enum" method="valueOf">
        <class>co.edu.uniquindio.icaja.model.enums.TipoCuenta</class>
-       <string>DEBITO</string>
+       <string>CREDITO</string>
       </object>
      </void>
     </object>
@@ -187,7 +193,7 @@
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$qs6VAvVV2Pad2pbMS.PBXuWnPAV1cLp8Vful.var4ytBOhCRqbNrK</string>
+      <string>$2a$10$5jEIdzkmpsykI8AA1040J.uCW4Ges42TC5QkTIeUpmDalP8R9Ga5.</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>
