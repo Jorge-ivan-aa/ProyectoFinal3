@@ -6,11 +6,8 @@ import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.mapping.mappers.UsuarioMapper;
-import co.edu.uniquindio.icaja.model.Sesion;
 import co.edu.uniquindio.icaja.model.Usuario;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
-
-import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
