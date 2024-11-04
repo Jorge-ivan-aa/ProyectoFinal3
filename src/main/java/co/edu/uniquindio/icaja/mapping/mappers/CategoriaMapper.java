@@ -10,8 +10,7 @@ public class CategoriaMapper {
         return new CategoriaDto(
                 categoria.getNombre(),
                 categoria.getDescripcion(),
-                categoria.getTipoCategoria(),
-                categoria.getTransacciones()
+                categoria.getTipoCategoria()
 
         );
     }
@@ -19,8 +18,7 @@ public class CategoriaMapper {
         return new Categoria(
                 categoriaDto.nombre(),
                 categoriaDto.descripcion(),
-                categoriaDto.tipoCategoria(),
-                categoriaDto.transacciones()
+                categoriaDto.tipoCategoria()
         );
     }
 

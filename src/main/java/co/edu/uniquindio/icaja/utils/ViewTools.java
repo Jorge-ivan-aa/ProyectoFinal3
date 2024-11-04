@@ -2,6 +2,7 @@ package co.edu.uniquindio.icaja.utils;
 
 import co.edu.uniquindio.icaja.App;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
 import javafx.concurrent.Task;
@@ -10,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -167,6 +169,13 @@ public class ViewTools {
         }
     }
 
+    public static void limpiarCamposArea(TextArea... campoDeTexto) {
+        for (TextArea texto : campoDeTexto) {
+            texto.setText("");
+            texto.setPromptText("");
+        }
+    }
+
 
     /**
      * Verifica si alguno de los campos de texto proporcionados está vacío.
@@ -234,4 +243,6 @@ public class ViewTools {
         fadeTransition.setToValue(1.0);
         fadeTransition.play();
     }
+
+
 }
