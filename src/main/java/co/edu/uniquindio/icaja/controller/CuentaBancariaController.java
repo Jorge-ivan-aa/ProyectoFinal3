@@ -23,9 +23,13 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
         this.factory = ModelFactory.getInstance();
         this.listaCuentaBancariaObservable = FXCollections.observableArrayList();
         this.sincronizarData();
+        this.persistir();
+        factory.guardarRespaldo();
+        registrarLog(1,"Se sincronizaron las cuentas bancarias.");
     }
 
     public void sincronizarData() {
+        listaCuentaBancariaObservable.clear();
         this.listaCuentaBancariaObservable.addAll(this.factory.getIcaja().getListaCuentaBancarias());
         registrarLog(1,"Se sincronizaron las cuentas bancarias");
     }
@@ -33,7 +37,7 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
     @Override
     public void crear(CuentaBancariaDto cuentaBancariaDto) throws ElementoYaExiste {
         try {
-            this.consultar(cuentaBancariaDto.entidad());
+            this.consultar(cuentaBancariaDto.numeroCuenta());
             registrarLog(2,"No se pudo crear el elemento, la cuenta bancaria ya existe :(");
             throw new ElementoYaExiste("No se pudo crear el elemento, la cuenta bancaria ya existe");
 
@@ -77,46 +81,18 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
     @Override
     public void actualizar(CuentaBancariaDto cuentaBancariaDto) throws ElementoNoExiste {
         try {
-            CuentaBancaria actualizable = this.consultar(cuentaBancariaDto.entidad());
+            CuentaBancaria actualizable = this.consultar(cuentaBancariaDto.numeroCuenta());
             actualizable.setEntidad(cuentaBancariaDto.entidad());
             actualizable.setLimite(cuentaBancariaDto.limite());
             actualizable.setSaldo(cuentaBancariaDto.saldo());
             actualizable.setTipoCuenta(cuentaBancariaDto.tipoCuenta());
             actualizable.setPropietario(cuentaBancariaDto.propietario());
-
-            if (!cuentaBancariaDto.entidad().equals(actualizable.getEntidad())) {
-                actualizable.setEntidad(cuentaBancariaDto.entidad());
-            }
-
-            if (!cuentaBancariaDto.limite().equals(actualizable.getLimite())) {
-                actualizable.setLimite(cuentaBancariaDto.limite());
-            }
-
-            if (!cuentaBancariaDto.saldo().equals(actualizable.getSaldo())) {
-                actualizable.setSaldo(cuentaBancariaDto.saldo());
-            }
-
-            if (!cuentaBancariaDto.tipoCuenta().equals(actualizable.getTipoCuenta())) {
-                actualizable.setTipoCuenta(cuentaBancariaDto.tipoCuenta());
-            }
-
-            if (!cuentaBancariaDto.propietario().equals(actualizable.getPropietario())) {
-                actualizable.setPropietario(cuentaBancariaDto.propietario());
-            }
-
-            actualizable.setEntidad(cuentaBancariaDto.entidad());
             sincronizarData();
-            registrarLog(1,"Se ha actualizado una cuenta bancaria exitosamente :)");
+            registrarLog(1,"Se ha actualizado la cuenta bancaria de numero" + cuentaBancariaDto.numeroCuenta() + " exitosamente :)");
 
-            this.consultar(cuentaBancariaDto.entidad());
-            registrarLog(2,"No se pudo Actualizar el elemento, la cuenta bancaria no existe :(");
-            throw new ElementoYaExiste("No se pudo crear el elemento, la cuenta bancaria ya existe");
-
-        } catch (ElementoNoExiste ignored) {
-            CuentaBancaria nuevaCuentaBancaria = CuentaBancariaMapper.cuentaBancariaDtoToCuentaBancaria(cuentaBancariaDto);
-            factory.getIcaja().addCuentaBancaria(nuevaCuentaBancaria);
-            listaCuentaBancariaObservable.add(nuevaCuentaBancaria);
-            registrarLog(1,"Se ha actualizado una cuenta bancaria exitosamente :)");
+        } catch (ElementoNoExiste e) {
+            registrarLog(2,"No se pudo actualizar el elemento, " + e.getMessage());
+            throw new ElementoNoExiste("No se pudo actualizar el elemento, " + e.getMessage());
         }
     }
 
