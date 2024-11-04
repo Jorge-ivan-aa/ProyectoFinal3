@@ -26,10 +26,10 @@ public class CuentaView {
     private URL location;
 
     @FXML
-    private MFXComboBox<CuentaBancaria> cbPropietarioAdmin;
+    private ComboBox<CuentaBancaria> cbxPropietarioCuentaAdmin;
 
     @FXML
-    private MFXComboBox<CuentaBancaria> cbTipoCuentaAdmin;
+    private ComboBox<CuentaBancaria> cbxTipoCuentaAdmin;
 
     @FXML
     private AnchorPane panelCuenta;
@@ -67,17 +67,17 @@ public class CuentaView {
     private TextField txtSaldoAdmin;
 
     @FXML
-    void ActualizarCuentaAction(ActionEvent event) {
+    void actualizarCuentaAction(ActionEvent event) {
         String entidad = txtEntidadAdmin.getText();
         String numeroCuenta = txtNumeroCuentaAdmin.getText();
         String saldo = txtSaldoAdmin.getText();
-        String tipoCuenta = String.valueOf(TipoCuenta.valueOf(cbTipoCuentaAdmin.getAccessibleText()));
+//        String tipoCuenta = String.valueOf(TipoCuenta.valueOf(cbxTipoCuentaAdmin.getAccessibleText()));
         String limite = txtLimiteAdmin.getText();
-        String propietario = cbPropietarioAdmin.getSelectedText();
+        String propietario = cbxPropietarioCuentaAdmin.getAccessibleText();
 
 
 
-        if (ViewTools.NoHayCamposVacios(entidad, numeroCuenta, saldo, tipoCuenta, limite, propietario)) {
+        if (ViewTools.NoHayCamposVacios(entidad, numeroCuenta, saldo, limite, propietario)) {
        //     CuentaBancariaDto cuentaBancariaDto = new CuentaBancariaDto(entidad,numeroCuenta, TipoCuenta.valueOf(tipoCuenta),Double.parseDouble(saldo),Double.parseDouble(limite), propietario);
 
             try {
@@ -105,13 +105,13 @@ public class CuentaView {
         String entidad = txtEntidadAdmin.getText();
         String numeroCuenta = txtNumeroCuentaAdmin.getText();
         String saldo = txtSaldoAdmin.getText();
-        String tipoCuenta = String.valueOf(TipoCuenta.valueOf(cbTipoCuentaAdmin.getAccessibleText()));
+//        String tipoCuenta = String.valueOf(TipoCuenta.valueOf(cbxTipoCuentaAdmin.getAccessibleText()));
         String limite = txtLimiteAdmin.getText();
-        String propietario = cbPropietarioAdmin.getSelectedText();
+        String propietario = cbxPropietarioCuentaAdmin.getAccessibleText();
 
 
 
-        if (ViewTools.NoHayCamposVacios(entidad, numeroCuenta, saldo, tipoCuenta, limite, propietario)) {
+        if (ViewTools.NoHayCamposVacios(entidad, numeroCuenta, saldo, limite, propietario)) {
             System.out.println("error aqui (cuentaview linea 118)");
            // CuentaBancariaDto cuentaBancariaDto = new CuentaBancariaDto(entidad,numeroCuenta, TipoCuenta.valueOf(tipoCuenta),Double.parseDouble(saldo),Double.parseDouble(limite), propietario);
 
@@ -159,7 +159,7 @@ public class CuentaView {
 
     }
     @FXML
-    void LimpiarCamposCuentaAction(ActionEvent event) {
+    void limpiarCamposCuentaAction(ActionEvent event) {
         ViewTools.limpiarCampos(txtEntidadAdmin,
                 txtNumeroCuentaAdmin,
                 txtSaldoAdmin,
@@ -209,7 +209,7 @@ public class CuentaView {
             txtSaldoAdmin.setText(String.valueOf(seleccionado.getSaldo()));
             //cbTipoCuentaAdmin.setItems(seleccionado.getTipoCuenta());
             txtLimiteAdmin.setText(String.valueOf(seleccionado.getLimite()));
-            cbPropietarioAdmin.setText(String.valueOf(seleccionado.getPropietario()));
+//            cbxPropietarioCuentaAdmin.setValue(seleccionado.getPropietario());
 
         }
     }

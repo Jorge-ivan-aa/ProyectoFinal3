@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -162,15 +163,8 @@ public class ViewTools {
      *
      * @param campoDeTexto Los campos de texto que se desean limpiar.
      */
-    public static void limpiarCampos(TextField... campoDeTexto) {
-        for (TextField texto : campoDeTexto) {
-            texto.setText("");
-            texto.setPromptText("");
-        }
-    }
-
-    public static void limpiarCamposArea(TextArea... campoDeTexto) {
-        for (TextArea texto : campoDeTexto) {
+    public static void limpiarCampos(TextInputControl... campoDeTexto) {
+        for (TextInputControl texto : campoDeTexto) {
             texto.setText("");
             texto.setPromptText("");
         }
