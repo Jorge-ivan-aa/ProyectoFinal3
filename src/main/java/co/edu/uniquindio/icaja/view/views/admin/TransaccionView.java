@@ -2,7 +2,6 @@ package co.edu.uniquindio.icaja.view.views.admin;
 
 import co.edu.uniquindio.icaja.controller.CuentaBancariaController;
 import co.edu.uniquindio.icaja.controller.TransaccionController;
-import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.icaja.model.CuentaBancaria;
 import co.edu.uniquindio.icaja.model.Transaccion;
