@@ -162,25 +162,25 @@
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.Usuario">
      <void property="cedula">
-      <string>1004871467</string>
+      <string>41941543</string>
      </void>
      <void property="clave">
-      <string>$2a$10$YQfKAofBfQknOmaARkaJVuSJ4em31tmH39914n64S.6GCfgjkRYw6</string>
+      <string>$2a$10$am3F0TFDuPfu40ebRLteyOM5iVRcRqsiyTIQ9Di1TyfMYf1G/vrJ.</string>
      </void>
      <void property="correo">
-      <string>juan@gmail.com</string>
+      <string>hernandezramirel@gmail.com</string>
      </void>
      <void property="listaCuentas">
       <object class="java.util.ArrayList"/>
      </void>
      <void property="nombre">
-      <string>juan</string>
+      <string>Luz</string>
      </void>
      <void property="presupuestoMensual">
-      <double>7.0E8</double>
+      <double>2.0E7</double>
      </void>
      <void property="telefono">
-      <string>3128174881</string>
+      <string>3217998753</string>
      </void>
      <void property="tipoUsuario">
       <object idref="TipoUsuario0"/>
@@ -193,7 +193,7 @@
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$5jEIdzkmpsykI8AA1040J.uCW4Ges42TC5QkTIeUpmDalP8R9Ga5.</string>
+      <string>$2a$10$LpEzczHhBv4Fpbr4uuVpPeHLsKvgHuQaorpQT8klpCy6RTin3TtVu</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>

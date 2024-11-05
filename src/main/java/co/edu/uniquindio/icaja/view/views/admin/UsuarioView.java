@@ -27,15 +27,6 @@ public class UsuarioView {
     private URL location;
 
     @FXML
-    private Button btnActualizarUsuarioAdmin;
-
-    @FXML
-    private Button btnAgregarUsuarioAdmin;
-
-    @FXML
-    private Button btnEliminarUsuarioAdmin;
-
-    @FXML
     private AnchorPane panelUsuario;
 
     @FXML
@@ -183,6 +174,17 @@ public class UsuarioView {
     }
 
     @FXML
+    void limpiarCamposUsuarioAction(ActionEvent event) {
+        ViewTools.limpiarCampos(txtCedulaAdmin,
+                txtNombreAdmin,
+                txtCorreoAdmin,
+                txtTelefonoAdmin,
+                txtClaveAdmin,
+                txtClaveTransaccionalAdmin,
+                txtPresupuestoMensualAdmin);
+    }
+
+    @FXML
     void initialize() {
         initview();
     }
@@ -218,16 +220,6 @@ public class UsuarioView {
             txtClaveAdmin.setPromptText(seleccionado.getClave());
             txtPresupuestoMensualAdmin.setText(String.valueOf(seleccionado.getPresupuestoMensual()));
         }
-    }
-    @FXML
-    void limpiarCamposUsuarioAction(ActionEvent event) {
-        ViewTools.limpiarCampos(txtCedulaAdmin,
-                txtNombreAdmin,
-                txtCorreoAdmin,
-                txtTelefonoAdmin,
-                txtClaveAdmin,
-                txtClaveTransaccionalAdmin,
-                txtPresupuestoMensualAdmin);
     }
 
 }
