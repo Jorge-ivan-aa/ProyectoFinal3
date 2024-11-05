@@ -1,40 +1,30 @@
 package co.edu.uniquindio.icaja.view.views.admin;
 
+import co.edu.uniquindio.icaja.controller.CuentaBancariaController;
 import co.edu.uniquindio.icaja.controller.TransaccionController;
-import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
+import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
+import co.edu.uniquindio.icaja.mapping.dto.TransaccionDto;
+import co.edu.uniquindio.icaja.model.CuentaBancaria;
 import co.edu.uniquindio.icaja.model.Transaccion;
-import co.edu.uniquindio.icaja.model.TransaccionFactory;
-import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 import co.edu.uniquindio.icaja.utils.ViewTools;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 public class TransaccionView {
     TransaccionController transaccionController = new TransaccionController();
-    TransaccionFactory transaccionFactory = new TransaccionFactory();
+    CuentaBancariaController cuentaBancariaController = new CuentaBancariaController();
 
     @FXML
-    private ResourceBundle resources;
+    private MFXFilterComboBox<String> cbCuentaTransaccionAdmin;
 
     @FXML
-    private URL location;
-
-    @FXML
-    private MFXComboBox<TransaccionFactory> cbTipoTransaccionAdmin;
+    private ComboBox<String> cbTipoTransaccionAdmin;
 
     @FXML
     private TableColumn<Transaccion, String> tcCategoriaTransaccionAdmin;
-
-    @FXML
-    private MFXComboBox<Transaccion> cbCuentaTransaccionAdmin;
 
     @FXML
     private TableColumn<Transaccion, String> tcFechaTransaccionAdmin;
@@ -55,9 +45,6 @@ public class TransaccionView {
     private TableView<Transaccion> tvTablaTransaccionaAdmin;
 
     @FXML
-    private TextField txtFechaTransaccionAdmin;
-
-    @FXML
     private TextField txtIdTransaccionAdmin;
 
     @FXML
@@ -67,53 +54,70 @@ public class TransaccionView {
     private TextField txtMotivoTransaccionAdmin;
 
     @FXML
-    void consultarTransaccionAction(ActionEvent event) {
+    void consultarTransaccionAction() {
 
     }
 
+
     @FXML
-    void crearTransaccionAction(ActionEvent event) {
+    void crearTransaccionAction() {
         String id = txtIdTransaccionAdmin.getText();
-        String fecha = txtFechaTransaccionAdmin.getText();
         String monto = txtMontoTransaccionAdmin.getText();
-        String tipo = cbTipoTransaccionAdmin.getSelectedText();
-        String cuenta = String.valueOf(TipoCuenta.valueOf(cbCuentaTransaccionAdmin.getSelectedText()));
+        String tipo = cbTipoTransaccionAdmin.getValue();
+        String numCuenta = cbCuentaTransaccionAdmin.getSelectedText();
         String motivo = txtMotivoTransaccionAdmin.getText();
-        if (ViewTools.NoHayCamposVacios(id, fecha, monto, motivo)) {
-           // TransaccionDto transaccionDto = new TransaccionDto(Integer.parseInt(id),fecha,Double.parseDouble(monto),tipo, TipoCuenta.valueOf(cuenta),motivo);
+
+        if (ViewTools.NoHayCamposVacios(monto, motivo)) {
+
 
             try {
-              //  TransaccionFactory.crearTransaccion(transaccionDto);
-                String msj = "Se ha creado la Transacción " + id + "correctamente";
-                ViewTools.mostrarMensaje("Información: ", null, msj, Alert.AlertType.INFORMATION);
-            } catch (ElementoYaExiste e) {
-                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+                CuentaBancaria cuentaBancaria = cuentaBancariaController.consultar(numCuenta);
+                double montoREal = Double.parseDouble(monto);
+                TransaccionDto transaccionPendiente = new TransaccionDto(montoREal, cuentaBancaria, motivo);
+                transaccionController.getFactory().getIcaja().setTransaccionPendiente(transaccionPendiente);
+
+                switch (tipo) {
+                    case "transferencia":
+                        ViewTools.generarVentana("templates/admin/tooltips/realizarTransferencia.fxml", "Gestion de transferencias", null, "styles/main.css");
+                        break;
+                    case "deposito":
+                        ViewTools.generarVentana("templates/admin/tooltips/realizarDeposito.fxml", "Gestion de depositos", null, "styles/main.css");
+                        break;
+                    case "retiro":
+                        ViewTools.generarVentana("templates/admin/tooltips/realizarRetiro.fxml", "Gestion de retiros", null, "styles/main.css");
+                        break;
+                    default:
+                        ViewTools.mostrarMensaje("¡Cuidado!", null,"No se seleccionó el tipo de transacción", Alert.AlertType.WARNING);
+                }
+
+            } catch (NumberFormatException e) {
+                Seguimiento.registrarLog(2, "No se ingresó un valor númerico en el monto: " + e.getMessage());
+                ViewTools.mostrarMensaje("Error", null, "El campo monto debe ser un valo númerico", Alert.AlertType.ERROR);
+
+            } catch (Exception e) {
+                Seguimiento.registrarLog(3, "Ocurrió un error inesperado: " + e.getMessage());
+                ViewTools.mostrarMensaje("Error", null, "Ocurrió un error inesperado, comuniquese con atención tecnica.", Alert.AlertType.ERROR);
             }
+
         } else {
             ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
 
         }
 
         ViewTools.limpiarCampos(txtIdTransaccionAdmin,
-                txtFechaTransaccionAdmin,
                 txtMontoTransaccionAdmin,
-                cbTipoTransaccionAdmin,
                 cbCuentaTransaccionAdmin,
                 txtMotivoTransaccionAdmin);
-
-
     }
 
     @FXML
-    void eliminarTransaccionAction(ActionEvent event) {
+    void eliminarTransaccionAction() {
 
     }
     @FXML
-    void LimpiarCamposTransaccionAction(ActionEvent event) {
+    void LimpiarCamposTransaccionAction() {
         ViewTools.limpiarCampos(txtIdTransaccionAdmin,
-                txtFechaTransaccionAdmin,
                 txtMontoTransaccionAdmin,
-                cbTipoTransaccionAdmin,
                 cbCuentaTransaccionAdmin,
                 txtMotivoTransaccionAdmin);
     }

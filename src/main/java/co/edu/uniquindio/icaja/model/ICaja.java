@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.edu.uniquindio.icaja.mapping.dto.TransaccionDto;
+import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +20,7 @@ public class ICaja implements Serializable {
     private ArrayList<Transaccion> listaTransacciones;
     private ArrayList<Categoria> listaCategorias;
     private ArrayList<CuentaBancaria> listaCuentaBancarias;
+    private TransaccionDto transaccionPendiente;
     private Sesion sesion;
 
     public ICaja() {

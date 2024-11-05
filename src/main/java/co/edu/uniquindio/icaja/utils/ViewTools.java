@@ -62,11 +62,13 @@ public class ViewTools {
     public static void generarVentana(String url, String title, String urlCarga, String... styles) {
         Scene escenaCarga = generarEscenaCarga(urlCarga, styles);
         Stage stage = new Stage();
-        stage.setScene(escenaCarga);
-        stage.setTitle("Cargando...");
-        stage.show();
 
-        fadeIn(escenaCarga.getRoot(), 0.5); // Hacer fadeIn en la pantalla de carga
+        if (urlCarga != null) {
+            stage.setScene(escenaCarga);
+            stage.setTitle("Cargando...");
+            stage.show();
+            fadeIn(escenaCarga.getRoot(), 0.5); // Hacer fadeIn en la pantalla de carga
+        }
 
         Task<Scene> cargarEscenaTask = new Task<>() {
             @Override

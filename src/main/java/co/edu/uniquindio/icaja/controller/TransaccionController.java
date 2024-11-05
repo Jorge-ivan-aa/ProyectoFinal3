@@ -22,7 +22,6 @@ import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 public class TransaccionController implements GenericController<ITransaccionDto, Transaccion> {
 
     private final ModelFactory factory;
-
     private final ObservableList<Transaccion> listaTransaccionObservable;
 
     public TransaccionController() {

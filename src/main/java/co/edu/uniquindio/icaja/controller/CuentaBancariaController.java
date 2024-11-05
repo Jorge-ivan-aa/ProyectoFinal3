@@ -5,8 +5,10 @@ import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.CuentaBancariaDto;
+import co.edu.uniquindio.icaja.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.icaja.mapping.mappers.CuentaBancariaMapper;
 import co.edu.uniquindio.icaja.model.*;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
@@ -22,6 +24,7 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
 
     private final ModelFactory factory;
     private final ObservableList<CuentaBancaria> listaCuentaBancariaObservable;
+    private TransaccionDto inicialData;
 
     public CuentaBancariaController() {
         this.factory = ModelFactory.getInstance();
@@ -111,5 +114,9 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
             registrarLog(3, "Error, no se pudo guardar la información de las cuentas bancarias: " + e.getMessage());
         }
     }
-    
+
+    public void setInicialData(TransaccionDto inicialData) {
+        this.inicialData = inicialData;
+        Seguimiento.registrarLog(1, "Se configuraron los datos iniciales de la cuenta");
+    }
 }

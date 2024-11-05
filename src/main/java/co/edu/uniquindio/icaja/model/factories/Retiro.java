@@ -11,8 +11,8 @@ import java.util.Random;
 public class Retiro extends Transaccion {
     private final String claveRetiro;
 
-    public Retiro(String fecha, double monto, Categoria[] listacategoria, CuentaBancaria cuenta, String motivo) {
-        super(fecha, monto, listacategoria, cuenta, motivo);
+    public Retiro(double monto, Categoria[] listacategoria, CuentaBancaria cuenta, String motivo) {
+        super(monto, listacategoria, cuenta, motivo);
         claveRetiro = generarClaveRetiro();
     }
 

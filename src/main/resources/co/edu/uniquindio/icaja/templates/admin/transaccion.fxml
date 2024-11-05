@@ -2,10 +2,9 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -20,65 +19,52 @@
 <AnchorPane fx:id="transaccionPanel" prefHeight="626" prefWidth="1073" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.TransaccionView">
     <TableView fx:id="tvTablaTransaccionaAdmin" layoutX="29.0" layoutY="326.0" prefHeight="296.0" prefWidth="1008.0">
         <columns>
-            <TableColumn fx:id="tcIdTransaccionAdmin" prefWidth="185.06664735078812" text="ID" />
-            <TableColumn fx:id="tcFechaTransaccionAdmin" prefWidth="153.5999298095703" text="Fecha" />
-            <TableColumn fx:id="tcMontoTransaccionAdmin" prefWidth="170.66665649414062" text="Monto" />
-            <TableColumn fx:id="tcMotivoTransaccionAdmin" prefWidth="410.933349609375" text="Motivo" />
-            <TableColumn fx:id="tcCategoriaTransaccionAdmin" prefWidth="141.06674194335938" text="Categoria" />
+            <TableColumn fx:id="tcIdTransaccionAdmin" prefWidth="133.0" text="ID" />
+            <TableColumn fx:id="tcFechaTransaccionAdmin" prefWidth="145.0" text="Fecha" />
+            <TableColumn fx:id="tcMontoTransaccionAdmin" prefWidth="157.0" text="Monto" />
+            <TableColumn fx:id="tcMotivoTransaccionAdmin" prefWidth="351.0" text="Motivo" />
+            <TableColumn fx:id="tcCategoriaTransaccionAdmin" prefWidth="221.0" text="Categoria" />
         </columns>
     </TableView>
-    <VBox layoutX="29.0" layoutY="56.0" prefHeight="200.0" prefWidth="235.0">
+    <VBox layoutX="419.0" layoutY="50.0" prefHeight="200.0" prefWidth="235.0">
         <children>
-            <Label text="Id:">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
-            <TextField fx:id="txtIdTransaccionAdmin" prefHeight="32.0" prefWidth="201.0" />
-            <Region prefHeight="21.0" prefWidth="100.0" />
             <Label text="Tipo:">
                 <font>
                     <Font size="18.0" />
                 </font>
             </Label>
-            <MFXComboBox fx:id="cbTipoTransaccionAdmin" floatMode="BORDER" prefHeight="38.0" prefWidth="238.0" />
-        </children>
-    </VBox>
-    <VBox layoutX="416.0" layoutY="56.0" prefHeight="200.0" prefWidth="235.0">
-        <children>
-            <Label text="Fecha:">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
-            <DatePicker fx:id="dateFechaTransaccionAdmin" prefHeight="34.0" prefWidth="235.0" />
+         <ComboBox fx:id="cbTipoTransaccionAdmin" prefHeight="32.0" prefWidth="235.0" />
             <Region prefHeight="21.0" prefWidth="100.0" />
             <Label text="Cuenta:">
                 <font>
                     <Font size="18.0" />
                 </font>
             </Label>
-            <MFXFilterComboBox fx:id="cbCuentaTransaccionAdmin" prefHeight="45.0" prefWidth="241.0" />
+            <MFXFilterComboBox fx:id="cbCuentaTransaccionAdmin" prefHeight="24.0" prefWidth="235.0" />
         </children>
     </VBox>
-    <VBox layoutX="802.0" layoutY="56.0" prefHeight="200.0" prefWidth="235.0">
-        <children>
-            <Label text="Monto:">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
-            <TextField fx:id="txtMontoTransaccionAdmin" prefHeight="32.0" prefWidth="200.0" />
-            <Region prefHeight="21.0" prefWidth="100.0" />
-            <Label text="Motivo:">
-                <font>
-                    <Font size="18.0" />
-                </font>
-            </Label>
-            <TextField fx:id="txtMotivoTransaccionAdmin" prefHeight="34.0" prefWidth="197.0" />
-        </children>
+    <VBox layoutX="29.0" layoutY="50.0" prefHeight="200.0" prefWidth="235.0">
+      <children>
+          <VBox prefHeight="200.0" prefWidth="235.0">
+              <children>
+                  <Label text="Monto:">
+                      <font>
+                          <Font size="18.0" />
+                      </font>
+                  </Label>
+                  <TextField fx:id="txtMontoTransaccionAdmin" prefHeight="32.0" prefWidth="200.0" />
+                  <Region prefHeight="21.0" prefWidth="100.0" />
+                  <Label text="Motivo:">
+                      <font>
+                          <Font size="18.0" />
+                      </font>
+                  </Label>
+                  <TextField fx:id="txtMotivoTransaccionAdmin" prefHeight="34.0" prefWidth="197.0" />
+              </children>
+          </VBox>
+      </children>
     </VBox>
-    <HBox alignment="CENTER" layoutX="527.0" layoutY="256.0" prefHeight="47.0" prefWidth="510.0">
+    <HBox alignment="CENTER" layoutX="527.0" layoutY="246.0" prefHeight="47.0" prefWidth="510.0">
         <children>
             <MFXButton alignment="CENTER" onAction="#LimpiarCamposTransaccionAction" prefHeight="30.0" prefWidth="100.0" text=" " HBox.hgrow="ALWAYS">
                 <graphic>
@@ -105,4 +91,5 @@
             </MFXButton>
         </children>
     </HBox>
+   <TextField fx:id="idTransaccionAdmin" editable="false" layoutX="1.0" layoutY="256.0" visible="false" />
 </AnchorPane>

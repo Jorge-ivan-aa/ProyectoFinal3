@@ -1,6 +1,8 @@
 package co.edu.uniquindio.icaja.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDate;
 import java.util.UUID;
 
 import lombok.Getter;
@@ -16,16 +18,16 @@ import lombok.NoArgsConstructor;
 
 public abstract class Transaccion implements Serializable {
     private String id;
-    private String fecha;
+    private LocalDate fecha;
     private double monto;
     private Categoria[] listacategoria;
     private CuentaBancaria cuenta;
     private String motivo;
     public static final long serialVersionID = 3L;
 
-    public Transaccion(String fecha, double monto, Categoria[] listacategoria, CuentaBancaria cuenta, String motivo) {
+    public Transaccion(double monto, Categoria[] listacategoria, CuentaBancaria cuenta, String motivo) {
         this.id = generarId();
-        this.fecha = fecha;
+        this.fecha = LocalDate.now();
         this.monto = monto;
         this.listacategoria = listacategoria;
         this.cuenta = cuenta;

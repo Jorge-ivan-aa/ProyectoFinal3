@@ -13,7 +13,6 @@ public class TransaccionMapper {
 
     public static Transaccion toTransaccion(RetiroDto retiroDto){
         return new Retiro(
-                retiroDto.fecha(),
                 retiroDto.monto(),
                 retiroDto.listacategoria(),
                 retiroDto.cuenta(),
@@ -23,7 +22,6 @@ public class TransaccionMapper {
     }
     public static Transaccion toTransaccion(DepositoDto depositoDto){
         return new Deposito(
-                depositoDto.fecha(),
                 depositoDto.monto(),
                 depositoDto.listacategoria(),
                 depositoDto.cuenta(),
@@ -32,7 +30,6 @@ public class TransaccionMapper {
     }
     public static Transaccion toTransaccion(TransferenciaDto transferenciaDto){
       return new Transferencia(
-              transferenciaDto.fecha(),
               transferenciaDto.monto(),
               transferenciaDto.listacategoria(),
               transferenciaDto.cuenta(),
