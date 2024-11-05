@@ -7,6 +7,7 @@ import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.mapping.dto.CuentaBancariaDto;
 import co.edu.uniquindio.icaja.model.CuentaBancaria;
 import co.edu.uniquindio.icaja.model.Usuario;
+import co.edu.uniquindio.icaja.model.enums.EntidadBancaria;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 import co.edu.uniquindio.icaja.utils.ViewTools;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
@@ -34,6 +35,9 @@ public class CuentaView {
     private URL location;
 
     @FXML
+    private ComboBox<EntidadBancaria> cbxEntidadAdmin;
+
+    @FXML
     private ComboBox<String> cbxPropietarioCuentaAdmin;
 
     @FXML
@@ -43,7 +47,7 @@ public class CuentaView {
     private AnchorPane panelCuenta;
 
     @FXML
-    private TableColumn<CuentaBancaria, String> tcEntidadAdmin;
+    private TableColumn<CuentaBancaria, EntidadBancaria> tcEntidadAdmin;
 
     @FXML
     private TableColumn<CuentaBancaria, String> tcLimiteAdmin;
@@ -63,9 +67,6 @@ public class CuentaView {
     private TableColumn<CuentaBancaria, String> tcPropietarioAdmin;
 
     @FXML
-    private TextField txtEntidadAdmin;
-
-    @FXML
     private TextField txtLimiteAdmin;
 
     @FXML
@@ -76,7 +77,7 @@ public class CuentaView {
 
     @FXML
     void actualizarCuentaAction() {
-        String entidad = txtEntidadAdmin.getText();
+        EntidadBancaria entidad = cbxEntidadAdmin.getValue();
         String numeroCuenta = txtNumeroCuentaAdmin.getText();
         TipoCuenta tipo = cbxTipoCuentaAdmin.getValue();
         String saldo = txtSaldoAdmin.getText();
@@ -84,7 +85,7 @@ public class CuentaView {
         String cedulaPropietario = cbxPropietarioCuentaAdmin.getValue();
 
 
-        if (ViewTools.NoHayCamposVacios(entidad, numeroCuenta, saldo, limite)) {
+        if (ViewTools.NoHayCamposVacios(numeroCuenta, saldo, limite)) {
             Usuario propietario = usuarioController.consultar(cedulaPropietario);
             CuentaBancariaDto cuentaBancariaDto = new CuentaBancariaDto(entidad, numeroCuenta, tipo, Double.parseDouble(saldo), Double.parseDouble(limite), propietario);
 
@@ -101,8 +102,7 @@ public class CuentaView {
 
         }
 
-        ViewTools.limpiarCampos(txtEntidadAdmin,
-                txtNumeroCuentaAdmin,
+        ViewTools.limpiarCampos(txtNumeroCuentaAdmin,
                 txtSaldoAdmin,
                 txtLimiteAdmin);
 
@@ -110,7 +110,7 @@ public class CuentaView {
 
     @FXML
     void crearCuentaAction() {
-        String entidad = txtEntidadAdmin.getText();
+        EntidadBancaria entidad = cbxEntidadAdmin.getValue();
         String numeroCuenta = txtNumeroCuentaAdmin.getText();
         TipoCuenta tipo = cbxTipoCuentaAdmin.getValue();
         String saldo = txtSaldoAdmin.getText();
@@ -118,7 +118,7 @@ public class CuentaView {
         String cedulaPropietario = cbxPropietarioCuentaAdmin.getValue();
 
 
-        if (ViewTools.NoHayCamposVacios(entidad, numeroCuenta, saldo, limite)) {
+        if (ViewTools.NoHayCamposVacios(numeroCuenta, saldo, limite)) {
             Usuario propietario = usuarioController.consultar(cedulaPropietario);
             CuentaBancariaDto cuentaBancariaDto = new CuentaBancariaDto(entidad, numeroCuenta, tipo, Double.parseDouble(saldo), Double.parseDouble(limite), propietario);
 
@@ -135,8 +135,7 @@ public class CuentaView {
 
         }
 
-        ViewTools.limpiarCampos(txtEntidadAdmin,
-                txtNumeroCuentaAdmin,
+        ViewTools.limpiarCampos(txtNumeroCuentaAdmin,
                 txtSaldoAdmin,
                 txtLimiteAdmin);
 
@@ -160,8 +159,7 @@ public class CuentaView {
             ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
         }
 
-        ViewTools.limpiarCampos(txtEntidadAdmin,
-                txtNumeroCuentaAdmin,
+        ViewTools.limpiarCampos(txtNumeroCuentaAdmin,
                 txtSaldoAdmin,
                 txtLimiteAdmin);
 
@@ -169,23 +167,13 @@ public class CuentaView {
 
     @FXML
     void limpiarCamposCuentaAction() {
-        ViewTools.limpiarCampos(txtEntidadAdmin,
-                txtNumeroCuentaAdmin,
+        ViewTools.limpiarCampos(txtNumeroCuentaAdmin,
                 txtSaldoAdmin,
                 txtLimiteAdmin);
 
         cbxPropietarioCuentaAdmin.getSelectionModel().clearSelection();
         cbxTipoCuentaAdmin.getSelectionModel().clearSelection();
-    }
-
-    @FXML
-    void seleccionPropietarioAction() {
-
-    }
-
-    @FXML
-    void seleccionTipoCuentaAction() {
-
+        cbxEntidadAdmin.getSelectionModel().clearSelection();
     }
 
     @FXML
@@ -197,6 +185,7 @@ public class CuentaView {
         }
         cbxPropietarioCuentaAdmin.getItems().addAll(cedulas);
         cbxTipoCuentaAdmin.getItems().addAll(TipoCuenta.values());
+        cbxEntidadAdmin.getItems().addAll(EntidadBancaria.values());
         initview();
     }
 
@@ -208,7 +197,7 @@ public class CuentaView {
     }
 
     private void initDataBinging() {
-        tcEntidadAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getEntidad()));
+        tcEntidadAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getEntidad()));
         tcNumeroCuentaAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNumeroCuenta()));
         tcSaldoAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getSaldo())));
         tcTipoCuentaAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTipoCuenta()));
@@ -224,7 +213,7 @@ public class CuentaView {
 
     private void mostrarInformacion(CuentaBancaria seleccionado) {
         if (seleccionado != null) {
-            txtEntidadAdmin.setText(seleccionado.getEntidad());
+            cbxEntidadAdmin.setValue(seleccionado.getEntidad());
             txtNumeroCuentaAdmin.setText(seleccionado.getNumeroCuenta());
             txtSaldoAdmin.setText(String.valueOf(seleccionado.getSaldo()));
             cbxTipoCuentaAdmin.setValue(seleccionado.getTipoCuenta());

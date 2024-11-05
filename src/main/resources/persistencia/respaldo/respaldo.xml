@@ -23,7 +23,10 @@
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.CuentaBancaria">
      <void property="entidad">
-      <string>Nu</string>
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.EntidadBancaria</class>
+       <string>DAVIVIENDA</string>
+      </object>
      </void>
      <void property="limite">
       <double>700000.0</double>
@@ -62,7 +65,7 @@
      <void property="tipoCuenta">
       <object class="java.lang.Enum" method="valueOf">
        <class>co.edu.uniquindio.icaja.model.enums.TipoCuenta</class>
-       <string>CREDITO</string>
+       <string>DEBITO</string>
       </object>
      </void>
     </object>
@@ -70,10 +73,13 @@
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.CuentaBancaria">
      <void property="entidad">
-      <string>Bancolombia</string>
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.EntidadBancaria</class>
+       <string>BANCO_DE_BOGOTA</string>
+      </object>
      </void>
      <void property="limite">
-      <double>3000.0</double>
+      <double>4000000.0</double>
      </void>
      <void property="numeroCuenta">
       <string>70098003234</string>
@@ -82,12 +88,12 @@
       <object idref="Usuario0"/>
      </void>
      <void property="saldo">
-      <double>3000.0</double>
+      <double>4500000.0</double>
      </void>
      <void property="tipoCuenta">
       <object class="java.lang.Enum" method="valueOf">
        <class>co.edu.uniquindio.icaja.model.enums.TipoCuenta</class>
-       <string>DEBITO</string>
+       <string>CREDITO</string>
       </object>
      </void>
     </object>
@@ -156,25 +162,25 @@
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.Usuario">
      <void property="cedula">
-      <string>1004871467</string>
+      <string>41941543</string>
      </void>
      <void property="clave">
-      <string>$2a$10$YQfKAofBfQknOmaARkaJVuSJ4em31tmH39914n64S.6GCfgjkRYw6</string>
+      <string>$2a$10$am3F0TFDuPfu40ebRLteyOM5iVRcRqsiyTIQ9Di1TyfMYf1G/vrJ.</string>
      </void>
      <void property="correo">
-      <string>juan@gmail.com</string>
+      <string>hernandezramirel@gmail.com</string>
      </void>
      <void property="listaCuentas">
       <object class="java.util.ArrayList"/>
      </void>
      <void property="nombre">
-      <string>juan</string>
+      <string>Luz</string>
      </void>
      <void property="presupuestoMensual">
-      <double>7.0E8</double>
+      <double>2.0E7</double>
      </void>
      <void property="telefono">
-      <string>3128174881</string>
+      <string>3217998753</string>
      </void>
      <void property="tipoUsuario">
       <object idref="TipoUsuario0"/>
@@ -187,7 +193,7 @@
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$LHcTLySRAUONnQMxHUAhWexgq.xg9fKap8m3FQtJH0U3DQYGHywiq</string>
+      <string>$2a$10$LpEzczHhBv4Fpbr4uuVpPeHLsKvgHuQaorpQT8klpCy6RTin3TtVu</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>
