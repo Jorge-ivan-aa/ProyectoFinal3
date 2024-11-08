@@ -8,12 +8,14 @@ import co.edu.uniquindio.icaja.model.Transaccion;
 import co.edu.uniquindio.icaja.utils.ViewTools;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import java.util.List;
 
 public class TransaccionView {
-    TransaccionController transaccionController = new TransaccionController();
+    TransaccionController transaccionController = TransaccionController.getInstance();
     CuentaBancariaController cuentaBancariaController = new CuentaBancariaController();
 
     @FXML
@@ -60,30 +62,27 @@ public class TransaccionView {
 
     @FXML
     void crearTransaccionAction() {
-        String id = txtIdTransaccionAdmin.getText();
         String monto = txtMontoTransaccionAdmin.getText();
         String tipo = cbTipoTransaccionAdmin.getValue();
-        String numCuenta = cbCuentaTransaccionAdmin.getSelectedText();
         String motivo = txtMotivoTransaccionAdmin.getText();
 
         if (ViewTools.NoHayCamposVacios(monto, motivo)) {
-
-
             try {
+                String numCuenta = cbCuentaTransaccionAdmin.getValue();
                 CuentaBancaria cuentaBancaria = cuentaBancariaController.consultar(numCuenta);
                 double montoREal = Double.parseDouble(monto);
-                TransaccionDto transaccionPendiente = new TransaccionDto(montoREal, cuentaBancaria, motivo);
-                transaccionController.getFactory().getIcaja().setTransaccionPendiente(transaccionPendiente);
+                transaccionController.setTransaccionPendiente(new TransaccionDto(montoREal, cuentaBancaria, motivo));
 
                 switch (tipo) {
-                    case "transferencia":
-                        ViewTools.generarVentana("templates/admin/tooltips/realizarTransferencia.fxml", "Gestion de transferencias", null, "styles/main.css");
+                    case "Transferencia":
+                        Seguimiento.registrarLog(1, "Se quiere realizar una transferencia");
+                        ViewTools.generarVentana("templates/tooltips/realizarTransferenciaAdmin.fxml", "Gestion de transferencias", null, "styles/main.css");
                         break;
-                    case "deposito":
-                        ViewTools.generarVentana("templates/admin/tooltips/realizarDeposito.fxml", "Gestion de depositos", null, "styles/main.css");
+                    case "Deposito":
+                        ViewTools.generarVentana("templates/admin/tooltips/realizarDepositoAdmin.fxml", "Gestion de depositos", null, "styles/main.css");
                         break;
-                    case "retiro":
-                        ViewTools.generarVentana("templates/admin/tooltips/realizarRetiro.fxml", "Gestion de retiros", null, "styles/main.css");
+                    case "Retiro":
+                        ViewTools.generarVentana("templates/admin/tooltips/realizarRetiroAdmin.fxml", "Gestion de retiros", null, "styles/main.css");
                         break;
                     default:
                         ViewTools.mostrarMensaje("¡Cuidado!", null,"No se seleccionó el tipo de transacción", Alert.AlertType.WARNING);
@@ -105,7 +104,6 @@ public class TransaccionView {
 
         ViewTools.limpiarCampos(txtIdTransaccionAdmin,
                 txtMontoTransaccionAdmin,
-                cbCuentaTransaccionAdmin,
                 txtMotivoTransaccionAdmin);
     }
 
@@ -113,6 +111,7 @@ public class TransaccionView {
     void eliminarTransaccionAction() {
 
     }
+
     @FXML
     void LimpiarCamposTransaccionAction() {
         ViewTools.limpiarCampos(txtIdTransaccionAdmin,
@@ -123,7 +122,46 @@ public class TransaccionView {
 
     @FXML
     void initialize() {
+        initview();
+        List<CuentaBancaria> cuentas = cuentaBancariaController.getListaCuentaBancariaObservable();
+        String[] numeroCuentas = new String[cuentas.size()];
+        for (CuentaBancaria cuenta : cuentas) {
+            numeroCuentas[cuentas.indexOf(cuenta)] = cuenta.getNumeroCuenta();
+        }
 
+        cbCuentaTransaccionAdmin.getItems().addAll(numeroCuentas);
+        cbTipoTransaccionAdmin.getItems().addAll("Transferencia", "Deposito", "Retiro");
+    }
+
+    private void initview() {
+        initDataBinging();
+        tvTablaTransaccionaAdmin.getItems().clear();
+        tvTablaTransaccionaAdmin.setItems(transaccionController.getListaTransaccionObservable());
+        listenerSelectionCategorias();
+    }
+
+    private void initDataBinging() {
+        tcCategoriaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getListacategoriatoString()));
+        tcFechaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFecha().toString()));
+        tcIdTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getId()));
+        tcMontoTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getMonto())));
+        tcMotivoTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMotivo()));
+    }
+
+    private void listenerSelectionCategorias() {
+
+        tvTablaTransaccionaAdmin.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection)
+                -> this.mostrarInformacion((Transaccion) newSelection));
+    }
+
+    private void mostrarInformacion(Transaccion seleccionado) {
+        if (seleccionado != null) {
+            txtIdTransaccionAdmin.setText(seleccionado.getId());
+            txtMontoTransaccionAdmin.setText(Double.toString(seleccionado.getMonto()));
+            txtMotivoTransaccionAdmin.setText(seleccionado.getMotivo());
+            cbTipoTransaccionAdmin.setValue(seleccionado.getClass().getName());
+            cbCuentaTransaccionAdmin.setValue(seleccionado.getCuenta().getNumeroCuenta());
+        }
     }
 
 }

@@ -1,7 +1,7 @@
-# ICaja
+# ICaja: wallet
 
 <div align="center">
-    <img src="logo.png" alt="Mi imagen" width="200">
+    <img src="src/main/resources/co/edu/uniquindio/icaja/images/logo.png" alt="Mi imagen" width="200">
 </div>
 
 icaja es una billetera virtual que almacena todas tus cuentas bancarias

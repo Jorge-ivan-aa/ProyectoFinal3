@@ -35,7 +35,6 @@ public class CategoriaPersistente implements Persistible<Categoria> {
             categoria.setNombre(linea[0]);
             categoria.setDescripcion(linea[1]);
             categoria.setTipoCategoria(TipoCategoria.valueOf(linea[2]));
-            categoria.setTransacciones(linea[3]);
             categorias.add(categoria);
         }
         return categorias;

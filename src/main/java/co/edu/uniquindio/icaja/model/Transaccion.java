@@ -33,11 +33,14 @@ public abstract class Transaccion implements Serializable {
         this.cuenta = cuenta;
         this.motivo = motivo;
 
+        setvinculo(listacategoria);
     }
 
-    public Transaccion(String t) {
+    private void setvinculo(Categoria[] lista) {
+        for (Categoria categoria : listacategoria) {
+            categoria.addTransaccion(this);
+        }
     }
-
 
     private String generarId() {
         return UUID.randomUUID().toString();
@@ -47,5 +50,12 @@ public abstract class Transaccion implements Serializable {
 
     public abstract String factura();
 
+    public String getListacategoriatoString() {
+        StringBuilder categorias = new StringBuilder();
+        for (Categoria categoria : listacategoria) {
+            categorias.append(", ").append(categoria.getNombre());
+        }
 
+        return categorias.toString();
+    }
 }

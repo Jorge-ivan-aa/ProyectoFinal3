@@ -20,7 +20,6 @@ public class ICaja implements Serializable {
     private ArrayList<Transaccion> listaTransacciones;
     private ArrayList<Categoria> listaCategorias;
     private ArrayList<CuentaBancaria> listaCuentaBancarias;
-    private TransaccionDto transaccionPendiente;
     private Sesion sesion;
 
     public ICaja() {

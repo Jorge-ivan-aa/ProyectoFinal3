@@ -193,7 +193,7 @@
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$LpEzczHhBv4Fpbr4uuVpPeHLsKvgHuQaorpQT8klpCy6RTin3TtVu</string>
+      <string>$2a$10$hEFrSdblhkX9T58FCVnKGeQtySW/mIkIOGdorlTXTXlQW1TncedU2</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>

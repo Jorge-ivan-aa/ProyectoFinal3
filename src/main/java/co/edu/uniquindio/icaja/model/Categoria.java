@@ -21,7 +21,7 @@ public class Categoria implements Serializable {
     private String nombre;
     private String descripcion;
     private TipoCategoria tipoCategoria;
-    private ArrayList<Transaccion> transacciones;
+    private ArrayList<Transaccion> transacciones = new ArrayList<>();
     public static final long serialVersionID = 1L;
 
     public Categoria(String nombre, String descripcion, TipoCategoria tipoCategoria) {
@@ -32,6 +32,7 @@ public class Categoria implements Serializable {
 
 
     public void addTransaccion(Transaccion transaccion) {
+        System.out.println("transacciones es: " + transacciones.toString());
         transacciones.add(transaccion);
     }
 
@@ -39,25 +40,5 @@ public class Categoria implements Serializable {
         transacciones.remove(transaccion);
     }
 
-
-    public void setTransacciones(String s) {
-
-        this.transacciones = new ArrayList<>();
-
-        String[] transacciones = s.split(",");
-        for (String t : transacciones) {
-            this.transacciones.add(new Transaccion(t) {
-                @Override
-                public void realizarMovimiento() {
-
-                }
-
-                @Override
-                public String factura() {
-                    return null;
-                }
-            });
-        }
-    }
 
 }

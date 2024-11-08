@@ -22,6 +22,7 @@ import javafx.scene.shape.ArcType;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -30,18 +31,18 @@ public class ViewTools {
     /**
      * Muestra un mensaje para dar información del usuario
      *
-     * @param title El titulo de la ventana.
-     * @param header Subtitulo de la ventana.
+     * @param title   El titulo de la ventana.
+     * @param header  Subtitulo de la ventana.
      * @param message Mensaje que describe la información a dar
-     * @param type El tipo de mensaje: Alert.Alertype.<Enumeracion>, donde Enumeracion puede ser:
-     *             NONE,
-     *             INFORMATION,
-     *             WARNING,
-     *             CONFIRMATION,
-     *             ERROR;
+     * @param type    El tipo de mensaje: Alert.Alertype.<Enumeracion>, donde Enumeracion puede ser:
+     *                NONE,
+     *                INFORMATION,
+     *                WARNING,
+     *                CONFIRMATION,
+     *                ERROR;
      */
 
-    public static void mostrarMensaje(String title, String header, String message, Alert.AlertType type){
+    public static void mostrarMensaje(String title, String header, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(header);
@@ -50,24 +51,43 @@ public class ViewTools {
     }
 
 
+    public static Scene cargarEscena(String url, String... styles) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(url));
+            Scene scene = new Scene(fxmlLoader.load());
+            for (String style : styles) {
+                scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource(style)).toExternalForm());
+            }
+            return scene;
+        } catch (IOException e) {
+            //Seguimiento.registrarLog(3, "No se pudo cargar la escena, No se encontró el recurso '" + url + "', error: " + e.getMessage());
+            e.printStackTrace();
+           // mostrarMensaje("Lo sentimos", "¡Ha ocurrido un error!", "La ventana no pudo cargar de forma adecuada, comunicate con atención tecnica", Alert.AlertType.ERROR);
+            return new Scene(new Pane(), 600, 400);
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "No se pudo cargar la escena, error: " + e.getMessage());
+            return new Scene(new Pane(), 600, 400);
+        }
+    }
+
     /**
      * Genera una ventana con una escena de carga y luego carga la escena principal en segundo plano.
      * Muestra una animación de desvanecimiento (fade) durante la transición entre la escena de carga y la escena principal.
      *
-     * @param url Ruta del archivo FXML para la escena principal.
-     * @param title Título de la ventana para la escena principal.
+     * @param url      Ruta del archivo FXML para la escena principal.
+     * @param title    Título de la ventana para la escena principal.
      * @param urlCarga Ruta del archivo FXML de la escena de carga.
-     * @param styles Opcional. Las rutas a los archivos CSS que se deben aplicar a ambas escenas.
+     * @param styles   Opcional. Las rutas a los archivos CSS que se deben aplicar a ambas escenas.
      */
     public static void generarVentana(String url, String title, String urlCarga, String... styles) {
-        Scene escenaCarga = generarEscenaCarga(urlCarga, styles);
         Stage stage = new Stage();
 
-        if (urlCarga != null) {
+        if (urlCarga != null && !urlCarga.isEmpty()) {
+            Scene escenaCarga = generarEscenaCarga(urlCarga, styles);
             stage.setScene(escenaCarga);
             stage.setTitle("Cargando...");
             stage.show();
-            fadeIn(escenaCarga.getRoot(), 0.5); // Hacer fadeIn en la pantalla de carga
+            fadeIn(escenaCarga.getRoot(), 0.5);
         }
 
         Task<Scene> cargarEscenaTask = new Task<>() {
@@ -78,40 +98,26 @@ public class ViewTools {
 
             @Override
             protected void succeeded() {
-                fadeOut(escenaCarga.getRoot(), 0.25);
+                if (urlCarga != null && !urlCarga.isEmpty()) {
+                    fadeOut(stage.getScene().getRoot(), 0.25);
 
-                // Usar un listener para cambiar a la nueva escena solo después de fadeOut
-                escenaCarga.getRoot().opacityProperty().addListener((observable, oldValue, newValue) -> {
-                    if (newValue.doubleValue() == 0.0) { // Cuando el fadeOut termine
-                        stage.setScene(getValue());  // Cambiar a la escena principal
-                        stage.setTitle(title);
-                        fadeIn(getValue().getRoot(), 0.25); // Aplicar fadeIn en la nueva escena
-                    }
-                });
-            }
-
-            @Override
-            protected void failed() {
-                mostrarMensaje("Error", "Error al cargar la interfaz gráfica", getException().getMessage(), Alert.AlertType.ERROR);
-                Seguimiento.registrarLog(3, "No se pudo cargar la interfaz: " + getException().getMessage());
-                stage.close();
+                    stage.getScene().getRoot().opacityProperty().addListener((observable, oldValue, newValue) -> {
+                        if (newValue.doubleValue() == 0.0) {
+                            stage.setScene(getValue());
+                            stage.setTitle(title);
+                            fadeIn(getValue().getRoot(), 0.25);
+                        }
+                    });
+                } else {
+                    stage.setScene(getValue());
+                    stage.setTitle(title);
+                    fadeIn(getValue().getRoot(), 0.5);
+                    stage.show();
+                }
             }
         };
 
         new Thread(cargarEscenaTask).start();
-    }
-
-    public static Scene cargarEscena(String url, String... styles) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(url));
-            Scene scene = new Scene(fxmlLoader.load());
-            for (String style : styles) {
-                scene.getStylesheets().add(Objects.requireNonNull(App.class.getResource(style)).toExternalForm());
-            }
-            return scene;
-        } catch (IOException ignore) {
-            return new Scene(new Pane(), 600, 400);
-        }
     }
 
 
@@ -130,7 +136,7 @@ public class ViewTools {
      * Genera una escena de carga con una animación de rueda giratoria.
      *
      * @param rutaFXML La ruta del archivo FXML que define la escena de carga.
-     * @param styles Opcional. Las rutas a los archivos de estilo CSS para aplicar a la escena.
+     * @param styles   Opcional. Las rutas a los archivos de estilo CSS para aplicar a la escena.
      * @return Una escena que muestra un indicador de carga.
      */
     public static Scene generarEscenaCarga(String rutaFXML, String... styles) {
@@ -167,8 +173,10 @@ public class ViewTools {
      */
     public static void limpiarCampos(TextInputControl... campoDeTexto) {
         for (TextInputControl texto : campoDeTexto) {
-            texto.setText("");
-            texto.setPromptText("");
+            if (texto != null) {
+                texto.setText("");
+                texto.setPromptText("");
+            }
         }
     }
 
@@ -192,8 +200,8 @@ public class ViewTools {
     /**
      * Cambia la visibilidad entre paneles en una misma ventana.
      *
-     * @param primario El panel que se debe hacer visible.
-     * @param duracion Duración en segundos de la transición de desvanecimiento.
+     * @param primario    El panel que se debe hacer visible.
+     * @param duracion    Duración en segundos de la transición de desvanecimiento.
      * @param secundarios Los paneles que se deben ocultar.
      */
     public static void cambiarPantalla(Pane primario, double duracion, Pane... secundarios) {
@@ -215,7 +223,7 @@ public class ViewTools {
     /**
      * Aplica una animación de desvanecimiento gradual a un nodo, haciéndolo desaparecer.
      *
-     * @param node Nodo al cual aplicar la animación.
+     * @param node     Nodo al cual aplicar la animación.
      * @param duracion Duración en segundos de la animación.
      */
     public static void fadeOut(Node node, double duracion) {
@@ -229,7 +237,7 @@ public class ViewTools {
     /**
      * Aplica una animación de desvanecimiento gradual a un nodo, haciéndolo aparecer.
      *
-     * @param node Nodo al cual aplicar la animación.
+     * @param node     Nodo al cual aplicar la animación.
      * @param duracion Duración en segundos de la animación.
      */
     public static void fadeIn(Node node, double duracion) {
@@ -239,6 +247,5 @@ public class ViewTools {
         fadeTransition.setToValue(1.0);
         fadeTransition.play();
     }
-
 
 }

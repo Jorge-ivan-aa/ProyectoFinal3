@@ -3,6 +3,8 @@ package co.edu.uniquindio.icaja.view.views.admin;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.icaja.controller.CategoriaController;
@@ -31,12 +33,6 @@ import static co.edu.uniquindio.icaja.model.enums.TipoCategoria.*;
 public class CategoriaView {
 
     CategoriaController categoriaController = new CategoriaController();
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private Button btnCrearCategoriaAdmin;
@@ -79,7 +75,6 @@ public class CategoriaView {
 
     @FXML
     void limpiarCamposCategoriaAction() {
-//Funcionando
         ViewTools.limpiarCampos(txtNombreCategoriaAdmin,
                 txaDescripcionCategoriaAdmin);
 
@@ -173,7 +168,7 @@ public class CategoriaView {
             txaDescripcionCategoriaAdmin.setText(seleccionado.getDescripcion());
             cbxTipoCategoriaAdmin.setValue(seleccionado.getTipoCategoria());
         }
-    }
 
+    }
 
 }

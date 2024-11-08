@@ -6,6 +6,7 @@ import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.DepositoDto;
 import co.edu.uniquindio.icaja.mapping.dto.RetiroDto;
+import co.edu.uniquindio.icaja.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
 import co.edu.uniquindio.icaja.mapping.mappers.TransaccionMapper;
 import co.edu.uniquindio.icaja.mapping.services.ITransaccionDto;
@@ -15,27 +16,39 @@ import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
+import lombok.Setter;
 
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 
 @Getter
+@Setter
 public class TransaccionController implements GenericController<ITransaccionDto, Transaccion> {
 
     private final ModelFactory factory;
+    private static TransaccionController instance;
     private final ObservableList<Transaccion> listaTransaccionObservable;
+    private TransaccionDto transaccionPendiente;
 
-    public TransaccionController() {
+    private TransaccionController() {
         this.factory = ModelFactory.getInstance();
         this.listaTransaccionObservable = FXCollections.observableArrayList();
         this.sincronizarData();
     }
-    public void sincronizarData() {
 
+    public static TransaccionController getInstance() {
+        if (instance == null) {
+            instance = new TransaccionController(); // Aquí asignamos la instancia.
+        }
+        return instance;
+    }
+
+
+    public void sincronizarData() {
+        this.listaTransaccionObservable.clear();
         this.listaTransaccionObservable.addAll(this.factory.getIcaja().getListaTransacciones());
         registrarLog(1, "Se sincronizaron las transacciones");
     }
 
-// Crear Transferencia
     @Override
     public void crear(ITransaccionDto transaccionDto) throws ElementoYaExiste {
         try {
@@ -46,7 +59,7 @@ public class TransaccionController implements GenericController<ITransaccionDto,
         } catch (ElementoNoExiste ignored) {
             Transaccion nuevaTransaccion = TransaccionFactory.crearTransaccion(transaccionDto);
             factory.getIcaja().addTransaccion(nuevaTransaccion);
-            listaTransaccionObservable.add(nuevaTransaccion);
+            sincronizarData();
             registrarLog(1,"Se ha realizado una transaccion exitosamente :)");
         }
 
@@ -73,6 +86,7 @@ public class TransaccionController implements GenericController<ITransaccionDto,
             listaTransaccionObservable.remove(eliminable);
             factory.getIcaja().removeTransaccion(eliminable);
             registrarLog(1,"Se eliminó la transacción :)");
+            sincronizarData();
 
         } catch (ElementoNoExiste e) {
             registrarLog(2,"No se pudo eliminar el elemento, " + e.getMessage());
@@ -91,6 +105,4 @@ public class TransaccionController implements GenericController<ITransaccionDto,
     public void persistir() {
 
     }
-
-
 }
