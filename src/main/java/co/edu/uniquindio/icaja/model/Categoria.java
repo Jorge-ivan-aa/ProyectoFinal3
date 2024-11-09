@@ -6,6 +6,7 @@ import co.edu.uniquindio.icaja.model.enums.TipoCategoria;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.UUID;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,27 +18,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class Categoria implements Serializable {
+    private String idCategoria;
     private String nombre;
     private String descripcion;
-    private TipoCategoria tipoCategoria;
-    private ArrayList<Transaccion> transacciones = new ArrayList<>();
+    private TipoCategoria tipo;
     public static final long serialVersionID = 1L;
 
-    public Categoria(String nombre, String descripcion, TipoCategoria tipoCategoria) {
+    public Categoria(String nombre, String descripcion, TipoCategoria tipo) {
+        this.idCategoria = generarId();
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.tipoCategoria = tipoCategoria;
+        this.tipo = tipo;
     }
 
-
-    public void addTransaccion(Transaccion transaccion) {
-        System.out.println("transacciones es: " + transacciones.toString());
-        transacciones.add(transaccion);
+    private String generarId() {
+        return UUID.randomUUID().toString();
     }
-
-    public void removeTransaccion(Transaccion transaccion) {
-        transacciones.remove(transaccion);
-    }
-
-
 }

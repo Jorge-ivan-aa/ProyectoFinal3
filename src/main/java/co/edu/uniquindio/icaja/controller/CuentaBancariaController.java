@@ -9,6 +9,7 @@ import co.edu.uniquindio.icaja.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.icaja.mapping.mappers.CuentaBancariaMapper;
 import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
+import co.edu.uniquindio.icaja.utils.tools.NumTool;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
@@ -20,15 +21,15 @@ import java.util.List;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 
 @Getter
-public class CuentaBancariaController implements GenericController<CuentaBancariaDto,CuentaBancaria> {
+public class CuentaBancariaController implements GenericController<CuentaBancariaDto, Cuenta> {
 
     private final ModelFactory factory;
-    private final ObservableList<CuentaBancaria> listaCuentaBancariaObservable;
+    private final ObservableList<Cuenta> listaCuentaObservable;
     private TransaccionDto inicialData;
 
     public CuentaBancariaController() {
         this.factory = ModelFactory.getInstance();
-        this.listaCuentaBancariaObservable = FXCollections.observableArrayList();
+        this.listaCuentaObservable = FXCollections.observableArrayList();
         this.sincronizarData();
         this.persistir();
         factory.guardarRespaldo();
@@ -36,8 +37,8 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
     }
 
     public void sincronizarData() {
-        listaCuentaBancariaObservable.clear();
-        this.listaCuentaBancariaObservable.addAll(this.factory.getIcaja().getListaCuentaBancarias());
+        listaCuentaObservable.clear();
+        this.listaCuentaObservable.addAll(this.factory.getIcaja().getListaCuentas());
         registrarLog(1,"Se sincronizaron las cuentas bancarias");
     }
 
@@ -49,21 +50,21 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
             throw new ElementoYaExiste("No se pudo crear el elemento, la cuenta bancaria ya existe");
 
         } catch (ElementoNoExiste ignored) {
-            CuentaBancaria nuevaCuentaBancaria = CuentaBancariaMapper.toCuentaBancaria(cuentaBancariaDto);
-            factory.getIcaja().addCuentaBancaria(nuevaCuentaBancaria);
-            listaCuentaBancariaObservable.add(nuevaCuentaBancaria);
+            Cuenta nuevaCuenta = CuentaBancariaMapper.toCuentaBancaria(cuentaBancariaDto);
+            factory.getIcaja().addCuentaBancaria(nuevaCuenta);
+            listaCuentaObservable.add(nuevaCuenta);
             registrarLog(1,"Se ha creado una cuenta bancaria exitosamente :)");
         }
     }
 
     @Override
-    public CuentaBancaria consultar(String identificador) throws ElementoNoExiste {
+    public Cuenta consultar(String identificador) throws ElementoNoExiste {
 
         registrarLog(1,"Se ha consultado una cuenta bancaria");
 
-        for (CuentaBancaria cuentaBancaria : factory.getIcaja().getListaCuentaBancarias()) {
-            if (cuentaBancaria.getNumeroCuenta().equals(identificador)) {
-                return cuentaBancaria;
+        for (Cuenta cuenta : factory.getIcaja().getListaCuentas()) {
+            if (cuenta.getNumeroCuenta().equals(identificador)) {
+                return cuenta;
             }
         }
 
@@ -74,8 +75,8 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
     @Override
     public void eliminar(String identificador) throws ElementoNoExiste {
         try {
-            CuentaBancaria eliminable = this.consultar(identificador); // consultar si existe, de lo contrario propaga una excepcion.
-            listaCuentaBancariaObservable.remove(eliminable);
+            Cuenta eliminable = this.consultar(identificador); // consultar si existe, de lo contrario propaga una excepcion.
+            listaCuentaObservable.remove(eliminable);
             factory.getIcaja().removeCuentaBancaria(eliminable);
             registrarLog(1,"Se eliminó la cuenta Bancaria");
 
@@ -88,11 +89,10 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
     @Override
     public void actualizar(CuentaBancariaDto cuentaBancariaDto) throws ElementoNoExiste {
         try {
-            CuentaBancaria actualizable = this.consultar(cuentaBancariaDto.numeroCuenta());
+            Cuenta actualizable = this.consultar(cuentaBancariaDto.numeroCuenta());
             actualizable.setEntidad(cuentaBancariaDto.entidad());
-            actualizable.setLimite(cuentaBancariaDto.limite());
-            actualizable.setSaldo(cuentaBancariaDto.saldo());
-            actualizable.setTipoCuenta(cuentaBancariaDto.tipoCuenta());
+            actualizable.setSaldo(NumTool.parseToDinero(cuentaBancariaDto.saldo()));
+            actualizable.setTipo(cuentaBancariaDto.tipo());
             actualizable.setPropietario(cuentaBancariaDto.propietario());
             sincronizarData();
             registrarLog(1,"Se ha actualizado la cuenta bancaria de numero" + cuentaBancariaDto.numeroCuenta() + " exitosamente :)");
@@ -107,7 +107,7 @@ public class CuentaBancariaController implements GenericController<CuentaBancari
 
     @Override
     public void persistir() {
-        List<CuentaBancaria> cuentas = new ArrayList<>(factory.getIcaja().getListaCuentaBancarias());
+        List<Cuenta> cuentas = new ArrayList<>(factory.getIcaja().getListaCuentas());
         try {
             factory.getCuentaBancariaPersistente().guardar(cuentas);
         } catch (IOException e) {

@@ -1,28 +1,26 @@
 package co.edu.uniquindio.icaja.model;
-
 import co.edu.uniquindio.icaja.exception.login.CredencialesNoCoinciden;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-
+import java.util.UUID;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import lombok.NoArgsConstructor;
 import org.mindrot.jbcrypt.BCrypt;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class Usuario implements Serializable, Login {
+    private String idUsuario;
     private String nombre;
     private String cedula;
     private String correo;
     private String telefono;
+    private String direccion;
     private String clave;
     private String claveTransaccional;
     private double saldoTotal;
@@ -30,16 +28,16 @@ public class Usuario implements Serializable, Login {
     private double gastos;
     private double presupuestoMensual;
     private TipoUsuario tipoUsuario;
-    private ArrayList<CuentaBancaria> listaCuentas;
+    private ArrayList<Cuenta> listaCuentas;
     public static final long serialVersionID = 5L;
 
     public Usuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
+        this.idUsuario = generarId();
         this.nombre = nombre;
         this.cedula = cedula;
         this.correo = correo;
         this.telefono = telefono;
         this.clave = encriptarClave(clave);
-        System.out.println("para el usuario: "+ nombre + "se genero el hash: " + this.clave);
         this.claveTransaccional = encriptarClave(claveTransaccional);
         this.saldoTotal = 0;
         this.ingresos = 0;
@@ -47,6 +45,10 @@ public class Usuario implements Serializable, Login {
         this.presupuestoMensual = presupuestoMensual;
         this.listaCuentas = new ArrayList<>();
         this.tipoUsuario = TipoUsuario.NORMAL;
+    }
+
+    private String generarId() {
+        return UUID.randomUUID().toString();
     }
 
     @Override
@@ -73,11 +75,11 @@ public class Usuario implements Serializable, Login {
         this.tipoUsuario = TipoUsuario.ADMINISTRADOR;
     }
 
-    public void addCuenta(CuentaBancaria cuenta) {
+    public void addCuenta(Cuenta cuenta) {
         this.listaCuentas.add(cuenta);
     }
 
-    public void removeCuenta(CuentaBancaria cuenta) {
+    public void removeCuenta(Cuenta cuenta) {
         this.listaCuentas.remove(cuenta);
     }
 

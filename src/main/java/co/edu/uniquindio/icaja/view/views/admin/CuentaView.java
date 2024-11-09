@@ -5,12 +5,12 @@ import co.edu.uniquindio.icaja.controller.UsuarioController;
 import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.mapping.dto.CuentaBancariaDto;
-import co.edu.uniquindio.icaja.model.CuentaBancaria;
+import co.edu.uniquindio.icaja.model.Cuenta;
 import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.model.enums.EntidadBancaria;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
-import co.edu.uniquindio.icaja.utils.ViewTools;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
+import co.edu.uniquindio.icaja.utils.tools.NumTool;
+import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 
 import java.net.URL;
 import java.util.List;
@@ -18,7 +18,6 @@ import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -47,24 +46,24 @@ public class CuentaView {
     private AnchorPane panelCuenta;
 
     @FXML
-    private TableColumn<CuentaBancaria, EntidadBancaria> tcEntidadAdmin;
+    private TableColumn<Cuenta, EntidadBancaria> tcEntidadAdmin;
 
     @FXML
-    private TableColumn<CuentaBancaria, String> tcLimiteAdmin;
+    private TableColumn<Cuenta, String> tcLimiteAdmin;
 
     @FXML
-    private TableColumn<CuentaBancaria, String> tcNumeroCuentaAdmin;
+    private TableColumn<Cuenta, String> tcNumeroCuentaAdmin;
 
     @FXML
-    private TableColumn<CuentaBancaria, String> tcSaldoAdmin;
+    private TableColumn<Cuenta, String> tcSaldoAdmin;
 
     @FXML
-    private TableColumn<CuentaBancaria, TipoCuenta> tcTipoCuentaAdmin;
+    private TableColumn<Cuenta, TipoCuenta> tcTipoCuentaAdmin;
 
     @FXML
-    private TableView<CuentaBancaria> tvTablaCuentasAdmin;
+    private TableView<Cuenta> tvTablaCuentasAdmin;
     @FXML
-    private TableColumn<CuentaBancaria, String> tcPropietarioAdmin;
+    private TableColumn<Cuenta, String> tcPropietarioAdmin;
 
     @FXML
     private TextField txtLimiteAdmin;
@@ -87,7 +86,7 @@ public class CuentaView {
 
         if (ViewTools.NoHayCamposVacios(numeroCuenta, saldo, limite)) {
             Usuario propietario = usuarioController.consultar(cedulaPropietario);
-            CuentaBancariaDto cuentaBancariaDto = new CuentaBancariaDto(entidad, numeroCuenta, tipo, Double.parseDouble(saldo), Double.parseDouble(limite), propietario);
+            CuentaBancariaDto cuentaBancariaDto = new CuentaBancariaDto(entidad, numeroCuenta, tipo, saldo, propietario);
 
             try {
                 cuentaBancariaController.actualizar(cuentaBancariaDto);
@@ -120,7 +119,7 @@ public class CuentaView {
 
         if (ViewTools.NoHayCamposVacios(numeroCuenta, saldo, limite)) {
             Usuario propietario = usuarioController.consultar(cedulaPropietario);
-            CuentaBancariaDto cuentaBancariaDto = new CuentaBancariaDto(entidad, numeroCuenta, tipo, Double.parseDouble(saldo), Double.parseDouble(limite), propietario);
+            CuentaBancariaDto cuentaBancariaDto = new CuentaBancariaDto(entidad, numeroCuenta, tipo, saldo, propietario);
 
             try {
                 cuentaBancariaController.crear(cuentaBancariaDto);
@@ -192,32 +191,29 @@ public class CuentaView {
     private void initview() {
         initDataBinging();
         tvTablaCuentasAdmin.getItems().clear();
-        tvTablaCuentasAdmin.setItems(cuentaBancariaController.getListaCuentaBancariaObservable());
+        tvTablaCuentasAdmin.setItems(cuentaBancariaController.getListaCuentaObservable());
         listenerSelectionCuenta();
     }
 
     private void initDataBinging() {
         tcEntidadAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getEntidad()));
         tcNumeroCuentaAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNumeroCuenta()));
-        tcSaldoAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getSaldo())));
-        tcTipoCuentaAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTipoCuenta()));
-        tcLimiteAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(Double.toString(cellData.getValue().getLimite())));
+        tcSaldoAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSaldo().toString()));
+        tcTipoCuentaAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTipo()));
         tcPropietarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getPropietario().getCedula())));
-
     }
 
     private void listenerSelectionCuenta() {
         tvTablaCuentasAdmin.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection)
-                -> this.mostrarInformacion((CuentaBancaria) newSelection));
+                -> this.mostrarInformacion((Cuenta) newSelection));
     }
 
-    private void mostrarInformacion(CuentaBancaria seleccionado) {
+    private void mostrarInformacion(Cuenta seleccionado) {
         if (seleccionado != null) {
             cbxEntidadAdmin.setValue(seleccionado.getEntidad());
             txtNumeroCuentaAdmin.setText(seleccionado.getNumeroCuenta());
             txtSaldoAdmin.setText(String.valueOf(seleccionado.getSaldo()));
-            cbxTipoCuentaAdmin.setValue(seleccionado.getTipoCuenta());
-            txtLimiteAdmin.setText(String.valueOf(seleccionado.getLimite()));
+            cbxTipoCuentaAdmin.setValue(seleccionado.getTipo());
             cbxPropietarioCuentaAdmin.setValue(seleccionado.getPropietario().getCedula());
         }
     }

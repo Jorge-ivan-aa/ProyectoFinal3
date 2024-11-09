@@ -9,7 +9,7 @@ import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.model.Usuario;
-import co.edu.uniquindio.icaja.utils.ViewTools;
+import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import javafx.beans.property.SimpleStringProperty;
 
 import javafx.event.ActionEvent;

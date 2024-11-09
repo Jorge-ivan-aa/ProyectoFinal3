@@ -3,10 +3,9 @@ package co.edu.uniquindio.icaja.view.views.tooltips;
 import co.edu.uniquindio.icaja.controller.CategoriaController;
 import co.edu.uniquindio.icaja.controller.CuentaBancariaController;
 import co.edu.uniquindio.icaja.controller.TransaccionController;
-import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
 import co.edu.uniquindio.icaja.model.Categoria;
-import co.edu.uniquindio.icaja.model.CuentaBancaria;
-import co.edu.uniquindio.icaja.utils.ViewTools;
+import co.edu.uniquindio.icaja.model.Cuenta;
+import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,16 +35,16 @@ public class RealizarTransferenciaAdminView {
     void realizarTransferencia() {
         
         try {
-            TransferenciaDto transferencia = new TransferenciaDto(null,
-                    transaccionController.getTransaccionPendiente().monto(),
-                    nombreToCategoria(listaNombresCategoria),
-                    transaccionController.getTransaccionPendiente().cuenta(),
-                    transaccionController.getTransaccionPendiente().motivo(),
-                    false,
-                    cuentaBancariaController.consultar(cbxCuentaDestinoTransferencia.getValue())
-            );
+//            TransferenciaDto transferencia = new TransferenciaDto(null,
+//                    transaccionController.getTransaccionPendiente().monto(),
+//                    nombreToCategoria(listaNombresCategoria),
+//                    transaccionController.getTransaccionPendiente().cuenta(),
+//                    transaccionController.getTransaccionPendiente().motivo(),
+//                    false,
+//                    cuentaBancariaController.consultar(cbxCuentaDestinoTransferencia.getValue())
+//            );
 
-            transaccionController.crear(transferencia);
+//            transaccionController.crear(transferencia);
             ViewTools.mostrarMensaje("¡Genial!", null, "Se ha realizado una transacción correctamente", Alert.AlertType.INFORMATION);
             ViewTools.cerrarVentana(cbxCuentaDestinoTransferencia);
 
@@ -108,13 +107,13 @@ public class RealizarTransferenciaAdminView {
     }
     
     private void cargarlistaCuentaBancaria() {
-        List<CuentaBancaria> listaCuentaBancaria = cuentaBancariaController.getListaCuentaBancariaObservable();
-        listaCuentaBancaria.removeIf(cuenta -> cuenta.equals(transaccionController.getTransaccionPendiente().cuenta()));
+        List<Cuenta> listaCuenta = cuentaBancariaController.getListaCuentaObservable();
+        listaCuenta.removeIf(cuenta -> cuenta.equals(transaccionController.getTransaccionPendiente().cuenta()));
 
         List<String> nuevaLista = new ArrayList<>();
 
-        for (CuentaBancaria cuentaBancaria : listaCuentaBancaria) {
-            nuevaLista.add(cuentaBancaria.getNumeroCuenta());
+        for (Cuenta cuenta : listaCuenta) {
+            nuevaLista.add(cuenta.getNumeroCuenta());
         }
 
 

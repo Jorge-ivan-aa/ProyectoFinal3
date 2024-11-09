@@ -50,7 +50,7 @@
                 <FontAwesomeIconView glyphName="TAG" size="24" styleClass="icon" />
             </graphic>
             <tooltip>
-                <Tooltip text="Categorias"/>
+                <Tooltip text="Estadisticas"/>
             </tooltip>
         </Button>
         <Button mnemonicParsing="false" onAction="#VolverAction" prefHeight="43.0" prefWidth="43.0" GridPane.halignment="CENTER" GridPane.rowIndex="4">

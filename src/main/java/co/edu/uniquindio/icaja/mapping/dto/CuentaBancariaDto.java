@@ -7,8 +7,7 @@ import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 public record CuentaBancariaDto(
         EntidadBancaria entidad,
         String numeroCuenta,
-        TipoCuenta tipoCuenta,
-        double saldo,
-        double limite,
+        TipoCuenta tipo,
+        String saldo,
         Usuario propietario) {
 }

@@ -2,11 +2,11 @@
 
 ## Entidades principales
 
-- [x] **Clase Usuario**: [!] idUsuarip, nombre, correo, numero, [!] direccion, saldo total.
-- [x] **Clase Cuenta**: [!] idCuenta, entidad, numero cuenta, [!] tipo -> ( Ahorro o corriente).
-- [ ] **Clase Transaccion**: idTransaccion, fecha, tipo -> (deposito, retiro, transferencia), monto, descripción, cuenta origen, cuenta destino, categoria.
+- [x] **Clase Usuario**: idUsuario, nombre, correo, numero, [!] direccion, saldo total.
+- [x] **Clase Cuenta**: idCuenta, entidad, numero cuenta, tipo -> ( Ahorro o corriente).
+- [x] **Clase Transaccion**: idTransaccion, fecha, tipo -> (deposito, retiro, transferencia), monto, descripción, cuenta origen, cuenta destino, categoria.
 - [ ] **Clase Presupuesto**: idPresupuesto, nombre, monto asignado, monto gastado, categoria.
-- [x] **Clase Categoria**: [!] idCategoria, nombre, descripción.
+- [x] **Clase Categoria**: idCategoria, nombre, descripción.
 
 
 ## Requerimientos Administrador
@@ -16,6 +16,7 @@
 - [ ] **Gestionar transacciones**: crear, listar.
 - [ ] **Mostrar estadisticas**: gastos comunes, usuarios con más transacciones, saldo promedio de usuarios.
 - [ ] **Mostrar graficas**: graficas con JavaFX Charts.
+
 
 
 ## Requerimientos Usuario

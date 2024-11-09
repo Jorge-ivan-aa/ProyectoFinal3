@@ -1,7 +1,7 @@
 package co.edu.uniquindio.icaja.factory;
 
 import co.edu.uniquindio.icaja.model.Categoria;
-import co.edu.uniquindio.icaja.model.CuentaBancaria;
+import co.edu.uniquindio.icaja.model.Cuenta;
 import co.edu.uniquindio.icaja.model.ICaja;
 import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.model.persistencia.CategoriaPersistente;
@@ -48,7 +48,7 @@ public class ModelFactory {
 
     public void loadData() {
         List<Usuario> usuarios = null;
-        List<CuentaBancaria> cuentasBancarias = null;
+        List<Cuenta> cuentasBancarias = null;
         List<Categoria> categorias = null;
         try {
             usuarios = usuarioPersistente.leer("usuario.txt");
@@ -71,8 +71,8 @@ public class ModelFactory {
             for (T elemento :listaElementos) {
                 if (elemento instanceof Usuario) {
                     icaja.addUsuario((Usuario) elemento);
-                } else if (elemento instanceof  CuentaBancaria) {
-                    icaja.addCuentaBancaria((CuentaBancaria) elemento);
+                } else if (elemento instanceof Cuenta) {
+                    icaja.addCuentaBancaria((Cuenta) elemento);
                 } else if (elemento instanceof  Categoria) {
                     icaja.addCategoria((Categoria) elemento);
                 }

@@ -3,7 +3,7 @@ package co.edu.uniquindio.icaja.view.views;
 import co.edu.uniquindio.icaja.controller.UsuarioController;
 import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
-import co.edu.uniquindio.icaja.utils.ViewTools;
+import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;

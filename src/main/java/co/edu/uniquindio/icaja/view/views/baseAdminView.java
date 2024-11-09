@@ -1,7 +1,7 @@
 package co.edu.uniquindio.icaja.view.views;
 
 import co.edu.uniquindio.icaja.controller.UsuarioController;
-import co.edu.uniquindio.icaja.utils.ViewTools;
+import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 

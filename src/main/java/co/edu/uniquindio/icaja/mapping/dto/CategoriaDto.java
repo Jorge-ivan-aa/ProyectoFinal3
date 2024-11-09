@@ -7,6 +7,6 @@ import java.util.ArrayList;
 
 public record CategoriaDto(String nombre,
     String descripcion,
-    TipoCategoria tipoCategoria){
+    TipoCategoria tipo){
 
 }

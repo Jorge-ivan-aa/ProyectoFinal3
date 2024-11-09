@@ -1,12 +1,5 @@
 package co.edu.uniquindio.icaja.view.views.admin;
 
-import io.github.palexdev.materialfx.controls.MFXTextField;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import co.edu.uniquindio.icaja.controller.CategoriaController;
 import co.edu.uniquindio.icaja.model.enums.TipoCategoria;
 import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
@@ -14,21 +7,18 @@ import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 
 import co.edu.uniquindio.icaja.mapping.dto.CategoriaDto;
 import co.edu.uniquindio.icaja.model.Categoria;
-import co.edu.uniquindio.icaja.utils.ViewTools;
+import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import javafx.scene.control.*;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-
-import static co.edu.uniquindio.icaja.model.enums.TipoCategoria.*;
 
 public class CategoriaView {
 
@@ -150,7 +140,7 @@ public class CategoriaView {
 
     private void initDataBinging() {
         tcNombreCategoriaAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
-        tcTipoCategoriaAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTipoCategoria()));
+        tcTipoCategoriaAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTipo()));
         tcDescripcionCategoriaAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescripcion()));
     }
 
@@ -166,7 +156,7 @@ public class CategoriaView {
 
             txtNombreCategoriaAdmin.setText(seleccionado.getNombre());
             txaDescripcionCategoriaAdmin.setText(seleccionado.getDescripcion());
-            cbxTipoCategoriaAdmin.setValue(seleccionado.getTipoCategoria());
+            cbxTipoCategoriaAdmin.setValue(seleccionado.getTipo());
         }
 
     }

@@ -5,7 +5,7 @@ import co.edu.uniquindio.icaja.exception.login.CredencialesNoCoinciden;
 import co.edu.uniquindio.icaja.exception.login.UsuarioNoExiste;
 import co.edu.uniquindio.icaja.model.Sesion;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
-import co.edu.uniquindio.icaja.utils.ViewTools;
+import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

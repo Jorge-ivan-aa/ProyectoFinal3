@@ -11,8 +11,9 @@ module co.edu.uniquindio.icaja {
     exports co.edu.uniquindio.icaja.mapping.services;
     opens co.edu.uniquindio.icaja to javafx.fxml;
     exports co.edu.uniquindio.icaja.model;
+    exports co.edu.uniquindio.icaja.exception.constructores;
     exports co.edu.uniquindio.icaja.model.enums;
-    exports co.edu.uniquindio.icaja.model.factories;
+    exports co.edu.uniquindio.icaja.exception.transacciones;
     exports co.edu.uniquindio.icaja.model.services;
     exports co.edu.uniquindio.icaja.model.persistencia;
     exports co.edu.uniquindio.icaja.exception.login;
@@ -24,8 +25,6 @@ module co.edu.uniquindio.icaja {
     opens co.edu.uniquindio.icaja.view to javafx.fxml;
     exports co.edu.uniquindio.icaja.factory;
     opens co.edu.uniquindio.icaja.factory to javafx.fxml;
-    exports co.edu.uniquindio.icaja.utils;
-    opens co.edu.uniquindio.icaja.utils to javafx.fxml;
     exports co.edu.uniquindio.icaja.view.views.admin;
     opens co.edu.uniquindio.icaja.view.views.admin to javafx.fxml;
     exports co.edu.uniquindio.icaja.view.views.normal;
@@ -38,4 +37,6 @@ module co.edu.uniquindio.icaja {
     opens co.edu.uniquindio.icaja.utils.loggin to javafx.fxml;
     exports co.edu.uniquindio.icaja.utils.respaldo;
     opens co.edu.uniquindio.icaja.utils.respaldo to javafx.fxml;
+    exports co.edu.uniquindio.icaja.utils.tools;
+    opens co.edu.uniquindio.icaja.utils.tools to javafx.fxml;
 }

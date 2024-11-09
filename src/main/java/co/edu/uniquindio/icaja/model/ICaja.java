@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.edu.uniquindio.icaja.mapping.dto.TransaccionDto;
-import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,14 +17,14 @@ public class ICaja implements Serializable {
     private ArrayList<Usuario> listaUsuarios;
     private ArrayList<Transaccion> listaTransacciones;
     private ArrayList<Categoria> listaCategorias;
-    private ArrayList<CuentaBancaria> listaCuentaBancarias;
+    private ArrayList<Cuenta> listaCuentas;
     private Sesion sesion;
 
     public ICaja() {
         this.listaUsuarios = new ArrayList<>();
         this.listaTransacciones = new ArrayList<>();
         this.listaCategorias = new ArrayList<>();
-        this.listaCuentaBancarias = new ArrayList<>();
+        this.listaCuentas = new ArrayList<>();
         this.sesion = null;
     }
 
@@ -44,8 +42,8 @@ public class ICaja implements Serializable {
         this.listaCategorias.add(categoria);
     }
 
-    public void addCuentaBancaria(CuentaBancaria cuentaBancaria) {
-        this.listaCuentaBancarias.add(cuentaBancaria);
+    public void addCuentaBancaria(Cuenta cuenta) {
+        this.listaCuentas.add(cuenta);
     }
 
     // remover elementos -------------
@@ -71,10 +69,10 @@ public class ICaja implements Serializable {
     }
 
     public void removeCuentaBancaria(int index) {
-        this.listaCuentaBancarias.remove(index);
+        this.listaCuentas.remove(index);
     }
-    public void removeCuentaBancaria(CuentaBancaria cuentaBancaria) {
-        this.listaCuentaBancarias.remove(cuentaBancaria);
+    public void removeCuentaBancaria(Cuenta cuenta) {
+        this.listaCuentas.remove(cuenta);
     }
 
     /**
