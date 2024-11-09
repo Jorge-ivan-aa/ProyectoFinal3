@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="estadisticasPanel" prefHeight="626.0" prefWidth="1073.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.EstadisticaView">
+   <children>
+      <PieChart fx:id="pcGraficaUno" layoutX="404.0" layoutY="60.0" prefHeight="237.0" prefWidth="246.0" style="-fx-background-color: orange;" />
+      <PieChart fx:id="pcGraficaDos" layoutX="403.0" layoutY="350.0" prefHeight="237.0" prefWidth="246.0" style="-fx-background-color: orange;" />
+      <TableView fx:id="tvGastosPorCategoria" layoutX="41.0" layoutY="60.0" prefHeight="237.0" prefWidth="312.0">
+        <columns>
+          <TableColumn fx:id="tcGastosPorCategoria" prefWidth="230.9333610534668" text="Gastos por Categoria" />
+          <TableColumn fx:id="tcPorcentajePorCategoria" prefWidth="81.0666275024414" text="\%" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tvTransaccionesPorUsuario" layoutX="41.0" layoutY="350.0" prefHeight="237.0" prefWidth="312.0">
+         <columns>
+            <TableColumn fx:id="tcTransaccionesPorUsuario" prefWidth="230.9333610534668" text="Transacciones por Usuario" />
+            <TableColumn fx:id="tcCantidadTransacciones" prefWidth="81.0666275024414" text="#" />
+         </columns>
+      </TableView>
+      <Pane layoutX="718.0" layoutY="47.0" prefHeight="538.0" prefWidth="311.0" style="-fx-border-color: purple;">
+         <children>
+            <Label layoutX="48.0" layoutY="52.0" text="Saldo Promedio de Usuarios">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="55.0" layoutY="319.0" text="Usuario con Mayor Saldo">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbSaldoPromedioUsuario" layoutX="105.0" layoutY="160.0" text="#######">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbUsuarioMayorSaldo" layoutX="116.0" layoutY="418.0" text="#######">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

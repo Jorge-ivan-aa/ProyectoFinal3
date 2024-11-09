@@ -10,7 +10,7 @@ public class baseAdminView {
     UsuarioController usuarioController = new UsuarioController();
 
     @FXML
-    private AnchorPane categoriaBox;
+    private AnchorPane estadisticaBox;
 
     @FXML
     private AnchorPane cuentaBancariaBox;
@@ -25,32 +25,32 @@ public class baseAdminView {
     void VolverAction() {
         usuarioController.cerrarSesion();
         ViewTools.generarVentana("login.fxml", "ICaja Wallet", "carga.fxml", "styles/main.css", "styles/login.css");
-        ViewTools.cerrarVentana(categoriaBox);
+        ViewTools.cerrarVentana(estadisticaBox);
     }
 
     @FXML
-    void irCategoriaAction() {
-        ViewTools.cambiarPantalla(categoriaBox, 0.125, cuentaBancariaBox, transaccionBox, usuarioBox);
+    void irEstadisticaAction() {
+        ViewTools.cambiarPantalla(estadisticaBox, 0.125, cuentaBancariaBox, transaccionBox, usuarioBox);
     }
 
     @FXML
     void irCuentaAction() {
-        ViewTools.cambiarPantalla(cuentaBancariaBox,0.125, categoriaBox, transaccionBox, usuarioBox);
+        ViewTools.cambiarPantalla(cuentaBancariaBox,0.125, estadisticaBox, transaccionBox, usuarioBox);
     }
 
     @FXML
     void irTransaccionAction() {
-        ViewTools.cambiarPantalla(transaccionBox,0.125, cuentaBancariaBox, categoriaBox, usuarioBox);
+        ViewTools.cambiarPantalla(transaccionBox,0.125, cuentaBancariaBox, estadisticaBox, usuarioBox);
     }
 
     @FXML
     void irUsuarioAction() {
-        ViewTools.cambiarPantalla(usuarioBox,0.125, transaccionBox, cuentaBancariaBox, categoriaBox);
+        ViewTools.cambiarPantalla(usuarioBox,0.125, transaccionBox, cuentaBancariaBox, estadisticaBox);
     }
 
     @FXML
     void initialize() {
-        ViewTools.cambiarPantalla(usuarioBox,0.125, transaccionBox, cuentaBancariaBox, categoriaBox);
+        ViewTools.cambiarPantalla(usuarioBox,0.125, transaccionBox, cuentaBancariaBox, estadisticaBox);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             usuarioController.cerrarSesion();

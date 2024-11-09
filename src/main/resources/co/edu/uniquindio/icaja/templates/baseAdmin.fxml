@@ -45,7 +45,7 @@
                 <Tooltip text="Transacciones"/>
             </tooltip>
         </Button>
-        <Button mnemonicParsing="false" onAction="#irCategoriaAction" prefHeight="43.0" prefWidth="43.0" GridPane.rowIndex="3">
+        <Button mnemonicParsing="false" onAction="#irEstadisticaAction" prefHeight="43.0" prefWidth="43.0" GridPane.rowIndex="3">
             <graphic>
                 <FontAwesomeIconView glyphName="TAG" size="24" styleClass="icon" />
             </graphic>
@@ -73,7 +73,7 @@
                 visible="false">
         <fx:include source="admin/transaccion.fxml"/>
     </AnchorPane>
-    <AnchorPane fx:id="categoriaBox" layoutX="162.0" layoutY="47.0" prefHeight="626.0" prefWidth="1073.0"
+    <AnchorPane fx:id="estadisticaBox" layoutX="162.0" layoutY="47.0" prefHeight="626.0" prefWidth="1073.0"
                 visible="false">
         <fx:include source="admin/categoria.fxml"/>
     </AnchorPane>
