@@ -12,8 +12,7 @@ public class UsuarioMapper {
                 usuario.getCorreo(),
                 usuario.getTelefono(),
                 usuario.getClave(),
-                usuario.getClaveTransaccional(),
-                usuario.getPresupuestoMensual()
+                usuario.getClaveTransaccional()
         );
     }
 
@@ -24,8 +23,6 @@ public class UsuarioMapper {
                 usuarioDto.correo(),
                 usuarioDto.telefono(),
                 usuarioDto.clave(),
-                usuarioDto.claveTransaccional(),
-                usuarioDto.presupuestoMensual()
-        );
+                usuarioDto.claveTransaccional());
     }
 }

@@ -17,9 +17,6 @@ public class RegistroUsuarioView {
     private Pane pane1;
 
     @FXML
-    private Pane pane2;
-
-    @FXML
     private Pane pane3;
 
     @FXML
@@ -41,9 +38,6 @@ public class RegistroUsuarioView {
     private TextField txtNombreUsuario;
 
     @FXML
-    private TextField txtPresupuestoUsuario;
-
-    @FXML
     private TextField txtTelefonoUsuario;
 
     @FXML
@@ -54,11 +48,10 @@ public class RegistroUsuarioView {
         String correo = txtCorreoUsuario.getText();
         String clave = txtClaveUsuario.getText();
         String claveTransaccional = txtClaveTranUsuario.getText();
-        String presupuestoMensual = txtPresupuestoUsuario.getText();
         String telefono = txtTelefonoUsuario.getText();
 
         if (ViewTools.NoHayCamposVacios(claveTransaccional)) {
-            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
+            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional);
             try {
                 usuarioController.crear(usuarioDto);
                 String msj = "El registro ha sido exitoso, ¡Bienvenido " + nombre + "!";
@@ -77,8 +70,7 @@ public class RegistroUsuarioView {
                 txtCorreoUsuario,
                 txtTelefonoUsuario,
                 txtClaveUsuario,
-                txtClaveTranUsuario,
-                txtPresupuestoUsuario);
+                txtClaveTranUsuario);
 
         ViewTools.generarVentana("login.fxml", "ICaja :)", "carga.fxml", "styles/main.css", "styles/login.css");
         ViewTools.cerrarVentana(txtCedulaUsuario);
@@ -95,33 +87,12 @@ public class RegistroUsuarioView {
 
         if(ViewTools.NoHayCamposVacios(nombre, cedula, correo, telefono, clave, claveConfirmacion)){
             if (clave.equals(claveConfirmacion)){
-                ViewTools.cambiarPantalla(pane2,0.225, pane1, pane3);
+                ViewTools.cambiarPantalla(pane3,0.225, pane1);
             } else {
                 ViewTools.mostrarMensaje("¡Cuidado!", null, "Las contraseñas no coinciden", Alert.AlertType.WARNING);
             }
         } else {
             ViewTools.mostrarMensaje("¡Cuidado!", null, "Hay campos vacíos", Alert.AlertType.WARNING);
-        }
-    }
-
-    @FXML
-    void continuar2Action() {
-        String presupuestoMensual = txtPresupuestoUsuario.getText();
-
-        if(ViewTools.NoHayCamposVacios(presupuestoMensual)){
-            try {
-                int number = Integer.parseInt(presupuestoMensual);
-                if (number > 0) {
-                    ViewTools.cambiarPantalla(pane3,0.225, pane1, pane2);
-                } else {
-                    ViewTools.mostrarMensaje("¡Cuidado!", null, "El presupuesto debe ser mayor a cero.", Alert.AlertType.WARNING);
-                }
-            } catch (NumberFormatException ignore) {
-                ViewTools.mostrarMensaje("¡Cuidado!", null, "El presupuesto debe ser un numero.", Alert.AlertType.WARNING);
-            }
-            
-        } else {
-            ViewTools.mostrarMensaje("¡Cuidado!", null, "No has ingresado ningun presupuesto.", Alert.AlertType.WARNING);
         }
     }
 
@@ -135,6 +106,6 @@ public class RegistroUsuarioView {
 
     @FXML
     void initialize() {
-        ViewTools.cambiarPantalla(pane1,0.225, pane3, pane2);
+        ViewTools.cambiarPantalla(pane1,0.225, pane3);
     }
 }

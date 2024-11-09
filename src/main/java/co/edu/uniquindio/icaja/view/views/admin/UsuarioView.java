@@ -1,33 +1,18 @@
 package co.edu.uniquindio.icaja.view.views.admin;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import co.edu.uniquindio.icaja.controller.UsuarioController;
 import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
-
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import javafx.beans.property.SimpleStringProperty;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 
 public class UsuarioView {
     UsuarioController usuarioController = new UsuarioController();
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    private AnchorPane panelUsuario;
 
     @FXML
     private TableView<Usuario> tbUsuariosAdmin;
@@ -48,7 +33,7 @@ public class UsuarioView {
     private TableColumn<Usuario, String> tbcNombreUsuarioAdmin;
 
     @FXML
-    private TableColumn<Usuario, String> tbcPresupuestoMensualAdmin;
+    private TableColumn<Usuario, String> tbcSaldoTotalAdmin;
 
     @FXML
     private TableColumn<Usuario, String> tbcTelefonoUsuarioAdmin;
@@ -69,25 +54,21 @@ public class UsuarioView {
     private TextField txtNombreAdmin;
 
     @FXML
-    private TextField txtPresupuestoMensualAdmin;
-
-    @FXML
     private TextField txtTelefonoAdmin;
 
     @FXML
-    void actualizarUsuario(ActionEvent event) {
+    void actualizarUsuario() {
         String nombre = txtNombreAdmin.getText();
         String cedula = txtCedulaAdmin.getText();
         String correo = txtCorreoAdmin.getText();
         String clave = txtClaveAdmin.getText();
         String claveTransaccional = txtClaveTransaccionalAdmin.getText();
-        String presupuestoMensual = txtPresupuestoMensualAdmin.getText();
         String telefono = txtTelefonoAdmin.getText();
 
         boolean cambioClaves =  !clave.isEmpty() || !claveTransaccional.isEmpty();
 
-        if (ViewTools.NoHayCamposVacios(nombre, cedula, correo, telefono, presupuestoMensual) && cambioClaves) {
-                UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
+        if (ViewTools.NoHayCamposVacios(nombre, cedula, correo, telefono) && cambioClaves) {
+                UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional);
             try {
                 usuarioController.actualizar(usuarioDto);
                 String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
@@ -105,24 +86,22 @@ public class UsuarioView {
                 txtCorreoAdmin,
                 txtTelefonoAdmin,
                 txtClaveAdmin,
-                txtClaveTransaccionalAdmin,
-                txtPresupuestoMensualAdmin);
+                txtClaveTransaccionalAdmin);
 
     }
 
     @FXML
-    void crearUsuario(ActionEvent event) {
+    void crearUsuario() {
         String nombre = txtNombreAdmin.getText();
         String cedula = txtCedulaAdmin.getText();
         String correo = txtCorreoAdmin.getText();
         String clave = txtClaveAdmin.getText();
         String claveTransaccional = txtClaveTransaccionalAdmin.getText();
-        String presupuestoMensual = txtPresupuestoMensualAdmin.getText();
         String telefono = txtTelefonoAdmin.getText();
 
 
-        if (ViewTools.NoHayCamposVacios(nombre, cedula, correo, telefono, clave, claveTransaccional, presupuestoMensual)) {
-            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional, Double.parseDouble(presupuestoMensual));
+        if (ViewTools.NoHayCamposVacios(nombre, cedula, correo, telefono, clave, claveTransaccional)) {
+            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional);
 
             try {
                 usuarioController.crear(usuarioDto);
@@ -141,13 +120,11 @@ public class UsuarioView {
                 txtCorreoAdmin,
                 txtTelefonoAdmin,
                 txtClaveAdmin,
-                txtClaveTransaccionalAdmin,
-                txtPresupuestoMensualAdmin);
-
+                txtClaveTransaccionalAdmin);
     }
 
     @FXML
-    void eliminarUsuario(ActionEvent event) {
+    void eliminarUsuario() {
         String cedula   = txtCedulaAdmin.getText();
 
         if (ViewTools.NoHayCamposVacios(cedula)) {
@@ -168,20 +145,18 @@ public class UsuarioView {
                 txtCorreoAdmin,
                 txtTelefonoAdmin,
                 txtClaveAdmin,
-                txtClaveTransaccionalAdmin,
-                txtPresupuestoMensualAdmin);
+                txtClaveTransaccionalAdmin);
 
     }
 
     @FXML
-    void limpiarCamposUsuarioAction(ActionEvent event) {
+    void limpiarCamposUsuarioAction() {
         ViewTools.limpiarCampos(txtCedulaAdmin,
                 txtNombreAdmin,
                 txtCorreoAdmin,
                 txtTelefonoAdmin,
                 txtClaveAdmin,
-                txtClaveTransaccionalAdmin,
-                txtPresupuestoMensualAdmin);
+                txtClaveTransaccionalAdmin);
     }
 
     @FXML
@@ -201,13 +176,13 @@ public class UsuarioView {
         tbcCedulaUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCedula()));
         tbcClaveTransaccionalAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClaveTransaccional()));
         tbcTelefonoUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTelefono()));
-        tbcPresupuestoMensualAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getPresupuestoMensual())));
+        tbcSaldoTotalAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getSaldoTotal())));
         tbcClaveUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClave()));
     }
 
     private void listenerSelectionUsuario() {
         tbUsuariosAdmin.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection)
-                -> this.mostrarInformacion((Usuario) newSelection));
+                -> this.mostrarInformacion(newSelection));
     }
 
     private void mostrarInformacion(Usuario seleccionado) {
@@ -218,7 +193,6 @@ public class UsuarioView {
             txtTelefonoAdmin.setText(seleccionado.getTelefono());
             txtClaveTransaccionalAdmin.setPromptText(seleccionado.getClaveTransaccional());
             txtClaveAdmin.setPromptText(seleccionado.getClave());
-            txtPresupuestoMensualAdmin.setText(String.valueOf(seleccionado.getPresupuestoMensual()));
         }
     }
 

@@ -2,6 +2,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -14,8 +15,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="panelCuenta" prefHeight="626" prefWidth="1073" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.CuentaView">
-   <HBox alignment="CENTER" layoutX="281.0" layoutY="243.0" prefHeight="47.0" prefWidth="510.0">
+<AnchorPane prefHeight="626" prefWidth="1073" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.CuentaView">
+   <HBox alignment="CENTER" layoutX="548.0" layoutY="235.0" prefHeight="47.0" prefWidth="510.0">
       <children>
          <MFXButton alignment="CENTER" onAction="#limpiarCamposCuentaAction" prefHeight="30.0" prefWidth="100.0" text=" " HBox.hgrow="ALWAYS">
             <graphic>
@@ -44,36 +45,33 @@
          <Label prefHeight="40.0" prefWidth="96.0" text="Entidad:" />
          <ComboBox fx:id="cbxEntidadAdmin" prefHeight="36.0" prefWidth="251.0" />
          <Region prefHeight="21.0" prefWidth="249.0" />
-         <Label prefHeight="40.0" prefWidth="96.0" text="Limite:" />
-         <TextField fx:id="txtLimiteAdmin" />
+         <Label prefHeight="40.0" prefWidth="141.0" text="Tipo de cuenta:" />
+         <ComboBox fx:id="cbxTipoCuentaAdmin" prefHeight="36.0" prefWidth="251.0" />
       </children>
    </VBox>
    <TableView fx:id="tvTablaCuentasAdmin" layoutX="14.0" layoutY="316.0" prefHeight="302.0" prefWidth="1046.0" style="-fx-background-radius: 10;">
       <columns>
-         <TableColumn fx:id="tcEntidadAdmin" prefWidth="131.2000060081482" style="-fx-background-radius: 10;" text="Entidad" />
-         <TableColumn fx:id="tcNumeroCuentaAdmin" prefWidth="160.00006103515625" style="-fx-background-radius: 10;" text="N. Cuenta" />
-         <TableColumn fx:id="tcSaldoAdmin" prefWidth="185.60003662109375" style="-fx-background-radius: 10;" text="Saldo" />
-         <TableColumn fx:id="tcLimiteAdmin" prefWidth="192.800048828125" style="-fx-background-radius: 10;" text="Límite" />
-         <TableColumn fx:id="tcTipoCuentaAdmin" prefWidth="181.33331298828125" style="-fx-background-radius: 10;" text="Tipo Cuenta" />
-         <TableColumn fx:id="tcPropietarioAdmin" prefWidth="190.66668701171875" text="Propietario" />
+         <TableColumn fx:id="tcEntidadAdmin" prefWidth="190.0" style="-fx-background-radius: 10;" text="Entidad" />
+         <TableColumn fx:id="tcNumeroCuentaAdmin" prefWidth="194.0" style="-fx-background-radius: 10;" text="N. Cuenta" />
+         <TableColumn fx:id="tcSaldoAdmin" prefWidth="175.0" style="-fx-background-radius: 10;" text="Saldo" />
+         <TableColumn fx:id="tcTipoCuentaAdmin" prefWidth="159.0" style="-fx-background-radius: 10;" text="Tipo Cuenta" />
+         <TableColumn fx:id="tcPropietarioAdmin" prefWidth="327.0" text="Propietario" />
       </columns>
    </TableView>
    <VBox layoutX="410.0" layoutY="32.0" prefHeight="203.0" prefWidth="249.0">
       <children>
-         <Label prefHeight="40.0" prefWidth="151.0" text="Numero de cuenta:" />
+         <Label prefHeight="40.0" prefWidth="240.0" text="Numero de cuenta:" />
          <TextField fx:id="txtNumeroCuentaAdmin" />
          <Region prefHeight="21.0" prefWidth="249.0" />
          <Label prefHeight="40.0" prefWidth="96.0" text="Propietario:" />
-         <ComboBox fx:id="cbxPropietarioCuentaAdmin" prefHeight="36.0" prefWidth="251.0" />
+         <MFXFilterComboBox fx:id="cbxPropietarioCuentaAdmin" prefHeight="45.0" prefWidth="261.0" />
       </children>
    </VBox>
-   <VBox layoutX="809.0" layoutY="32.0" prefHeight="271.0" prefWidth="249.0">
+   <VBox layoutX="809.0" layoutY="32.0" prefHeight="183.0" prefWidth="249.0">
       <children>
          <Label prefHeight="40.0" prefWidth="96.0" text="Saldo:" />
          <TextField fx:id="txtSaldoAdmin" />
          <Region prefHeight="21.0" prefWidth="249.0" />
-         <Label prefHeight="40.0" prefWidth="141.0" text="Tipo de cuenta:" />
-         <ComboBox fx:id="cbxTipoCuentaAdmin" prefHeight="36.0" prefWidth="251.0" />
       </children>
    </VBox>
 </AnchorPane>

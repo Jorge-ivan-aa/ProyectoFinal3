@@ -90,7 +90,6 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
             Usuario actualizable = consultar(usuarioDto.cedula());
             actualizable.setNombre(usuarioDto.nombre());
             actualizable.setTelefono(usuarioDto.telefono());
-            actualizable.setPresupuestoMensual(usuarioDto.presupuestoMensual());
 
             if (!usuarioDto.clave().isEmpty()) {
                 actualizable.setHashclave(usuarioDto.clave());

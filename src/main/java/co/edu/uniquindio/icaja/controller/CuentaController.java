@@ -21,13 +21,13 @@ import java.util.List;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 
 @Getter
-public class CuentaBancariaController implements GenericController<CuentaBancariaDto, Cuenta> {
+public class CuentaController implements GenericController<CuentaBancariaDto, Cuenta> {
 
     private final ModelFactory factory;
     private final ObservableList<Cuenta> listaCuentaObservable;
     private TransaccionDto inicialData;
 
-    public CuentaBancariaController() {
+    public CuentaController() {
         this.factory = ModelFactory.getInstance();
         this.listaCuentaObservable = FXCollections.observableArrayList();
         this.sincronizarData();

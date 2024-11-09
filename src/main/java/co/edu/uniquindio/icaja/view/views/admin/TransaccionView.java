@@ -1,23 +1,20 @@
 package co.edu.uniquindio.icaja.view.views.admin;
 
-import co.edu.uniquindio.icaja.controller.CuentaBancariaController;
+import co.edu.uniquindio.icaja.controller.CuentaController;
 import co.edu.uniquindio.icaja.controller.TransaccionController;
-import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
-import co.edu.uniquindio.icaja.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.icaja.model.Cuenta;
 import co.edu.uniquindio.icaja.model.Transaccion;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
-import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
+
 import java.util.List;
 
 public class TransaccionView {
     TransaccionController transaccionController = TransaccionController.getInstance();
-    CuentaBancariaController cuentaBancariaController = new CuentaBancariaController();
+    CuentaController cuentaController = new CuentaController();
 
     @FXML
     private MFXFilterComboBox<String> cbCuentaTransaccionAdmin;
@@ -39,9 +36,6 @@ public class TransaccionView {
 
     @FXML
     private TableColumn<Transaccion, String> tcMotivoTransaccionAdmin;
-
-    @FXML
-    private AnchorPane transaccionPanel;
 
     @FXML
     private TableView<Transaccion> tvTablaTransaccionaAdmin;
@@ -104,29 +98,6 @@ public class TransaccionView {
 //        } else {
 //            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
 //        }
-
-    }
-
-
-    @FXML
-    void eliminarTransaccionAction() {
-//
-//        String id = txtIdTransaccionAdmin.getText();
-//
-//        if (ViewTools.NoHayCamposVacios(id)) {
-//            try {
-//                transaccionController.eliminar(id);
-//                String msj = "Se ha eliminado la transacción " + id + " con exito.";
-//                ViewTools.mostrarMensaje("Información: ", null, msj, Alert.AlertType.INFORMATION);
-//                limpiar();
-//            } catch (ElementoNoExiste e) {
-//                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
-//            }
-//
-//        } else {
-//            ViewTools.mostrarMensaje("Error", null, "Hay campos vacios", Alert.AlertType.ERROR);
-//        }
-//        limpiar();
     }
 
 
@@ -147,7 +118,7 @@ public class TransaccionView {
     @FXML
     void initialize() {
         initview();
-        List<Cuenta> cuentas = cuentaBancariaController.getListaCuentaObservable();
+        List<Cuenta> cuentas = cuentaController.getListaCuentaObservable();
         String[] numeroCuentas = new String[cuentas.size()];
         for (Cuenta cuenta : cuentas) {
             numeroCuentas[cuentas.indexOf(cuenta)] = cuenta.getNumeroCuenta();

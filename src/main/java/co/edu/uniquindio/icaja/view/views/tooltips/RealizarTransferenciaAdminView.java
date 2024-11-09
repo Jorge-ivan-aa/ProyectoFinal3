@@ -1,7 +1,7 @@
 package co.edu.uniquindio.icaja.view.views.tooltips;
 
 import co.edu.uniquindio.icaja.controller.CategoriaController;
-import co.edu.uniquindio.icaja.controller.CuentaBancariaController;
+import co.edu.uniquindio.icaja.controller.CuentaController;
 import co.edu.uniquindio.icaja.controller.TransaccionController;
 import co.edu.uniquindio.icaja.model.Categoria;
 import co.edu.uniquindio.icaja.model.Cuenta;
@@ -21,7 +21,7 @@ public class RealizarTransferenciaAdminView {
     
     private final CategoriaController categoriaController = new CategoriaController();
     private final ArrayList<String> listaNombresCategoria = new ArrayList<>();
-    private final CuentaBancariaController cuentaBancariaController = new CuentaBancariaController();
+    private final CuentaController cuentaController = new CuentaController();
     private final TransaccionController transaccionController = TransaccionController.getInstance();
 
 
@@ -107,7 +107,7 @@ public class RealizarTransferenciaAdminView {
     }
     
     private void cargarlistaCuentaBancaria() {
-        List<Cuenta> listaCuenta = cuentaBancariaController.getListaCuentaObservable();
+        List<Cuenta> listaCuenta = cuentaController.getListaCuentaObservable();
         listaCuenta.removeIf(cuenta -> cuenta.equals(transaccionController.getTransaccionPendiente().cuenta()));
 
         List<String> nuevaLista = new ArrayList<>();

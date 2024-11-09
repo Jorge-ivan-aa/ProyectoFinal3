@@ -6,6 +6,5 @@ public record UsuarioDto(
      String correo,
      String telefono,
      String clave,
-     String claveTransaccional,
-     double presupuestoMensual) {
+     String claveTransaccional) {
 }

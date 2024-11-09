@@ -26,12 +26,12 @@ public class Usuario implements Serializable, Login {
     private double saldoTotal;
     private double ingresos;
     private double gastos;
-    private double presupuestoMensual;
+    //private ArrayList<Presupuesto> presupuestos = new ArrayList<>();
     private TipoUsuario tipoUsuario;
-    private ArrayList<Cuenta> listaCuentas;
+    private ArrayList<Cuenta> cuentas = new ArrayList<>();
     public static final long serialVersionID = 5L;
 
-    public Usuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
+    public Usuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional) {
         this.idUsuario = generarId();
         this.nombre = nombre;
         this.cedula = cedula;
@@ -42,8 +42,6 @@ public class Usuario implements Serializable, Login {
         this.saldoTotal = 0;
         this.ingresos = 0;
         this.gastos = 0;
-        this.presupuestoMensual = presupuestoMensual;
-        this.listaCuentas = new ArrayList<>();
         this.tipoUsuario = TipoUsuario.NORMAL;
     }
 
@@ -76,11 +74,11 @@ public class Usuario implements Serializable, Login {
     }
 
     public void addCuenta(Cuenta cuenta) {
-        this.listaCuentas.add(cuenta);
+        this.cuentas.add(cuenta);
     }
 
     public void removeCuenta(Cuenta cuenta) {
-        this.listaCuentas.remove(cuenta);
+        this.cuentas.remove(cuenta);
     }
 
     public void setClaveTransaccional(String claveTransaccional) {

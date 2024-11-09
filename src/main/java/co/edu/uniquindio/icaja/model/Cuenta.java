@@ -1,5 +1,6 @@
 package co.edu.uniquindio.icaja.model;
 
+import co.edu.uniquindio.icaja.exception.transacciones.MontoInvalidoException;
 import co.edu.uniquindio.icaja.exception.transacciones.SaldoInsuficiente;
 import co.edu.uniquindio.icaja.model.enums.EntidadBancaria;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
@@ -26,12 +27,12 @@ public class Cuenta implements Serializable {
     private Usuario propietario;
     public static final long serialVersionID = 7L;
 
-    public Cuenta(EntidadBancaria entidad, String numeroCuenta, TipoCuenta tipo, String saldo, Usuario propietario) throws NumberFormatException {
+    public Cuenta(EntidadBancaria entidad, String numeroCuenta, TipoCuenta tipo, String saldo, Usuario propietario) throws MontoInvalidoException {
         this.idCuenta = generarId();
         this.entidad = entidad;
         this.numeroCuenta = numeroCuenta;
         this.tipo = tipo;
-        this.saldo = NumTool.parseToDinero(saldo);
+        this.saldo = NumTool.parseToDinero(saldo, "No se pudo crear la cuenta, el monto ingresado no es valido");
         this.propietario = propietario;
     }
 

@@ -13,8 +13,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="panelUsuario" prefHeight="626" prefWidth="1073" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.UsuarioView">
-   <HBox alignment="CENTER" layoutX="483.0" layoutY="263.0" prefHeight="47.0" prefWidth="510.0">
+<AnchorPane prefHeight="626" prefWidth="1073" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.UsuarioView">
+   <HBox alignment="CENTER" layoutX="548.0" layoutY="266.0" prefHeight="47.0" prefWidth="510.0">
       <children>
          <MFXButton alignment="CENTER" onAction="#limpiarCamposUsuarioAction" prefHeight="30.0" prefWidth="100.0" text=" " HBox.hgrow="ALWAYS">
             <graphic>
@@ -46,8 +46,6 @@
          <Label prefHeight="40.0" prefWidth="96.0" text="Cedula:" />
          <TextField fx:id="txtCedulaAdmin" />
          <Region prefHeight="21.0" prefWidth="249.0" />
-         <Label prefHeight="40.0" prefWidth="151.0" text="Correo:" />
-         <TextField fx:id="txtCorreoAdmin" />
       </children>
    </VBox>
    <VBox layoutX="410.0" layoutY="32.0" prefHeight="203.0" prefWidth="249.0">
@@ -55,8 +53,8 @@
          <Label prefHeight="40.0" prefWidth="151.0" text="Telefono:" />
          <TextField fx:id="txtTelefonoAdmin" />
          <Region prefHeight="21.0" prefWidth="249.0" />
-         <Label prefHeight="40.0" prefWidth="96.0" text="Presupuesto:" />
-         <TextField fx:id="txtPresupuestoMensualAdmin" />
+         <Label prefHeight="40.0" prefWidth="151.0" text="Correo:" />
+         <TextField fx:id="txtCorreoAdmin" />
       </children>
    </VBox>
    <VBox layoutX="809.0" layoutY="32.0" prefHeight="203.0" prefWidth="249.0">
@@ -77,7 +75,7 @@
          <TableColumn fx:id="tbcTelefonoUsuarioAdmin" prefWidth="144.3333740234375" style="-fx-background-radius: 10;" text="Telefono" />
          <TableColumn fx:id="tbcClaveUsuarioAdmin" prefWidth="106.0" style="-fx-background-radius: 10;" text="Clave" />
          <TableColumn fx:id="tbcClaveTransaccionalAdmin" prefWidth="189.33331298828125" style="-fx-background-radius: 10;" text="Clave Transaccional" />
-         <TableColumn fx:id="tbcPresupuestoMensualAdmin" prefWidth="189.33331298828125" style="-fx-background-radius: 10;" text="Presupuesto Mensual" />
+         <TableColumn fx:id="tbcSaldoTotalAdmin" prefWidth="189.33331298828125" style="-fx-background-radius: 10;" text="Saldo" />
       </columns>
    </TableView>
 </AnchorPane>

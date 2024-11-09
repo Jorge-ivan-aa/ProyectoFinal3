@@ -27,7 +27,7 @@ public class UsuarioPersistente implements Persistible<Usuario> {
                     .append(usuario.getSaldoTotal()).append("@@")
                     .append(usuario.getIngresos()).append("@@")
                     .append(usuario.getGastos()).append("@@")
-                    .append(usuario.getPresupuestoMensual()).append("@@").append("\n");
+                    .append("@@").append("\n");
         }
         Persistencia.guardarArchivo("usuario.txt", contenido.toString(), false);
     }
