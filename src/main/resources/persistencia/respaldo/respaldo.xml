@@ -5,15 +5,31 @@
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.Categoria">
      <void property="descripcion">
-      <string>Se paga nomina empleados suteq</string>
+      <string>Gastos relacionados con el contexto academico.</string>
      </void>
      <void property="nombre">
-      <string>PagoNomina</string>
+      <string>Academico</string>
      </void>
      <void property="tipoCategoria">
       <object class="java.lang.Enum" method="valueOf">
        <class>co.edu.uniquindio.icaja.model.enums.TipoCategoria</class>
-       <string>AHORRO</string>
+       <string>GASTO</string>
+      </object>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Categoria">
+     <void property="descripcion">
+      <string>Intereses abonados por inversiones</string>
+     </void>
+     <void property="nombre">
+      <string>Inversiones</string>
+     </void>
+     <void property="tipoCategoria">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.TipoCategoria</class>
+       <string>INGRESO</string>
       </object>
      </void>
     </object>
@@ -193,7 +209,7 @@
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$hEFrSdblhkX9T58FCVnKGeQtySW/mIkIOGdorlTXTXlQW1TncedU2</string>
+      <string>$2a$10$Fq5828BD1kIuxdKiNOXblOXJjkuYCSUmpw4weCKMi9JMztRr3TB2i</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>

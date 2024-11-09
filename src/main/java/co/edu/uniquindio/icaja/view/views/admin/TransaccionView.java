@@ -2,6 +2,7 @@ package co.edu.uniquindio.icaja.view.views.admin;
 
 import co.edu.uniquindio.icaja.controller.CuentaBancariaController;
 import co.edu.uniquindio.icaja.controller.TransaccionController;
+import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.icaja.model.CuentaBancaria;
 import co.edu.uniquindio.icaja.model.Transaccion;
@@ -75,48 +76,71 @@ public class TransaccionView {
 
                 switch (tipo) {
                     case "Transferencia":
-                        Seguimiento.registrarLog(1, "Se quiere realizar una transferencia");
                         ViewTools.generarVentana("templates/tooltips/realizarTransferenciaAdmin.fxml", "Gestion de transferencias", null, "styles/main.css");
+                        Seguimiento.registrarLog(1, "Se quiere realizar una transferencia");
+                        limpiar();
                         break;
                     case "Deposito":
-                        ViewTools.generarVentana("templates/admin/tooltips/realizarDepositoAdmin.fxml", "Gestion de depositos", null, "styles/main.css");
+                        ViewTools.mostrarMensaje("¡Cuidado!", "No se puede realizar el movimiento", "Los administradores no pueden realizar depositos", Alert.AlertType.WARNING);
+                        Seguimiento.registrarLog(2, "Los administradores no pueden realizar depositos");
                         break;
                     case "Retiro":
-                        ViewTools.generarVentana("templates/admin/tooltips/realizarRetiroAdmin.fxml", "Gestion de retiros", null, "styles/main.css");
+                        ViewTools.mostrarMensaje("¡Cuidado!", "No se puede realizar el movimiento", "Los administradores no pueden realizar retiros", Alert.AlertType.WARNING);
+                        Seguimiento.registrarLog(2, "Los administradores no pueden realizar retiros");
                         break;
                     default:
                         ViewTools.mostrarMensaje("¡Cuidado!", null,"No se seleccionó el tipo de transacción", Alert.AlertType.WARNING);
                 }
 
             } catch (NumberFormatException e) {
-                Seguimiento.registrarLog(2, "No se ingresó un valor númerico en el monto: " + e.getMessage());
                 ViewTools.mostrarMensaje("Error", null, "El campo monto debe ser un valo númerico", Alert.AlertType.ERROR);
+                Seguimiento.registrarLog(2, "No se ingresó un valor númerico en el monto: " + e.getMessage());
 
             } catch (Exception e) {
-                Seguimiento.registrarLog(3, "Ocurrió un error inesperado: " + e.getMessage());
                 ViewTools.mostrarMensaje("Error", null, "Ocurrió un error inesperado, comuniquese con atención tecnica.", Alert.AlertType.ERROR);
+                Seguimiento.registrarLog(3, "Ocurrió un error inesperado: " + e.getMessage());
             }
 
         } else {
             ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
-
         }
 
-        ViewTools.limpiarCampos(txtIdTransaccionAdmin,
-                txtMontoTransaccionAdmin,
-                txtMotivoTransaccionAdmin);
     }
+
 
     @FXML
     void eliminarTransaccionAction() {
 
+        String id = txtIdTransaccionAdmin.getText();
+
+        if (ViewTools.NoHayCamposVacios(id)) {
+            try {
+                transaccionController.eliminar(id);
+                String msj = "Se ha eliminado la transacción " + id + " con exito.";
+                ViewTools.mostrarMensaje("Información: ", null, msj, Alert.AlertType.INFORMATION);
+                limpiar();
+            } catch (ElementoNoExiste e) {
+                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+            }
+
+        } else {
+            ViewTools.mostrarMensaje("Error", null, "Hay campos vacios", Alert.AlertType.ERROR);
+        }
+        limpiar();
     }
+
 
     @FXML
     void LimpiarCamposTransaccionAction() {
+        limpiar();
+    }
+
+    private void limpiar() {
+        cbCuentaTransaccionAdmin.clearSelection();
+        cbTipoTransaccionAdmin.getSelectionModel().clearSelection();
+
         ViewTools.limpiarCampos(txtIdTransaccionAdmin,
                 txtMontoTransaccionAdmin,
-                cbCuentaTransaccionAdmin,
                 txtMotivoTransaccionAdmin);
     }
 
@@ -151,16 +175,16 @@ public class TransaccionView {
     private void listenerSelectionCategorias() {
 
         tvTablaTransaccionaAdmin.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection)
-                -> this.mostrarInformacion((Transaccion) newSelection));
+                -> this.mostrarInformacion(newSelection));
     }
 
     private void mostrarInformacion(Transaccion seleccionado) {
         if (seleccionado != null) {
-            txtIdTransaccionAdmin.setText(seleccionado.getId());
             txtMontoTransaccionAdmin.setText(Double.toString(seleccionado.getMonto()));
             txtMotivoTransaccionAdmin.setText(seleccionado.getMotivo());
-            cbTipoTransaccionAdmin.setValue(seleccionado.getClass().getName());
+            cbTipoTransaccionAdmin.setValue(seleccionado.getClass().getSimpleName());
             cbCuentaTransaccionAdmin.setValue(seleccionado.getCuenta().getNumeroCuenta());
+            txtIdTransaccionAdmin.setText(seleccionado.getId());
         }
     }
 

@@ -91,5 +91,5 @@
             </MFXButton>
         </children>
     </HBox>
-   <TextField fx:id="idTransaccionAdmin" editable="false" layoutX="1.0" layoutY="256.0" visible="false" />
+   <TextField fx:id="txtIdTransaccionAdmin" layoutX="1.0" layoutY="256.0" visible="false" />
 </AnchorPane>

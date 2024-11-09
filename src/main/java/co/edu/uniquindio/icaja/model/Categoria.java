@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 
 public class Categoria implements Serializable {

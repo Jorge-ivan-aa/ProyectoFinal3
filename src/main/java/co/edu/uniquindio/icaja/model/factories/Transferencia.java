@@ -6,9 +6,11 @@ import co.edu.uniquindio.icaja.model.Transaccion;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class Transferencia extends Transaccion {
+public class Transferencia extends Transaccion implements Serializable {
     private boolean esInterna;
     private CuentaBancaria cuentaDestino;
 

@@ -65,8 +65,6 @@ public class RealizarTransferenciaAdminView {
 
     private void cargarCategoria() {
         List<String> categorias = categoriaToNombre(categoriaController.getListaCategoriasObservable());
-
-        // Crear una lista observable de CheckBox
         ObservableList<CheckBox> checkBoxes = FXCollections.observableArrayList();
 
         for (String nombre : categorias) {
@@ -83,7 +81,6 @@ public class RealizarTransferenciaAdminView {
             checkBoxes.add(checkBox);
         }
 
-        // Establecer los CheckBoxes en el ListView
         lvListaCategoriaTransferencia.setItems(checkBoxes);
     }
 

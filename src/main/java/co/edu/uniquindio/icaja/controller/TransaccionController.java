@@ -54,11 +54,13 @@ public class TransaccionController implements GenericController<ITransaccionDto,
         try {
             this.consultar(String.valueOf(transaccionDto.id()));
             registrarLog(2,"No se pudo crear el elemento, "+ transaccionDto.tipo() +" ya existe :(");
+            setTransaccionPendiente(null);
             throw new ElementoYaExiste("No se pudo crear el elemento, "+ transaccionDto.tipo() +" ya existe");
 
         } catch (ElementoNoExiste ignored) {
             Transaccion nuevaTransaccion = TransaccionFactory.crearTransaccion(transaccionDto);
             factory.getIcaja().addTransaccion(nuevaTransaccion);
+            setTransaccionPendiente(null);
             sincronizarData();
             registrarLog(1,"Se ha realizado una transaccion exitosamente :)");
         }

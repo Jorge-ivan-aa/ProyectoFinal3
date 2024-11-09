@@ -3,6 +3,7 @@ package co.edu.uniquindio.icaja.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.chrono.ChronoLocalDate;
+import java.util.Arrays;
 import java.util.UUID;
 
 import lombok.Getter;
@@ -12,7 +13,6 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 
 
@@ -23,7 +23,7 @@ public abstract class Transaccion implements Serializable {
     private Categoria[] listacategoria;
     private CuentaBancaria cuenta;
     private String motivo;
-    public static final long serialVersionID = 3L;
+    public static final long serialVersionID = 9L;
 
     public Transaccion(double monto, Categoria[] listacategoria, CuentaBancaria cuenta, String motivo) {
         this.id = generarId();
@@ -53,7 +53,7 @@ public abstract class Transaccion implements Serializable {
     public String getListacategoriatoString() {
         StringBuilder categorias = new StringBuilder();
         for (Categoria categoria : listacategoria) {
-            categorias.append(", ").append(categoria.getNombre());
+            categorias.append(categoria.getNombre()).append(", ");
         }
 
         return categorias.toString();

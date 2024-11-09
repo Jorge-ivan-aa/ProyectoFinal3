@@ -9,8 +9,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="332.0" prefWidth="568.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.tooltips.RealizarTransferenciaAdminView">
       <Button layoutX="78.0" layoutY="266.0" mnemonicParsing="false" onAction="#realizarTransferencia" text="Realizar Movimiento" />
-      <ComboBox fx:id="cbxCuentaDestinoTransferencia" layoutX="60.0" layoutY="106.0" prefHeight="26.0" prefWidth="171.0" />
-      <Label layoutX="50.0" layoutY="46.0" text="Selecciona la cuenta de destino:" />
+      <ComboBox fx:id="cbxCuentaDestinoTransferencia" layoutX="60.0" layoutY="146.0" prefHeight="26.0" prefWidth="171.0" />
+      <Label layoutX="50.0" layoutY="46.0" prefHeight="42.0" prefWidth="171.0" text="Selecciona la cuenta de destino:" wrapText="true" />
       <VBox layoutX="315.0" layoutY="46.0" prefHeight="250.0" prefWidth="204.0">
             <Label prefHeight="18.0" prefWidth="212.0" text="Categorias para la transferencia:" />
             <ListView fx:id="lvListaCategoriaTransferencia" prefHeight="238.0" prefWidth="204.0" />

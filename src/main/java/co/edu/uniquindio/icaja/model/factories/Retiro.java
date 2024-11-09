@@ -5,10 +5,11 @@ import co.edu.uniquindio.icaja.model.CuentaBancaria;
 import co.edu.uniquindio.icaja.model.Transaccion;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.util.Random;
 
 @Getter
-public class Retiro extends Transaccion {
+public class Retiro extends Transaccion implements Serializable {
     private final String claveRetiro;
 
     public Retiro(double monto, Categoria[] listacategoria, CuentaBancaria cuenta, String motivo) {
