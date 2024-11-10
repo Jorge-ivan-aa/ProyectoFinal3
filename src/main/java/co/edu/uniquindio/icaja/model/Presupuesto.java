@@ -21,10 +21,10 @@ public class Presupuesto implements Serializable {
     //private Categoria categoriaPresupuesto;
     public static final long serialVersionID = 9L;
 
-    public Presupuesto(String idPresupuesto, String nombre, String montoAsignado, String... categorias) {
+    public Presupuesto(String idPresupuesto, String nombre, String [] categorias, BigDecimal montoAsignado) {
         this.idPresupuesto = idPresupuesto;
         this.nombre = nombre;
-        this.montoAsignado = NumTool.parseToDinero(montoAsignado, "No se pudo asignar el presupuesto, monto ingresado no valido ");
+        this.montoAsignado = NumTool.parseToDinero(String.valueOf(montoAsignado), "No se pudo asignar el presupuesto, monto ingresado no valido ");
         this.categorias = categorias;
     }
 }

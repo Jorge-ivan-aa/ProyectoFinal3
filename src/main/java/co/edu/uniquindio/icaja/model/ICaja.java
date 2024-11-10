@@ -18,6 +18,7 @@ public class ICaja implements Serializable {
     private ArrayList<Transaccion> listaTransacciones;
     private ArrayList<Categoria> listaCategorias;
     private ArrayList<Cuenta> listaCuentas;
+    private ArrayList<Presupuesto> listaPresupuestos;
     private Sesion sesion;
 
     public ICaja() {
@@ -25,6 +26,7 @@ public class ICaja implements Serializable {
         this.listaTransacciones = new ArrayList<>();
         this.listaCategorias = new ArrayList<>();
         this.listaCuentas = new ArrayList<>();
+        this.listaPresupuestos = new ArrayList<>();
         this.sesion = null;
     }
 
@@ -44,6 +46,9 @@ public class ICaja implements Serializable {
 
     public void addCuentaBancaria(Cuenta cuenta) {
         this.listaCuentas.add(cuenta);
+    }
+    public void addPresupuesto(Presupuesto presupuesto) {
+        this.listaPresupuestos.add(presupuesto);
     }
 
     // remover elementos -------------
@@ -73,6 +78,13 @@ public class ICaja implements Serializable {
     }
     public void removeCuentaBancaria(Cuenta cuenta) {
         this.listaCuentas.remove(cuenta);
+    }
+
+    public void removePresupuesto(int index) {
+        this.listaPresupuestos.remove(index);
+    }
+    public void removePresupuesto(Presupuesto presupuesto) {
+        this.listaPresupuestos.remove(presupuesto);
     }
 
     /**
