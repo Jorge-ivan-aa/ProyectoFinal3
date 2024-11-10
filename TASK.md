@@ -5,7 +5,7 @@
 - [x] **Clase Usuario**: idUsuario, nombre, correo, numero, [!] direccion, saldo total.
 - [x] **Clase Cuenta**: idCuenta, entidad, numero cuenta, tipo -> ( Ahorro o corriente).
 - [x] **Clase Transaccion**: idTransaccion, fecha, tipo -> (deposito, retiro, transferencia), monto, descripción, cuenta origen, cuenta destino, categoria.
-- [ ] **Clase Presupuesto**: idPresupuesto, nombre, monto asignado, monto gastado, categoria.
+- [x] **Clase Presupuesto**: idPresupuesto, nombre, monto asignado, monto gastado, categoria.
 - [x] **Clase Categoria**: idCategoria, nombre, descripción.
 
 

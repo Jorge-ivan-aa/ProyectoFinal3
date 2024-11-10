@@ -1,29 +1,30 @@
 package co.edu.uniquindio.icaja.model;
 
 
+import co.edu.uniquindio.icaja.utils.tools.NumTool;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class Presupuesto implements Serializable {
     private String idPresupuesto;
-    private String nombrePresupuesto;
-    private String montoAsignado;
-    private String montoGastado;
-    private String categoriaPresupuesto;
+    private String nombre;
+    private BigDecimal montoAsignado;
+    private BigDecimal montoGastado;
+    private String[] categorias;
     //private Categoria categoriaPresupuesto;
     public static final long serialVersionID = 9L;
 
-    public Presupuesto(String idPresupuesto, String nombrePresupuesto, String montoAsignado, String montoGastado, String categoriaPresupuesto) {
+    public Presupuesto(String idPresupuesto, String nombre, String montoAsignado, String... categorias) {
         this.idPresupuesto = idPresupuesto;
-        this.nombrePresupuesto = nombrePresupuesto;
-        this.montoAsignado = montoAsignado;
-        this.montoGastado = montoGastado;
-        this.categoriaPresupuesto = categoriaPresupuesto;
+        this.nombre = nombre;
+        this.montoAsignado = NumTool.parseToDinero(montoAsignado, "No se pudo asignar el presupuesto, monto ingresado no valido ");
+        this.categorias = categorias;
     }
 }
