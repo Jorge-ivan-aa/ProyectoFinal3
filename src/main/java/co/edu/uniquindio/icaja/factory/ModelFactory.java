@@ -6,6 +6,7 @@ import co.edu.uniquindio.icaja.model.ICaja;
 import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.model.persistencia.CategoriaPersistente;
 import co.edu.uniquindio.icaja.model.persistencia.CuentaBancariaPersistente;
+import co.edu.uniquindio.icaja.model.persistencia.PresupuestoPersistente;
 import co.edu.uniquindio.icaja.model.persistencia.UsuarioPersistente;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo;
@@ -23,12 +24,14 @@ public class ModelFactory {
     private final UsuarioPersistente usuarioPersistente;
     private final CuentaBancariaPersistente cuentaBancariaPersistente;
     private final CategoriaPersistente categoriaPersistente;
+    private final PresupuestoPersistente presupuestoPersistente;
 
     private ModelFactory() {
         icaja = cargaRespaldo();
         usuarioPersistente = new UsuarioPersistente();
         cuentaBancariaPersistente = new CuentaBancariaPersistente();
         categoriaPersistente = new CategoriaPersistente();
+        presupuestoPersistente= new PresupuestoPersistente();
 
         if (icaja == null) {
             icaja = new ICaja();

@@ -6,9 +6,7 @@ import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.PresupuestoDto;
 import co.edu.uniquindio.icaja.mapping.mappers.PresupuestoMapper;
-import co.edu.uniquindio.icaja.mapping.mappers.UsuarioMapper;
 import co.edu.uniquindio.icaja.model.Presupuesto;
-import co.edu.uniquindio.icaja.model.Usuario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -23,7 +21,7 @@ public class PresupuestoController implements GenericController<PresupuestoDto, 
     private ModelFactory factory;
     private ObservableList<Presupuesto> listaPresupuestoObservable;
 
-    public presupuestoController(){
+    public PresupuestoController(){
         factory= ModelFactory.getInstance();
         this.listaPresupuestoObservable= FXCollections.observableArrayList();
         this.sincronizarData();
