@@ -2,8 +2,12 @@ package co.edu.uniquindio.icaja.view.views.admin;
 
 import co.edu.uniquindio.icaja.controller.CuentaController;
 import co.edu.uniquindio.icaja.controller.TransaccionController;
+import co.edu.uniquindio.icaja.mapping.dto.RetiroODepostoDto;
+import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
 import co.edu.uniquindio.icaja.model.Cuenta;
 import co.edu.uniquindio.icaja.model.Transaccion;
+import co.edu.uniquindio.icaja.model.enums.TipoTransaccion;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import javafx.beans.property.SimpleStringProperty;
@@ -57,47 +61,46 @@ public class TransaccionView {
 
     @FXML
     void crearTransaccionAction() {
-//        String monto = txtMontoTransaccionAdmin.getText();
-//        String tipo = cbTipoTransaccionAdmin.getValue();
-//        String motivo = txtMotivoTransaccionAdmin.getText();
-//
-//        if (ViewTools.NoHayCamposVacios(monto, motivo)) {
-//            try {
-//                String numCuenta = cbCuentaTransaccionAdmin.getValue();
-//                Cuenta cuenta = cuentaBancariaController.consultar(numCuenta);
-//                double montoREal = Double.parseDouble(monto);
-//                transaccionController.setTransaccionPendiente(new TransaccionDto(montoREal, cuenta, motivo));
-//
-//                switch (tipo) {
-//                    case "Transferencia":
-//                        ViewTools.generarVentana("templates/tooltips/realizarTransferenciaAdmin.fxml", "Gestion de transferencias", null, "styles/main.css");
-//                        Seguimiento.registrarLog(1, "Se quiere realizar una transferencia");
-//                        limpiar();
-//                        break;
-//                    case "Deposito":
-//                        ViewTools.mostrarMensaje("¡Cuidado!", "No se puede realizar el movimiento", "Los administradores no pueden realizar depositos", Alert.AlertType.WARNING);
-//                        Seguimiento.registrarLog(2, "Los administradores no pueden realizar depositos");
-//                        break;
-//                    case "Retiro":
-//                        ViewTools.mostrarMensaje("¡Cuidado!", "No se puede realizar el movimiento", "Los administradores no pueden realizar retiros", Alert.AlertType.WARNING);
-//                        Seguimiento.registrarLog(2, "Los administradores no pueden realizar retiros");
-//                        break;
-//                    default:
-//                        ViewTools.mostrarMensaje("¡Cuidado!", null,"No se seleccionó el tipo de transacción", Alert.AlertType.WARNING);
-//                }
-//
-//            } catch (NumberFormatException e) {
-//                ViewTools.mostrarMensaje("Error", null, "El campo monto debe ser un valo númerico", Alert.AlertType.ERROR);
-//                Seguimiento.registrarLog(2, "No se ingresó un valor númerico en el monto: " + e.getMessage());
-//
-//            } catch (Exception e) {
-//                ViewTools.mostrarMensaje("Error", null, "Ocurrió un error inesperado, comuniquese con atención tecnica.", Alert.AlertType.ERROR);
-//                Seguimiento.registrarLog(3, "Ocurrió un error inesperado: " + e.getMessage());
-//            }
-//
-//        } else {
-//            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
-//        }
+        String monto = txtMontoTransaccionAdmin.getText();
+        String tipo = cbTipoTransaccionAdmin.getValue();
+        String motivo = txtMotivoTransaccionAdmin.getText();
+
+        if (ViewTools.NoHayCamposVacios(monto, motivo)) {
+            try {
+                String numCuenta = cbCuentaTransaccionAdmin.getValue();
+                Cuenta cuenta = cuentaController.consultar(numCuenta);
+
+                switch (tipo) {
+                    case "Transferencia":
+                        transaccionController.setTransaccionPendiente(new TransferenciaDto(null, TipoTransaccion.TRANSFERENCIA, monto, motivo, cuenta, null));
+                        ViewTools.generarVentana("templates/tooltips/realizarTransferenciaAdmin.fxml", "Gestion de transferencias", null, "styles/main.css");
+                        Seguimiento.registrarLog(1, "Se quiere realizar una transferencia");
+                        limpiar();
+                        break;
+                    case "Deposito":
+                        transaccionController.setTransaccionPendiente(new RetiroODepostoDto(null, TipoTransaccion.DEPOSITO, monto, motivo, cuenta));
+                        Seguimiento.registrarLog(1, "Se quiere realizar una transferencia");
+                        break;
+                    case "Retiro":
+                        transaccionController.setTransaccionPendiente(new RetiroODepostoDto(null, TipoTransaccion.RETIRO, monto, motivo, cuenta));
+                        Seguimiento.registrarLog(1, "Se quiere realizar una transferencia");
+                        break;
+                    default:
+                        ViewTools.mostrarMensaje("¡Cuidado!", null,"No se seleccionó el tipo de transacción", Alert.AlertType.WARNING);
+                }
+
+            } catch (NumberFormatException e) {
+                ViewTools.mostrarMensaje("Error", null, "El campo monto debe ser un valo númerico", Alert.AlertType.ERROR);
+                Seguimiento.registrarLog(2, "No se ingresó un valor númerico en el monto: " + e.getMessage());
+
+            } catch (Exception e) {
+                ViewTools.mostrarMensaje("Error", null, "Ocurrió un error inesperado, comuniquese con atención tecnica.", Alert.AlertType.ERROR);
+                Seguimiento.registrarLog(3, "Ocurrió un error inesperado: " + e.getMessage());
+            }
+
+        } else {
+            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+        }
     }
 
 

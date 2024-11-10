@@ -32,7 +32,7 @@
 
 ## Requerimientos adicionales
 - [x] **Diagrama de clases**
-- [x] **Implementación tecnica**: jdk21, Maven, javaFX, lombok, patron singleton, [!] uso de patrones, excepciones propias (4/10), persistencia, [!] servidor y cliente, [!] hilos, [!] recursividad para consultas y recorrido de listas.
+- [x] **Implementación tecnica**: jdk21, Maven, javaFX, lombok, patron singleton, [!] uso de patrones, excepciones propias (7/10), persistencia, [!] servidor y cliente, [!] hilos, [!] recursividad para consultas y recorrido de listas.
 - [ ] **Generador de reportes financieros**: generar reportes detallados sobre ingresos, gastos y saldos en formato PDF o CSV (Apache POI, PDFBox) con opciones para seleccionar tipo de reporte y rango de fechas.
 - [ ] **Asistente Financiero virtual**: un chat con asistente financiero que brinde recomendaciones personalizadas.
 - [ ] **Implementación patrón productor consumidor**: RabbitMQ u otro.
