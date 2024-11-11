@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="623.0" prefWidth="1073.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.normal.">
+   <children>
+      <RadioButton fx:id="rbTodosBalance" layoutX="34.0" layoutY="29.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="113.0" text="Todos">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="rbGastosBalance" layoutX="161.0" layoutY="29.0" mnemonicParsing="false" text="Gastos">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="rbIngresosBalance" layoutX="289.0" layoutY="29.0" mnemonicParsing="false" text="Ingresos">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </RadioButton>
+      <TableView fx:id="tvListaTransaccionesBalance" layoutX="35.0" layoutY="72.0" prefHeight="515.0" prefWidth="469.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <ListView fx:id="lvListaPresupuestosBalance" layoutX="551.0" layoutY="72.0" prefHeight="253.0" prefWidth="486.0" />
+      <MFXButton layoutX="707.0" layoutY="384.0" onAction="#ajustarPresupuestoBalanceAction" prefHeight="39.0" prefWidth="186.0" text="Ajustar Presupuestos">
+         <font>
+            <Font size="14.0" />
+         </font></MFXButton>
+      <MFXButton layoutX="701.0" layoutY="479.0" onAction="#generarReporteFinancieroBalanceAction" prefHeight="39.0" prefWidth="210.0" text="Generar Reporte Financiero">
+         <font>
+            <Font size="14.0" />
+         </font></MFXButton>
+   </children>
+</AnchorPane>
