@@ -65,7 +65,7 @@
         <fx:include source="normal/principalUsuario.fxml" />
     </AnchorPane>
     <AnchorPane fx:id="estadisticasUsuarioBox" layoutX="162.0" layoutY="47.0" prefHeight="626.0" prefWidth="1073.0" visible="false">
-        <fx:include source="normal/estadisticasUsuario.fxml" />
+        <fx:include source="normal/balanceUsuario.fxml" />
     </AnchorPane>
     <AnchorPane fx:id="cuentasUsuarioBox" layoutX="162.0" layoutY="47.0" prefHeight="626.0" prefWidth="1073.0" visible="false">
         <fx:include source="normal/cuentasUsuario.fxml" />

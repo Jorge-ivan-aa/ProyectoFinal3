@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="623.0" prefWidth="1073.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.normal.">
+   <children>
+      <SplitPane dividerPositions="0.4984035759897828" layoutX="34.0" orientation="VERTICAL" prefHeight="622.0" prefWidth="1006.0">
+         <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <MFXButton layoutX="792.0" layoutY="200.0" onAction="#eliminarBalanceAction" prefHeight="33.0" prefWidth="118.0" text="Eliminar">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton layoutX="635.0" layoutY="200.0" onAction="#actualizarBalanceAction" prefHeight="33.0" prefWidth="118.0" text="Actualizar">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton layoutX="482.0" layoutY="200.0" onAction="#crearBalanceAction" prefHeight="33.0" prefWidth="118.0" text="Crear">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton layoutX="397.0" layoutY="200.0" onAction="#limpiarCamposAction" prefHeight="34.0" prefWidth="48.0" text="Limpiar">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXButton layoutX="234.0" layoutY="200.0" onAction="#volverAction" prefHeight="33.0" prefWidth="118.0" text="Volver">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </MFXButton>
+                  <MFXTextField fx:id="txtNombreBalance" layoutX="83.0" layoutY="69.0" minHeight="-Infinity" prefHeight="46.0" prefWidth="213.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </MFXTextField>
+                  <MFXTextField fx:id="txtMontoBalance" layoutX="404.0" layoutY="70.0" minHeight="-Infinity" prefHeight="46.0" prefWidth="220.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </MFXTextField>
+                  <Label layoutX="88.0" layoutY="37.0" prefHeight="25.0" prefWidth="154.0" text="Nombre">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="407.0" layoutY="42.0" prefHeight="25.0" prefWidth="154.0" text="Monto">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="722.0" layoutY="45.0" prefHeight="25.0" prefWidth="154.0" text="Categorias">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <MFXComboBox fx:id="cbCategoriasBalance" layoutX="719.0" layoutY="72.0" minHeight="-Infinity" prefHeight="46.0" prefWidth="208.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="1005.0">
+               <children>
+                  <TableView fx:id="tvListaBalances" layoutX="4.0" layoutY="-8.0" prefHeight="307.0" prefWidth="1010.0">
+                     <columns>
+                        <TableColumn fx:id="tcIdBalance" prefWidth="161.33333659172058" text="Id" />
+                        <TableColumn fx:id="tcNombreBalance" prefWidth="238.66664123535156" text="Nombre" />
+                        <TableColumn fx:id="tcMontoAsignadoBalance" prefWidth="201.86663818359375" text="Monto Asignado" />
+                        <TableColumn fx:id="tcMontoGastadoBalance" prefWidth="220.5333251953125" text="Monto Gastado" />
+                        <TableColumn fx:id="tcCategoriaBalance" prefWidth="187.20001220703125" text="Categoría" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
