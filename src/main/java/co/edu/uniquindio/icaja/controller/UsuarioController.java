@@ -9,7 +9,6 @@ import co.edu.uniquindio.icaja.mapping.mappers.UsuarioMapper;
 import co.edu.uniquindio.icaja.model.Usuario;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 import java.io.IOException;
@@ -24,18 +23,13 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
 
     public UsuarioController() {
         factory = ModelFactory.getInstance();
-        this.listaUsuarioObservable = FXCollections.observableArrayList();
+        this.listaUsuarioObservable = this.factory.getListaUsuarioObservable();
         this.sincronizarData();
     }
 
-@Override
     public void sincronizarData() {
-        listaUsuarioObservable.clear();
-        listaUsuarioObservable.addAll(factory.getIcaja().getListaUsuarios());
-        factory.getIcaja().excluirAdmin(listaUsuarioObservable);
+        factory.sincronizarData();
         persistir();
-        factory.guardarRespaldo();
-        registrarLog(1,"Se sincronizaron los usuarios.");
     }
 
     @Override

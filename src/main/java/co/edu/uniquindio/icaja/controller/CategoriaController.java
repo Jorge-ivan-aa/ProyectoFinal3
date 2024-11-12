@@ -21,14 +21,13 @@ public class CategoriaController implements GenericController<CategoriaDto, Cate
 
     public CategoriaController() {
         this.factory = ModelFactory.getInstance();
-        this.listaCategoriasObservable = FXCollections.observableArrayList();
+        this.listaCategoriasObservable = this.factory.getListaCategoriasObservable();
         this.sincronizarData();
     }
 
-    @Override
     public void sincronizarData() {
-        listaCategoriasObservable.addAll(factory.getIcaja().getListaCategorias());
-        registrarLog(1,"Se sincronizaron las categorias");
+        factory.sincronizarData();
+        persistir();
     }
 
     @Override

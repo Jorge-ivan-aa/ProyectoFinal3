@@ -1,9 +1,6 @@
 package co.edu.uniquindio.icaja.factory;
 
-import co.edu.uniquindio.icaja.model.Categoria;
-import co.edu.uniquindio.icaja.model.Cuenta;
-import co.edu.uniquindio.icaja.model.ICaja;
-import co.edu.uniquindio.icaja.model.Usuario;
+import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.model.persistencia.CategoriaPersistente;
 import co.edu.uniquindio.icaja.model.persistencia.CuentaBancariaPersistente;
 import co.edu.uniquindio.icaja.model.persistencia.PresupuestoPersistente;
@@ -11,14 +8,25 @@ import co.edu.uniquindio.icaja.model.persistencia.UsuarioPersistente;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo;
 import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lombok.Getter;
 import java.io.IOException;
 import java.util.List;
+
+import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 
 @Getter
 public class ModelFactory {
     private static ModelFactory instance;
     private ICaja icaja;
+
+    // SINCRONIZACION
+    private final ObservableList<Cuenta> listaCuentaObservable;
+    private final ObservableList<Usuario> listaUsuarioObservable;
+    private final ObservableList<Presupuesto> listaPresupuestoObservable;
+    private final ObservableList<Transaccion> listaTransaccionObservable;
+    private final ObservableList<Categoria> listaCategoriasObservable;
 
     // PERSISTENCIA
     private final UsuarioPersistente usuarioPersistente;
@@ -26,8 +34,10 @@ public class ModelFactory {
     private final CategoriaPersistente categoriaPersistente;
     private final PresupuestoPersistente presupuestoPersistente;
 
+
     private ModelFactory() {
         icaja = cargaRespaldo();
+
         usuarioPersistente = new UsuarioPersistente();
         cuentaBancariaPersistente = new CuentaBancariaPersistente();
         categoriaPersistente = new CategoriaPersistente();
@@ -38,7 +48,14 @@ public class ModelFactory {
             loadData();
         }
 
-    loadConfig();
+        loadConfig();
+
+        listaCuentaObservable = FXCollections.observableArrayList();
+        listaUsuarioObservable = FXCollections.observableArrayList();
+        listaPresupuestoObservable = FXCollections.observableArrayList();
+        listaTransaccionObservable = FXCollections.observableArrayList();
+        listaCategoriasObservable = FXCollections.observableArrayList();
+
     }
 
 
@@ -47,6 +64,25 @@ public class ModelFactory {
             instance = new ModelFactory();
         }
         return instance;
+    }
+
+
+    public void sincronizarData() {
+        sincronizarLista(listaCuentaObservable, icaja.getListaCuentas());
+        sincronizarLista(listaUsuarioObservable, icaja.getListaUsuarios());
+        sincronizarLista(listaPresupuestoObservable, icaja.getListaPresupuestos());
+        sincronizarLista(listaTransaccionObservable, icaja.getListaTransacciones());
+        sincronizarLista(listaCategoriasObservable, icaja.getListaCategorias());
+
+        icaja.excluirAdmin(listaUsuarioObservable);
+        guardarRespaldo();
+
+        registrarLog(1,"Se sincronizó la base de datos");
+    }
+
+    public <T> void sincronizarLista(ObservableList<T> listaObservable, List<T> listaFuente) {
+        listaObservable.clear();
+        listaObservable.addAll(listaFuente);
     }
 
     public void loadData() {

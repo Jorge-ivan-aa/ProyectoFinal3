@@ -12,5 +12,5 @@ public record TransferenciaDto(
         String motivo,
         Cuenta cuentaOrigen,
         Cuenta cuentaDestino,
-        Categoria... listaCategoria) implements ITransaccionDto {
+        Categoria listaCategoria) implements ITransaccionDto {
 }

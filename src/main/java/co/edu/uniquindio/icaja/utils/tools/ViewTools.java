@@ -1,15 +1,20 @@
 package co.edu.uniquindio.icaja.utils.tools;
 
 import co.edu.uniquindio.icaja.App;
+import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -22,6 +27,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.function.Function;
 
 public class ViewTools {
 
@@ -244,5 +250,42 @@ public class ViewTools {
         fadeTransition.setToValue(1.0);
         fadeTransition.play();
     }
+
+
+    /**
+     * Actualiza los elementos de un ComboBox con los elementos de una lista observable.
+     *
+     * @param <T> Tipo de los elementos de la lista observable.
+     * @param comboBox El ComboBox a actualizar.
+     * @param listaObservable Lista observable con los elementos a agregar.
+     * @param mapper Función para mapear cada elemento a un String.
+     */
+    public static <T> void actualizarComboBox(MFXFilterComboBox<String> comboBox, ObservableList<T> listaObservable, Function<T, String> mapper) {
+        comboBox.getItems().clear();
+        for (T item : listaObservable) {
+            comboBox.getItems().add(mapper.apply(item));  // Convierte el elemento a String y lo agrega
+        }
+    }
+
+
+    /**
+     * Inicializa el ComboBox conectándolo a una lista observable y actualizándolo automáticamente.
+     *
+     * @param <T> Tipo de los elementos de la lista observable.
+     * @param comboBox El ComboBox a inicializar.
+     * @param listaObservable La lista observable con los elementos que se agregarán al ComboBox.
+     * @param mapper Función para mapear los elementos de la lista a un String para el ComboBox.
+     */
+    public static <T> void inicializarComboBox(MFXFilterComboBox<String> comboBox, ObservableList<T> listaObservable, Function<T, String> mapper) {
+        // Listener para actualizar el ComboBox cuando la lista cambie
+        listaObservable.addListener((ListChangeListener<? super T>) change -> actualizarComboBox(comboBox, listaObservable, mapper));
+
+        // Actualizar el ComboBox al inicio
+        actualizarComboBox(comboBox, listaObservable, mapper);
+    }
+
+
+
+
 
 }

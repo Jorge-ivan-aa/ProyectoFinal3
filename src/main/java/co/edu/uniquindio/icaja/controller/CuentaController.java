@@ -5,12 +5,9 @@ import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.CuentaBancariaDto;
-import co.edu.uniquindio.icaja.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.icaja.mapping.mappers.CuentaBancariaMapper;
 import co.edu.uniquindio.icaja.model.*;
-import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.tools.NumTool;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 
@@ -25,11 +22,10 @@ public class CuentaController implements GenericController<CuentaBancariaDto, Cu
 
     private final ModelFactory factory;
     private final ObservableList<Cuenta> listaCuentaObservable;
-    private TransaccionDto inicialData;
 
     public CuentaController() {
         this.factory = ModelFactory.getInstance();
-        this.listaCuentaObservable = FXCollections.observableArrayList();
+        this.listaCuentaObservable = this.factory.getListaCuentaObservable();
         this.sincronizarData();
         this.persistir();
         factory.guardarRespaldo();
@@ -37,9 +33,7 @@ public class CuentaController implements GenericController<CuentaBancariaDto, Cu
     }
 
     public void sincronizarData() {
-        listaCuentaObservable.clear();
-        this.listaCuentaObservable.addAll(this.factory.getIcaja().getListaCuentas());
-        registrarLog(1,"Se sincronizaron las cuentas bancarias");
+        factory.sincronizarData();
     }
 
     @Override
@@ -104,7 +98,6 @@ public class CuentaController implements GenericController<CuentaBancariaDto, Cu
     }
 
 
-
     @Override
     public void persistir() {
         List<Cuenta> cuentas = new ArrayList<>(factory.getIcaja().getListaCuentas());
@@ -115,8 +108,4 @@ public class CuentaController implements GenericController<CuentaBancariaDto, Cu
         }
     }
 
-    public void setInicialData(TransaccionDto inicialData) {
-        this.inicialData = inicialData;
-        Seguimiento.registrarLog(1, "Se configuraron los datos iniciales de la cuenta");
-    }
 }

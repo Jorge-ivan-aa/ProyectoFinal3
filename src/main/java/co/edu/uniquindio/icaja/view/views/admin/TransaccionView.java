@@ -1,9 +1,13 @@
 package co.edu.uniquindio.icaja.view.views.admin;
 
+import co.edu.uniquindio.icaja.controller.CategoriaController;
 import co.edu.uniquindio.icaja.controller.CuentaController;
 import co.edu.uniquindio.icaja.controller.TransaccionController;
+import co.edu.uniquindio.icaja.exception.transacciones.MontoInvalidoException;
+import co.edu.uniquindio.icaja.exception.transacciones.SaldoInsuficiente;
 import co.edu.uniquindio.icaja.mapping.dto.RetiroODepostoDto;
 import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
+import co.edu.uniquindio.icaja.model.Categoria;
 import co.edu.uniquindio.icaja.model.Cuenta;
 import co.edu.uniquindio.icaja.model.Transaccion;
 import co.edu.uniquindio.icaja.model.enums.TipoTransaccion;
@@ -18,13 +22,23 @@ import java.util.List;
 
 public class TransaccionView {
     TransaccionController transaccionController = TransaccionController.getInstance();
+    CategoriaController categoriaController = new CategoriaController();
     CuentaController cuentaController = new CuentaController();
 
     @FXML
-    private MFXFilterComboBox<String> cbCuentaTransaccionAdmin;
+    private MFXFilterComboBox<String> cbxCategoriaTransaccionAdmin;
 
     @FXML
-    private ComboBox<String> cbTipoTransaccionAdmin;
+    private MFXFilterComboBox<String> cbxCuentaDestinoTransaccionAdmin;
+
+    @FXML
+    private MFXFilterComboBox<String> cbxCuentaTransaccionAdmin;
+
+    @FXML
+    private Label lbCuentaDestino;
+
+    @FXML
+    private ComboBox<TipoTransaccion> cbTipoTransaccionAdmin;
 
     @FXML
     private TableColumn<Transaccion, String> tcCategoriaTransaccionAdmin;
@@ -62,44 +76,45 @@ public class TransaccionView {
     @FXML
     void crearTransaccionAction() {
         String monto = txtMontoTransaccionAdmin.getText();
-        String tipo = cbTipoTransaccionAdmin.getValue();
         String motivo = txtMotivoTransaccionAdmin.getText();
 
         if (ViewTools.NoHayCamposVacios(monto, motivo)) {
-            try {
-                String numCuenta = cbCuentaTransaccionAdmin.getValue();
-                Cuenta cuenta = cuentaController.consultar(numCuenta);
+            boolean condicion = cbTipoTransaccionAdmin.getValue() != null &&
+                    cbxCuentaTransaccionAdmin.getValue() != null &&
+                    cbxCategoriaTransaccionAdmin.getValue() != null &&
+                    cbxCuentaDestinoTransaccionAdmin.getValue() != null;
+
+            if (condicion) {
+                TipoTransaccion tipo = cbTipoTransaccionAdmin.getValue();
+                Cuenta cuentaOrigen = cuentaController.consultar(cbxCuentaTransaccionAdmin.getValue());
+                Categoria categoria = categoriaController.consultar(cbxCategoriaTransaccionAdmin.getValue());
 
                 switch (tipo) {
-                    case "Transferencia":
-                        transaccionController.setTransaccionPendiente(new TransferenciaDto(null, TipoTransaccion.TRANSFERENCIA, monto, motivo, cuenta, null));
-                        ViewTools.generarVentana("templates/tooltips/realizarTransferenciaAdmin.fxml", "Gestion de transferencias", null, "styles/main.css");
-                        Seguimiento.registrarLog(1, "Se quiere realizar una transferencia");
-                        limpiar();
+                    case TRANSFERENCIA:
+                        try {
+                            Cuenta cuentaDestino = cuentaController.consultar(cbxCuentaDestinoTransaccionAdmin.getValue());
+                            TransferenciaDto transferenciaDto = new TransferenciaDto(null, tipo, monto, motivo, cuentaOrigen, cuentaDestino, categoria);
+                            transaccionController.crear(transferenciaDto);
+                        } catch (MontoInvalidoException | SaldoInsuficiente e) {
+                            ViewTools.mostrarMensaje("¡Error!", null, e.getMessage(), Alert.AlertType.ERROR);
+                            Seguimiento.registrarLog(2, e.getMessage());
+                        }
+
                         break;
-                    case "Deposito":
-                        transaccionController.setTransaccionPendiente(new RetiroODepostoDto(null, TipoTransaccion.DEPOSITO, monto, motivo, cuenta));
-                        Seguimiento.registrarLog(1, "Se quiere realizar una transferencia");
+                    case RETIRO:
                         break;
-                    case "Retiro":
-                        transaccionController.setTransaccionPendiente(new RetiroODepostoDto(null, TipoTransaccion.RETIRO, monto, motivo, cuenta));
-                        Seguimiento.registrarLog(1, "Se quiere realizar una transferencia");
+                    case DEPOSITO:
                         break;
                     default:
-                        ViewTools.mostrarMensaje("¡Cuidado!", null,"No se seleccionó el tipo de transacción", Alert.AlertType.WARNING);
+
                 }
 
-            } catch (NumberFormatException e) {
-                ViewTools.mostrarMensaje("Error", null, "El campo monto debe ser un valo númerico", Alert.AlertType.ERROR);
-                Seguimiento.registrarLog(2, "No se ingresó un valor númerico en el monto: " + e.getMessage());
-
-            } catch (Exception e) {
-                ViewTools.mostrarMensaje("Error", null, "Ocurrió un error inesperado, comuniquese con atención tecnica.", Alert.AlertType.ERROR);
-                Seguimiento.registrarLog(3, "Ocurrió un error inesperado: " + e.getMessage());
+            } else {
+                ViewTools.mostrarMensaje("¡Cuidado!", null, "No se han seleccionado el tipo, las cuentas o la categoria de la trasacción.", Alert.AlertType.WARNING);
             }
 
         } else {
-            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+            ViewTools.mostrarMensaje("¡Cuidado!", null, "Hay campos vacios", Alert.AlertType.WARNING);
         }
     }
 
@@ -110,10 +125,13 @@ public class TransaccionView {
     }
 
     private void limpiar() {
-        cbCuentaTransaccionAdmin.clearSelection();
+        cbxCuentaTransaccionAdmin.clearSelection();
+        cbxCategoriaTransaccionAdmin.clearSelection();
+        cbxCuentaDestinoTransaccionAdmin.clearSelection();
         cbTipoTransaccionAdmin.getSelectionModel().clearSelection();
 
-        ViewTools.limpiarCampos(txtIdTransaccionAdmin,
+        ViewTools.limpiarCampos(
+                txtIdTransaccionAdmin,
                 txtMontoTransaccionAdmin,
                 txtMotivoTransaccionAdmin);
     }
@@ -121,14 +139,10 @@ public class TransaccionView {
     @FXML
     void initialize() {
         initview();
-        List<Cuenta> cuentas = cuentaController.getListaCuentaObservable();
-        String[] numeroCuentas = new String[cuentas.size()];
-        for (Cuenta cuenta : cuentas) {
-            numeroCuentas[cuentas.indexOf(cuenta)] = cuenta.getNumeroCuenta();
-        }
-
-        cbCuentaTransaccionAdmin.getItems().addAll(numeroCuentas);
-        cbTipoTransaccionAdmin.getItems().addAll("Transferencia", "Deposito", "Retiro");
+        ViewTools.actualizarComboBox(cbxCategoriaTransaccionAdmin, categoriaController.getListaCategoriasObservable(), Categoria::getNombre);
+        ViewTools.actualizarComboBox(cbxCuentaDestinoTransaccionAdmin, cuentaController.getListaCuentaObservable(), Cuenta::getNumeroCuenta);
+        ViewTools.actualizarComboBox(cbxCuentaTransaccionAdmin, cuentaController.getListaCuentaObservable(), Cuenta::getNumeroCuenta);
+        cbTipoTransaccionAdmin.getItems().addAll(TipoTransaccion.values());
     }
 
     private void initview() {
@@ -154,11 +168,7 @@ public class TransaccionView {
 
     private void mostrarInformacion(Transaccion seleccionado) {
         if (seleccionado != null) {
-            txtMontoTransaccionAdmin.setText(seleccionado.getMonto());
-            txtMotivoTransaccionAdmin.setText(seleccionado.getMotivo());
-            cbTipoTransaccionAdmin.setValue(seleccionado.getClass().getSimpleName());
-            cbCuentaTransaccionAdmin.setValue(seleccionado.getCuentas()[0].getNumeroCuenta());
-            txtIdTransaccionAdmin.setText(seleccionado.getIdTransaccion());
+
         }
     }
 

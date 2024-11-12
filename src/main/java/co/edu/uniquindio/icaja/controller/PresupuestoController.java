@@ -18,22 +18,19 @@ import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 
 public class PresupuestoController implements GenericController<PresupuestoDto, Presupuesto> {
 
-    private ModelFactory factory;
-    private ObservableList<Presupuesto> listaPresupuestoObservable;
+    private final ModelFactory factory;
+    private final ObservableList<Presupuesto> listaPresupuestoObservable;
 
     public PresupuestoController(){
         factory= ModelFactory.getInstance();
-        this.listaPresupuestoObservable= FXCollections.observableArrayList();
+        this.listaPresupuestoObservable= this.factory.getListaPresupuestoObservable();
         this.sincronizarData();
     }
 
     @Override
     public void sincronizarData() {
-        listaPresupuestoObservable.clear();
-        listaPresupuestoObservable.addAll(factory.getIcaja().getListaPresupuestos());
         persistir();
         factory.guardarRespaldo();
-        registrarLog(1,"Se sincronizaron los presupuestos.");
     }
 
     @Override

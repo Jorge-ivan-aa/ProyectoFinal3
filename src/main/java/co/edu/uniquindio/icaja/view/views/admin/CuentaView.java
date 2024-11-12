@@ -15,6 +15,9 @@ import java.util.List;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
@@ -152,12 +155,7 @@ public class CuentaView {
 
     @FXML
     void initialize() {
-        List<Usuario> usuarios = usuarioController.getListaUsuarioObservable();
-        String[] cedulas = new String[usuarios.size()];
-        for (Usuario usuario : usuarios) {
-            cedulas[usuarios.indexOf(usuario)] = usuario.getCedula();
-        }
-        cbxPropietarioCuentaAdmin.getItems().addAll(cedulas);
+        ViewTools.inicializarComboBox(cbxPropietarioCuentaAdmin, usuarioController.getListaUsuarioObservable(), Usuario::getCedula);
         cbxTipoCuentaAdmin.getItems().addAll(TipoCuenta.values());
         cbxEntidadAdmin.getItems().addAll(EntidadBancaria.values());
         initview();

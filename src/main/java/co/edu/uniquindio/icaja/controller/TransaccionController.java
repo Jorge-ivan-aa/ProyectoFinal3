@@ -27,7 +27,7 @@ public class TransaccionController implements GenericController<ITransaccionDto,
 
     private TransaccionController() {
         this.factory = ModelFactory.getInstance();
-        this.listaTransaccionObservable = FXCollections.observableArrayList();
+        this.listaTransaccionObservable = this.factory.getListaTransaccionObservable();
         this.sincronizarData();
     }
 
@@ -40,9 +40,7 @@ public class TransaccionController implements GenericController<ITransaccionDto,
 
 
     public void sincronizarData() {
-        this.listaTransaccionObservable.clear();
-        this.listaTransaccionObservable.addAll(this.factory.getIcaja().getListaTransacciones());
-        registrarLog(1, "Se sincronizaron las transacciones");
+        factory.sincronizarData();
     }
 
     @Override
