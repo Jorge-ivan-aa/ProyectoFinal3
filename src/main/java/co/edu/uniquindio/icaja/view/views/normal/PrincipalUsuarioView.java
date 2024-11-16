@@ -1,6 +1,7 @@
 package co.edu.uniquindio.icaja.view.views.normal;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -26,7 +27,7 @@ public class PrincipalUsuarioView {
     UsuarioController usuarioController = new UsuarioController();
     Sesion sesion = usuarioController.getFactory().getIcaja().getSesion();
     Usuario usuarioLogueado = sesion.getUsuario();
-    List<String> listaMensajes;
+    List<String> listaMensajes = new ArrayList<>();
 
     @FXML
     private ResourceBundle resources;
@@ -57,8 +58,6 @@ public class PrincipalUsuarioView {
     @FXML
     private ListView<Transaccion> lvListaTransaccionesUsuario;
     @FXML
-    private AnchorPane panelPrincipal;
-    @FXML
     private Pane panelCharlarIA;
     @FXML
     private Pane panelDepositarUsuario;
@@ -68,17 +67,19 @@ public class PrincipalUsuarioView {
 
     @FXML
     private Pane panelTransferirUsuario;
+    @FXML
+    private Pane panelUnoUsuario;
 
     @FXML
     private MFXTextField txtMensajeParaIA;
 
     @FXML
-    void CharlarConIaAction(ActionEvent event) {
-        ViewTools.cambiarPantalla(panelPrincipal,0.225, panelCharlarIA);
+    void CharlarConIaAction() {
+        ViewTools.cambiarPantalla(panelCharlarIA,0.225, panelDepositarUsuario, panelTransferirUsuario );
 
     }
     @FXML
-    void EnviarMensajeIaAction(ActionEvent event) {
+    void EnviarMensajeIaAction() {
         String mensaje = txtMensajeParaIA.getText();
         listaMensajes.add(mensaje);
         lvListaChatConIA.setItems((ObservableList<String>) listaMensajes);
@@ -86,41 +87,49 @@ public class PrincipalUsuarioView {
     }
 
     @FXML
-    void DepositarUsuarioAction(ActionEvent event) {
-        ViewTools.cambiarPantalla(panelDepositarUsuario,0.225, panelPrincipal,panelRetirarUsuario,panelTransferirUsuario);
+    void DepositarUsuarioAction() {
+        ViewTools.cambiarPantalla(panelDepositarUsuario, 0.225, panelUnoUsuario);
 
     }
 
     @FXML
-    void RetirarUsuarioAction(ActionEvent event) {
-        ViewTools.cambiarPantalla(panelRetirarUsuario,0.225, panelPrincipal,panelDepositarUsuario,panelTransferirUsuario);
+    void RetirarUsuarioAction() {
+        ViewTools.cambiarPantalla(panelRetirarUsuario, 0.225, panelUnoUsuario, panelDepositarUsuario, panelTransferirUsuario);
 
     }
 
     @FXML
-    void TransferirUsuarioAction(ActionEvent event) {
-        ViewTools.cambiarPantalla(panelTransferirUsuario,0.225, panelPrincipal,panelDepositarUsuario,panelRetirarUsuario);
+    void TransferirUsuarioAction() {
+        ViewTools.cambiarPantalla(panelTransferirUsuario, 0.225, panelUnoUsuario,panelDepositarUsuario,panelRetirarUsuario);
 
     }
     @FXML
-    void salirChatIaAction(ActionEvent event) {
-        ViewTools.cerrarVentana(panelPrincipal);
+    void salirChatIaAction() {
+        ViewTools.cambiarPantalla(panelUnoUsuario,0.225, panelCharlarIA,panelDepositarUsuario,panelRetirarUsuario,panelTransferirUsuario);
 
     }
+    @FXML
+    void volverDepositoAction() {
+        ViewTools.cambiarPantalla(panelUnoUsuario,0.225, panelDepositarUsuario,panelRetirarUsuario,panelTransferirUsuario);
+    }
+
+    @FXML
+    void volverRetiroAction() {
+        ViewTools.cambiarPantalla(panelUnoUsuario,0.225, panelDepositarUsuario,panelRetirarUsuario,panelTransferirUsuario);
+        System.out.println("pasó por acá");
+
+    }
+
+    @FXML
+    void volverTransferenciaAction() {
+        ViewTools.cambiarPantalla(panelUnoUsuario,0.225, panelDepositarUsuario,panelRetirarUsuario,panelTransferirUsuario);
+    }
+
 
     @FXML
     void initialize() {
-        lbSaltoLinea.setText("¿No sabes como plantear \n tu estrategia de ahorro?");
-        //ViewTools.cambiarPantalla(panelPrincipal,0.225, panelTransferirUsuario);
-    }
-
-    private void initDataBinging() {
-
-    }
-    private void mostrarInformacion(Transaccion seleccionado) {
-        if (seleccionado != null) {
-
-        }
+        ViewTools.cambiarPantalla(panelUnoUsuario,0.225, panelDepositarUsuario,panelRetirarUsuario,panelTransferirUsuario);
+        mostrarInformacion(usuarioLogueado);
     }
 
     private void mostrarInformacion(Usuario usuarioLogueado) {

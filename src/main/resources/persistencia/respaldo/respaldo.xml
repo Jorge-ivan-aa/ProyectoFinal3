@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="21.0.4" class="java.beans.XMLDecoder">
+<java version="21.0.2" class="java.beans.XMLDecoder">
  <object class="co.edu.uniquindio.icaja.model.ICaja" id="ICaja0">
   <void property="listaCuentas">
    <void method="add">
@@ -64,7 +64,7 @@
       <string>cd78fc0f-2848-42ce-b891-4f3be8e620e4</string>
      </void>
      <void property="idpropietario">
-      <string>39130591-a28e-4ca8-a744-86257cf103ea</string>
+      <string>null</string>
      </void>
      <void property="numeroCuenta">
       <string>1231231232</string>
@@ -83,7 +83,7 @@
       <string>bb6cdb2e-50f3-4d83-a76d-7038c7f8df46</string>
      </void>
      <void property="idpropietario">
-      <string>c116bb95-7d18-491c-9ac8-3ff230dcd75c</string>
+      <string>null</string>
      </void>
      <void property="numeroCuenta">
       <string>0323242424</string>
@@ -92,14 +92,6 @@
       <object idref="TipoCuenta0"/>
      </void>
     </object>
-   </void>
-  </void>
-  <void property="listaTransacciones">
-   <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Transaccion"/>
-   </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Transaccion"/>
    </void>
   </void>
   <void property="listaUsuarios">
@@ -181,10 +173,35 @@
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.Usuario">
      <void property="cedula">
+      <string>1234</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$V6R8N1yVoeJyxhlTGa41tuNfWEmnT8NL0dZ.riZrJO.95FLLhebSi</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>$2a$10$T9D2FWiySUGYUSZm3jEJmO2s3m17BqUi8EYGN15NRB2eSV5MwaW8i</string>
+     </void>
+     <void property="correo">
+      <string>bhdhy</string>
+     </void>
+     <void property="idUsuario">
+      <string>bbdca20a-7789-43cc-969a-44ef52b45101</string>
+     </void>
+     <void property="nombre">
+      <string>gdhrth</string>
+     </void>
+     <void property="telefono">
+      <string>555445</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$OWoWW9/ARrhwgsLCaiWfQOvcoEy1TR9BOFB1Ed1EVvyCzAux2MNEu</string>
+      <string>$2a$10$4F3hbx1QgZBpNuKKAe73iOhTy.BVHHUH6.O9rjkzXKJYGfF.nHD7a</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>
