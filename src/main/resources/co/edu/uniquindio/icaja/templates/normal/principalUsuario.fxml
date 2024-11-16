@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXListView?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,75 +10,121 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.normal.PrincipalUsuarioView">
+<AnchorPane prefHeight="626.0" prefWidth="1073.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.normal.PrincipalUsuarioView">
       <Label text="principal usuario" />
-   <Pane layoutX="15.0" layoutY="31.0" prefHeight="87.0" prefWidth="362.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
+   <Pane layoutX="15.0" layoutY="31.0" prefHeight="127.0" prefWidth="636.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
       <children>
-         <Label fx:id="lbSaldoUsuario" layoutX="36.0" layoutY="14.0" prefHeight="37.0" prefWidth="96.0" text="500.000">
+         <Label fx:id="lbSaldoUsuario" layoutX="36.0" layoutY="23.0" prefHeight="48.0" prefWidth="166.0" text="500.000">
             <font>
-               <Font size="24.0" />
+               <Font size="34.0" />
             </font>
          </Label>
-         <Label layoutX="40.0" layoutY="47.0" text="Disponibles">
-            <font>
-               <Font size="14.0" />
-            </font>
-         </Label>
-         <Circle fill="DODGERBLUE" layoutX="171.0" layoutY="44.0" radius="32.0" stroke="BLACK" strokeType="INSIDE" />
-      </children>
-   </Pane>
-   <Pane layoutX="390.0" layoutY="31.0" prefHeight="110.0" prefWidth="191.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
-      <children>
-         <Label fx:id="lbSaltoLinea" layoutX="20.0" layoutY="14.0" text="¿No sabes como plantear tu estrategia de ahorro?" textAlignment="JUSTIFY" />
-         <MFXButton layoutX="68.0" layoutY="59.0" onAction="#CharlarConIaAction" prefHeight="37.0" prefWidth="106.0" text="Charla con IA" />
-      </children>
-   </Pane>
-   <Pane layoutX="356.0" layoutY="170.0" prefHeight="200.0" prefWidth="200.0">
-      <children>
-         <Pane layoutX="33.0" layoutY="-12.0" prefHeight="215.0" prefWidth="191.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
-            <children>
-               <Label layoutX="21.0" layoutY="15.0" text="¿Qué vamos a hacer hoy ?">
-                  <font>
-                     <Font size="13.0" />
-                  </font>
-               </Label>
-               <MFXButton layoutX="67.0" layoutY="58.0" onAction="#RetirarUsuarioAction" text="Retirar" />
-               <MFXButton layoutX="59.0" layoutY="108.0" onAction="#DepositarUsuarioAction" text="Depositar" />
-               <MFXButton layoutX="58.0" layoutY="159.0" onAction="#TransferirUsuarioAction" text="Transferir" />
-            </children>
-         </Pane>
-      </children>
-   </Pane>
-   <Pane layoutX="217.0" layoutY="130.0" prefHeight="143.0" prefWidth="150.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
-      <children>
-         <Label fx:id="lbPonerIngresos" layoutX="30.0" layoutY="23.0" prefHeight="25.0" prefWidth="88.0" text="+ 1.500.000">
-            <font>
-               <Font size="16.0" />
-            </font>
-         </Label>
-         <Label fx:id="lbPonerGastos" layoutX="34.0" layoutY="80.0" prefHeight="25.0" prefWidth="80.0" text="- 1.500.000">
-            <font>
-               <Font size="16.0" />
-            </font>
-         </Label>
-         <Label layoutX="33.0" layoutY="48.0" text="Ingresos" />
-         <Label layoutX="35.0" layoutY="103.0" text="Gastos" />
-      </children>
-   </Pane>
-   <Pane layoutX="217.0" layoutY="286.0" prefHeight="87.0" prefWidth="150.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
-      <children>
-         <Label layoutX="20.0" layoutY="56.0" text="Presupuesto Mensual" />
-         <Label fx:id="lbPonerPresupuesto" layoutX="35.0" layoutY="21.0" text="2.000.000">
+         <Label layoutX="39.0" layoutY="71.0" text="Disponibles">
             <font>
                <Font size="18.0" />
             </font>
          </Label>
+         <Circle fill="DODGERBLUE" layoutX="265.0" layoutY="63.0" radius="48.0" stroke="BLACK" strokeType="INSIDE" />
+         <Circle fill="DODGERBLUE" layoutX="412.0" layoutY="63.0" radius="48.0" stroke="BLACK" strokeType="INSIDE" />
+         <Circle fill="DODGERBLUE" layoutX="556.0" layoutY="63.0" radius="48.0" stroke="BLACK" strokeType="INSIDE" />
       </children>
    </Pane>
-   <ListView fx:id="lvListaTransaccionesUsuario" layoutX="14.0" layoutY="130.0" prefHeight="242.0" prefWidth="200.0" style="-fx-background-color: #d6eaf8;" />
-   <Label layoutX="46.0" layoutY="141.0" text="Ultimas Transacciones">
+   <Pane layoutX="667.0" layoutY="31.0" prefHeight="182.0" prefWidth="381.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
+      <children>
+         <Label fx:id="lbSaltoLinea" layoutX="7.0" layoutY="32.0" text="¿No sabes como plantear tu estrategia de ahorro?" textAlignment="JUSTIFY">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
+         <MFXButton layoutX="117.0" layoutY="107.0" onAction="#CharlarConIaAction" prefHeight="53.0" prefWidth="150.0" text="Charla con IA">
+            <font>
+               <Font size="16.0" />
+            </font></MFXButton>
+      </children>
+   </Pane>
+   <Pane layoutX="366.0" layoutY="179.0" prefHeight="175.0" prefWidth="286.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
+      <children>
+         <Label fx:id="lbPonerIngresos" layoutX="30.0" layoutY="23.0" prefHeight="40.0" prefWidth="150.0" text="+ 1.500.000">
+            <font>
+               <Font size="26.0" />
+            </font>
+         </Label>
+         <Label fx:id="lbPonerGastos" layoutX="29.0" layoutY="93.0" prefHeight="36.0" prefWidth="138.0" text="- 1.500.000">
+            <font>
+               <Font size="26.0" />
+            </font>
+         </Label>
+         <Label layoutX="47.0" layoutY="61.0" text="Ingresos">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <Label layoutX="50.0" layoutY="127.0" text="Gastos">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+      </children>
+   </Pane>
+   <ListView fx:id="lvListaTransaccionesUsuario" layoutX="14.0" layoutY="178.0" prefHeight="412.0" prefWidth="328.0" style="-fx-background-color: #d6eaf8; -fx-background-radius: 30;" />
+   <Label layoutX="97.0" layoutY="189.0" text="Ultimas Transacciones">
       <font>
-         <Font size="14.0" />
+         <Font size="17.0" />
       </font>
    </Label>
+   <Pane layoutX="367.0" layoutY="362.0" prefHeight="228.0" prefWidth="284.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
+      <children>
+         <Label layoutX="52.0" layoutY="8.0" text="¿Qué vamos a hacer hoy ?">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <MFXButton layoutX="77.0" layoutY="47.0" onAction="#RetirarUsuarioAction" prefHeight="48.0" prefWidth="137.0" text="Retirar">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </MFXButton>
+         <MFXButton layoutX="78.0" layoutY="106.0" onAction="#DepositarUsuarioAction" prefHeight="48.0" prefWidth="137.0" text="Depositar">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </MFXButton>
+         <MFXButton layoutX="79.0" layoutY="166.0" onAction="#TransferirUsuarioAction" prefHeight="48.0" prefWidth="137.0" text="Transferir">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </MFXButton>
+      </children>
+   </Pane>
+   <ListView fx:id="lvListaPresupuestosUsuario" layoutX="670.0" layoutY="228.0" prefHeight="362.0" prefWidth="378.0" />
+   <Label fx:id="lbPonerPresupuesto" layoutX="697.0" layoutY="244.0" prefHeight="36.0" prefWidth="138.0" text="2.000.000">
+      <font>
+         <Font size="26.0" />
+      </font>
+   </Label>
+   <Label layoutX="696.0" layoutY="284.0" text="Presupuesto Mensual">
+      <font>
+         <Font size="16.0" />
+      </font>
+   </Label>
+   <Pane fx:id="panelCharlarIA" layoutX="-2.0" layoutY="-2.0" prefHeight="628.0" prefWidth="1074.0" style="-fx-background-color: d3dbe5;" visible="false">
+      <children>
+         <Pane layoutX="541.0" layoutY="1.0" prefHeight="626.0" prefWidth="535.0" style="-fx-background-color: c2c3c5; -fx-background-radius: 20;">
+            <children>
+               <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="11.0" layoutY="10.0" onAction="#salirChatIaAction" prefHeight="63.0" prefWidth="72.0" style="-fx-background-radius: 20;" text="Salir">
+                  <font>
+                     <Font size="20.0" />
+                  </font>
+               </MFXButton>
+               <Label contentDisplay="TEXT_ONLY" layoutX="232.0" layoutY="25.0" opacity="0.98" text="IcajaBot ">
+                  <font>
+                     <Font name="System Bold" size="21.0" />
+                  </font>
+               </Label>
+               <MFXListView fx:id="lvListaChatConIA" layoutX="14.0" layoutY="87.0" prefHeight="471.0" prefWidth="506.0" style="-fx-background-radius: 20;" />
+               <MFXTextField fx:id="txtMensajeParaIA" layoutX="12.0" layoutY="571.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="438.0" />
+               <MFXButton buttonType="RAISED" layoutX="462.0" layoutY="572.0" onAction="#EnviarMensajeIaAction" prefHeight="36.0" prefWidth="54.0" style="-fx-background-radius: 10;" text="Enviar" />
+            </children>
+         </Pane>
+      </children>
+   </Pane>
 </AnchorPane>
