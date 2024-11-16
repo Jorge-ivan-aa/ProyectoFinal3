@@ -33,17 +33,17 @@
          <Font size="15.0" />
       </font>
    </MFXTextField>
-   <MFXTextField fx:id="txtNuevaCedulaAction" alignment="TOP_LEFT" layoutX="244.0" layoutY="409.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
+   <MFXTextField fx:id="txtNuevaCedulaUsuario" alignment="TOP_LEFT" layoutX="244.0" layoutY="409.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
       <font>
          <Font size="15.0" />
       </font>
    </MFXTextField>
-   <MFXTextField fx:id="txtNuevoTelefonoAction" alignment="TOP_LEFT" layoutX="620.0" layoutY="296.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
+   <MFXTextField fx:id="txtNuevoTelefonoUsuario" alignment="TOP_LEFT" layoutX="620.0" layoutY="296.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
       <font>
          <Font size="15.0" />
       </font>
    </MFXTextField>
-   <MFXTextField fx:id="txtNuevoCorreoUsuarioAction" alignment="TOP_LEFT" layoutX="620.0" layoutY="409.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
+   <MFXTextField fx:id="txtNuevoCorreoUsuario" alignment="TOP_LEFT" layoutX="620.0" layoutY="409.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
       <font>
          <Font size="15.0" />
       </font>

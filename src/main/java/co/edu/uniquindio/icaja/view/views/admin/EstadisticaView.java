@@ -2,6 +2,9 @@ package co.edu.uniquindio.icaja.view.views.admin;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import co.edu.uniquindio.icaja.model.Categoria;
+import co.edu.uniquindio.icaja.model.Transaccion;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
@@ -27,28 +30,34 @@ public class EstadisticaView {
     private Label lbUsuarioMayorSaldo;
 
     @FXML
+    private Label lbUsuarioMayorSaldoNombre;
+
+    @FXML
+    private Label lbUsuarioMayorSaldoSaldo;
+
+    @FXML
     private PieChart pcGraficaDos;
 
     @FXML
     private PieChart pcGraficaUno;
 
     @FXML
-    private TableColumn<?, ?> tcCantidadTransacciones;
+    private TableColumn<Transaccion, String> tcCantidadTransacciones;
 
     @FXML
-    private TableColumn<?, ?> tcGastosPorCategoria;
+    private TableColumn<Categoria, String> tcGastosPorCategoria;
 
     @FXML
-    private TableColumn<?, ?> tcPorcentajePorCategoria;
+    private TableColumn<Categoria, String> tcPorcentajePorCategoria;
 
     @FXML
-    private TableColumn<?, ?> tcTransaccionesPorUsuario;
+    private TableColumn<Transaccion, String> tcTransaccionesPorUsuario;
 
     @FXML
-    private TableView<?> tvGastosPorCategoria;
+    private TableView<Categoria> tvGastosPorCategoria;
 
     @FXML
-    private TableView<?> tvTransaccionesPorUsuario;
+    private TableView<Transaccion> tvTransaccionesPorUsuario;
 
     @FXML
     void initialize() {
