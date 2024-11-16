@@ -44,7 +44,7 @@ public class PerfilUsuarioView {
         //boolean cambioClaves =  !clave.isEmpty() || !claveTransaccional.isEmpty();
 
         if (ViewTools.NoHayCamposVacios(nombre, cedula, correo, telefono)) {
-            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono, "1222" ,"2111"  );
+            UsuarioDto usuarioDto = new UsuarioDto("13223",nombre,  cedula,  correo,  telefono, "1222" ,"211"  );
             try {
                 usuarioController.actualizar(usuarioDto);
                 String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
