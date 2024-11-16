@@ -35,25 +35,24 @@ public class baseAdminView {
 
     @FXML
     void irCuentaAction() {
-        ViewTools.cambiarPantalla(cuentaBancariaBox,0.125, estadisticaBox, transaccionBox, usuarioBox);
+        ViewTools.cambiarPantalla(cuentaBancariaBox, 0.125, estadisticaBox, transaccionBox, usuarioBox);
     }
 
     @FXML
     void irTransaccionAction() {
-        ViewTools.cambiarPantalla(transaccionBox,0.125, cuentaBancariaBox, estadisticaBox, usuarioBox);
+        ViewTools.cambiarPantalla(transaccionBox, 0.125, cuentaBancariaBox, estadisticaBox, usuarioBox);
     }
 
     @FXML
     void irUsuarioAction() {
-        ViewTools.cambiarPantalla(usuarioBox,0.125, transaccionBox, cuentaBancariaBox, estadisticaBox);
+        ViewTools.cambiarPantalla(usuarioBox, 0.125, transaccionBox, cuentaBancariaBox, estadisticaBox);
     }
 
     @FXML
     void initialize() {
-        ViewTools.cambiarPantalla(usuarioBox,0.125, transaccionBox, cuentaBancariaBox, estadisticaBox);
+        ViewTools.cambiarPantalla(usuarioBox, 0.125, transaccionBox, cuentaBancariaBox, estadisticaBox);
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            usuarioController.cerrarSesion();
-        }));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> usuarioController.cerrarSesion()));
     }
+
 }

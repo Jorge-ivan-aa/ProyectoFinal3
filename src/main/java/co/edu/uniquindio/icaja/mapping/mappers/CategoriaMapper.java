@@ -8,17 +8,15 @@ public class CategoriaMapper {
 
     public static CategoriaDto toDto(Categoria categoria){
         return new CategoriaDto(
+                categoria.getIdCategoria(),
                 categoria.getNombre(),
-                categoria.getDescripcion(),
-                categoria.getTipo()
-
+                categoria.getDescripcion()
         );
     }
     public static Categoria toCategoria(CategoriaDto categoriaDto){
         return new Categoria(
                 categoriaDto.nombre(),
-                categoriaDto.descripcion(),
-                categoriaDto.tipo()
+                categoriaDto.descripcion()
         );
     }
 

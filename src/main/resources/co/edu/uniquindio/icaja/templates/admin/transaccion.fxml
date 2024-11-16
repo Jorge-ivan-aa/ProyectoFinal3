@@ -12,17 +12,18 @@
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="626" prefWidth="1073" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.TransaccionView">
+<AnchorPane prefHeight="626" prefWidth="1073" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.TransaccionView">
     <TableView fx:id="tvTablaTransaccionaAdmin" layoutX="29.0" layoutY="326.0" prefHeight="296.0" prefWidth="1008.0">
         <columns>
             <TableColumn fx:id="tcIdTransaccionAdmin" prefWidth="133.0" text="ID" />
             <TableColumn fx:id="tcFechaTransaccionAdmin" prefWidth="145.0" text="Fecha" />
             <TableColumn fx:id="tcMontoTransaccionAdmin" prefWidth="157.0" text="Monto" />
             <TableColumn fx:id="tcMotivoTransaccionAdmin" prefWidth="351.0" text="Motivo" />
-            <TableColumn fx:id="tcCategoriaTransaccionAdmin" prefWidth="221.0" text="Categoria" />
+            <TableColumn fx:id="tcCategoriaTransaccionAdmin" prefWidth="211.0" text="Categoria" />
         </columns>
     </TableView>
     <VBox layoutX="29.0" layoutY="50.0" prefHeight="200.0" prefWidth="235.0">
@@ -35,6 +36,7 @@
                       </font>
                   </Label>
                <ComboBox fx:id="cbTipoTransaccionAdmin" prefHeight="32.0" prefWidth="235.0" />
+               <Region prefHeight="31.0" prefWidth="235.0" />
                   <Label text="Cuenta:">
                       <font>
                           <Font size="18.0" />
@@ -76,15 +78,16 @@
                 </font>
             </Label>
             <TextField fx:id="txtMontoTransaccionAdmin" prefHeight="32.0" prefWidth="200.0" />
-         <Label text="Categoria:">
+         <Region prefHeight="31.0" prefWidth="235.0" />
+         <Label fx:id="lbCuentaDestino" prefHeight="21.0" prefWidth="162.0" text="Cuenta destino:" visible="false">
             <font>
                <Font size="18.0" />
             </font>
          </Label>
-         <MFXFilterComboBox fx:id="cbxCategoriaTransaccionAdmin" prefHeight="24.0" prefWidth="235.0" />
+         <MFXFilterComboBox fx:id="cbxCuentaDestinoTransaccionAdmin" floatingTextGap="1.0" prefHeight="24.0" prefWidth="235.0" visible="false" />
       </children>
    </VBox>
-   <VBox layoutX="795.0" layoutY="50.0" prefHeight="200.0" prefWidth="235.0">
+   <VBox layoutX="795.0" layoutY="50.0" prefHeight="127.0" prefWidth="235.0">
       <children>
             <Label text="Motivo:">
                 <font>
@@ -92,12 +95,6 @@
                 </font>
             </Label>
             <TextField fx:id="txtMotivoTransaccionAdmin" prefHeight="32.0" prefWidth="197.0" />
-         <Label fx:id="lbCuentaDestino" prefHeight="21.0" prefWidth="162.0" text="Cuenta destino:" visible="false">
-            <font>
-               <Font size="18.0" />
-            </font>
-         </Label>
-         <MFXFilterComboBox fx:id="cbxCuentaDestinoTransaccionAdmin" floatingTextGap="1.0" prefHeight="24.0" prefWidth="235.0" visible="false" />
       </children>
    </VBox>
 </AnchorPane>

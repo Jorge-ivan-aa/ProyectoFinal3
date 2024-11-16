@@ -1,12 +1,17 @@
 package co.edu.uniquindio.icaja.controller;
 
+import co.edu.uniquindio.icaja.controller.enums.TipoConsulta;
 import co.edu.uniquindio.icaja.controller.services.GenericController;
+import co.edu.uniquindio.icaja.exception.almacenamiento.ElementoNoEncontrado;
+import co.edu.uniquindio.icaja.exception.crud.AtributoUtilizado;
 import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
+import co.edu.uniquindio.icaja.exception.transacciones.MontoInvalido;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
-import co.edu.uniquindio.icaja.mapping.dto.CuentaBancariaDto;
+import co.edu.uniquindio.icaja.mapping.dto.CuentaDto;
 import co.edu.uniquindio.icaja.mapping.mappers.CuentaBancariaMapper;
 import co.edu.uniquindio.icaja.model.*;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.tools.NumTool;
 import javafx.collections.ObservableList;
 import lombok.Getter;
@@ -15,10 +20,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static co.edu.uniquindio.icaja.controller.enums.TipoConsulta.ID_CUENTA;
+import static co.edu.uniquindio.icaja.controller.enums.TipoConsulta.NUMERO_CUENTA;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
+import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
 
 @Getter
-public class CuentaController implements GenericController<CuentaBancariaDto, Cuenta> {
+public class CuentaController implements GenericController<CuentaDto, Cuenta> {
 
     private final ModelFactory factory;
     private final ObservableList<Cuenta> listaCuentaObservable;
@@ -27,72 +35,83 @@ public class CuentaController implements GenericController<CuentaBancariaDto, Cu
         this.factory = ModelFactory.getInstance();
         this.listaCuentaObservable = this.factory.getListaCuentaObservable();
         this.sincronizarData();
-        this.persistir();
-        factory.guardarRespaldo();
-        registrarLog(1,"Se sincronizaron las cuentas bancarias.");
     }
 
     public void sincronizarData() {
         factory.sincronizarData();
+        persistir();
     }
 
     @Override
-    public void crear(CuentaBancariaDto cuentaBancariaDto) throws ElementoYaExiste {
+    public void crear(CuentaDto cuentaDto) throws ElementoYaExiste, AtributoUtilizado, MontoInvalido {
         try {
-            this.consultar(cuentaBancariaDto.numeroCuenta());
-            registrarLog(2,"No se pudo crear el elemento, la cuenta bancaria ya existe :(");
+            // Verificar si la cuenta ya existe usando la consulta por número de cuenta
+            consultar(cuentaDto.numeroCuenta(), NUMERO_CUENTA);
+
+            // Si llega aquí, significa que la cuenta ya existe
+            registrarLog(2, "No se pudo crear el elemento, la cuenta bancaria ya existe :(");
             throw new ElementoYaExiste("No se pudo crear el elemento, la cuenta bancaria ya existe");
 
-        } catch (ElementoNoExiste ignored) {
-            Cuenta nuevaCuenta = CuentaBancariaMapper.toCuentaBancaria(cuentaBancariaDto);
-            factory.getIcaja().addCuentaBancaria(nuevaCuenta);
+        } catch (ElementoNoExiste e) {
+            // Si no se encuentra, creamos la nueva cuenta
+
+            Cuenta nuevaCuenta = CuentaBancariaMapper.toCuentaBancaria(cuentaDto);
+
+            factory.getIcaja().getListaCuentas().add(nuevaCuenta);
             listaCuentaObservable.add(nuevaCuenta);
-            registrarLog(1,"Se ha creado una cuenta bancaria exitosamente :)");
-        }
-    }
-
-    @Override
-    public Cuenta consultar(String identificador) throws ElementoNoExiste {
-
-        registrarLog(1,"Se ha consultado una cuenta bancaria");
-
-        for (Cuenta cuenta : factory.getIcaja().getListaCuentas()) {
-            if (cuenta.getNumeroCuenta().equals(identificador)) {
-                return cuenta;
-            }
-        }
-
-        throw new ElementoNoExiste("la cuenta bancaria consultada no existe.");
-
-    }
-
-    @Override
-    public void eliminar(String identificador) throws ElementoNoExiste {
-        try {
-            Cuenta eliminable = this.consultar(identificador); // consultar si existe, de lo contrario propaga una excepcion.
-            listaCuentaObservable.remove(eliminable);
-            factory.getIcaja().removeCuentaBancaria(eliminable);
-            registrarLog(1,"Se eliminó la cuenta Bancaria");
-
-        } catch (ElementoNoExiste e) {
-            registrarLog(2,"No se pudo eliminar el elemento, " + e.getMessage());
-            throw new ElementoNoExiste("No se pudo eliminar el elemento, " + e.getMessage());
-        }
-    }
-
-    @Override
-    public void actualizar(CuentaBancariaDto cuentaBancariaDto) throws ElementoNoExiste {
-        try {
-            Cuenta actualizable = this.consultar(cuentaBancariaDto.numeroCuenta());
-            actualizable.setEntidad(cuentaBancariaDto.entidad());
-            actualizable.setSaldo(NumTool.parseToDinero(cuentaBancariaDto.saldo()));
-            actualizable.setTipo(cuentaBancariaDto.tipo());
-            actualizable.setPropietario(cuentaBancariaDto.propietario());
             sincronizarData();
-            registrarLog(1,"Se ha actualizado la cuenta bancaria de numero" + cuentaBancariaDto.numeroCuenta() + " exitosamente :)");
+            registrarLog(1, "Se ha creado una cuenta bancaria exitosamente :)");
+        }
+    }
+
+
+    @Override
+    public Cuenta consultar(String consulta, TipoConsulta tipoConsulta) throws ElementoNoExiste {
+        Seguimiento.registrarLog(1, "Se hace una consulta de cuenta con el id: " + consulta);
+        try {
+            // Llamada al método de consulta avanzada
+            return (Cuenta) ConsultaAvanzada(factory.getIcaja().getListaCuentas(),
+                    tipoConsulta.getBuscador(),
+                    consulta,
+                    0);
+
+        } catch (ElementoNoEncontrado e) {
+            // Si no se encuentra el elemento, lanzamos una excepción
+            throw new ElementoNoExiste("No se encontró una cuenta con el id: " + consulta);
+        }
+    }
+
+
+    @Override
+    public void eliminar(String consulta) throws ElementoNoExiste {
+        try {
+            Cuenta eliminable = this.consultar(consulta, NUMERO_CUENTA); // consultar si existe, de lo contrario propaga una excepcion.
+            listaCuentaObservable.remove(eliminable);
+            factory.getIcaja().getListaCuentas().remove(eliminable);
+            sincronizarData();
+            registrarLog(1, "Se eliminó la cuenta Bancaria");
 
         } catch (ElementoNoExiste e) {
-            registrarLog(2,"No se pudo actualizar el elemento, " + e.getMessage());
+            registrarLog(2, "No se pudo eliminar el elemento, " + e.getMessage());
+            throw new ElementoNoExiste("No se pudo eliminar el elemento, " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void actualizar(CuentaDto cuentaDto) throws ElementoNoExiste {
+        try {
+            Cuenta actualizable = this.consultar(cuentaDto.id(), ID_CUENTA);
+            actualizable.setEntidad(cuentaDto.entidad());
+            actualizable.setSaldo(NumTool.parseToDinero(cuentaDto.saldo()));
+            actualizable.setTipo(cuentaDto.tipo());
+            actualizable.setPropietario(cuentaDto.propietario());
+            sincronizarData();
+            registrarLog(1, "Se ha actualizado la cuenta bancaria de numero" + cuentaDto.numeroCuenta() + " exitosamente :)");
+
+        } catch (ElementoNoExiste e) {
+            registrarLog(2, "No se pudo actualizar el elemento, " + e.getMessage());
             throw new ElementoNoExiste("No se pudo actualizar el elemento, " + e.getMessage());
         }
     }
@@ -102,7 +121,7 @@ public class CuentaController implements GenericController<CuentaBancariaDto, Cu
     public void persistir() {
         List<Cuenta> cuentas = new ArrayList<>(factory.getIcaja().getListaCuentas());
         try {
-            factory.getCuentaBancariaPersistente().guardar(cuentas);
+            factory.getCuentaPersistente().guardar(cuentas);
         } catch (IOException e) {
             registrarLog(3, "Error, no se pudo guardar la información de las cuentas bancarias: " + e.getMessage());
         }

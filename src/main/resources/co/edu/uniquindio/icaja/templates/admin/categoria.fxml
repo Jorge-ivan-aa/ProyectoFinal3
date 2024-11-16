@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.scene.control.Tooltip?>
-<AnchorPane fx:id="categorialpanel" prefHeight="626" prefWidth="1073" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.CategoriaView">
+<AnchorPane prefHeight="626" prefWidth="1073" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.CategoriaView">
    <TableView fx:id="tvCategoriaAdmin" layoutX="34.0" layoutY="314.0" prefHeight="307.0" prefWidth="1005.0">
       <columns>
          <TableColumn fx:id="tcNombreCategoriaAdmin" prefWidth="306.33331298828125" text="Nombre" />
-         <TableColumn fx:id="tcTipoCategoriaAdmin" prefWidth="183.66668701171875" text="Tipo" />
          <TableColumn fx:id="tcDescripcionCategoriaAdmin" prefWidth="575.3333129882812" text="Descripción" />
       </columns>
    </TableView>
@@ -27,12 +25,12 @@
    <TextArea fx:id="txaDescripcionCategoriaAdmin" layoutX="398.0" layoutY="73.0" prefHeight="141.0" prefWidth="461.0" />
    <HBox alignment="CENTER" layoutX="373.0" layoutY="239.0" prefHeight="47.0" prefWidth="510.0">
       <children>
-         <MFXButton alignment="CENTER" onAction="#limpiarCamposCategoriaAction" prefHeight="30.0" prefWidth="100.0" text=" " HBox.hgrow="ALWAYS" >
+         <MFXButton alignment="CENTER" onAction="#limpiarCamposCategoriaAction" prefHeight="30.0" prefWidth="100.0" text=" " HBox.hgrow="ALWAYS">
             <graphic>
                <FontAwesomeIconView glyphName="ERASER" size="20" styleClass="icon" />
             </graphic>
             <tooltip>
-               <Tooltip text="Limpiar campos."/>
+               <Tooltip text="Limpiar campos." />
             </tooltip>
          </MFXButton>
          <MFXButton alignment="CENTER" onAction="#crearCategoriaAction" prefHeight="30.0" prefWidth="100.0" text="Crear" HBox.hgrow="ALWAYS">
@@ -57,8 +55,6 @@
          <Label prefHeight="40.0" prefWidth="96.0" text="Nombre:" />
          <TextField fx:id="txtNombreCategoriaAdmin" />
          <Region prefHeight="34.0" prefWidth="208.0" />
-         <Label prefHeight="30.0" prefWidth="85.0" text="Tipo:" />
-         <ComboBox fx:id="cbxTipoCategoriaAdmin" prefHeight="38.0" prefWidth="252.0" />
       </children>
    </VBox>
 </AnchorPane>

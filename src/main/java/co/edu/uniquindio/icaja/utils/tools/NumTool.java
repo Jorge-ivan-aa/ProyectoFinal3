@@ -1,6 +1,6 @@
 package co.edu.uniquindio.icaja.utils.tools;
 
-import co.edu.uniquindio.icaja.exception.transacciones.MontoInvalidoException;
+import co.edu.uniquindio.icaja.exception.transacciones.MontoInvalido;
 
 import java.math.BigDecimal;
 
@@ -17,14 +17,14 @@ public class NumTool {
      *
      * @return Un objeto `BigDecimal` con el valor del monto.
      *
-     * @throws MontoInvalidoException Si el `String` no puede convertirse a `BigDecimal`, se lanza
+     * @throws MontoInvalido Si el `String` no puede convertirse a `BigDecimal`, se lanza
      *                                una excepción con el mensaje proporcionado.
      */
-    public static BigDecimal parseToDinero(String monto, String msjException) throws MontoInvalidoException {
+    public static BigDecimal parseToDinero(String monto, String msjException) throws MontoInvalido {
         try {
             return new BigDecimal(monto);
         } catch (NumberFormatException e) {
-            throw new MontoInvalidoException(msjException);
+            throw new MontoInvalido(msjException);
         }
     }
 
@@ -40,14 +40,14 @@ public class NumTool {
      *
      * @return Un objeto `BigDecimal` con el valor del monto.
      *
-     * @throws MontoInvalidoException Si el `String` no puede convertirse a `BigDecimal`, se lanza
+     * @throws MontoInvalido Si el `String` no puede convertirse a `BigDecimal`, se lanza
      *                                una excepción con un mensaje de error por defecto.
      */
-    public static BigDecimal parseToDinero(String monto) throws MontoInvalidoException {
+    public static BigDecimal parseToDinero(String monto) throws MontoInvalido {
         try {
             return new BigDecimal(monto);
         } catch (NumberFormatException e) {
-            throw new MontoInvalidoException("El monto ingresado es invalido: " + e.getMessage());
+            throw new MontoInvalido("El monto ingresado es invalido: " + e.getMessage());
         }
     }
 

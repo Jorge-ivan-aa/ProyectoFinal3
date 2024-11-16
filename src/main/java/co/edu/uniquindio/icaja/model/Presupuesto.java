@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -15,16 +17,20 @@ import java.math.BigDecimal;
 public class Presupuesto implements Serializable {
     private String idPresupuesto;
     private String nombre;
-    private BigDecimal montoAsignado;
-    private BigDecimal montoGastado;
-    private String[] categorias;
+    private BigDecimal montoAsignado = new BigDecimal(BigInteger.ZERO);
+    private BigDecimal montoGastado = new BigDecimal(BigInteger.ZERO);
+    private Categoria[] categorias;
     //private Categoria categoriaPresupuesto;
     public static final long serialVersionID = 9L;
 
-    public Presupuesto(String idPresupuesto, String nombre, String [] categorias, BigDecimal montoAsignado) {
-        this.idPresupuesto = idPresupuesto;
+    public Presupuesto(String nombre, BigDecimal montoAsignado, Categoria... categoria) {
+        this.idPresupuesto = generarId();
         this.nombre = nombre;
         this.montoAsignado = NumTool.parseToDinero(String.valueOf(montoAsignado), "No se pudo asignar el presupuesto, monto ingresado no valido ");
-        this.categorias = categorias;
+        this.categorias = categoria;
+    }
+
+    private String generarId() {
+        return UUID.randomUUID().toString();
     }
 }

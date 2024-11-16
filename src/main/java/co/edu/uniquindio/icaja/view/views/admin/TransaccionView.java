@@ -1,12 +1,15 @@
 package co.edu.uniquindio.icaja.view.views.admin;
 
-import co.edu.uniquindio.icaja.controller.CategoriaController;
 import co.edu.uniquindio.icaja.controller.CuentaController;
 import co.edu.uniquindio.icaja.controller.TransaccionController;
-import co.edu.uniquindio.icaja.exception.transacciones.MontoInvalidoException;
+import co.edu.uniquindio.icaja.controller.enums.TipoConsulta;
+import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
+import co.edu.uniquindio.icaja.exception.transacciones.CuentaDuplicada;
+import co.edu.uniquindio.icaja.exception.transacciones.MontoInvalido;
 import co.edu.uniquindio.icaja.exception.transacciones.SaldoInsuficiente;
 import co.edu.uniquindio.icaja.mapping.dto.RetiroODepostoDto;
 import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
+import co.edu.uniquindio.icaja.mapping.services.ITransaccionDto;
 import co.edu.uniquindio.icaja.model.Categoria;
 import co.edu.uniquindio.icaja.model.Cuenta;
 import co.edu.uniquindio.icaja.model.Transaccion;
@@ -18,15 +21,12 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import java.util.List;
+import java.util.Objects;
+
 
 public class TransaccionView {
-    TransaccionController transaccionController = TransaccionController.getInstance();
-    CategoriaController categoriaController = new CategoriaController();
+    TransaccionController transaccionController = new TransaccionController();
     CuentaController cuentaController = new CuentaController();
-
-    @FXML
-    private MFXFilterComboBox<String> cbxCategoriaTransaccionAdmin;
 
     @FXML
     private MFXFilterComboBox<String> cbxCuentaDestinoTransaccionAdmin;
@@ -79,38 +79,38 @@ public class TransaccionView {
         String motivo = txtMotivoTransaccionAdmin.getText();
 
         if (ViewTools.NoHayCamposVacios(monto, motivo)) {
-            boolean condicion = cbTipoTransaccionAdmin.getValue() != null &&
-                    cbxCuentaTransaccionAdmin.getValue() != null &&
-                    cbxCategoriaTransaccionAdmin.getValue() != null &&
-                    cbxCuentaDestinoTransaccionAdmin.getValue() != null;
-
+            boolean condicion = cbTipoTransaccionAdmin.getValue() != null && cbxCuentaTransaccionAdmin.getValue() != null;
             if (condicion) {
                 TipoTransaccion tipo = cbTipoTransaccionAdmin.getValue();
-                Cuenta cuentaOrigen = cuentaController.consultar(cbxCuentaTransaccionAdmin.getValue());
-                Categoria categoria = categoriaController.consultar(cbxCategoriaTransaccionAdmin.getValue());
+                Cuenta cuentaOrigen = cuentaController.consultar(cbxCuentaTransaccionAdmin.getValue(), TipoConsulta.NUMERO_CUENTA);
+                Categoria categoria = new Categoria("Movimiento realizado por el sistema", "Transferencia realizada por el administrador");
+                ITransaccionDto transaccionDto;
 
-                switch (tipo) {
-                    case TRANSFERENCIA:
-                        try {
-                            Cuenta cuentaDestino = cuentaController.consultar(cbxCuentaDestinoTransaccionAdmin.getValue());
-                            TransferenciaDto transferenciaDto = new TransferenciaDto(null, tipo, monto, motivo, cuentaOrigen, cuentaDestino, categoria);
-                            transaccionController.crear(transferenciaDto);
-                        } catch (MontoInvalidoException | SaldoInsuficiente e) {
-                            ViewTools.mostrarMensaje("¡Error!", null, e.getMessage(), Alert.AlertType.ERROR);
-                            Seguimiento.registrarLog(2, e.getMessage());
-                        }
+                if (Objects.requireNonNull(tipo) == TipoTransaccion.TRANSFERENCIA) {
+                    if (cbxCuentaDestinoTransaccionAdmin.getValue() != null) {
+                        Cuenta cuentaDestino = cuentaController.consultar(cbxCuentaDestinoTransaccionAdmin.getValue(), TipoConsulta.NUMERO_CUENTA);
+                        transaccionDto = new TransferenciaDto(null, tipo, monto, motivo, cuentaOrigen, cuentaDestino, categoria);
+                    } else {
+                        transaccionDto = null;
+                    }
+                } else {
+                    transaccionDto = new RetiroODepostoDto(null, tipo, monto, motivo, cuentaOrigen, categoria);
+                }
 
-                        break;
-                    case RETIRO:
-                        break;
-                    case DEPOSITO:
-                        break;
-                    default:
+                try {
+                    assert transaccionDto != null;
+                    transaccionController.crear(transaccionDto);
 
+                } catch (MontoInvalido | SaldoInsuficiente | ElementoYaExiste | CuentaDuplicada e) {
+                    ViewTools.mostrarMensaje("¡Error!", null, e.getMessage(), Alert.AlertType.ERROR);
+                    Seguimiento.registrarLog(2, e.getMessage());
+
+                } catch (NullPointerException e) {
+                    ViewTools.mostrarMensaje("¡Error!", null, "No se ha selecciona la cuenta de destino de la transacción.", Alert.AlertType.ERROR);
                 }
 
             } else {
-                ViewTools.mostrarMensaje("¡Cuidado!", null, "No se han seleccionado el tipo, las cuentas o la categoria de la trasacción.", Alert.AlertType.WARNING);
+                ViewTools.mostrarMensaje("¡Cuidado!", null, "No se han seleccionado el tipo o la cuenta en la transacción.", Alert.AlertType.WARNING);
             }
 
         } else {
@@ -126,7 +126,6 @@ public class TransaccionView {
 
     private void limpiar() {
         cbxCuentaTransaccionAdmin.clearSelection();
-        cbxCategoriaTransaccionAdmin.clearSelection();
         cbxCuentaDestinoTransaccionAdmin.clearSelection();
         cbTipoTransaccionAdmin.getSelectionModel().clearSelection();
 
@@ -138,10 +137,21 @@ public class TransaccionView {
 
     @FXML
     void initialize() {
+
+        cbTipoTransaccionAdmin.valueProperty().addListener((observable, oldValue, seleccionado) -> {
+            if (seleccionado.equals(TipoTransaccion.TRANSFERENCIA)) {
+                lbCuentaDestino.setVisible(true);
+                cbxCuentaDestinoTransaccionAdmin.setVisible(true);
+            } else {
+                cbxCuentaDestinoTransaccionAdmin.setVisible(false);
+                lbCuentaDestino.setVisible(false);
+            }
+
+        });
+
         initview();
-        ViewTools.actualizarComboBox(cbxCategoriaTransaccionAdmin, categoriaController.getListaCategoriasObservable(), Categoria::getNombre);
-        ViewTools.actualizarComboBox(cbxCuentaDestinoTransaccionAdmin, cuentaController.getListaCuentaObservable(), Cuenta::getNumeroCuenta);
-        ViewTools.actualizarComboBox(cbxCuentaTransaccionAdmin, cuentaController.getListaCuentaObservable(), Cuenta::getNumeroCuenta);
+        ViewTools.inicializarComboBox(cbxCuentaDestinoTransaccionAdmin, cuentaController.getListaCuentaObservable(), Cuenta::getNumeroCuenta);
+        ViewTools.inicializarComboBox(cbxCuentaTransaccionAdmin, cuentaController.getListaCuentaObservable(), Cuenta::getNumeroCuenta);
         cbTipoTransaccionAdmin.getItems().addAll(TipoTransaccion.values());
     }
 
@@ -153,9 +163,9 @@ public class TransaccionView {
     }
 
     private void initDataBinging() {
-        tcCategoriaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getListacategoriatoString()));
-        tcFechaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFecha().toString()));
         tcIdTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdTransaccion()));
+        tcCategoriaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategoria().getNombre()));
+        tcFechaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFecha().toString()));
         tcMontoTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMonto()));
         tcMotivoTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMotivo()));
     }
@@ -168,6 +178,14 @@ public class TransaccionView {
 
     private void mostrarInformacion(Transaccion seleccionado) {
         if (seleccionado != null) {
+            txtIdTransaccionAdmin.setText(seleccionado.getIdTransaccion());
+            txtMotivoTransaccionAdmin.setText(seleccionado.getMotivo());
+            txtMontoTransaccionAdmin.setText(seleccionado.getMonto());
+            cbTipoTransaccionAdmin.setValue(seleccionado.getTipo());
+            cbxCuentaTransaccionAdmin.setValue(seleccionado.getCuentas()[0].getNumeroCuenta());
+            if (seleccionado.getTipo().equals(TipoTransaccion.TRANSFERENCIA)) {
+                cbxCuentaDestinoTransaccionAdmin.setValue(seleccionado.getCuentas()[1].getNumeroCuenta());
+            }
 
         }
     }

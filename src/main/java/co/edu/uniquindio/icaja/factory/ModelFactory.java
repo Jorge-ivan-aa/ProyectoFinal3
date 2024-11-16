@@ -1,10 +1,10 @@
 package co.edu.uniquindio.icaja.factory;
 
+import co.edu.uniquindio.icaja.exception.almacenamiento.ElementoNoEncontrado;
+import co.edu.uniquindio.icaja.exception.almacenamiento.SinPersistencia;
+import co.edu.uniquindio.icaja.exception.almacenamiento.TipoNoMapeado;
 import co.edu.uniquindio.icaja.model.*;
-import co.edu.uniquindio.icaja.model.persistencia.CategoriaPersistente;
-import co.edu.uniquindio.icaja.model.persistencia.CuentaBancariaPersistente;
-import co.edu.uniquindio.icaja.model.persistencia.PresupuestoPersistente;
-import co.edu.uniquindio.icaja.model.persistencia.UsuarioPersistente;
+import co.edu.uniquindio.icaja.model.persistencia.*;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo;
 import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import lombok.Getter;
 import java.io.IOException;
 import java.util.List;
+import java.util.function.Function;
 
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 
@@ -22,40 +23,30 @@ public class ModelFactory {
     private ICaja icaja;
 
     // SINCRONIZACION
-    private final ObservableList<Cuenta> listaCuentaObservable;
-    private final ObservableList<Usuario> listaUsuarioObservable;
-    private final ObservableList<Presupuesto> listaPresupuestoObservable;
-    private final ObservableList<Transaccion> listaTransaccionObservable;
-    private final ObservableList<Categoria> listaCategoriasObservable;
+    private final ObservableList<Cuenta> listaCuentaObservable = FXCollections.observableArrayList();
+    private final ObservableList<Usuario> listaUsuarioObservable = FXCollections.observableArrayList();
+    private final ObservableList<Presupuesto> listaPresupuestoObservable = FXCollections.observableArrayList();
+    private final ObservableList<Transaccion> listaTransaccionObservable = FXCollections.observableArrayList();
+    private final ObservableList<Categoria> listaCategoriasObservable = FXCollections.observableArrayList();
 
     // PERSISTENCIA
     private final UsuarioPersistente usuarioPersistente;
-    private final CuentaBancariaPersistente cuentaBancariaPersistente;
+    private final CuentaPersistente cuentaPersistente;
     private final CategoriaPersistente categoriaPersistente;
     private final PresupuestoPersistente presupuestoPersistente;
+    private final TransaccionPersistente transaccionPersistente;
 
 
     private ModelFactory() {
-        icaja = cargaRespaldo();
-
-        usuarioPersistente = new UsuarioPersistente();
-        cuentaBancariaPersistente = new CuentaBancariaPersistente();
+        usuarioPersistente = new UsuarioPersistente(this);
+        cuentaPersistente = new CuentaPersistente(this);
         categoriaPersistente = new CategoriaPersistente();
-        presupuestoPersistente= new PresupuestoPersistente();
+        presupuestoPersistente = new PresupuestoPersistente();
+        transaccionPersistente = new TransaccionPersistente();
 
-        if (icaja == null) {
-            icaja = new ICaja();
-            loadData();
-        }
-
+        icaja = new ICaja();
+        loadData();
         loadConfig();
-
-        listaCuentaObservable = FXCollections.observableArrayList();
-        listaUsuarioObservable = FXCollections.observableArrayList();
-        listaPresupuestoObservable = FXCollections.observableArrayList();
-        listaTransaccionObservable = FXCollections.observableArrayList();
-        listaCategoriasObservable = FXCollections.observableArrayList();
-
     }
 
 
@@ -73,9 +64,7 @@ public class ModelFactory {
         sincronizarLista(listaPresupuestoObservable, icaja.getListaPresupuestos());
         sincronizarLista(listaTransaccionObservable, icaja.getListaTransacciones());
         sincronizarLista(listaCategoriasObservable, icaja.getListaCategorias());
-
         icaja.excluirAdmin(listaUsuarioObservable);
-        guardarRespaldo();
 
         registrarLog(1,"Se sincronizó la base de datos");
     }
@@ -87,38 +76,46 @@ public class ModelFactory {
 
     public void loadData() {
         List<Usuario> usuarios = null;
-        List<Cuenta> cuentasBancarias = null;
-        List<Categoria> categorias = null;
+        List<Cuenta> cuentasBancarias  = null;
+//        List<Categoria> categorias  = null;
+//        List<Transaccion> transacciones  = null;
+
         try {
+            cuentasBancarias = cuentaPersistente.leer("cuenta.txt");
+            agregarElementos(cuentasBancarias);
+//
+//            categorias = categoriaPersistente.leer("categoria.txt");
+//            agregarElementos(categorias);
+//
+//            transacciones = transaccionPersistente.leer("transaccion");
+//            agregarElementos(transacciones);
+
             usuarios = usuarioPersistente.leer("usuario.txt");
-            cuentasBancarias = cuentaBancariaPersistente.leer("cuenta.txt");
-            categorias = categoriaPersistente.leer("categoria.txt");
-            
+            agregarElementos(usuarios);
+
+            icaja.construirReferencias();
+
         } catch (IOException e) {
             Seguimiento.registrarLog(3, "No se han podido cargar los archivos de persistencia: " + e.getMessage());
         }
-
-        agregarElementos(usuarios);
-        agregarElementos(cuentasBancarias);
-        agregarElementos(categorias);
-
-        guardarRespaldo();
     }
-    
+
     private <T> void agregarElementos(List<T> listaElementos) {
         if (listaElementos != null) {
             for (T elemento :listaElementos) {
                 if (elemento instanceof Usuario) {
-                    icaja.addUsuario((Usuario) elemento);
+                    icaja.getListaUsuarios().add((Usuario) elemento);
                 } else if (elemento instanceof Cuenta) {
-                    icaja.addCuentaBancaria((Cuenta) elemento);
+                    icaja.getListaCuentas().add((Cuenta) elemento);
                 } else if (elemento instanceof  Categoria) {
-                    icaja.addCategoria((Categoria) elemento);
+                    icaja.getListaCategorias().add((Categoria) elemento);
+                } else if (elemento instanceof  Transaccion) {
+                    icaja.getListaTransacciones().add((Transaccion) elemento);
                 }
             }
         }
     }
-    
+
 
     public void loadConfig() {
         String cedula = Persistencia.cargarConfiguracion("admin");
@@ -132,7 +129,7 @@ public class ModelFactory {
         admin.setHashclave(contrasena);
         admin.setAdministrador();
 
-        icaja.addUsuario(admin);
+        icaja.getListaUsuarios().add(admin);
         Seguimiento.registrarLog(1,"Se cargó la configuración de las credenciales de administrador");
     }
 
@@ -145,4 +142,13 @@ public class ModelFactory {
         ICajaRespaldo.guardarRecursoICajaBinario(icaja);
         ICajaRespaldo.guardarRecursoICajaXML(icaja);
     }
+
+    public <T> List<T> restaurarLista(String[] datosUsuario, int startIdx, String delimitador, Class<T> tipoClase) {
+        return icaja.restaurarLista(datosUsuario, startIdx, delimitador, tipoClase);
+    }
+
+    public Object buscarPorId(Class<?> tipo, String id) throws TipoNoMapeado, ElementoNoEncontrado {
+        return icaja.buscarPorId(tipo, id);
+    }
+
 }

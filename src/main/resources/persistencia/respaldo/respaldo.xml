@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="21.0.4" class="java.beans.XMLDecoder">
+ <object class="co.edu.uniquindio.icaja.model.ICaja" id="ICaja0">
+  <void property="listaCuentas">
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Cuenta">
+     <void property="entidad">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.EntidadBancaria</class>
+       <string>DAVIVIENDA</string>
+      </object>
+     </void>
+     <void property="idCuenta">
+      <string>c5d1f423-d8a1-4353-b4bb-6c43be9879a2</string>
+     </void>
+     <void property="idpropietario">
+      <string>null</string>
+     </void>
+     <void property="numeroCuenta">
+      <string>213123</string>
+     </void>
+     <void property="tipo">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.TipoCuenta</class>
+       <string>AHORRO</string>
+      </object>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Cuenta">
+     <void property="entidad">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.EntidadBancaria</class>
+       <string>BANCO_DE_BOGOTA</string>
+      </object>
+     </void>
+     <void property="idCuenta">
+      <string>6a9cbb25-a38f-46c0-afc3-a59747db08b4</string>
+     </void>
+     <void property="idpropietario">
+      <string>null</string>
+     </void>
+     <void property="numeroCuenta">
+      <string>1231231231</string>
+     </void>
+     <void property="tipo">
+      <object class="java.lang.Enum" id="TipoCuenta0" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.TipoCuenta</class>
+       <string>CORRIENTE</string>
+      </object>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Cuenta">
+     <void property="entidad">
+      <object class="java.lang.Enum" id="EntidadBancaria0" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.EntidadBancaria</class>
+       <string>BANCO_POPULAR</string>
+      </object>
+     </void>
+     <void property="idCuenta">
+      <string>cd78fc0f-2848-42ce-b891-4f3be8e620e4</string>
+     </void>
+     <void property="idpropietario">
+      <string>39130591-a28e-4ca8-a744-86257cf103ea</string>
+     </void>
+     <void property="numeroCuenta">
+      <string>1231231232</string>
+     </void>
+     <void property="tipo">
+      <object idref="TipoCuenta0"/>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Cuenta">
+     <void property="entidad">
+      <object idref="EntidadBancaria0"/>
+     </void>
+     <void property="idCuenta">
+      <string>bb6cdb2e-50f3-4d83-a76d-7038c7f8df46</string>
+     </void>
+     <void property="idpropietario">
+      <string>c116bb95-7d18-491c-9ac8-3ff230dcd75c</string>
+     </void>
+     <void property="numeroCuenta">
+      <string>0323242424</string>
+     </void>
+     <void property="tipo">
+      <object idref="TipoCuenta0"/>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="listaTransacciones">
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Transaccion"/>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Transaccion"/>
+   </void>
+  </void>
+  <void property="listaUsuarios">
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
+      <string>1231232131</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$.VI.MumgWC7PfRW726JOfefSQC3IzD5GQT4bf80VoxMuZ.hSd18Qu</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>$2a$10$U7UcKdjMWzayRM./eUiN3.mm3v6PuCPKSVTOl4kUxbatpSjlCvz4S</string>
+     </void>
+     <void property="correo">
+      <string>asdasdasd</string>
+     </void>
+     <void property="idUsuario">
+      <string>c116bb95-7d18-491c-9ac8-3ff230dcd75c</string>
+     </void>
+     <void property="nombre">
+      <string>felipe</string>
+     </void>
+     <void property="telefono">
+      <string>1231232</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
+      <string>1231231223</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$u225/35VDw6aeVmR9RZoG.wM/hzuI3kGJk1J5Ga6iHV8xDseLaR7G</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>$2a$10$6CXv0pOiokrIB1kdOPjLfeedo7PTVFkkpqaWZYbADb6n87MoQqAAi</string>
+     </void>
+     <void property="correo">
+      <string>adsadas</string>
+     </void>
+     <void property="idUsuario">
+      <string>96c34fae-3902-4cda-aaf3-520dbbb391f3</string>
+     </void>
+     <void property="nombre">
+      <string>sdassdasd</string>
+     </void>
+     <void property="telefono">
+      <string>123123123</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
+      <string>8997896786</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$v5aYkhhCdTEhuQ0Yy/YBPOrrfSGdSuZe.P1kSqR4Xd4.ajlV.HrxC</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>$2a$10$1a5pCnyh3Oca6HMb/Ic8d.esnXRDud8Pc8KisoIIXpJYM9kIa8ls.</string>
+     </void>
+     <void property="correo">
+      <string>aasdasdas</string>
+     </void>
+     <void property="idUsuario">
+      <string>39130591-a28e-4ca8-a744-86257cf103ea</string>
+     </void>
+     <void property="nombre">
+      <string>ssadasdasd</string>
+     </void>
+     <void property="telefono">
+      <string>4564564565</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
+      <string>admin</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$OWoWW9/ARrhwgsLCaiWfQOvcoEy1TR9BOFB1Ed1EVvyCzAux2MNEu</string>
+     </void>
+     <void property="nombre">
+      <string>Administrador</string>
+     </void>
+     <void property="tipoUsuario">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.TipoUsuario</class>
+       <string>ADMINISTRADOR</string>
+      </object>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

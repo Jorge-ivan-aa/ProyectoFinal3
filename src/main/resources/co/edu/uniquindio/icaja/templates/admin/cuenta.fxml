@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="626" prefWidth="1073" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.CuentaView">
+<AnchorPane prefHeight="626" prefWidth="1073" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.CuentaView">
    <HBox alignment="CENTER" layoutX="548.0" layoutY="235.0" prefHeight="47.0" prefWidth="510.0">
       <children>
          <MFXButton alignment="CENTER" onAction="#limpiarCamposCuentaAction" prefHeight="30.0" prefWidth="100.0" text=" " HBox.hgrow="ALWAYS">

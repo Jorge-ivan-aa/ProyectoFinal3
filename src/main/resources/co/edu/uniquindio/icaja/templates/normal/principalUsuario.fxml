@@ -47,7 +47,7 @@
          </Pane>
       </children>
    </Pane>
-   <Pane layoutX="227.0" layoutY="130.0" prefHeight="143.0" prefWidth="150.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
+   <Pane layoutX="217.0" layoutY="130.0" prefHeight="143.0" prefWidth="150.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
       <children>
          <Label fx:id="lbPonerIngresos" layoutX="30.0" layoutY="23.0" prefHeight="25.0" prefWidth="88.0" text="+ 1.500.000">
             <font>
@@ -63,10 +63,10 @@
          <Label layoutX="35.0" layoutY="103.0" text="Gastos" />
       </children>
    </Pane>
-   <Pane layoutX="227.0" layoutY="286.0" prefHeight="87.0" prefWidth="150.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
+   <Pane layoutX="217.0" layoutY="286.0" prefHeight="87.0" prefWidth="150.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
       <children>
          <Label layoutX="20.0" layoutY="56.0" text="Presupuesto Mensual" />
-         <Label fx:id="lbPonerPresupuesto" layoutX="35.0" layoutY="22.0" text="2.000.000">
+         <Label fx:id="lbPonerPresupuesto" layoutX="35.0" layoutY="21.0" text="2.000.000">
             <font>
                <Font size="18.0" />
             </font>

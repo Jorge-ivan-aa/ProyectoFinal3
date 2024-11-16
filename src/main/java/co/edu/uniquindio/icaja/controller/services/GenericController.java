@@ -1,5 +1,6 @@
 package co.edu.uniquindio.icaja.controller.services;
 
+import co.edu.uniquindio.icaja.controller.enums.TipoConsulta;
 import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 
@@ -20,13 +21,15 @@ public interface GenericController<DTO, ELEMENT> {
     void crear(DTO dto) throws ElementoYaExiste;
 
     /**
-     * Consulta un elemento en la lista de modelos usando un identificador único.
+     * Consulta un elemento en la lista de modelos utilizando un valor de consulta y un tipo de consulta.
      *
-     * @param identificador el atributo único del modelo por el cual se realiza la consulta.
-     * @return el modelo si existe, de lo contrario se lanza una excepción.
-     * @throws ElementoNoExiste si el elemento consultado no existe en la lista.
+     * @param consulta el valor del atributo único del modelo para la búsqueda (por ejemplo, cédula, correo, etc.).
+     * @param tipoConsulta el tipo de consulta que especifica qué atributo utilizar para la búsqueda (definido por ITipoConsulta).
+     * @return el modelo correspondiente al valor de consulta.
+     * @throws ElementoNoExiste si no se encuentra un modelo que coincida con el valor de consulta.
      */
-    ELEMENT consultar(String identificador) throws ElementoNoExiste;
+    ELEMENT consultar(String consulta, TipoConsulta tipoConsulta) throws ElementoNoExiste;
+
 
     /**
      * Elimina un elemento de la lista de modelos usando un identificador único.

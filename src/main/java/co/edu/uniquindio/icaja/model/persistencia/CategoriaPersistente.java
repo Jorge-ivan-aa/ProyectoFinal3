@@ -1,7 +1,6 @@
 package co.edu.uniquindio.icaja.model.persistencia;
 
 import co.edu.uniquindio.icaja.model.Categoria;
-import co.edu.uniquindio.icaja.model.enums.TipoCategoria;
 import co.edu.uniquindio.icaja.model.services.Persistible;
 import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
 
@@ -18,7 +17,6 @@ public class CategoriaPersistente implements Persistible<Categoria> {
             contenido.append(
                     categoria.getNombre()).append("@@")
                     .append(categoria.getDescripcion()).append("@@")
-                    .append(categoria.getTipo()).append("@@")
                     .append("\n");
         }
         Persistencia.guardarArchivo("categoria.txt", contenido.toString(), false);
@@ -34,7 +32,6 @@ public class CategoriaPersistente implements Persistible<Categoria> {
             Categoria categoria = new Categoria();
             categoria.setNombre(linea[0]);
             categoria.setDescripcion(linea[1]);
-            categoria.setTipo(TipoCategoria.valueOf(linea[2]));
             categorias.add(categoria);
         }
         return categorias;

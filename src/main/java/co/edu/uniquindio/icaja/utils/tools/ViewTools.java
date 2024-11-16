@@ -6,6 +6,7 @@ import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -44,7 +45,6 @@ public class ViewTools {
      *                CONFIRMATION,
      *                ERROR;
      */
-
     public static void mostrarMensaje(String title, String header, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(title);
@@ -260,7 +260,8 @@ public class ViewTools {
      * @param listaObservable Lista observable con los elementos a agregar.
      * @param mapper Función para mapear cada elemento a un String.
      */
-    public static <T> void actualizarComboBox(MFXFilterComboBox<String> comboBox, ObservableList<T> listaObservable, Function<T, String> mapper) {
+    private static <T> void actualizarComboBox(MFXFilterComboBox<String> comboBox, ObservableList<T> listaObservable, Function<T, String> mapper) {
+
         comboBox.getItems().clear();
         for (T item : listaObservable) {
             comboBox.getItems().add(mapper.apply(item));  // Convierte el elemento a String y lo agrega
@@ -278,11 +279,14 @@ public class ViewTools {
      */
     public static <T> void inicializarComboBox(MFXFilterComboBox<String> comboBox, ObservableList<T> listaObservable, Function<T, String> mapper) {
         // Listener para actualizar el ComboBox cuando la lista cambie
-        listaObservable.addListener((ListChangeListener<? super T>) change -> actualizarComboBox(comboBox, listaObservable, mapper));
+        listaObservable.addListener((ListChangeListener<? super T>) change -> {
+            Platform.runLater(() -> actualizarComboBox(comboBox, listaObservable, mapper));
+        });
 
-        // Actualizar el ComboBox al inicio
-        actualizarComboBox(comboBox, listaObservable, mapper);
+        // Actualizar el ComboBox al inicio en el hilo de JavaFX
+        Platform.runLater(() -> actualizarComboBox(comboBox, listaObservable, mapper));
     }
+
 
 
 

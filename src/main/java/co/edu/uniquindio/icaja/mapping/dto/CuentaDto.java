@@ -4,7 +4,8 @@ import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.model.enums.EntidadBancaria;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 
-public record CuentaBancariaDto(
+public record CuentaDto(
+        String id,
         EntidadBancaria entidad,
         String numeroCuenta,
         TipoCuenta tipo,

@@ -1,10 +1,12 @@
 package co.edu.uniquindio.icaja.mapping.dto;
 
-import java.math.BigDecimal;
+import co.edu.uniquindio.icaja.model.Categoria;
 
-public record PresupuestoDto(String idPresupuesto,
-                             String nombre,
-                             BigDecimal montoAsignado,
-                             BigDecimal montoGastado,
-                             String [] categorias) {
+
+public record PresupuestoDto(
+        String id,
+        String nombre,
+        String montoAsignado,
+        String montoGastado,
+        Categoria[] categorias) {
 }

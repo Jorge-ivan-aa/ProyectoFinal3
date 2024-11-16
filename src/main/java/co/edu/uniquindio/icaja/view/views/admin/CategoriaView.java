@@ -1,7 +1,6 @@
 package co.edu.uniquindio.icaja.view.views.admin;
 
 import co.edu.uniquindio.icaja.controller.CategoriaController;
-import co.edu.uniquindio.icaja.model.enums.TipoCategoria;
 import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 
@@ -25,28 +24,10 @@ public class CategoriaView {
     CategoriaController categoriaController = new CategoriaController();
 
     @FXML
-    private Button btnCrearCategoriaAdmin;
-
-    @FXML
-    private Button btnEliminarCategoriaAdmin;
-
-    @FXML
-    private Button btnConsultarCategoriaAdmin;
-
-    @FXML
-    private AnchorPane categorialpanel;
-
-    @FXML
-    private ComboBox<TipoCategoria> cbxTipoCategoriaAdmin;
-
-    @FXML
     private TableColumn<Categoria, String> tcDescripcionCategoriaAdmin;
 
     @FXML
     private TableColumn<Categoria, String> tcNombreCategoriaAdmin;
-
-    @FXML
-    private TableColumn<Categoria, TipoCategoria> tcTipoCategoriaAdmin;
 
     @FXML
     private TableView<Categoria> tvCategoriaAdmin;
@@ -68,35 +49,32 @@ public class CategoriaView {
         ViewTools.limpiarCampos(txtNombreCategoriaAdmin,
                 txaDescripcionCategoriaAdmin);
 
-        cbxTipoCategoriaAdmin.getSelectionModel().clearSelection();
-
     }
 
     @FXML
     void crearCategoriaAction() {
-        String nombre = txtNombreCategoriaAdmin.getText();
-        String descripcion = txaDescripcionCategoriaAdmin.getText();
-        TipoCategoria tipo = cbxTipoCategoriaAdmin.getValue();
-
-
-        if (ViewTools.NoHayCamposVacios(nombre, descripcion)) {
-
-            CategoriaDto categoriaDto = new CategoriaDto(nombre, descripcion, tipo);
-
-            try {
-                categoriaController.crear(categoriaDto);
-                String msj = "Se ha creado la categoria con exito " + nombre + ".";
-                ViewTools.mostrarMensaje("Informacion: ", null, msj, Alert.AlertType.INFORMATION);
-            } catch (ElementoYaExiste e) {
-                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
-            }
-        } else {
-            ViewTools.mostrarMensaje("Error", null, "Hay campos vacios", Alert.AlertType.ERROR);
-
-        }
-
-        ViewTools.limpiarCampos(txtNombreCategoriaAdmin,
-                txaDescripcionCategoriaAdmin);
+//        String nombre = txtNombreCategoriaAdmin.getText();
+//        String descripcion = txaDescripcionCategoriaAdmin.getText();
+//
+//
+//        if (ViewTools.NoHayCamposVacios(nombre, descripcion)) {
+//
+//            CategoriaDto categoriaDto = new CategoriaDto(nombre, descripcion);
+//
+//            try {
+//                categoriaController.crear(categoriaDto);
+//                String msj = "Se ha creado la categoria con exito " + nombre + ".";
+//                ViewTools.mostrarMensaje("Informacion: ", null, msj, Alert.AlertType.INFORMATION);
+//            } catch (ElementoYaExiste e) {
+//                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+//            }
+//        } else {
+//            ViewTools.mostrarMensaje("Error", null, "Hay campos vacios", Alert.AlertType.ERROR);
+//
+//        }
+//
+//        ViewTools.limpiarCampos(txtNombreCategoriaAdmin,
+//                txaDescripcionCategoriaAdmin);
 
     }
 
@@ -127,7 +105,6 @@ public class CategoriaView {
 
     @FXML
     void initialize() {
-        cbxTipoCategoriaAdmin.getItems().addAll(TipoCategoria.values());
         initview();
     }
 
@@ -140,7 +117,6 @@ public class CategoriaView {
 
     private void initDataBinging() {
         tcNombreCategoriaAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
-        tcTipoCategoriaAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTipo()));
         tcDescripcionCategoriaAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDescripcion()));
     }
 
@@ -156,7 +132,6 @@ public class CategoriaView {
 
             txtNombreCategoriaAdmin.setText(seleccionado.getNombre());
             txaDescripcionCategoriaAdmin.setText(seleccionado.getDescripcion());
-            cbxTipoCategoriaAdmin.setValue(seleccionado.getTipo());
         }
 
     }

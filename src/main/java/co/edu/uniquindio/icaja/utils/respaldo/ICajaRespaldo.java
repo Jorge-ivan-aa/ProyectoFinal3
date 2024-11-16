@@ -29,7 +29,6 @@ public class ICajaRespaldo {
     public static void guardarRecursoICajaBinario(ICaja icaja) {
         try {
             Serializado.salvarRecursoSerializado(RUTA_RESPALDO_DAT, icaja);
-            Seguimiento.registrarLog(1, "Se guardó el recurso de respaldo binario correctamente");
 
         } catch (Exception e) {
             Seguimiento.registrarLog(3, e.getMessage());

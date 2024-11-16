@@ -51,7 +51,7 @@ public class RegistroUsuarioView {
         String telefono = txtTelefonoUsuario.getText();
 
         if (ViewTools.NoHayCamposVacios(claveTransaccional)) {
-            UsuarioDto usuarioDto = new UsuarioDto(nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional);
+            UsuarioDto usuarioDto = new UsuarioDto(null, nombre,  cedula,  correo,  telefono,  clave,  claveTransaccional);
             try {
                 usuarioController.crear(usuarioDto);
                 String msj = "El registro ha sido exitoso, ¡Bienvenido " + nombre + "!";

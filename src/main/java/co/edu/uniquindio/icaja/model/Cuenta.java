@@ -1,6 +1,6 @@
 package co.edu.uniquindio.icaja.model;
 
-import co.edu.uniquindio.icaja.exception.transacciones.MontoInvalidoException;
+import co.edu.uniquindio.icaja.exception.transacciones.MontoInvalido;
 import co.edu.uniquindio.icaja.exception.transacciones.SaldoInsuficiente;
 import co.edu.uniquindio.icaja.model.enums.EntidadBancaria;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
@@ -23,17 +23,22 @@ public class Cuenta implements Serializable {
     private EntidadBancaria entidad;
     private String numeroCuenta;
     private TipoCuenta tipo;
-    private BigDecimal saldo;
-    private Usuario propietario;
+    private BigDecimal saldo = BigDecimal.ZERO;
+    private Usuario propietario = new Usuario();
+    private String idpropietario;
     public static final long serialVersionID = 7L;
 
-    public Cuenta(EntidadBancaria entidad, String numeroCuenta, TipoCuenta tipo, String saldo, Usuario propietario) throws MontoInvalidoException {
+    public Cuenta(EntidadBancaria entidad, String numeroCuenta, TipoCuenta tipo, String saldo, Usuario propietario) throws MontoInvalido {
         this.idCuenta = generarId();
         this.entidad = entidad;
         this.numeroCuenta = numeroCuenta;
         this.tipo = tipo;
         this.saldo = NumTool.parseToDinero(saldo, "No se pudo crear la cuenta, el monto ingresado no es valido");
         this.propietario = propietario;
+    }
+
+    public Cuenta(String saldo) {
+        this.saldo = NumTool.parseToDinero(saldo, "No se pudo crear la cuenta, el monto ingresado no es valido");
     }
 
     private String generarId() {
@@ -56,4 +61,5 @@ public class Cuenta implements Serializable {
                 throw new IllegalArgumentException("Tipo de transacción no soportado: " + tipo);
         }
     }
+
 }
