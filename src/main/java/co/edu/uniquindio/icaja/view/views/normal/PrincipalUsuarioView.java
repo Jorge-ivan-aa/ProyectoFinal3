@@ -87,24 +87,25 @@ public class PrincipalUsuarioView {
 
     @FXML
     void DepositarUsuarioAction(ActionEvent event) {
-        ViewTools.cambiarPantalla(panelPrincipal,0.225, panelDepositarUsuario);
+        ViewTools.cambiarPantalla(panelDepositarUsuario,0.225, panelPrincipal,panelRetirarUsuario,panelTransferirUsuario);
 
     }
 
     @FXML
     void RetirarUsuarioAction(ActionEvent event) {
-        ViewTools.cambiarPantalla(panelPrincipal,0.225, panelRetirarUsuario);
+        ViewTools.cambiarPantalla(panelRetirarUsuario,0.225, panelPrincipal,panelDepositarUsuario,panelTransferirUsuario);
 
     }
 
     @FXML
     void TransferirUsuarioAction(ActionEvent event) {
-        ViewTools.cambiarPantalla(panelPrincipal,0.225, panelTransferirUsuario);
+        ViewTools.cambiarPantalla(panelTransferirUsuario,0.225, panelPrincipal,panelDepositarUsuario,panelRetirarUsuario);
 
     }
     @FXML
     void salirChatIaAction(ActionEvent event) {
-        ViewTools.cambiarPantalla(panelCharlarIA,0.225, panelPrincipal);
+        ViewTools.cerrarVentana(panelPrincipal);
+
     }
 
     @FXML
