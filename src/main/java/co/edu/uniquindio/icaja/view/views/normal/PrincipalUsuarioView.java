@@ -3,14 +3,18 @@ package co.edu.uniquindio.icaja.view.views.normal;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.icaja.model.Presupuesto;
 import co.edu.uniquindio.icaja.model.Transaccion;
 import co.edu.uniquindio.icaja.model.Usuario;
+import io.github.palexdev.materialfx.controls.MFXListView;
+import io.github.palexdev.materialfx.controls.MFXTextField;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.Pane;
 
 public class PrincipalUsuarioView {
 
@@ -34,13 +38,26 @@ public class PrincipalUsuarioView {
 
     @FXML
     private Label lbSaltoLinea;
+    @FXML
+    private MFXListView<?> lvListaChatConIA;
+
+    @FXML
+    private ListView<Presupuesto> lvListaPresupuestosUsuario;
 
     @FXML
     private ListView<Transaccion> lvListaTransaccionesUsuario;
+    @FXML
+    private Pane panelCharlarIA;
 
+    @FXML
+    private MFXTextField txtMensajeParaIA;
 
     @FXML
     void CharlarConIaAction(ActionEvent event) {
+
+    }
+    @FXML
+    void EnviarMensajeIaAction(ActionEvent event) {
 
     }
 
@@ -56,6 +73,10 @@ public class PrincipalUsuarioView {
 
     @FXML
     void TransferirUsuarioAction(ActionEvent event) {
+
+    }
+    @FXML
+    void salirChatIaAction(ActionEvent event) {
 
     }
 
