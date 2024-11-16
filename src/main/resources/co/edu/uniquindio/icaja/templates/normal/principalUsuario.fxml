@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="626.0" prefWidth="1073.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.normal.PrincipalUsuarioView">
+<AnchorPane fx:id="panelPrincipal" prefHeight="626.0" prefWidth="1073.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.normal.PrincipalUsuarioView">
       <Label text="principal usuario" />
    <Pane layoutX="15.0" layoutY="31.0" prefHeight="127.0" prefWidth="636.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
       <children>
@@ -95,7 +95,7 @@
          </MFXButton>
       </children>
    </Pane>
-   <ListView fx:id="lvListaPresupuestosUsuario" layoutX="670.0" layoutY="228.0" prefHeight="362.0" prefWidth="378.0" />
+   <ListView fx:id="lvListaPresupuestosUsuario" layoutX="667.0" layoutY="229.0" prefHeight="362.0" prefWidth="378.0" />
    <Label fx:id="lbPonerPresupuesto" layoutX="697.0" layoutY="244.0" prefHeight="36.0" prefWidth="138.0" text="2.000.000">
       <font>
          <Font size="26.0" />
@@ -125,6 +125,33 @@
                <MFXButton buttonType="RAISED" layoutX="462.0" layoutY="572.0" onAction="#EnviarMensajeIaAction" prefHeight="36.0" prefWidth="54.0" style="-fx-background-radius: 10;" text="Enviar" />
             </children>
          </Pane>
+      </children>
+   </Pane>
+   <Pane fx:id="panelRetirarUsuario" layoutX="534.0" layoutY="-1.0" prefHeight="628.0" prefWidth="538.0" style="-fx-background-color: f5e8ff; -fx-background-radius: 15;" visible="false">
+      <children>
+         <Label layoutX="255.0" layoutY="49.0" text="Retirar">
+            <font>
+               <Font size="23.0" />
+            </font>
+         </Label>
+      </children>
+   </Pane>
+   <Pane fx:id="panelTransferirUsuario" layoutX="1.0" layoutY="-1.0" prefHeight="628.0" prefWidth="538.0" style="-fx-background-color: ebe8ff; -fx-background-radius: 15;" visible="false">
+      <children>
+         <Label layoutX="228.0" layoutY="50.0" text="Transferir">
+            <font>
+               <Font size="19.0" />
+            </font>
+         </Label>
+      </children>
+   </Pane>
+   <Pane fx:id="panelDepositarUsuario" layoutX="270.0" layoutY="1.0" prefHeight="628.0" prefWidth="538.0" style="-fx-background-color: fff7e8; -fx-background-radius: 15;" visible="false">
+      <children>
+         <Label layoutX="217.0" layoutY="29.0" text="Deposito">
+            <font>
+               <Font size="23.0" />
+            </font>
+         </Label>
       </children>
    </Pane>
 </AnchorPane>

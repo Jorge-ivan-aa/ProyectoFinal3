@@ -11,6 +11,7 @@ import co.edu.uniquindio.icaja.mapping.mappers.PresupuestoMapper;
 import co.edu.uniquindio.icaja.model.Presupuesto;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.ObservableList;
+import lombok.Getter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import java.util.List;
 import static co.edu.uniquindio.icaja.controller.enums.TipoConsulta.ID_PRESUPUESTO;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
-
+@Getter
 public class PresupuestoController implements GenericController<PresupuestoDto, Presupuesto> {
 
     private final ModelFactory factory;
