@@ -1,5 +1,6 @@
 package co.edu.uniquindio.icaja.view.views.normal;
 
+import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +14,10 @@ import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
@@ -50,7 +48,7 @@ public class PrincipalUsuarioView {
     @FXML
     private Label lbSaltoLinea;
     @FXML
-    private MFXListView<String> lvListaChatConIA;
+    private MFXListView<AnchorPane> lvListaChatConIA;
 
     @FXML
     private ListView<Presupuesto> lvListaPresupuestosUsuario;
@@ -80,10 +78,20 @@ public class PrincipalUsuarioView {
     }
     @FXML
     void EnviarMensajeIaAction() {
-        String mensaje = txtMensajeParaIA.getText();
-        listaMensajes.add(mensaje);
-        lvListaChatConIA.setItems((ObservableList<String>) listaMensajes);
+//        String mensaje = txtMensajeParaIA.getText();
+//        listaMensajes.add(mensaje);
+//        lvListaChatConIA.setItems((ObservableList<AnchorPane>) listaMensajes);
+        String texto = txtMensajeParaIA.getText();
+        if (!texto.isEmpty()) {
+            AnchorPane userMessage = crearMensaje(texto, true);
+            lvListaChatConIA.getItems().add(userMessage); // Agregar mensaje del usuario
 
+            // Simulación de respuesta del "otro usuario"
+            AnchorPane responseMessage = crearMensaje("Resp. auto: " + texto, false);
+            lvListaChatConIA.getItems().add(responseMessage);
+
+            txtMensajeParaIA.clear(); // Limpiar el campo de entrada
+        }
     }
 
     @FXML
@@ -105,6 +113,7 @@ public class PrincipalUsuarioView {
     }
     @FXML
     void salirChatIaAction() {
+
         ViewTools.cambiarPantalla(panelUnoUsuario,0.225, panelCharlarIA,panelDepositarUsuario,panelRetirarUsuario,panelTransferirUsuario);
 
     }
@@ -146,5 +155,30 @@ public class PrincipalUsuarioView {
 //            txtClaveAdmin.setPromptText(seleccionado.getClave());
         }
     }
+    private AnchorPane crearMensaje(String text, boolean isSentByUser) {
+        Label messageLabel = new Label(text);
+        messageLabel.setWrapText(true); // Permitir que el texto se ajuste automáticamente
+
+        //messageLabel.setPadding(new Insets());
+
+        // Estilo diferente para mensajes enviados y recibidos
+        if (isSentByUser) {
+            messageLabel.setStyle("-fx-background-color: lightblue; -fx-background-radius: 10;");
+        } else {
+            messageLabel.setStyle("-fx-background-color: lightgray; -fx-background-radius: 10;");
+        }
+
+        AnchorPane messagePane = new AnchorPane(messageLabel);
+        if (isSentByUser) {
+            AnchorPane.setRightAnchor(messageLabel, 10.0); // Alinear a la derecha
+            AnchorPane.setLeftAnchor(messageLabel, 370.0);
+        } else {
+            AnchorPane.setLeftAnchor(messageLabel, 10.0); // Alinear a la izquierda
+            AnchorPane.setRightAnchor(messageLabel, 50.0);
+        }
+        //messagePane.setPadding(new Insets(0x5));
+        return messagePane;
+    }
+
 
 }
