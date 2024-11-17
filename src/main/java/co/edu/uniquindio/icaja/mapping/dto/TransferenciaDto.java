@@ -10,7 +10,7 @@ public record TransferenciaDto(
         TipoTransaccion tipo,
         String monto,
         String motivo,
-        Cuenta cuentaOrigen,
-        Cuenta cuentaDestino,
-        Categoria categoria) implements ITransaccionDto {
+        String cuentaOrigen,
+        String cuentaDestino,
+        String categoria) implements ITransaccionDto {
 }

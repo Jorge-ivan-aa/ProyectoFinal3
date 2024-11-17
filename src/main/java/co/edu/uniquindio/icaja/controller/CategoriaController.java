@@ -30,7 +30,6 @@ public class CategoriaController implements GenericController<CategoriaDto, Cate
 
     public void sincronizarData() {
         factory.sincronizarData();
-        persistir();
     }
 
     @Override
@@ -85,8 +84,4 @@ public class CategoriaController implements GenericController<CategoriaDto, Cate
         // No se necesita actualizar las categorias según la logica del negocio.
     }
 
-    @Override
-    public void persistir() {
-
-    }
 }

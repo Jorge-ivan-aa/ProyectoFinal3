@@ -1,26 +1,27 @@
 package co.edu.uniquindio.icaja.factory;
 
-import co.edu.uniquindio.icaja.exception.almacenamiento.ElementoNoEncontrado;
-import co.edu.uniquindio.icaja.exception.almacenamiento.SinPersistencia;
-import co.edu.uniquindio.icaja.exception.almacenamiento.TipoNoMapeado;
+
 import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.model.persistencia.*;
+import co.edu.uniquindio.icaja.model.services.Persistible;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo;
 import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
+import static co.edu.uniquindio.icaja.utils.tools.ListTools.sincronizarLista;
 
 @Getter
 public class ModelFactory {
     private static ModelFactory instance;
-    private ICaja icaja;
+    private final ICaja icaja;
 
     // SINCRONIZACION
     private final ObservableList<Cuenta> listaCuentaObservable = FXCollections.observableArrayList();
@@ -38,15 +39,15 @@ public class ModelFactory {
 
 
     private ModelFactory() {
-        usuarioPersistente = new UsuarioPersistente(this);
-        cuentaPersistente = new CuentaPersistente(this);
+        usuarioPersistente = new UsuarioPersistente();
+        cuentaPersistente = new CuentaPersistente();
         categoriaPersistente = new CategoriaPersistente();
         presupuestoPersistente = new PresupuestoPersistente();
         transaccionPersistente = new TransaccionPersistente();
 
         icaja = new ICaja();
-        loadData();
-        loadConfig();
+        cargarPersistencia();
+        cargarConfiguracion();
     }
 
 
@@ -66,50 +67,58 @@ public class ModelFactory {
         sincronizarLista(listaCategoriasObservable, icaja.getListaCategorias());
         icaja.excluirAdmin(listaUsuarioObservable);
 
-        registrarLog(1,"Se sincronizó la base de datos");
+        guardarPersistencia();
+        registrarLog(1, "Se sincronizó la base de datos");
     }
 
-    public <T> void sincronizarLista(ObservableList<T> listaObservable, List<T> listaFuente) {
-        listaObservable.clear();
-        listaObservable.addAll(listaFuente);
-    }
 
-    public void loadData() {
-        List<Usuario> usuarios = null;
-        List<Cuenta> cuentasBancarias  = null;
-//        List<Categoria> categorias  = null;
-//        List<Transaccion> transacciones  = null;
+    private void cargarPersistencia() {
+        List<Usuario> usuarios;
+        List<Cuenta> cuentasBancarias;
 
         try {
             cuentasBancarias = cuentaPersistente.leer("cuenta.txt");
             agregarElementos(cuentasBancarias);
-//
-//            categorias = categoriaPersistente.leer("categoria.txt");
-//            agregarElementos(categorias);
-//
-//            transacciones = transaccionPersistente.leer("transaccion");
-//            agregarElementos(transacciones);
-
             usuarios = usuarioPersistente.leer("usuario.txt");
             agregarElementos(usuarios);
-
-            icaja.construirReferencias();
 
         } catch (IOException e) {
             Seguimiento.registrarLog(3, "No se han podido cargar los archivos de persistencia: " + e.getMessage());
         }
+
     }
+
+    private void guardarPersistencia() {
+
+        List<Usuario> usuarios = new ArrayList<>(icaja.getListaUsuarios());
+        icaja.excluirAdmin(usuarios);
+
+        guardar("usuario.txt", usuarioPersistente, usuarios);
+        guardar("cuenta.txt", cuentaPersistente, icaja.getListaCuentas());
+    }
+
+    private <E> void guardar(String file, Persistible<E> elementoPersistible, List<E> lista) {
+        try {
+            elementoPersistible.guardar(lista);
+
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error al guardar la informacion en el fichero "+ file +", error: " + e);
+
+        }
+    }
+
+
 
     private <T> void agregarElementos(List<T> listaElementos) {
         if (listaElementos != null) {
-            for (T elemento :listaElementos) {
+            for (T elemento : listaElementos) {
                 if (elemento instanceof Usuario) {
                     icaja.getListaUsuarios().add((Usuario) elemento);
                 } else if (elemento instanceof Cuenta) {
                     icaja.getListaCuentas().add((Cuenta) elemento);
-                } else if (elemento instanceof  Categoria) {
+                } else if (elemento instanceof Categoria) {
                     icaja.getListaCategorias().add((Categoria) elemento);
-                } else if (elemento instanceof  Transaccion) {
+                } else if (elemento instanceof Transaccion) {
                     icaja.getListaTransacciones().add((Transaccion) elemento);
                 }
             }
@@ -117,7 +126,7 @@ public class ModelFactory {
     }
 
 
-    public void loadConfig() {
+    private void cargarConfiguracion() {
         String cedula = Persistencia.cargarConfiguracion("admin");
         String contrasena = Persistencia.cargarConfiguracion("contrasena");
 
@@ -130,25 +139,16 @@ public class ModelFactory {
         admin.setAdministrador();
 
         icaja.getListaUsuarios().add(admin);
-        Seguimiento.registrarLog(1,"Se cargó la configuración de las credenciales de administrador");
+        Seguimiento.registrarLog(1, "Se cargó la configuración de las credenciales de administrador");
     }
 
-    public ICaja cargaRespaldo() {
+    private ICaja cargaRespaldo() {
         return ICajaRespaldo.cargarRecursoICajaXML();
     }
 
     public void guardarRespaldo() {
         icaja.setSesion(null);
-        ICajaRespaldo.guardarRecursoICajaBinario(icaja);
         ICajaRespaldo.guardarRecursoICajaXML(icaja);
-    }
-
-    public <T> List<T> restaurarLista(String[] datosUsuario, int startIdx, String delimitador, Class<T> tipoClase) {
-        return icaja.restaurarLista(datosUsuario, startIdx, delimitador, tipoClase);
-    }
-
-    public Object buscarPorId(Class<?> tipo, String id) throws TipoNoMapeado, ElementoNoEncontrado {
-        return icaja.buscarPorId(tipo, id);
     }
 
 }

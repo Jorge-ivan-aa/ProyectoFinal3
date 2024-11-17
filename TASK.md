@@ -13,7 +13,7 @@
 
 - [x] **Gestionar usuarios**: crear, actualizar, eliminar, listar.
 - [x] **Gestionar cuentas**: crear, actualizar, eliminar.
-- [ ] **Gestionar transacciones**: crear, listar.
+- [X] **Gestionar transacciones**: crear, listar.
 - [ ] **Mostrar estadisticas**: gastos comunes, usuarios con más transacciones, saldo promedio de usuarios.
 - [ ] **Mostrar graficas**: graficas con JavaFX Charts.
 

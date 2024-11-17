@@ -14,11 +14,9 @@ import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
 import co.edu.uniquindio.icaja.mapping.mappers.TransaccionMapper;
 import co.edu.uniquindio.icaja.mapping.services.ITransaccionDto;
 import co.edu.uniquindio.icaja.model.Transaccion;
-import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 import lombok.Setter;
-
 import static co.edu.uniquindio.icaja.controller.enums.TipoConsulta.ID_TRANSACCION;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
@@ -27,13 +25,12 @@ import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
 @Setter
 public class TransaccionController implements GenericController<ITransaccionDto, Transaccion> {
 
-    private final ModelFactory factory;
+    private static final ModelFactory factory = ModelFactory.getInstance();
     private ObservableList<Transaccion> listaTransaccionObservable;
     private ITransaccionDto transaccionPendiente;
 
     public TransaccionController() {
-        this.factory = ModelFactory.getInstance();
-        this.listaTransaccionObservable = this.factory.getListaTransaccionObservable();
+        this.listaTransaccionObservable = factory.getListaTransaccionObservable();
         System.out.println(listaTransaccionObservable.toString());
         this.sincronizarData();
     }
@@ -51,7 +48,7 @@ public class TransaccionController implements GenericController<ITransaccionDto,
 
         } catch (ElementoNoExiste ignored) {
             Transaccion nuevaTransaccion = getNuevaTransaccion(transaccionDto);
-            factory.getIcaja().getListaTransacciones().add(nuevaTransaccion);
+            factory.getIcaja().add(nuevaTransaccion);
             setTransaccionPendiente(null);
             sincronizarData();
             registrarLog(1, "Se ha realizado una transaccion exitosamente :)");
@@ -64,7 +61,7 @@ public class TransaccionController implements GenericController<ITransaccionDto,
         if (transaccionDto instanceof TransferenciaDto) {
             nuevaTransaccion = TransaccionMapper.toTransaccion((TransferenciaDto) transaccionDto);
 
-            if (nuevaTransaccion.getCuentas()[0].getIdCuenta().equals(nuevaTransaccion.getCuentas()[1].getIdCuenta())) {
+            if (nuevaTransaccion.getIdCuentas()[0].equals(nuevaTransaccion.getIdCuentas()[1])) {
                 throw new CuentaDuplicada("No se pudó realizar la transferencia, la cuenta de origen es la misma de destino");
             }
 
@@ -76,7 +73,7 @@ public class TransaccionController implements GenericController<ITransaccionDto,
 
     @Override
     public Transaccion consultar(String consulta, TipoConsulta tipoConsulta) throws ElementoNoExiste {
-        Seguimiento.registrarLog(1, "Se hace una consulta de transaccion con el id: " + consulta);
+        registrarLog(1, "Se hace una consulta de transaccion con el id: " + consulta);
 
         try {
             return (Transaccion) ConsultaAvanzada(factory.getIcaja().getListaTransacciones(),
@@ -85,6 +82,7 @@ public class TransaccionController implements GenericController<ITransaccionDto,
                     0);
 
         } catch (ElementoNoEncontrado ignore) {
+            registrarLog(2, "No se encontró una transacción con el id: " + consulta);
             throw new ElementoNoExiste("No se encontró una transacción con el id: " + consulta);
 
         }
@@ -101,9 +99,4 @@ public class TransaccionController implements GenericController<ITransaccionDto,
         //No se necesita actualizar las transacciones según la logica del negocio.
     }
 
-
-    @Override
-    public void persistir() {
-
-    }
 }

@@ -19,15 +19,15 @@ public class Presupuesto implements Serializable {
     private String nombre;
     private BigDecimal montoAsignado = new BigDecimal(BigInteger.ZERO);
     private BigDecimal montoGastado = new BigDecimal(BigInteger.ZERO);
-    private Categoria[] categorias;
+    private String[] idCategorias;
     //private Categoria categoriaPresupuesto;
     public static final long serialVersionID = 9L;
 
-    public Presupuesto(String nombre, BigDecimal montoAsignado, Categoria... categoria) {
+    public Presupuesto(String nombre, BigDecimal montoAsignado, String... categoria) {
         this.idPresupuesto = generarId();
         this.nombre = nombre;
         this.montoAsignado = NumTool.parseToDinero(String.valueOf(montoAsignado), "No se pudo asignar el presupuesto, monto ingresado no valido ");
-        this.categorias = categoria;
+        this.idCategorias = categoria;
     }
 
     private String generarId() {

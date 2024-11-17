@@ -11,11 +11,6 @@ import co.edu.uniquindio.icaja.mapping.mappers.PresupuestoMapper;
 import co.edu.uniquindio.icaja.model.Presupuesto;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.ObservableList;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import static co.edu.uniquindio.icaja.controller.enums.TipoConsulta.ID_PRESUPUESTO;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
@@ -34,7 +29,6 @@ public class PresupuestoController implements GenericController<PresupuestoDto, 
     @Override
     public void sincronizarData() {
         factory.sincronizarData();
-        persistir();
     }
 
     @Override
@@ -46,7 +40,7 @@ public class PresupuestoController implements GenericController<PresupuestoDto, 
 
         } catch (ElementoNoExiste ignored) {
             Presupuesto nuevoPresupuesto = PresupuestoMapper.toPresupuesto(presupuestoDto);
-            factory.getIcaja().getListaPresupuestos().add(nuevoPresupuesto);
+            factory.getIcaja().add(nuevoPresupuesto);
             listaPresupuestoObservable.add(nuevoPresupuesto);
             sincronizarData();
             registrarLog(1, "Se ha creado el usuario " + presupuestoDto.nombre());
@@ -77,7 +71,7 @@ public class PresupuestoController implements GenericController<PresupuestoDto, 
     public void eliminar(String identificador) throws ElementoNoExiste {
         try {
             Presupuesto eliminable = consultar(identificador, ID_PRESUPUESTO);
-            factory.getIcaja().getListaPresupuestos().remove(eliminable);
+            factory.getIcaja().remove(eliminable);
             sincronizarData();
             registrarLog(1, "Se eliminó el presupuesto de ID " + identificador + ".");
 
@@ -93,7 +87,7 @@ public class PresupuestoController implements GenericController<PresupuestoDto, 
         try {
             Presupuesto actualizable = consultar(presupuestoDto.id(), ID_PRESUPUESTO);
             actualizable.setNombre(presupuestoDto.nombre());
-            actualizable.setCategorias(presupuestoDto.categorias());
+            actualizable.setIdCategorias(presupuestoDto.categorias());
             sincronizarData();
             registrarLog(1, "Se actualizó el Presupuesto de Id " + actualizable.getIdPresupuesto() + " correctamente.");
 
@@ -103,15 +97,4 @@ public class PresupuestoController implements GenericController<PresupuestoDto, 
         }
     }
 
-
-    @Override
-    public void persistir() {
-        List<Presupuesto> presupuestos = new ArrayList<>(factory.getIcaja().getListaPresupuestos());
-        try {
-            factory.getPresupuestoPersistente().guardar(presupuestos);
-        } catch (IOException e) {
-            registrarLog(3, "Error, no se pudo guardar la información del presupuesto: " + e.getMessage());
-        }
-
-    }
 }

@@ -10,6 +10,6 @@ public record RetiroODepostoDto (
         TipoTransaccion tipo,
         String monto,
         String motivo,
-        Cuenta cuenta,
-        Categoria categoria) implements ITransaccionDto {
+        String cuenta,
+        String categoria) implements ITransaccionDto {
 }

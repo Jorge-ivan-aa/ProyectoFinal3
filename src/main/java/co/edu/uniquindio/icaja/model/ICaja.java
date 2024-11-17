@@ -9,9 +9,10 @@ import java.util.function.Function;
 
 import co.edu.uniquindio.icaja.exception.almacenamiento.ElementoNoEncontrado;
 import co.edu.uniquindio.icaja.exception.almacenamiento.TipoNoMapeado;
+import co.edu.uniquindio.icaja.model.enums.TipoTransaccion;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
-import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.tools.ListTools;
+import co.edu.uniquindio.icaja.utils.tools.NumTool;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -27,9 +28,9 @@ public class ICaja implements Serializable {
 
     // Listas
     private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+    private ArrayList<Cuenta> listaCuentas = new ArrayList<>();
     private ArrayList<Transaccion> listaTransacciones = new ArrayList<>();
     private ArrayList<Categoria> listaCategorias = new ArrayList<>();
-    private ArrayList<Cuenta> listaCuentas = new ArrayList<>();
     private ArrayList<Presupuesto> listaPresupuestos = new ArrayList<>();
 
     // Sesion
@@ -57,30 +58,93 @@ public class ICaja implements Serializable {
         idGetter.put(Presupuesto.class, presupuesto -> ((Presupuesto) presupuesto).getIdPresupuesto());
     }
 
+    public void add(Cuenta cuenta) {
+        Usuario propietario = (Usuario) buscarPorId(Usuario.class, cuenta.getIdpropietario());
+        propietario.getIdCuentas().add(cuenta.getIdCuenta());
+        propietario.sumarSaldoTotal(cuenta.getSaldo());
 
-    public void construirReferencias() {
-        // Crear un mapa para encontrar las cuentas más rápidamente
-        Map<String, Cuenta> cuentasMap = new HashMap<>();
-        for (Cuenta cuenta : listaCuentas) {
-            cuentasMap.put(cuenta.getIdCuenta(), cuenta);
-        }
-
-        // Recorremos los usuarios
-        for (Usuario usuario : listaUsuarios) {
-            // Recorremos los ids de las cuentas asociadas al usuario
-            for (String idCuentaUsuario : usuario.getIdCuentas()) {
-                Cuenta cuenta = cuentasMap.get(idCuentaUsuario);  // Obtenemos la cuenta correspondiente
-
-                if (cuenta != null) {
-                    usuario.getCuentas().add(cuenta);  // Agregamos la cuenta al usuario
-                    cuenta.setPropietario(usuario);  // Establecemos el propietario de la cuenta
-                } else {
-                    // Si no se encuentra la cuenta, tal vez quieras registrar un error o manejarlo
-                    System.err.println("No se encontró la cuenta con ID: " + idCuentaUsuario);
-                }
-            }
-        }
+        listaCuentas.add(cuenta);
     }
+
+    public void remove(Cuenta cuenta) {
+        Usuario propietario = (Usuario) buscarPorId(Usuario.class, cuenta.getIdpropietario());
+        propietario.getIdCuentas().remove(cuenta.getIdCuenta());
+        propietario.restarSaldoTotal(cuenta.getSaldo());
+
+        listaCuentas.remove(cuenta);
+    }
+
+    public void add(Usuario usuario) {
+        listaUsuarios.add(usuario);
+    }
+
+    public void remove(Usuario usuario) {
+        for (String id: usuario.getIdCuentas()) listaCuentas.removeIf(cuenta -> cuenta.getIdCuenta().equals(id));
+        for (String id: usuario.getIdCategorias()) listaCategorias.removeIf(categoria -> categoria.getIdCategoria().equals(id));
+        for (String id: usuario.getIdPresupuestos()) listaPresupuestos.removeIf(presupuesto -> presupuesto.getIdPresupuesto().equals(id));
+        for (String id: usuario.getIdTransacciones()) listaTransacciones.removeIf(transaccion -> transaccion.getIdTransaccion().equals(id));
+
+        listaUsuarios.remove(usuario);
+    }
+
+    public void add(Transaccion transaccion) {
+        switch (transaccion.getTipo()) {
+            case TRANSFERENCIA:
+                try {
+                    Cuenta cuentaOrigen = (Cuenta) buscarPorId(Cuenta.class, transaccion.getIdCuentas()[0]);
+                    Usuario propietario1 = (Usuario) buscarPorId(Usuario.class, cuentaOrigen.getIdpropietario());
+
+                    Cuenta cuentaDestino = (Cuenta) buscarPorId(Cuenta.class, transaccion.getIdCuentas()[1]);
+                    Usuario propietario2 = (Usuario) buscarPorId(Usuario.class, cuentaDestino.getIdpropietario());
+
+                    transaccion.hacerTransferencia(cuentaOrigen, propietario1, cuentaDestino, propietario2);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                break;
+            case RETIRO:
+                try {
+                    Cuenta cuentaOrigen = (Cuenta) buscarPorId(Cuenta.class, transaccion.getIdCuentas()[0]);
+                    Usuario propietario = (Usuario) buscarPorId(Usuario.class, cuentaOrigen.getIdpropietario());
+
+                    transaccion.hacerRetiro(cuentaOrigen, propietario);
+                }  catch (Exception e) {
+                    e.printStackTrace();
+                }
+            case DEPOSITO:
+                try {
+                    Cuenta cuentaOrigen = (Cuenta) buscarPorId(Cuenta.class, transaccion.getIdCuentas()[0]);
+                    Usuario propietario = (Usuario) buscarPorId(Usuario.class, cuentaOrigen.getIdpropietario());
+
+                    transaccion.hacerDeposito(cuentaOrigen, propietario);
+                }  catch (Exception e) {
+                    e.printStackTrace();
+                }
+        }
+
+
+        listaTransacciones.add(transaccion);
+    }
+
+    public void add(Categoria categoria) {
+        listaCategorias.add(categoria);
+    }
+
+    public void remove(Categoria categoria) {
+        listaCategorias.remove(categoria);
+    }
+
+    public void add(Presupuesto presupuesto) {
+        listaPresupuestos.add(presupuesto);
+    }
+
+    public void remove(Presupuesto presupuesto) {
+        listaPresupuestos.remove(presupuesto);
+    }
+
+
 
     /**
      * Elimina todos los usuarios de tipo administrador de una lista.
@@ -114,35 +178,4 @@ public class ICaja implements Serializable {
         }
     }
 
-
-    /**
-     * Método genérico para restaurar listas de objetos en base a un array de datos y un delimitador.
-     *
-     * @param datosUsuario Array de datos que contiene los ID de los objetos.
-     * @param startIdx     El índice donde empieza la búsqueda de elementos a restaurar.
-     * @param delimitador  El delimitador que marca el final de una lista (e.g., "<<<").
-     * @param tipoClase    La clase de los objetos que estamos restaurando (Cuenta, Presupuesto, etc.).
-     * @return Lista de objetos restaurados.
-     */
-    @SuppressWarnings("unchecked")
-    public <T> ArrayList<T> restaurarLista(String[] datosUsuario, int startIdx, String delimitador, Class<T> tipoClase) {
-        ArrayList<T> lista = new ArrayList<>();
-        int idx = startIdx;
-
-        // Mientras no lleguemos al delimitador, restauramos los objetos
-        while (!datosUsuario[idx].equals(delimitador)) {
-            try {
-                T objeto = (T) buscarPorId(tipoClase, datosUsuario[idx]);
-                if (objeto != null) {
-                    lista.add(objeto);
-                }
-                idx++;
-            } catch (TipoNoMapeado e) {
-                Seguimiento.registrarLog(3, e.getMessage());
-            } catch (ElementoNoEncontrado e ) {
-                Seguimiento.registrarLog(3, e.getMessage() + "de tipo " + tipoClase.getSimpleName());
-            }
-        }
-        return lista;
-    }
 }

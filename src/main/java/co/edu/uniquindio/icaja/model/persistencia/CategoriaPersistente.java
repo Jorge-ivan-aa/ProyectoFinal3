@@ -14,8 +14,8 @@ public class CategoriaPersistente implements Persistible<Categoria> {
         StringBuilder contenido = new StringBuilder();
         for(Categoria categoria:categorias)
         {
-            contenido.append(
-                    categoria.getNombre()).append("@@")
+            contenido.append(categoria.getIdCategoria()).append("@@")
+                    .append(categoria.getNombre())
                     .append(categoria.getDescripcion()).append("@@")
                     .append("\n");
         }
@@ -30,8 +30,9 @@ public class CategoriaPersistente implements Persistible<Categoria> {
         for (String texto : contenido) {
             linea = texto.split("@@");
             Categoria categoria = new Categoria();
-            categoria.setNombre(linea[0]);
-            categoria.setDescripcion(linea[1]);
+            categoria.setIdCategoria(linea[0]);
+            categoria.setNombre(linea[1]);
+            categoria.setDescripcion(linea[2]);
             categorias.add(categoria);
         }
         return categorias;

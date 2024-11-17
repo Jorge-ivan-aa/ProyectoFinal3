@@ -11,6 +11,7 @@ import co.edu.uniquindio.icaja.model.Cuenta;
 import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.model.enums.EntidadBancaria;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -59,15 +60,15 @@ public class CuentaView {
     @FXML
     void actualizarCuentaAction() {
         EntidadBancaria entidad = cbxEntidadAdmin.getValue();
-        String numeroCuenta = txtNumeroCuentaAdmin.getText();
+        String numeroCuenta = txtNumeroCuentaAdmin.getText().replaceAll("-", "");
         TipoCuenta tipo = cbxTipoCuentaAdmin.getValue();
-        String saldo = txtSaldoAdmin.getText();
+        String saldo = txtSaldoAdmin.getText().replaceAll("[^0-9]", "");
         String cedulaPropietario = cbxPropietarioCuentaAdmin.getValue();
 
 
         if (ViewTools.NoHayCamposVacios(numeroCuenta, saldo)) {
             Usuario propietario = usuarioController.consultar(cedulaPropietario, TipoConsulta.CEDULA);
-            CuentaDto cuentaDto = new CuentaDto(idCuenta, entidad, numeroCuenta, tipo, saldo, propietario);
+            CuentaDto cuentaDto = new CuentaDto(idCuenta, entidad, numeroCuenta, tipo, saldo, propietario.getIdUsuario());
 
             try {
                 cuentaController.actualizar(cuentaDto);
@@ -99,7 +100,7 @@ public class CuentaView {
         if (ViewTools.NoHayCamposVacios(numeroCuenta, saldo)) {
             if (numeroCuenta.length() <= 10) {
                 Usuario propietario = usuarioController.consultar(cedulaPropietario, TipoConsulta.CEDULA);
-                CuentaDto cuentaDto = new CuentaDto(idCuenta, entidad, numeroCuenta, tipo, saldo, propietario);
+                CuentaDto cuentaDto = new CuentaDto(idCuenta, entidad, numeroCuenta, tipo, saldo, propietario.getIdUsuario());
 
                 try {
                     cuentaController.crear(cuentaDto);
@@ -125,7 +126,7 @@ public class CuentaView {
     @FXML
     void eliminarCuentaAction() {
 
-        String numeroCuenta = txtNumeroCuentaAdmin.getText();
+        String numeroCuenta = txtNumeroCuentaAdmin.getText().replaceAll("-", "");
 
         if (ViewTools.NoHayCamposVacios(numeroCuenta)) {
             try {
@@ -181,7 +182,21 @@ public class CuentaView {
         tcNumeroCuentaAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNumeroCuenta()));
         tcSaldoAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSaldo().toString()));
         tcTipoCuentaAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTipo()));
-        tcPropietarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getPropietario().getCedula())));
+        tcPropietarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(getCedulaPropietario(cellData.getValue().getIdpropietario()))));
+    }
+
+    private String getCedulaPropietario(String idPropietario) {
+        try {
+            Seguimiento.registrarLog(1, "Consultando propietarios de cuenta bancaria");
+            System.out.println(usuarioController.consultar(idPropietario, TipoConsulta.ID_USUARIO));
+            String cedual = usuarioController.consultar(idPropietario, TipoConsulta.ID_USUARIO).getCedula();
+            System.out.println(cedual);
+
+            return cedual;
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error en la consulta de propietarios: " + e.getMessage());
+        }
+        return "Propietario No encontrado";
     }
 
     private void listenerSelectionCuenta() {
@@ -196,14 +211,14 @@ public class CuentaView {
             txtNumeroCuentaAdmin.setText(seleccionado.getNumeroCuenta());
             txtSaldoAdmin.setText(String.valueOf(seleccionado.getSaldo()));
             cbxTipoCuentaAdmin.setValue(seleccionado.getTipo());
-            cbxPropietarioCuentaAdmin.setValue(seleccionado.getPropietario().getCedula());
+            cbxPropietarioCuentaAdmin.setValue(getCedulaPropietario(seleccionado.getIdpropietario()));
         }
     }
 
     void entradaNumeroCuenta() {
         txtNumeroCuentaAdmin.textProperty().addListener((observable, oldValue, newValue) -> {
             // Elimina cualquier carácter no numérico
-            String sinGuiones = newValue.replaceAll("[^\\d]", "");
+            String sinGuiones = newValue.replaceAll("\\D", "");
 
             // Limita el número máximo de caracteres a 10
             if (sinGuiones.length() > 10) {
@@ -247,7 +262,7 @@ public class CuentaView {
             formatted.insert(i, ',');
         }
 
-        // Si hay más de 6 dígitos, reemplazar la última coma por una comilla
+        // Sí hay más de 6 dígitos, reemplazar la última coma por una comilla
         int commaIndex = formatted.lastIndexOf(",");
         if (cleanedValue.length() > 6 && commaIndex != -1) {
             // Aseguramos que el índice de la coma es válido antes de reemplazar

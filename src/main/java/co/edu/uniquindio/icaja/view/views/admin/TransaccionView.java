@@ -89,12 +89,12 @@ public class TransaccionView {
                 if (Objects.requireNonNull(tipo) == TipoTransaccion.TRANSFERENCIA) {
                     if (cbxCuentaDestinoTransaccionAdmin.getValue() != null) {
                         Cuenta cuentaDestino = cuentaController.consultar(cbxCuentaDestinoTransaccionAdmin.getValue(), TipoConsulta.NUMERO_CUENTA);
-                        transaccionDto = new TransferenciaDto(null, tipo, monto, motivo, cuentaOrigen, cuentaDestino, categoria);
+                        transaccionDto = new TransferenciaDto(null, tipo, monto, motivo, cuentaOrigen.getIdCuenta(), cuentaDestino.getIdCuenta(), categoria.getIdCategoria());
                     } else {
                         transaccionDto = null;
                     }
                 } else {
-                    transaccionDto = new RetiroODepostoDto(null, tipo, monto, motivo, cuentaOrigen, categoria);
+                    transaccionDto = new RetiroODepostoDto(null, tipo, monto, motivo, cuentaOrigen.getIdCuenta(), categoria.getIdCategoria());
                 }
 
                 try {
@@ -164,7 +164,7 @@ public class TransaccionView {
 
     private void initDataBinging() {
         tcIdTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdTransaccion()));
-        tcCategoriaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategoria().getNombre()));
+        tcCategoriaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdCategoria()));
         tcFechaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFecha().toString()));
         tcMontoTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMonto()));
         tcMotivoTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMotivo()));
@@ -182,12 +182,24 @@ public class TransaccionView {
             txtMotivoTransaccionAdmin.setText(seleccionado.getMotivo());
             txtMontoTransaccionAdmin.setText(seleccionado.getMonto());
             cbTipoTransaccionAdmin.setValue(seleccionado.getTipo());
-            cbxCuentaTransaccionAdmin.setValue(seleccionado.getCuentas()[0].getNumeroCuenta());
+            cbxCuentaTransaccionAdmin.setValue(consultarNumeroCuenta(seleccionado.getIdCuentas()[0]));
             if (seleccionado.getTipo().equals(TipoTransaccion.TRANSFERENCIA)) {
-                cbxCuentaDestinoTransaccionAdmin.setValue(seleccionado.getCuentas()[1].getNumeroCuenta());
+                cbxCuentaDestinoTransaccionAdmin.setValue(consultarNumeroCuenta(seleccionado.getIdCuentas()[1]));
             }
 
         }
+    }
+
+    private String consultarNumeroCuenta(String idCuenta) {
+        try {
+            Seguimiento.registrarLog(1, "Consultando Numero de cuenta bancaria");
+            System.out.println(cuentaController.consultar(idCuenta, TipoConsulta.ID_CUENTA));
+
+            return cuentaController.consultar(idCuenta, TipoConsulta.ID_CUENTA).getNumeroCuenta();
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error en la consulta de propietarios: " + e.getMessage());
+        }
+        return "Propietario No encontrado";
     }
 
 }

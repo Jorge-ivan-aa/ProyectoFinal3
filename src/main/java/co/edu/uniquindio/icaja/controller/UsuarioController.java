@@ -10,19 +10,13 @@ import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.mapping.mappers.UsuarioMapper;
 import co.edu.uniquindio.icaja.model.Usuario;
-
 import static co.edu.uniquindio.icaja.controller.enums.TipoConsulta.*;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
-
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-import java.util.List;
 
 @Getter
 public class UsuarioController implements GenericController<UsuarioDto, Usuario> {
@@ -38,7 +32,6 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
 
     public void sincronizarData() {
         factory.sincronizarData();
-        persistir();
     }
 
     @Override
@@ -55,7 +48,7 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
             verificarAtributoUtilizado(usuarioDto.correo(), CORREO, "El correo: " + usuarioDto.correo() + " ya está siendo utilizado por otro usuario");
 
             Usuario nuevoUsuario = UsuarioMapper.toUsuario(usuarioDto);
-            factory.getIcaja().getListaUsuarios().add(nuevoUsuario);
+            factory.getIcaja().add(nuevoUsuario);
             listaUsuarioObservable.add(nuevoUsuario);
             sincronizarData();
             registrarLog(1, "Se ha creado el usuario " + usuarioDto.nombre());
@@ -95,7 +88,7 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
     public void eliminar(String id) throws ElementoNoExiste {
         try {
             Usuario eliminable = consultar(id, ID_USUARIO);
-            factory.getIcaja().getListaUsuarios().remove(eliminable);
+            factory.getIcaja().remove(eliminable);
             sincronizarData();
             registrarLog(1, "Se eliminó el usuario con id " + id + ".");
 
@@ -136,17 +129,6 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
         }
     }
 
-    @Override
-    public void persistir() {
-        List<Usuario> usuarios = new ArrayList<>(factory.getIcaja().getListaUsuarios());
-        factory.getIcaja().excluirAdmin(usuarios);
-        try {
-            factory.getUsuarioPersistente().guardar(usuarios);
-
-        } catch (IOException e) {
-            registrarLog(3, "Error, no se pudo guardar la información de usuario: " + e.getMessage());
-        }
-    }
 
     public void cerrarSesion() {
         Seguimiento.registrarLog(1, "Se cerró la sesion correctamente");

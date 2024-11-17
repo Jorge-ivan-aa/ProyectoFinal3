@@ -13,7 +13,7 @@ public class CuentaBancariaMapper {
                 cuenta.getNumeroCuenta(),
                 cuenta.getTipo(),
                 cuenta.getSaldo().toString(),
-                cuenta.getPropietario()
+                cuenta.getIdpropietario()
         );
     }
 

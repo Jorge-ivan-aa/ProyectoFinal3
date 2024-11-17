@@ -12,7 +12,7 @@ public class PresupuestoMapper {
                 presupuesto.getNombre(),
                 presupuesto.getMontoAsignado().toString(),
                 presupuesto.getMontoGastado().toString(),
-                presupuesto.getCategorias()
+                presupuesto.getIdCategorias()
         );
     }
 

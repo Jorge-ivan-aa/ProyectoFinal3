@@ -1,16 +1,11 @@
 package co.edu.uniquindio.icaja.model.persistencia;
 
-import co.edu.uniquindio.icaja.exception.almacenamiento.ElementoNoEncontrado;
-import co.edu.uniquindio.icaja.exception.almacenamiento.TipoNoMapeado;
-import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.model.Cuenta;
-import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.model.enums.EntidadBancaria;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 import co.edu.uniquindio.icaja.model.services.Persistible;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
-import co.edu.uniquindio.icaja.utils.tools.NumTool;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,10 +13,7 @@ import java.util.List;
 
 public class CuentaPersistente implements Persistible<Cuenta> {
 
-    private final ModelFactory singleton;
-
-    public CuentaPersistente(ModelFactory singleton) {
-        this.singleton = singleton;
+    public CuentaPersistente() {
     }
 
     @Override
@@ -33,10 +25,10 @@ public class CuentaPersistente implements Persistible<Cuenta> {
                     .append(cuenta.getNumeroCuenta()).append("@@")
                     .append(cuenta.getTipo().toString()).append("@@")
                     .append(cuenta.getSaldo().toString()).append("@@")
-                    .append(cuenta.getPropietario().getIdUsuario()).append("\n");
+                    .append(cuenta.getIdpropietario()).append("\n");
 
         }
-
+        System.out.println("Se esta guardando la cuenta: " + contenido);
         Persistencia.guardarArchivo("cuenta.txt", contenido.toString(), false);
 
     }
@@ -52,13 +44,11 @@ public class CuentaPersistente implements Persistible<Cuenta> {
             for (String texto : contenido) {
                 linea = texto.split("@@");
                 Cuenta cuenta = new Cuenta(linea[4]);
-
                 cuenta.setIdCuenta(linea[0]);
                 cuenta.setEntidad(EntidadBancaria.valueOf(linea[1]));
                 cuenta.setNumeroCuenta(linea[2]);
                 cuenta.setTipo(TipoCuenta.valueOf(linea[3]));
                 cuenta.setIdpropietario(linea[5]);
-
                 cuentas.add(cuenta);
             }
 

@@ -10,5 +10,5 @@ public record CuentaDto(
         String numeroCuenta,
         TipoCuenta tipo,
         String saldo,
-        Usuario propietario) {
+        String propietario) {
 }

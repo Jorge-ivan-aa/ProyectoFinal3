@@ -16,12 +16,7 @@ import co.edu.uniquindio.icaja.utils.tools.NumTool;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import static co.edu.uniquindio.icaja.controller.enums.TipoConsulta.ID_CUENTA;
-import static co.edu.uniquindio.icaja.controller.enums.TipoConsulta.NUMERO_CUENTA;
+import static co.edu.uniquindio.icaja.controller.enums.TipoConsulta.*;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
 
@@ -39,26 +34,18 @@ public class CuentaController implements GenericController<CuentaDto, Cuenta> {
 
     public void sincronizarData() {
         factory.sincronizarData();
-        persistir();
     }
 
     @Override
     public void crear(CuentaDto cuentaDto) throws ElementoYaExiste, AtributoUtilizado, MontoInvalido {
         try {
-            // Verificar si la cuenta ya existe usando la consulta por número de cuenta
             consultar(cuentaDto.numeroCuenta(), NUMERO_CUENTA);
-
-            // Si llega aquí, significa que la cuenta ya existe
             registrarLog(2, "No se pudo crear el elemento, la cuenta bancaria ya existe :(");
             throw new ElementoYaExiste("No se pudo crear el elemento, la cuenta bancaria ya existe");
 
         } catch (ElementoNoExiste e) {
-            // Si no se encuentra, creamos la nueva cuenta
-
             Cuenta nuevaCuenta = CuentaBancariaMapper.toCuentaBancaria(cuentaDto);
-
-            factory.getIcaja().getListaCuentas().add(nuevaCuenta);
-            listaCuentaObservable.add(nuevaCuenta);
+            factory.getIcaja().add(nuevaCuenta);
             sincronizarData();
             registrarLog(1, "Se ha creado una cuenta bancaria exitosamente :)");
         }
@@ -76,8 +63,7 @@ public class CuentaController implements GenericController<CuentaDto, Cuenta> {
                     0);
 
         } catch (ElementoNoEncontrado e) {
-            // Si no se encuentra el elemento, lanzamos una excepción
-            throw new ElementoNoExiste("No se encontró una cuenta con el id: " + consulta);
+            throw new ElementoNoExiste("No se encontró una cuenta con el numero de cuenta: " + consulta);
         }
     }
 
@@ -85,17 +71,17 @@ public class CuentaController implements GenericController<CuentaDto, Cuenta> {
     @Override
     public void eliminar(String consulta) throws ElementoNoExiste {
         try {
-            Cuenta eliminable = this.consultar(consulta, NUMERO_CUENTA); // consultar si existe, de lo contrario propaga una excepcion.
-            listaCuentaObservable.remove(eliminable);
-            factory.getIcaja().getListaCuentas().remove(eliminable);
+            Cuenta eliminable = this.consultar(consulta, NUMERO_CUENTA);
+            factory.getIcaja().remove(eliminable);
             sincronizarData();
             registrarLog(1, "Se eliminó la cuenta Bancaria");
 
         } catch (ElementoNoExiste e) {
             registrarLog(2, "No se pudo eliminar el elemento, " + e.getMessage());
             throw new ElementoNoExiste("No se pudo eliminar el elemento, " + e.getMessage());
+
         } catch (Exception e) {
-            e.printStackTrace();
+            registrarLog(3, "Ocurrio un error inesperado al intentar eliminar la cuenta" + e.getMessage());
         }
     }
 
@@ -106,7 +92,8 @@ public class CuentaController implements GenericController<CuentaDto, Cuenta> {
             actualizable.setEntidad(cuentaDto.entidad());
             actualizable.setSaldo(NumTool.parseToDinero(cuentaDto.saldo()));
             actualizable.setTipo(cuentaDto.tipo());
-            actualizable.setPropietario(cuentaDto.propietario());
+            actualizable.setIdpropietario(cuentaDto.propietario());
+
             sincronizarData();
             registrarLog(1, "Se ha actualizado la cuenta bancaria de numero" + cuentaDto.numeroCuenta() + " exitosamente :)");
 
@@ -116,15 +103,5 @@ public class CuentaController implements GenericController<CuentaDto, Cuenta> {
         }
     }
 
-
-    @Override
-    public void persistir() {
-        List<Cuenta> cuentas = new ArrayList<>(factory.getIcaja().getListaCuentas());
-        try {
-            factory.getCuentaPersistente().guardar(cuentas);
-        } catch (IOException e) {
-            registrarLog(3, "Error, no se pudo guardar la información de las cuentas bancarias: " + e.getMessage());
-        }
-    }
 
 }

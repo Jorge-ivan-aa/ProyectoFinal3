@@ -8,5 +8,5 @@ public record PresupuestoDto(
         String nombre,
         String montoAsignado,
         String montoGastado,
-        Categoria[] categorias) {
+        String[] categorias) {
 }

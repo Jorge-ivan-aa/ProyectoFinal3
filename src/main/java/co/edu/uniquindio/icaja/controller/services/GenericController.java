@@ -52,8 +52,4 @@ public interface GenericController<DTO, ELEMENT> {
      */
     void sincronizarData();
 
-    /**
-     * Configura y ejecuta la lógica de persistencia para almacenar los datos del modelo.
-     */
-    void persistir();
 }

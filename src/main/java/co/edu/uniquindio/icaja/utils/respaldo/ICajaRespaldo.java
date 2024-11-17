@@ -52,7 +52,6 @@ public class ICajaRespaldo {
     }
 
 
-
     public static void guardarRecursoICajaXML(ICaja icaja) {
 
         try {

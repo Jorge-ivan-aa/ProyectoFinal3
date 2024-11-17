@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @Setter
 @NoArgsConstructor
-
 public class Categoria implements Serializable {
     private String idCategoria;
     private String nombre;

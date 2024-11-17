@@ -24,17 +24,16 @@ public class Cuenta implements Serializable {
     private String numeroCuenta;
     private TipoCuenta tipo;
     private BigDecimal saldo = BigDecimal.ZERO;
-    private Usuario propietario = new Usuario();
     private String idpropietario;
     public static final long serialVersionID = 7L;
 
-    public Cuenta(EntidadBancaria entidad, String numeroCuenta, TipoCuenta tipo, String saldo, Usuario propietario) throws MontoInvalido {
+    public Cuenta(EntidadBancaria entidad, String numeroCuenta, TipoCuenta tipo, String saldo, String propietario) throws MontoInvalido {
         this.idCuenta = generarId();
         this.entidad = entidad;
         this.numeroCuenta = numeroCuenta;
         this.tipo = tipo;
         this.saldo = NumTool.parseToDinero(saldo, "No se pudo crear la cuenta, el monto ingresado no es valido");
-        this.propietario = propietario;
+        this.idpropietario = propietario;
     }
 
     public Cuenta(String saldo) {

@@ -1,7 +1,5 @@
 package co.edu.uniquindio.icaja.model.persistencia;
 
-import co.edu.uniquindio.icaja.exception.almacenamiento.SinPersistencia;
-import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.model.services.Persistible;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
@@ -14,10 +12,7 @@ import java.util.List;
 
 public class UsuarioPersistente implements Persistible<Usuario> {
 
-    private final ModelFactory singleton;
-
-    public UsuarioPersistente(ModelFactory singleton) {
-        this.singleton = singleton;
+    public UsuarioPersistente() {
     }
 
     @Override
@@ -31,19 +26,24 @@ public class UsuarioPersistente implements Persistible<Usuario> {
                     .append(usuario.getTelefono()).append("@@")
                     .append(usuario.getClave()).append("@@")
                     .append(usuario.getClaveTransaccional()).append("@@")
+                    .append(usuario.getSaldoTotal().toString()).append("@@")
                     .append(usuario.getIngresos().toString()).append("@@")
                     .append(usuario.getGastos().toString()).append("@@");
 
             contenido.append("<<<@@");
             usuario.getIdCuentas().forEach(idCuenta -> contenido.append(idCuenta).append("@@"));
+            System.out.println("lista de idcuentas: " + usuario.getIdCuentas());
+
             contenido.append("<<<@@");
-            usuario.getPresupuestos().forEach(presupuesto -> contenido.append(presupuesto.getIdPresupuesto()).append("@@"));
+            usuario.getIdPresupuestos().forEach(idPresupuesto -> contenido.append(idPresupuesto).append("@@"));
             contenido.append("<<<@@");
-            usuario.getCategorias().forEach(categoria -> contenido.append(categoria.getIdCategoria()).append("@@"));
+            usuario.getIdCategorias().forEach(idCategoria -> contenido.append(idCategoria).append("@@"));
             contenido.append("<<<@@");
-            usuario.getTransacciones().forEach(transaccion -> contenido.append(transaccion.getIdTransaccion()).append("@@"));
+            usuario.getIdTransacciones().forEach(idTransaccion -> contenido.append(idTransaccion).append("@@"));
             contenido.append("\n");
         }
+
+        System.out.println("Se esta guardando el usuario: " + contenido);
         Persistencia.guardarArchivo("usuario.txt", contenido.toString(), false);
     }
 
@@ -80,26 +80,37 @@ public class UsuarioPersistente implements Persistible<Usuario> {
         usuario.setTelefono(linea[4]);
         usuario.setClave(linea[5]);
         usuario.setClaveTransaccional(linea[6]);
-        usuario.setIngresos(NumTool.parseToDinero(linea[7]));
-        usuario.setGastos(NumTool.parseToDinero(linea[8]));
+        usuario.setSaldoTotal(NumTool.parseToDinero(linea[7]));
+        usuario.setIngresos(NumTool.parseToDinero(linea[8]));
+        usuario.setGastos(NumTool.parseToDinero(linea[9]));
 
-        int idx = 9;
+        int idx = 10;
 
-        // Restauramos las listas de Cuentas, Presupuestos, Categorias y Transacciones usando el método genérico
-        usuario.setCuentas((ArrayList<Cuenta>) singleton.restaurarLista(linea, idx, "<<<", Cuenta.class));
-        idx += usuario.getCuentas().size() + 1;
+//         Restauramos las listas de Cuentas, Presupuestos, Categorias y Transacciones usando el método genérico
+        usuario.setIdCuentas(restaurarLista(linea, idx));
+        idx += usuario.getIdCuentas().size() + 1;
 
-        usuario.setPresupuestos((ArrayList<Presupuesto>) singleton.restaurarLista(linea, idx, "<<<", Presupuesto.class));
-        idx += usuario.getPresupuestos().size() + 1;
+        usuario.setIdPresupuestos(restaurarLista(linea, idx));
+        idx += usuario.getIdPresupuestos().size() + 1;
 
-        usuario.setCategorias((ArrayList<Categoria>) singleton.restaurarLista(linea, idx, "<<<", Categoria.class));
-        idx += usuario.getCategorias().size() + 1;
+        usuario.setIdCategorias((restaurarLista(linea, idx)));
+        idx += usuario.getIdCategorias().size() + 1;
 
-        usuario.setTransacciones(singleton.restaurarLista(linea, idx, "<<<", Transaccion.class));
+        usuario.setTransacciones(restaurarLista(linea, idx));
 
         return usuario;
     }
 
+
+    private ArrayList<String> restaurarLista(String[] datosUsuario, int indice) {
+        ArrayList<String> lista = new ArrayList<>();
+        while (!datosUsuario[indice].equals("<<<")) {
+            lista.add(datosUsuario[indice]);
+            indice++;
+        }
+
+        return lista;
+    }
 }
 
 

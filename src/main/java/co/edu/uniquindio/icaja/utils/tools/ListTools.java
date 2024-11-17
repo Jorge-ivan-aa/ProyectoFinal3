@@ -36,4 +36,16 @@ public class ListTools {
         return ConsultaAvanzada(lista, mapper, consultado, index + 1);
     }
 
+    /**
+     * Actualzia los elementos de una lista en base una lista fuente.
+     *
+     * @param actualizable lista que se va a actualizar
+     * @param listaFuente lista que se utiliza para actualizar otrs
+     * @param <T> Tipo de lista.
+     */
+    public static  <T> void sincronizarLista(List<T> actualizable, List<T> listaFuente) {
+        actualizable.clear();
+        actualizable.addAll(listaFuente);
+    }
+
 }

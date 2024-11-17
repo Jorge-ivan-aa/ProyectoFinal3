@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
+import co.edu.uniquindio.icaja.utils.tools.NumTool;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,11 +31,10 @@ public class Usuario implements Serializable, Login {
     private BigDecimal ingresos = new BigDecimal(BigInteger.ZERO);
     private BigDecimal gastos = new BigDecimal(BigInteger.ZERO);
     private TipoUsuario tipoUsuario = TipoUsuario.NORMAL;
-    private ArrayList<Cuenta> cuentas = new ArrayList<>();
     private ArrayList<String> idCuentas = new ArrayList<>();
-    private ArrayList<Presupuesto> presupuestos = new ArrayList<>();
-    private ArrayList<Categoria> categorias =  new ArrayList<>();
-    private List<Transaccion> transacciones = Collections.unmodifiableList(new ArrayList<>());
+    private ArrayList<String> idPresupuestos = new ArrayList<>();
+    private ArrayList<String> idCategorias =  new ArrayList<>();
+    private List<String> idTransacciones = Collections.unmodifiableList(new ArrayList<>());
     public static final long serialVersionID = 5L;
 
     public Usuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional) {
@@ -85,21 +85,27 @@ public class Usuario implements Serializable, Login {
         this.claveTransaccional = encriptarClave(hashclaveTransaccional);
     }
 
-    public void setTransacciones(List<Transaccion> transacciones) {
-        this.transacciones = Collections.unmodifiableList(transacciones);
+    public void setTransacciones(List<String> transacciones) {
+        this.idTransacciones = Collections.unmodifiableList(transacciones);
     }
 
-    public void calcularSaldoTotal() {
-        for (Cuenta cuenta : cuentas) {
-            saldoTotal = saldoTotal.add(cuenta.getSaldo());
-        }
+    public void calcularIngresos(BigDecimal monto) {
+        ingresos = ingresos.add(monto);
     }
+
+    public void calcularGastos(BigDecimal monto) {
+        gastos = gastos.add(monto);
+    }
+
+    public void sumarSaldoTotal(BigDecimal monto) {saldoTotal = saldoTotal.add(monto);}
+    public void restarSaldoTotal(BigDecimal monto) {saldoTotal = saldoTotal.subtract(monto);}
+
 
     public void agregarTransaccion(Transaccion transaccion) {
-        List<Transaccion> nuevaLista = new ArrayList<>(this.transacciones);
-        nuevaLista.add(transaccion);
+        List<String> nuevaLista = new ArrayList<>(this.idTransacciones);
+        nuevaLista.add(transaccion.getIdTransaccion());
 
         // Asigna la nueva lista como una lista inmutable
-        this.transacciones = Collections.unmodifiableList(nuevaLista);
+        this.idTransacciones = Collections.unmodifiableList(nuevaLista);
     }
 }
