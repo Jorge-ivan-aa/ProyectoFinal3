@@ -7,10 +7,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.icaja.controller.UsuarioController;
-import co.edu.uniquindio.icaja.model.Presupuesto;
-import co.edu.uniquindio.icaja.model.Sesion;
-import co.edu.uniquindio.icaja.model.Transaccion;
-import co.edu.uniquindio.icaja.model.Usuario;
+import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
@@ -26,6 +23,7 @@ public class PrincipalUsuarioView {
     Sesion sesion = usuarioController.getFactory().getIcaja().getSesion();
     Usuario usuarioLogueado = sesion.getUsuario();
     List<String> listaMensajes = new ArrayList<>();
+    ChatBot chatBot = new ChatBot();
 
     @FXML
     private ResourceBundle resources;
@@ -92,7 +90,7 @@ public class PrincipalUsuarioView {
             lvListaChatConIA.getItems().add(userMessage); // Agregar mensaje del usuario
 
             // Simulación de respuesta del "otro usuario"
-            String respuestaBot = procesarEntrada(texto);
+            String respuestaBot = chatBot.procesarEntrada(texto);
             AnchorPane responseMessage = crearMensaje("IcajaBot: " + respuestaBot, false);
             lvListaChatConIA.getItems().add(responseMessage);
 
@@ -186,24 +184,6 @@ public class PrincipalUsuarioView {
         return messagePane;
     }
 
-    //Logica interna para el chatBot
-    public String procesarEntrada(String input) {
-        input = input.toLowerCase(); // Normaliza la entrada
-        if (input.contains("hola")) {
-            return "¡Hola! ¿Cómo estás?";
-        } else if (input.contains("ayuda")) {
-            return "Estoy aquí para ayudarte. ¿Qué necesitas?";
-        } else if (input.contains("adiós")||input.contains("adios")) {
-            return "¡Adiós! Espero haberte ayudado.";
-            //preguntas generales con estrategias de ahorro
-        } else if (input.contains("como puedo administrar mi salario de una forma ordenada?")||input.contains("¿como puedo administrar mi salario de una forma ordenada?")){
-            return "Podrías como una medida de control crear diferentes presupuestos para asi tener un mayor nicel de gestión con tus gastos y tu dinero.";
-        } else if(input.contains("donde puedo crear presupuestos?")||input.contains("¿En donde puedo crear presupuestos?")||input.contains("¿En donde puedo crear algún presupuesto?")) {
-            return "Para la creación de un presupuesto deberás dirigirte al apartado de Cuentas Bancarias y buscar la opción que dice"+ "´Ajustar presupuestos´"  +" desde el menú de inicio";
-        } else {
-            return "Lo siento, no entiendo tu pregunta.";
-        }
-    }
 
 
 
