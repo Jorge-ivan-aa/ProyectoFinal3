@@ -153,7 +153,7 @@ public class BalanceUsuarioView {
     private void initview(){
         initDataBinding();
         tvListaBalances.getItems().clear();
-        tvListaBalances.setItems(presupuestoController.getListaPresupuestoObservable());
+        //tvListaBalances.setItems(presupuestoController.getListaPresupuestoObservable());
         cbCategoriasBalance.setItems(categoriaController.getListaCategoriasObservable());
         listenerSelectionUsuario();
     }

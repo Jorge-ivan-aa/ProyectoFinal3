@@ -13,15 +13,15 @@ public class ChatBot implements Serializable {
             return "Estoy aquí para ayudarte. ¿Qué necesitas?";
         } else if (input.contains("adiós")||input.contains("adios")) {
             return "¡Adiós! Espero haberte ayudado.";
-            //preguntas generales con estrategias de ahorro
+            //preguntas generales
         } else if (input.contains("como puedo administrar mi salario de una forma ordenada?")||input.contains("¿como puedo administrar mi salario de una forma ordenada?")){
             return "Podrías como una medida de control crear diferentes presupuestos para asi tener un mayor nivel de gestión con tus gastos y tu dinero.";
         } else if(input.contains("donde puedo crear presupuestos?")||input.contains("¿En donde puedo crear presupuestos?")||input.contains("¿En donde puedo crear algún presupuesto?")) {
-            return "Para la creación de un presupuesto deberás dirigirte al apartado de Cuentas Bancarias y buscar la opción que dice"+ "´Ajustar presupuestos´"  +" desde el menú de inicio";
+            return "Para la creación de un presupuesto deberás dirigirte al apartado de Cuentas Bancarias y buscar la opción que dice"+ "´Ajustar presupuestos´"  +" desde el menú de inicio.";
         } else if(input.contains("cómo generar mi reporte financiero?")||input.contains("¿como puedo generar mi reporte financiero?")||input.contains("¿como puedo generar un resporte financiero?")) {
-            return " ";
+            return "Para la creación de un reporte financiero deberás dirigirte al apartado de Cuentas Bancarias, en donde buscarás la opción de Generar Reporte Financiero, luego de eso automaticamente podrás ver dicho reporte.";
         } else if(input.contains("cómo puedo cambiar mi contraseña de ingreso?")||input.contains("¿Cómo puedo cambiar mi contraseña de ingreso?")||input.contains("¿como puedo cambiar mi contraseña?")) {
-            return " ";
+            return "Para cambiar la contraseña de ingreso deberás al apartado de Perfil de Usuario y una vez allí, podrás diligenciar los cambios que requieras referente a tu perfil, como el Nombre, Telefono, Cédula e incluso el correo electrónico.  ";
         } else if(input.contains("Cómo puedo actualizar datos de mi perfil?")||input.contains("como puedo actualizar mi perfil?")||input.contains("¿en donde puedo actualizar mi perfil?")) {
             return " ";
         } else if(input.contains("Para que me sirve tener presupuestos?")||input.contains("¿Para que sirve crear presupuestos?")) {
@@ -29,11 +29,11 @@ public class ChatBot implements Serializable {
         } else if(input.contains("Cuántas cuentas bancarias puedo tener?")||input.contains("¿cuantas cuentas bancarias puedo tener?")||input.contains("¿cuentas cuentas bancarias se pueden tener?")) {
             return " ";
         } else if(input.contains("como puedo crear una nueva cuenta bancaria?")||input.contains("¿como se crea una cuenta bancaria?")) {
-            return " ";
+            return "Para crear una cuenta bancaria inicialmente debes dirigirte al apartado de Transacciones y diligenciar los datos requeridos para dicha creación.";
         } else if(input.contains("que entidades hay actualmente en la aplicación?")||input.contains("¿cuantas entidades hay en la aplicación?")) {
             return " ";
         } else if(input.contains("Cuales son los tipos de cuentas que usa la aplicación?")) {
-            return " ";
+            return "En la aplicación podrás encontrar cuentas de tipo CORRIENTE como también cuentas de tipo AHORRO.";
         } else if(input.contains("que es una cuenta corriente?")) {
             return " ";
         } else if(input.contains("que es una cuenta de ahorro?")) {
