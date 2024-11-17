@@ -73,9 +73,14 @@ public class PrincipalUsuarioView {
 
     @FXML
     void CharlarConIaAction() {
-        ViewTools.cambiarPantalla(panelCharlarIA,0.225, panelDepositarUsuario, panelTransferirUsuario );
 
+        ViewTools.cambiarPantalla(panelCharlarIA,0.225, panelDepositarUsuario, panelTransferirUsuario );
+        //Agregar un mensaje inicial por parte del chatbot
+        String mensajeInicial = "¡Hola! Soy tu asistente. ¿En qué puedo ayudarte?";
+        AnchorPane userMessage2 = crearMensaje(mensajeInicial, false);
+        lvListaChatConIA.getItems().add(userMessage2);
     }
+    //con true envia mensaje por parte del usuario, con false envia mensaje por parte del chatBot
     @FXML
     void EnviarMensajeIaAction() {
 //        String mensaje = txtMensajeParaIA.getText();
@@ -87,7 +92,8 @@ public class PrincipalUsuarioView {
             lvListaChatConIA.getItems().add(userMessage); // Agregar mensaje del usuario
 
             // Simulación de respuesta del "otro usuario"
-            AnchorPane responseMessage = crearMensaje("Resp. auto: " + texto, false);
+            String respuestaBot = procesarEntrada(texto);
+            AnchorPane responseMessage = crearMensaje("IcajaBot: " + respuestaBot, false);
             lvListaChatConIA.getItems().add(responseMessage);
 
             txtMensajeParaIA.clear(); // Limpiar el campo de entrada
@@ -179,6 +185,27 @@ public class PrincipalUsuarioView {
         //messagePane.setPadding(new Insets(0x5));
         return messagePane;
     }
+
+    //Logica interna para el chatBot
+    public String procesarEntrada(String input) {
+        input = input.toLowerCase(); // Normaliza la entrada
+        if (input.contains("hola")) {
+            return "¡Hola! ¿Cómo estás?";
+        } else if (input.contains("ayuda")) {
+            return "Estoy aquí para ayudarte. ¿Qué necesitas?";
+        } else if (input.contains("adiós")||input.contains("adios")) {
+            return "¡Adiós! Espero haberte ayudado.";
+            //preguntas generales con estrategias de ahorro
+        } else if (input.contains("como puedo administrar mi salario de una forma ordenada?")||input.contains("¿como puedo administrar mi salario de una forma ordenada?")){
+            return "Podrías como una medida de control crear diferentes presupuestos para asi tener un mayor nicel de gestión con tus gastos y tu dinero.";
+        } else if(input.contains("donde puedo crear presupuestos?")||input.contains("¿En donde puedo crear presupuestos?")||input.contains("¿En donde puedo crear algún presupuesto?")) {
+            return "Para la creación de un presupuesto deberás dirigirte al apartado de Cuentas Bancarias y buscar la opción que dice"+ "´Ajustar presupuestos´"  +" desde el menú de inicio";
+        } else {
+            return "Lo siento, no entiendo tu pregunta.";
+        }
+    }
+
+
 
 
 }
