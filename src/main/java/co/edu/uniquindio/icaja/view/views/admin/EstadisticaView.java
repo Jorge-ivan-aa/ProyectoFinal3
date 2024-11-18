@@ -1,5 +1,6 @@
 package co.edu.uniquindio.icaja.view.views.admin;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,9 @@ import co.edu.uniquindio.icaja.controller.TransaccionController;
 import co.edu.uniquindio.icaja.controller.UsuarioController;
 import co.edu.uniquindio.icaja.model.Categoria;
 import co.edu.uniquindio.icaja.model.Transaccion;
+import co.edu.uniquindio.icaja.model.Usuario;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
@@ -20,9 +24,12 @@ import javafx.scene.layout.AnchorPane;
 public class EstadisticaView {
     TransaccionController transaccionController= new TransaccionController();
     UsuarioController usuarioController = new UsuarioController();
-    ObservableList<Transaccion> listaTransaccionesUsuario= transaccionController.getListaTransaccionObservable();
+    ObservableList<Transaccion> listaTransaccionesDeUsuario= FXCollections.observableArrayList();
+    ObservableList<Usuario> listaDeUsuarios= FXCollections.observableArrayList();
+    double promedioSaldos= 0;
+    double sumaSaldos =0 ;
 
-    List<Transaccion> listaRetiros= new ArrayList<>();
+
     @FXML
     private ResourceBundle resources;
 
@@ -54,32 +61,93 @@ public class EstadisticaView {
     private TableColumn<Transaccion, String> tcCantidadTransacciones;
 
     @FXML
-    private TableColumn<Categoria, String> tcGastosPorCategoria;
+    private TableColumn<Transaccion, String> tcGastosPorCategoria;
 
     @FXML
-    private TableColumn<Categoria, String> tcPorcentajePorCategoria;
+    private TableColumn<Transaccion, String> tcPorcentajePorCategoria;
 
     @FXML
     private TableColumn<Transaccion, String> tcTransaccionesPorUsuario;
 
     @FXML
-    private TableView<Categoria> tvGastosPorCategoria;
+    private TableView<Transaccion> tvGastosPorCategoria;
 
     @FXML
     private TableView<Transaccion> tvTransaccionesPorUsuario;
 
     @FXML
     void initialize() {
-        crearGraficos();
+        initview();
 
     }
+    @FXML
+    void initview() {
+        crearGraficos();
+        filtrarRetiros();
+        filtrarSaldos();
+
+    }
+   
     public void crearGraficos (){
         //al piechart se le pone el nombre y el porcentaje de ocupación
+        //es una prueba
         PieChart.Data Grafico=  new PieChart.Data("Cuenta",39);
         pcGraficaUno.setTitle("Grafica de cosas");
         pcGraficaUno.getData().add(Grafico);
 
     }
+
+
+    public void filtrarRetiros(){
+        listaTransaccionesDeUsuario = transaccionController.getListaTransaccionObservable();
+        List<Transaccion> listaRetiros= new ArrayList<>();
+        for (int i = 0; i < listaTransaccionesDeUsuario.size(); i++) {
+            Transaccion transaccion = listaTransaccionesDeUsuario.get(i);
+            if (transaccion.getTipo().equals("RETIRO")){
+                listaRetiros.add(transaccion);
+                //tcGastosPorCategoria.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipo()));
+                //poner o hacer que mande la lista de los retiros
+            }
+            System.out.println("Transacción en posición " + i + ": " + transaccion);
+        }
+
+
+    }
+
+    public void filtrarSaldos(){
+        listaDeUsuarios = usuarioController.getListaUsuarioObservable();
+        List<Double> listaDeSaldos = new ArrayList<>();
+        List<Transaccion> listaDetransacciones= new ArrayList<>();
+        double saldoMayor = 0;
+        String nombreMayor="";
+        for (int i = 0; i < listaDeUsuarios.size()-1; i++) {
+            Usuario usuario = listaDeUsuarios.get(i);
+            //Añadir transacciones de los usuarios a la lista
+
+            Usuario usuario2 = listaDeUsuarios.get(i+1);
+            sumaSaldos = usuario.getSaldoTotal().doubleValue();
+            promedioSaldos= (sumaSaldos/listaDeUsuarios.size());
+
+            //Validar cual es el usuario con el mayor saldo de la app
+            double saldo = usuario.getSaldoTotal().doubleValue();
+            if(saldo>usuario2.getSaldoTotal().doubleValue()){
+                saldoMayor = saldo;
+                nombreMayor=usuario.getNombre();
+            }else{
+                saldoMayor= usuario2.getSaldoTotal().doubleValue();
+                nombreMayor= usuario2.getNombre();
+            }
+            listaDeSaldos.add(saldo);
+
+        }
+
+        lbSaldoPromedioUsuario.setText(String.valueOf(promedioSaldos));
+        lbUsuarioMayorSaldoNombre.setText(nombreMayor);
+        lbUsuarioMayorSaldoSaldo.setText(String.valueOf(saldoMayor));
+
+
+    }
+
 
 
 
