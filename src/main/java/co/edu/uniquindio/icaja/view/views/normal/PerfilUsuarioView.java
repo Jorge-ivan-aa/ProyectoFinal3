@@ -88,12 +88,12 @@ public class PerfilUsuarioView {
 
     @FXML
     void cambiarClaveTransaccionalUsuarioAction(ActionEvent event) {
-
+        ViewTools.cambiarPantalla(panelCambiarClaveTran,0.225, paneActualizarDatos, paneCambiarContrasenaIng);
     }
 
     @FXML
     void cambiarContraseñaIngresoAction(ActionEvent event) {
-
+        ViewTools.cambiarPantalla(paneCambiarContrasenaIng,0.225, paneActualizarDatos, panelCambiarClaveTran);
     }
     @FXML
     void calificarAction(ActionEvent event) {
@@ -106,17 +106,19 @@ public class PerfilUsuarioView {
 
     @FXML
     void SalirTranAction(ActionEvent event) {
-
+        ViewTools.cambiarPantalla(paneActualizarDatos,0.225, panelCambiarClaveTran, paneCambiarContrasenaIng);
     }
+
+
 
     @FXML
     void configurarTranAction(ActionEvent event) {
 
     }
-    
+
     @FXML
     void salirAction(ActionEvent event) {
-
+        ViewTools.cambiarPantalla(paneActualizarDatos,0.225, paneCambiarContrasenaIng, panelCambiarClaveTran);
     }
 
     @FXML
