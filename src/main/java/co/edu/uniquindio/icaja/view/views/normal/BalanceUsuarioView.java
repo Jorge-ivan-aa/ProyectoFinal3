@@ -46,7 +46,7 @@ public class BalanceUsuarioView {
 
     @FXML
     private Pane panelBalanceUsuario1;
-
+    //donde está el crud
     @FXML
     private Pane panelBalanceUsuario2;
 
@@ -90,6 +90,7 @@ public class BalanceUsuarioView {
 
     @FXML
     void ajustarPresupuestoBalanceAction(ActionEvent event) {
+        ViewTools.cambiarPantalla(panelBalanceUsuario2,0.225, panelBalanceUsuario1);
 
     }
 
@@ -142,6 +143,7 @@ public class BalanceUsuarioView {
 
     @FXML
     void volverAction(ActionEvent event) {
+        ViewTools.cambiarPantalla(panelBalanceUsuario1,0.225, panelBalanceUsuario2);
 
     }
 

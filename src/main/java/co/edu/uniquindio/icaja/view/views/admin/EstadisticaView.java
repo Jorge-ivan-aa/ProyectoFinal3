@@ -108,7 +108,7 @@ public class EstadisticaView {
                 //tcGastosPorCategoria.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipo()));
                 //poner o hacer que mande la lista de los retiros
             }
-            System.out.println("Transacción en posición " + i + ": " + transaccion);
+
         }
 
 
