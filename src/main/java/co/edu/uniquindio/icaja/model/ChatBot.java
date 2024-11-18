@@ -25,7 +25,7 @@ public class ChatBot implements Serializable {
         } else if(input.contains("Cómo puedo actualizar datos de mi perfil?")||input.contains("como puedo actualizar mi perfil?")||input.contains("¿en donde puedo actualizar mi perfil?")) {
             return " ";
         } else if(input.contains("Para que me sirve tener presupuestos?")||input.contains("¿Para que sirve crear presupuestos?")) {
-            return " ";
+            return "Tener presupuestos es una herramienta poderosa para gestionar tus finanzas de manera eficiente, ya que te ayudan a planificar, controlar tus gastos y alcanzar tus metas financieras. ";
         } else if(input.contains("Cuántas cuentas bancarias puedo tener?")||input.contains("¿cuantas cuentas bancarias puedo tener?")||input.contains("¿cuentas cuentas bancarias se pueden tener?")) {
             return " ";
         } else if(input.contains("como puedo crear una nueva cuenta bancaria?")||input.contains("¿como se crea una cuenta bancaria?")) {
@@ -35,13 +35,13 @@ public class ChatBot implements Serializable {
         } else if(input.contains("Cuales son los tipos de cuentas que usa la aplicación?")) {
             return "En la aplicación podrás encontrar cuentas de tipo CORRIENTE como también cuentas de tipo AHORRO.";
         } else if(input.contains("que es una cuenta corriente?")) {
-            return " ";
+            return "Una cuenta corriente es un tipo de cuenta bancaria diseñada principalmente para gestionar el dinero de manera cómoda y realizar transacciones frecuentes.  ";
         } else if(input.contains("que es una cuenta de ahorro?")) {
-            return " ";
+            return "Una cuenta de ahorro es un tipo de cuenta bancaria diseñada para que las personas puedan guardar su dinero de forma segura mientras generan intereses. ";
         } else if(input.contains("para que me sirve una cuenta corriente?")) {
-            return " ";
+            return "Una cuenta corriente es útil para gestionar tu dinero de manera ágil y práctica en tu vida diaria, ya que está diseñada para facilitar el acceso y las transacciones frecuentes.";
         } else if(input.contains("para que me sirve una cuenta de ahorro?")) {
-            return " ";
+            return "Una cuenta de ahorro es ideal para guardar dinero de forma segura y hacerlo crecer con el tiempo mediante intereses.";
 
 
         } else {

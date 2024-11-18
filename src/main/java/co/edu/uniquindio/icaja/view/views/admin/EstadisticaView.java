@@ -87,7 +87,7 @@ public class EstadisticaView {
         filtrarSaldos();
 
     }
-   
+
     public void crearGraficos (){
         //al piechart se le pone el nombre y el porcentaje de ocupación
         //es una prueba
