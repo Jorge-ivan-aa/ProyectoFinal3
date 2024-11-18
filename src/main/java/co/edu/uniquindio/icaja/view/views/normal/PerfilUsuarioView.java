@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.Pane;
 
 public class PerfilUsuarioView {
     UsuarioController usuarioController= new UsuarioController();
@@ -19,6 +20,25 @@ public class PerfilUsuarioView {
 
     @FXML
     private URL location;
+    @FXML
+    private Pane paneActualizarDatos;
+
+    @FXML
+    private Pane paneCambiarContrasenaIng;
+
+    @FXML
+    private Pane panelCambiarClaveTran;
+
+    @FXML
+    private MFXTextField txtConfirmarContrasenaTran;
+
+    @FXML
+    private MFXTextField txtNuevaContrasenaTran;
+
+    private MFXTextField txtConfirmarContrasena;
+
+    @FXML
+    private MFXTextField txtNuevaContrasena;
 
     @FXML
     private MFXTextField txtNuevaCedulaUsuario;
@@ -73,6 +93,29 @@ public class PerfilUsuarioView {
 
     @FXML
     void cambiarContraseñaIngresoAction(ActionEvent event) {
+
+    }
+    @FXML
+    void calificarAction(ActionEvent event) {
+        System.out.println("ola");
+    }
+    @FXML
+    void configurarAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void SalirTranAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void configurarTranAction(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void salirAction(ActionEvent event) {
 
     }
 

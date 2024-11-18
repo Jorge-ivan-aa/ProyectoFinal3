@@ -2,90 +2,156 @@
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="623.0" prefWidth="1073.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.normal.PerfilUsuarioView">
-      <Label layoutX="5.0" layoutY="3.0" text="perfil del usuario" />
-   <Label layoutX="232.0" layoutY="81.0" prefHeight="28.0" prefWidth="352.0" text="¿Desea cambiar la contraseña de ingreso?">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </Label>
-   <Label layoutX="245.0" layoutY="188.0" prefHeight="28.0" prefWidth="313.0" text="¿Desea cambiar su clave transaccional?">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </Label>
-   <MFXButton layoutX="713.0" layoutY="80.0" onAction="#cambiarContraseñaIngresoAction" prefHeight="36.0" prefWidth="135.0" text="Cambiar">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </MFXButton>
-   <MFXButton layoutX="713.0" layoutY="186.0" onAction="#cambiarClaveTransaccionalUsuarioAction" prefHeight="36.0" prefWidth="135.0" text="Cambiar">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </MFXButton>
-   <MFXTextField fx:id="txtNuevoNombreUsuario" alignment="TOP_LEFT" layoutX="242.0" layoutY="297.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
-      <font>
-         <Font size="15.0" />
-      </font>
-   </MFXTextField>
-   <MFXTextField fx:id="txtNuevaCedulaUsuario" alignment="TOP_LEFT" layoutX="244.0" layoutY="409.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
-      <font>
-         <Font size="15.0" />
-      </font>
-   </MFXTextField>
-   <MFXTextField fx:id="txtNuevoTelefonoUsuario" alignment="TOP_LEFT" layoutX="620.0" layoutY="296.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
-      <font>
-         <Font size="15.0" />
-      </font>
-   </MFXTextField>
-   <MFXTextField fx:id="txtNuevoCorreoUsuario" alignment="TOP_LEFT" layoutX="620.0" layoutY="409.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
-      <font>
-         <Font size="15.0" />
-      </font>
-   </MFXTextField>
-   <Label layoutX="243.0" layoutY="267.0" prefHeight="28.0" prefWidth="217.0" text="Nombre">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </Label>
-   <Label layoutX="621.0" layoutY="268.0" prefHeight="28.0" prefWidth="217.0" text="Telefono">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </Label>
-   <Label layoutX="621.0" layoutY="380.0" prefHeight="28.0" prefWidth="217.0" text="Correo">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </Label>
-   <Label layoutX="244.0" layoutY="380.0" prefHeight="28.0" prefWidth="217.0" text="Cédula">
-      <font>
-         <Font size="18.0" />
-      </font>
-   </Label>
-   <MFXButton layoutX="474.0" layoutY="488.0" onAction="#ActualizarDatosUsuarioAction" prefHeight="44.0" prefWidth="147.0" text="Actualizar">
-      <font>
-         <Font size="15.0" />
-      </font>
-   </MFXButton>
-   <Label layoutX="333.0" layoutY="569.0" prefHeight="28.0" prefWidth="235.0" text="¿Te gusta nuestro aplicativo?">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </Label>
-   <Label layoutX="544.0" layoutY="569.0" prefHeight="28.0" prefWidth="78.0" text="¡Considera">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </Label>
-   <Label layoutX="623.0" layoutY="569.0" prefHeight="28.0" prefWidth="92.0" text="calificarnos!" underline="true">
-      <font>
-         <Font size="16.0" />
-      </font>
-   </Label>
+   <Pane fx:id="paneActualizarDatos" prefHeight="623.0" prefWidth="1072.0" visible="false">
+      <children>
+            <Label text="perfil del usuario" />
+         <Label layoutX="242.0" layoutY="61.0" prefHeight="28.0" prefWidth="352.0" text="¿Desea cambiar la contraseña de ingreso?">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="242.0" layoutY="157.0" prefHeight="28.0" prefWidth="313.0" text="¿Desea cambiar su clave transaccional?">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <MFXButton layoutX="691.0" layoutY="59.0" onAction="#cambiarContraseñaIngresoAction" prefHeight="36.0" prefWidth="135.0" text="Cambiar">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </MFXButton>
+         <MFXButton layoutX="691.0" layoutY="152.0" onAction="#cambiarClaveTransaccionalUsuarioAction" prefHeight="36.0" prefWidth="135.0" text="Cambiar">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </MFXButton>
+         <MFXTextField fx:id="txtNuevoNombreUsuario" alignment="TOP_LEFT" layoutX="239.0" layoutY="301.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </MFXTextField>
+         <MFXTextField fx:id="txtNuevaCedulaUsuario" alignment="TOP_LEFT" layoutX="240.0" layoutY="412.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </MFXTextField>
+         <MFXTextField fx:id="txtNuevoTelefonoUsuario" alignment="TOP_LEFT" layoutX="591.0" layoutY="300.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </MFXTextField>
+         <MFXTextField fx:id="txtNuevoCorreoUsuario" alignment="TOP_LEFT" layoutX="591.0" layoutY="411.0" minHeight="-Infinity" prefHeight="45.0" prefWidth="235.0">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </MFXTextField>
+         <Label layoutX="244.0" layoutY="265.0" prefHeight="28.0" prefWidth="217.0" text="Nombre">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="592.0" layoutY="264.0" prefHeight="28.0" prefWidth="217.0" text="Telefono">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="592.0" layoutY="372.0" prefHeight="28.0" prefWidth="217.0" text="Correo">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="243.0" layoutY="374.0" prefHeight="28.0" prefWidth="217.0" text="Cédula">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <MFXButton layoutX="458.0" layoutY="490.0" onAction="#ActualizarDatosUsuarioAction" prefHeight="44.0" prefWidth="147.0" text="Actualizar">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </MFXButton>
+         <Label layoutX="302.0" layoutY="566.0" prefHeight="28.0" prefWidth="269.0" text="¿Te gusta nuestro aplicativo?">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Label>
+         <Label layoutX="546.0" layoutY="567.0" prefHeight="28.0" prefWidth="95.0" text="¡Considera">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Label>
+         <Hyperlink layoutX="644.0" layoutY="565.0" onAction="#calificarAction" prefHeight="34.0" prefWidth="108.0" text="Calificarnos!">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </Hyperlink>
+      </children>
+   </Pane>
+   <Pane fx:id="panelCambiarClaveTran" layoutX="-2.0" prefHeight="623.0" prefWidth="1073.0">
+      <children>
+         <Label layoutX="393.0" layoutY="91.0" text="Cambiar Contraseña Transaccional">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="465.0" layoutY="170.0" text="Nueva Contraseña ">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <MFXTextField fx:id="txtNuevaContrasenaTran" layoutX="430.0" layoutY="212.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="202.0" />
+         <Label layoutX="404.0" layoutY="276.0" text="Confirmar Contraseña Transaccional">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <MFXTextField fx:id="txtConfirmarContrasenaTran" layoutX="431.0" layoutY="319.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="202.0" />
+         <MFXButton layoutX="475.0" layoutY="397.0" onAction="#configurarTranAction" prefHeight="25.0" prefWidth="110.0" text="Configurar">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </MFXButton>
+         <MFXButton layoutX="500.0" layoutY="467.0" onAction="#SalirTranAction" text="Volver">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </MFXButton>
+      </children></Pane>
+   <Pane fx:id="paneCambiarContrasenaIng" prefHeight="622.0" prefWidth="1074.0" visible="false">
+      <children>
+         <Label layoutX="423.0" layoutY="137.0" text="Cambiar Contraseña de Ingreso">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="482.0" layoutY="199.0" text="Nueva Contraseña ">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <MFXTextField fx:id="txtNuevaContrasena" layoutX="448.0" layoutY="238.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="202.0" />
+         <Label layoutX="471.0" layoutY="310.0" text="Confirmar Contraseña">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Label>
+         <MFXTextField fx:id="txtConfirmarContrasena" layoutX="448.0" layoutY="354.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="33.0" prefWidth="202.0" />
+         <MFXButton layoutX="496.0" layoutY="422.0" onAction="#configurarAction" prefHeight="25.0" prefWidth="110.0" text="Configurar">
+            <font>
+               <Font size="15.0" />
+            </font>
+         </MFXButton>
+         <MFXButton layoutX="526.0" layoutY="481.0" onAction="#salirAction" text="Salir">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </MFXButton>
+      </children></Pane>
 </AnchorPane>
