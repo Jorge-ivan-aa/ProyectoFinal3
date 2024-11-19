@@ -94,17 +94,25 @@ public class EstadisticaView {
     @FXML
     void initDataBinding(){
         tcGastosPorCategoria.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getNombre()));
-        tcPorcentajePorCategoria.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdCategoria()));
+        double porcentaje = crearporcentajes();
+        tcPorcentajePorCategoria.setCellValueFactory(cellData -> new SimpleObjectProperty<>(porcentaje).asString());
     }
 
 
     public void crearGraficos (){
         //al piechart se le pone el nombre y el porcentaje de ocupación
         //es una prueba
-        PieChart.Data Grafico=  new PieChart.Data("Cuenta",39);
+        PieChart.Data Grafico=  new PieChart.Data("Cuenta",39 );
         pcGraficaUno.setTitle("Grafica de cosas");
         pcGraficaUno.getData().add(Grafico);
 
+    }
+    public double crearporcentajes (){
+        ObservableList<Categoria> listaCat= filtrarCategorias();
+        for(int i=0; i<listaCat.size();i++){
+
+        }
+        return 3;
     }
 
 

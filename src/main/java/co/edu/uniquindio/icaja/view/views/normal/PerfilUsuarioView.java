@@ -101,19 +101,39 @@ public class PerfilUsuarioView {
     }
     @FXML
     void configurarAction(ActionEvent event) {
+        String nuevaContra =txtNuevaContrasena.getText();
+        String confirmarContra = txtConfirmarContrasena.getText();
+//        if (nuevaContra== confirmarContra){
+//            UsuarioDto usuarioDto = new UsuarioDto("13223",nombre,  cedula,  correo,  telefono, confirmarContra ,"211"  );
+//            try {
+//                usuarioController.actualizar(usuarioDto);
+//                String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
+//                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+//
+//            } catch (ElementoNoExiste e) {
+//                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+//            }
+//            String msj = "Se ha actualizado la contraseña correctamente";
+//            ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+//        }else{
+//            String msj = "No se pudo actualizar la contraseña correctamente";
+//            ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+//        }
+
+    }
+    @FXML
+    void configurarTranAction(ActionEvent event) {
+        String nuevaContraTran= txtNuevaContrasenaTran.getText();
+        String configurarContraTran = txtConfirmarContrasenaTran.getText();
+        if(nuevaContraTran == configurarContraTran){
+
+        }
 
     }
 
     @FXML
     void SalirTranAction(ActionEvent event) {
         ViewTools.cambiarPantalla(paneActualizarDatos,0.225, panelCambiarClaveTran, paneCambiarContrasenaIng);
-    }
-
-
-
-    @FXML
-    void configurarTranAction(ActionEvent event) {
-
     }
 
     @FXML
