@@ -1,17 +1,18 @@
 package co.edu.uniquindio.icaja.view.views.admin;
 
-import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.icaja.controller.CategoriaController;
 import co.edu.uniquindio.icaja.controller.TransaccionController;
 import co.edu.uniquindio.icaja.controller.UsuarioController;
+import co.edu.uniquindio.icaja.controller.enums.TipoConsulta;
 import co.edu.uniquindio.icaja.model.Categoria;
 import co.edu.uniquindio.icaja.model.Transaccion;
 import co.edu.uniquindio.icaja.model.Usuario;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class EstadisticaView {
     TransaccionController transaccionController= new TransaccionController();
+    CategoriaController categoriaController = new CategoriaController();
     UsuarioController usuarioController = new UsuarioController();
     ObservableList<Transaccion> listaTransaccionesDeUsuario= FXCollections.observableArrayList();
     ObservableList<Usuario> listaDeUsuarios= FXCollections.observableArrayList();
@@ -61,16 +63,16 @@ public class EstadisticaView {
     private TableColumn<Transaccion, String> tcCantidadTransacciones;
 
     @FXML
-    private TableColumn<Transaccion, String> tcGastosPorCategoria;
+    private TableColumn<Categoria, String> tcGastosPorCategoria;
 
     @FXML
-    private TableColumn<Transaccion, String> tcPorcentajePorCategoria;
+    private TableColumn<Categoria, String> tcPorcentajePorCategoria;
 
     @FXML
     private TableColumn<Transaccion, String> tcTransaccionesPorUsuario;
 
     @FXML
-    private TableView<Transaccion> tvGastosPorCategoria;
+    private TableView<Categoria> tvGastosPorCategoria;
 
     @FXML
     private TableView<Transaccion> tvTransaccionesPorUsuario;
@@ -82,11 +84,19 @@ public class EstadisticaView {
     }
     @FXML
     void initview() {
+        initDataBinding();
         crearGraficos();
         filtrarRetiros();
         filtrarSaldos();
-
+        tvGastosPorCategoria.setItems(filtrarCategorias());
+        //tvGastosPorCategoria.setItems(categoriaController.getListaCategoriasObservable());
     }
+    @FXML
+    void initDataBinding(){
+        tcGastosPorCategoria.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getNombre()));
+        tcPorcentajePorCategoria.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdCategoria()));
+    }
+
 
     public void crearGraficos (){
         //al piechart se le pone el nombre y el porcentaje de ocupación
@@ -98,7 +108,7 @@ public class EstadisticaView {
     }
 
 
-    public void filtrarRetiros(){
+    public List<Transaccion> filtrarRetiros(){
         listaTransaccionesDeUsuario = transaccionController.getListaTransaccionObservable();
         List<Transaccion> listaRetiros= new ArrayList<>();
         for (int i = 0; i < listaTransaccionesDeUsuario.size(); i++) {
@@ -110,8 +120,23 @@ public class EstadisticaView {
             }
 
         }
+        return listaRetiros;
 
+    }
 
+    public ObservableList<Categoria> filtrarCategorias(){
+        List<Transaccion> listaRetiros2= filtrarRetiros();
+        List<Categoria> listaCategorias = new ArrayList<>();
+        for (int i = 0; i < listaRetiros2.size(); i++) {
+            //Sacar los Id categorias para hacer la busqueda por el Id y almacenarlos en la lista
+            Transaccion tipo = listaTransaccionesDeUsuario.get(i);
+
+            Categoria tipoCategoria= categoriaController.consultar(tipo.getIdCategoria(), TipoConsulta.ID_CATEGORIA);
+            listaCategorias.add(tipoCategoria);
+        }
+        ObservableList<Categoria> observableCategoriaList = FXCollections.observableArrayList(listaCategorias);
+
+        return observableCategoriaList;
     }
 
     public void filtrarSaldos(){
