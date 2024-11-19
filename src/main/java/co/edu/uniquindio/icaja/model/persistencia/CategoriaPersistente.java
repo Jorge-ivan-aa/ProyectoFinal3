@@ -1,5 +1,6 @@
 package co.edu.uniquindio.icaja.model.persistencia;
 
+import co.edu.uniquindio.icaja.exception.almacenamiento.PersistenciaNoCargada;
 import co.edu.uniquindio.icaja.model.Categoria;
 import co.edu.uniquindio.icaja.model.services.Persistible;
 import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
@@ -24,16 +25,21 @@ public class CategoriaPersistente implements Persistible<Categoria> {
 
     @Override
     public List<Categoria> leer(String ruta) throws IOException {
+
         ArrayList<Categoria> categorias = new ArrayList<>();
-        ArrayList<String> contenido = Persistencia.leerArchivo(ruta);
-        String[] linea;
-        for (String texto : contenido) {
-            linea = texto.split("@@");
-            Categoria categoria = new Categoria();
-            categoria.setIdCategoria(linea[0]);
-            categoria.setNombre(linea[1]);
-            categoria.setDescripcion(linea[2]);
-            categorias.add(categoria);
+        try {
+            ArrayList<String> contenido = Persistencia.leerArchivo(ruta);
+            String[] linea;
+            for (String texto : contenido) {
+                linea = texto.split("@@");
+                Categoria categoria = new Categoria();
+                categoria.setIdCategoria(linea[0]);
+                categoria.setNombre(linea[1]);
+                categoria.setDescripcion(linea[2]);
+                categorias.add(categoria);
+            }
+        } catch (Exception e) {
+            throw new PersistenciaNoCargada("No se pudo cargar la persistencia de categoria, error: " + e.getMessage());
         }
         return categorias;
     }

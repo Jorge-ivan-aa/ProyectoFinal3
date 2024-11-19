@@ -18,6 +18,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -52,6 +53,9 @@ public class BalanceUsuarioView {
     private Pane panelBalanceUsuario2;
 
     @FXML
+    private Pane panelCrearCategoria;
+
+    @FXML
     private RadioButton rbGastosBalance;
 
     @FXML
@@ -83,6 +87,11 @@ public class BalanceUsuarioView {
 
     @FXML
     private MFXTextField txtNombreBalance;
+    @FXML
+    private MFXTextField txtDescripcionParaCategoria;
+
+    @FXML
+    private MFXTextField txtNombreParaCategoria;
 
     @FXML
     void actualizarBalanceAction(ActionEvent event) {
@@ -100,13 +109,11 @@ public class BalanceUsuarioView {
 //        String monto = txtMontoBalance.getText();
 //        String nombre = txtNombreBalance.getText();
 //        String categoria = cbCategoriasBalance.getSelectedText();
-////        String clave = txtClaveAdmin.getText();
-////        String claveTransaccional = txtClaveTransaccionalAdmin.getText();
-////        String telefono = txtTelefonoAdmin.getText();
+//
 //
 //
 //        if (ViewTools.NoHayCamposVacios(monto, nombre, categoria)) {
-//            PresupuestoDto presupuestoDto = new PresupuestoDto("10334",nombre,  monto,  23333453.4344,  categoria);
+//            PresupuestoDto presupuestoDto = new PresupuestoDto(null,nombre,  monto,  "", null);
 //
 //            try {
 //                presupuestoController.crear(presupuestoDto);

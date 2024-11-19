@@ -53,7 +53,7 @@ public class ModelFactory {
 
     public static ModelFactory getInstance() {
         if (instance == null) {
-            instance = new ModelFactory();
+            instance = new  ModelFactory();
         }
         return instance;
     }
@@ -138,24 +138,32 @@ public class ModelFactory {
 
 
     private void cargarConfiguracion() {
-        String cedula = Persistencia.cargarConfiguracion("admin");
-        String contrasena = Persistencia.cargarConfiguracion("contrasena");
-        String categoria = Persistencia.cargarConfiguracion("categoria_movimientos");
 
-        icaja.excluirAdmin(icaja.getListaUsuarios());
+        try {
+            String cedula = Persistencia.cargarConfiguracion("Dadmin");
+            String contrasena = Persistencia.cargarConfiguracion("contrasena");
+            String categoria = Persistencia.cargarConfiguracion("transacciones");
 
-        Usuario admin = new Usuario();
-        admin.setNombre("Administrador");
-        admin.setCedula(cedula);
-        admin.setHashclave(contrasena);
-        admin.setAdministrador();
-        icaja.add(admin);
+            icaja.excluirAdmin(icaja.getListaUsuarios());
 
-        Categoria categoriaSistema = new Categoria(categoria, categoria);
-        categoriaSistema.setIdCategoria("SYSTEM");
-        icaja.add(categoriaSistema);
+            Usuario admin = new Usuario();
+            admin.setNombre("Administrador");
+            admin.setCedula(cedula);
+            admin.setHashclave(contrasena);
+            admin.setAdministrador();
+            icaja.add(admin);
 
-        Seguimiento.registrarLog(1, "Se cargó la configuración de las credenciales de administrador");
+            Categoria categoriaSistema = new Categoria(categoria, categoria);
+            categoriaSistema.setIdCategoria("SYSTEM");
+            icaja.add(categoriaSistema);
+
+            Seguimiento.registrarLog(1, "Se cargó la configuración de las credenciales de administrador");
+
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error al cargar la informacion del archivo config.properties" + e);
+
+        }
+
     }
 
     private ICaja cargaRespaldo() {
