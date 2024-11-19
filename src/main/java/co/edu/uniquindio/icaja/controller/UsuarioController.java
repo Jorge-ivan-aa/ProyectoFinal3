@@ -104,8 +104,8 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
             Usuario actualizable = consultar(usuarioDto.id(), ID_USUARIO);
 
             if (actualizable.getCedula().equals(usuarioDto.cedula())) {
-                actualizable.setNombre(usuarioDto.nombre());
-                actualizable.setTelefono(usuarioDto.telefono());
+                if (usuarioDto.nombre()!=null) actualizable.setNombre(usuarioDto.nombre());
+                if (usuarioDto.telefono()!=null) actualizable.setTelefono(usuarioDto.telefono());
 
                 if (!usuarioDto.clave().isEmpty()) {
                     actualizable.setHashclave(usuarioDto.clave());
@@ -115,7 +115,7 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
                     actualizable.setHashclaveTransaccional(usuarioDto.claveTransaccional());
                 }
 
-                actualizable.setCorreo(usuarioDto.correo());
+                if (usuarioDto.correo()!=null)actualizable.setCorreo(usuarioDto.correo());
                 sincronizarData();
                 registrarLog(1, "Se actualizó el usuario de cedula " + actualizable.getCedula() + " correctamente.");
             } else {

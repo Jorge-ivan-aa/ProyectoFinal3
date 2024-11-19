@@ -15,8 +15,8 @@ public class ChatBot implements Serializable {
             return "¡Adiós! Espero haberte ayudado.";
             //preguntas generales
         } else if (input.contains("como puedo administrar mi salario de una forma ordenada?")||input.contains("¿como puedo administrar mi salario de una forma ordenada?")){
-            return "Podrías como una medida de control crear diferentes presupuestos para asi tener un mayor nivel de gestión con tus gastos y tu dinero.";
-        } else if(input.contains("donde puedo crear presupuestos?")||input.contains("¿En donde puedo crear presupuestos?")||input.contains("¿En donde puedo crear algún presupuesto?")) {
+            return "Podrías como una medida\n de control crear diferentes\n presupuestos para asi tener\n un mayor nivel de gestión\n con tus gastos y tu dinero.";
+        } else if(input.contains("en donde puedo crear presupuestos?")||input.contains("¿En donde puedo crear presupuestos?")||input.contains("¿En donde puedo crear algún presupuesto?")) {
             return "Para la creación de un presupuesto deberás dirigirte al apartado de Cuentas Bancarias y buscar la opción que dice"+ "´Ajustar presupuestos´"  +" desde el menú de inicio.";
         } else if(input.contains("cómo generar mi reporte financiero?")||input.contains("¿como puedo generar mi reporte financiero?")||input.contains("¿como puedo generar un resporte financiero?")) {
             return "Para la creación de un reporte financiero deberás dirigirte al apartado de Cuentas Bancarias, en donde buscarás la opción de Generar Reporte Financiero, luego de eso automaticamente podrás ver dicho reporte.";

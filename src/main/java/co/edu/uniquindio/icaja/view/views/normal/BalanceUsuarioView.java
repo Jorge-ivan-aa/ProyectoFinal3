@@ -2,6 +2,7 @@ package co.edu.uniquindio.icaja.view.views.normal;
 
 import co.edu.uniquindio.icaja.controller.CategoriaController;
 import co.edu.uniquindio.icaja.controller.PresupuestoController;
+import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.mapping.dto.PresupuestoDto;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
@@ -28,7 +29,7 @@ import javafx.scene.layout.Pane;
 public class BalanceUsuarioView {
     PresupuestoController presupuestoController = new PresupuestoController();
     CategoriaController categoriaController = new CategoriaController();
-
+    String balanceSeleccionado="";
     @FXML
     private ResourceBundle resources;
 
@@ -125,24 +126,33 @@ public class BalanceUsuarioView {
     }
 
     @FXML
-    void eliminarBalanceAction(ActionEvent event) {
+    void eliminarBalanceAction() {
+        try {
+            presupuestoController.eliminar(balanceSeleccionado);
+            String msj = "Se ha eliminado el balance correctamente";
+            ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+            limpiarCamposAction();
+        } catch (ElementoNoExiste e) {
+            ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+        }
+
+    }
+
+
+    @FXML
+    void generarReporteFinancieroBalanceAction() {
 
     }
 
     @FXML
-    void generarReporteFinancieroBalanceAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void limpiarCamposAction(ActionEvent event) {
+    void limpiarCamposAction() {
         ViewTools.limpiarCampos(txtMontoBalance,
                 txtNombreBalance
                );
     }
 
     @FXML
-    void volverAction(ActionEvent event) {
+    void volverAction() {
         ViewTools.cambiarPantalla(panelBalanceUsuario1,0.225, panelBalanceUsuario2);
 
     }
@@ -176,6 +186,7 @@ public class BalanceUsuarioView {
 
     private void mostrarInformacion(Presupuesto seleccionado) {
         if (seleccionado != null) {
+            balanceSeleccionado= seleccionado.getNombre();
             txtNombreBalance.setText(seleccionado.getNombre());
             txtMontoBalance.setText(String.valueOf(seleccionado.getMontoAsignado()));
 

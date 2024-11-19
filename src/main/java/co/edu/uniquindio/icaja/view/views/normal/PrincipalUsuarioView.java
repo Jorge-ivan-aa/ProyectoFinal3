@@ -17,6 +17,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.geometry.Insets;
 
 public class PrincipalUsuarioView {
     UsuarioController usuarioController = new UsuarioController();
@@ -160,8 +162,11 @@ public class PrincipalUsuarioView {
         }
     }
     private AnchorPane crearMensaje(String text, boolean isSentByUser) {
+        VBox chatBox = new VBox(10); // Espaciado de 10 píxeles entre mensajes
+        chatBox.setPadding(new Insets(10));
         Label messageLabel = new Label(text);
-        messageLabel.setWrapText(true); // Permitir que el texto se ajuste automáticamente
+        messageLabel.setWrapText(true);
+        // Permitir que el texto se ajuste automáticamente
 
         //messageLabel.setPadding(new Insets());
 
@@ -174,14 +179,23 @@ public class PrincipalUsuarioView {
 
         AnchorPane messagePane = new AnchorPane(messageLabel);
         if (isSentByUser) {
-            AnchorPane.setRightAnchor(messageLabel, 10.0); // Alinear a la derecha
+            // Alinear a la derecha
             AnchorPane.setLeftAnchor(messageLabel, 370.0);
+            messagePane.setPadding(new Insets(5));
+
+            //AnchorPane.setBottomAnchor(messageLabel, 50.0);
         } else {
-            AnchorPane.setLeftAnchor(messageLabel, 10.0); // Alinear a la izquierda
+            //Alinear a la izquierda
             AnchorPane.setRightAnchor(messageLabel, 50.0);
+            messagePane.setPadding(new Insets(5));
+           // AnchorPane.setTopAnchor(messageLabel, 50.0);
         }
+
+
+        //messageLabel.setPrefWidth(250);
         //messagePane.setPadding(new Insets(0x5));
         return messagePane;
+
     }
 
 

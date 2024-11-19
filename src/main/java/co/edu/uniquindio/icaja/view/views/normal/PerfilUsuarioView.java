@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.layout.Pane;
 
 public class PerfilUsuarioView {
     UsuarioController usuarioController= new UsuarioController();
@@ -19,6 +20,25 @@ public class PerfilUsuarioView {
 
     @FXML
     private URL location;
+    @FXML
+    private Pane paneActualizarDatos;
+
+    @FXML
+    private Pane paneCambiarContrasenaIng;
+
+    @FXML
+    private Pane panelCambiarClaveTran;
+
+    @FXML
+    private MFXTextField txtConfirmarContrasenaTran;
+
+    @FXML
+    private MFXTextField txtNuevaContrasenaTran;
+
+    private MFXTextField txtConfirmarContrasena;
+
+    @FXML
+    private MFXTextField txtNuevaContrasena;
 
     @FXML
     private MFXTextField txtNuevaCedulaUsuario;
@@ -44,7 +64,7 @@ public class PerfilUsuarioView {
         //boolean cambioClaves =  !clave.isEmpty() || !claveTransaccional.isEmpty();
 
         if (ViewTools.NoHayCamposVacios(nombre, cedula, correo, telefono)) {
-            UsuarioDto usuarioDto = new UsuarioDto("13223",nombre,  cedula,  correo,  telefono, "1222" ,"211"  );
+            UsuarioDto usuarioDto = new UsuarioDto(null,nombre,  cedula,  correo,  telefono, "" ,"" );
             try {
                 usuarioController.actualizar(usuarioDto);
                 String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
@@ -68,12 +88,58 @@ public class PerfilUsuarioView {
 
     @FXML
     void cambiarClaveTransaccionalUsuarioAction(ActionEvent event) {
-
+        ViewTools.cambiarPantalla(panelCambiarClaveTran,0.225, paneActualizarDatos, paneCambiarContrasenaIng);
     }
 
     @FXML
     void cambiarContraseñaIngresoAction(ActionEvent event) {
+        ViewTools.cambiarPantalla(paneCambiarContrasenaIng,0.225, paneActualizarDatos, panelCambiarClaveTran);
+    }
+    @FXML
+    void calificarAction(ActionEvent event) {
+        System.out.println("ola");
+    }
+    @FXML
+    void configurarAction(ActionEvent event) {
+        //DEJAR LAS CONTRASEÑAS CON ""
+        String nuevaContra =txtNuevaContrasena.getText();
+        String confirmarContra = txtConfirmarContrasena.getText();
+//        if (nuevaContra== confirmarContra){
+//            UsuarioDto usuarioDto = new UsuarioDto(null,null,  null,  null,  null, confirmarContra ,""  );
+//            try {
+//                usuarioController.actualizar(usuarioDto);
+//                String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
+//                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+//
+//            } catch (ElementoNoExiste e) {
+//                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+//            }
+//            String msj = "Se ha actualizado la contraseña correctamente";
+//            ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+//        }else{
+//            String msj = "No se pudo actualizar la contraseña correctamente";
+//            ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+//        }
 
+    }
+    @FXML
+    void configurarTranAction(ActionEvent event) {
+        String nuevaContraTran= txtNuevaContrasenaTran.getText();
+        String configurarContraTran = txtConfirmarContrasenaTran.getText();
+        if(nuevaContraTran == configurarContraTran){
+
+        }
+
+    }
+
+    @FXML
+    void SalirTranAction(ActionEvent event) {
+        ViewTools.cambiarPantalla(paneActualizarDatos,0.225, panelCambiarClaveTran, paneCambiarContrasenaIng);
+    }
+
+    @FXML
+    void salirAction(ActionEvent event) {
+        ViewTools.cambiarPantalla(paneActualizarDatos,0.225, paneCambiarContrasenaIng, panelCambiarClaveTran);
     }
 
     @FXML
