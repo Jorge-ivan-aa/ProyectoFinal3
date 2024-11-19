@@ -187,6 +187,7 @@ public class TransaccionView {
                 cbxCuentaDestinoTransaccionAdmin.setValue(consultarNumeroCuenta(seleccionado.getIdCuentas()[1]));
             }
 
+
         }
     }
 
@@ -199,6 +200,8 @@ public class TransaccionView {
         } catch (Exception e) {
             Seguimiento.registrarLog(3, "Ocurrio un error en la consulta de propietarios: " + e.getMessage());
         }
+
+
         return "Propietario No encontrado";
     }
 
