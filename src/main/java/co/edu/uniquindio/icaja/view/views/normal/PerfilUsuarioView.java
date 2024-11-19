@@ -64,7 +64,7 @@ public class PerfilUsuarioView {
         //boolean cambioClaves =  !clave.isEmpty() || !claveTransaccional.isEmpty();
 
         if (ViewTools.NoHayCamposVacios(nombre, cedula, correo, telefono)) {
-            UsuarioDto usuarioDto = new UsuarioDto("13223",nombre,  cedula,  correo,  telefono, "1222" ,"211"  );
+            UsuarioDto usuarioDto = new UsuarioDto(null,nombre,  cedula,  correo,  telefono, "" ,"" );
             try {
                 usuarioController.actualizar(usuarioDto);
                 String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
@@ -101,10 +101,11 @@ public class PerfilUsuarioView {
     }
     @FXML
     void configurarAction(ActionEvent event) {
+        //DEJAR LAS CONTRASEÑAS CON ""
         String nuevaContra =txtNuevaContrasena.getText();
         String confirmarContra = txtConfirmarContrasena.getText();
 //        if (nuevaContra== confirmarContra){
-//            UsuarioDto usuarioDto = new UsuarioDto("13223",nombre,  cedula,  correo,  telefono, confirmarContra ,"211"  );
+//            UsuarioDto usuarioDto = new UsuarioDto(null,null,  null,  null,  null, confirmarContra ,""  );
 //            try {
 //                usuarioController.actualizar(usuarioDto);
 //                String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";

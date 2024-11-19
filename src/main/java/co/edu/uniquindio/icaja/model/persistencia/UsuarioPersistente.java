@@ -32,7 +32,7 @@ public class UsuarioPersistente implements Persistible<Usuario> {
 
             contenido.append("<<<@@");
             usuario.getIdCuentas().forEach(idCuenta -> contenido.append(idCuenta).append("@@"));
-            System.out.println("lista de idcuentas: " + usuario.getIdCuentas());
+
 
             contenido.append("<<<@@");
             usuario.getIdPresupuestos().forEach(idPresupuesto -> contenido.append(idPresupuesto).append("@@"));
@@ -43,7 +43,7 @@ public class UsuarioPersistente implements Persistible<Usuario> {
             contenido.append("\n");
         }
 
-        System.out.println("Se esta guardando el usuario: " + contenido);
+
         Persistencia.guardarArchivo("usuario.txt", contenido.toString(), false);
     }
 

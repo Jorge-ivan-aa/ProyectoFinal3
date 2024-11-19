@@ -1,5 +1,6 @@
 package co.edu.uniquindio.icaja.view.views.admin;
 
+import co.edu.uniquindio.icaja.controller.CategoriaController;
 import co.edu.uniquindio.icaja.controller.CuentaController;
 import co.edu.uniquindio.icaja.controller.TransaccionController;
 import co.edu.uniquindio.icaja.controller.enums.TipoConsulta;
@@ -27,6 +28,7 @@ import java.util.Objects;
 public class TransaccionView {
     TransaccionController transaccionController = new TransaccionController();
     CuentaController cuentaController = new CuentaController();
+    CategoriaController categoriaController= new CategoriaController();
 
     @FXML
     private MFXFilterComboBox<String> cbxCuentaDestinoTransaccionAdmin;
@@ -164,7 +166,7 @@ public class TransaccionView {
 
     private void initDataBinging() {
         tcIdTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdTransaccion()));
-        tcCategoriaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdCategoria()));
+        tcCategoriaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(consultarCategoria(cellData.getValue().getIdTransaccion())));
         tcFechaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFecha().toString()));
         tcMontoTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMonto()));
         tcMotivoTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMotivo()));
@@ -193,13 +195,26 @@ public class TransaccionView {
     private String consultarNumeroCuenta(String idCuenta) {
         try {
             Seguimiento.registrarLog(1, "Consultando Numero de cuenta bancaria");
-            System.out.println(cuentaController.consultar(idCuenta, TipoConsulta.ID_CUENTA));
+
 
             return cuentaController.consultar(idCuenta, TipoConsulta.ID_CUENTA).getNumeroCuenta();
         } catch (Exception e) {
             Seguimiento.registrarLog(3, "Ocurrio un error en la consulta de propietarios: " + e.getMessage());
         }
         return "Propietario No encontrado";
+    }
+
+    private String consultarCategoria(String idCategoria) {
+        System.out.println(categoriaController.getListaCategoriasObservable());
+        try {
+            Seguimiento.registrarLog(1, "Consultando Categoria");
+
+
+            return categoriaController.consultar(idCategoria, TipoConsulta.ID_CATEGORIA).getNombre();
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error en la consulta de categoria: " + e.getMessage());
+        }
+        return "General";
     }
 
 }

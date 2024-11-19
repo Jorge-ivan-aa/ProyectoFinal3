@@ -28,7 +28,7 @@ public class CuentaPersistente implements Persistible<Cuenta> {
                     .append(cuenta.getIdpropietario()).append("\n");
 
         }
-        System.out.println("Se esta guardando la cuenta: " + contenido);
+
         Persistencia.guardarArchivo("cuenta.txt", contenido.toString(), false);
 
     }

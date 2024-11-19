@@ -75,12 +75,21 @@ public class ModelFactory {
     private void cargarPersistencia() {
         List<Usuario> usuarios;
         List<Cuenta> cuentasBancarias;
+        List<Transaccion> transacciones;
+        List<Categoria> categorias;
+        List<Presupuesto> presupuestos;
 
         try {
             cuentasBancarias = cuentaPersistente.leer("cuenta.txt");
             agregarElementos(cuentasBancarias);
             usuarios = usuarioPersistente.leer("usuario.txt");
             agregarElementos(usuarios);
+            transacciones = transaccionPersistente.leer("transaccion.txt");
+            agregarElementos(transacciones);
+            categorias=categoriaPersistente.leer("categoria.txt");
+            agregarElementos(categorias);
+            presupuestos = presupuestoPersistente.leer("presupuesto.txt");
+            agregarElementos(presupuestos);
 
         } catch (IOException e) {
             Seguimiento.registrarLog(3, "No se han podido cargar los archivos de persistencia: " + e.getMessage());
@@ -95,6 +104,9 @@ public class ModelFactory {
 
         guardar("usuario.txt", usuarioPersistente, usuarios);
         guardar("cuenta.txt", cuentaPersistente, icaja.getListaCuentas());
+        guardar("transaccion.txt",transaccionPersistente,icaja.getListaTransacciones());
+        guardar("categoria.txt", categoriaPersistente, icaja.getListaCategorias());
+        guardar("presupuesto.txt",presupuestoPersistente, icaja.getListaPresupuestos());
     }
 
     private <E> void guardar(String file, Persistible<E> elementoPersistible, List<E> lista) {

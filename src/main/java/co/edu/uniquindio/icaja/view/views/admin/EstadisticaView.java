@@ -12,6 +12,8 @@ import co.edu.uniquindio.icaja.controller.enums.TipoConsulta;
 import co.edu.uniquindio.icaja.model.Categoria;
 import co.edu.uniquindio.icaja.model.Transaccion;
 import co.edu.uniquindio.icaja.model.Usuario;
+import co.edu.uniquindio.icaja.model.enums.TipoTransaccion;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -119,15 +121,13 @@ public class EstadisticaView {
     public List<Transaccion> filtrarRetiros(){
         listaTransaccionesDeUsuario = transaccionController.getListaTransaccionObservable();
         List<Transaccion> listaRetiros= new ArrayList<>();
-        for (int i = 0; i < listaTransaccionesDeUsuario.size(); i++) {
-            Transaccion transaccion = listaTransaccionesDeUsuario.get(i);
-            if (transaccion.getTipo().equals("RETIRO")){
+        for(Transaccion transaccion: listaTransaccionesDeUsuario){
+            if(transaccion.getTipo().equals(TipoTransaccion.RETIRO)){
                 listaRetiros.add(transaccion);
-                //tcGastosPorCategoria.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipo()));
-                //poner o hacer que mande la lista de los retiros
+                System.out.println("estamos añadiendo retiros de tipo transaccion");
             }
-
         }
+
         return listaRetiros;
 
     }
@@ -138,9 +138,12 @@ public class EstadisticaView {
         for (int i = 0; i < listaRetiros2.size(); i++) {
             //Sacar los Id categorias para hacer la busqueda por el Id y almacenarlos en la lista
             Transaccion tipo = listaTransaccionesDeUsuario.get(i);
-
-            Categoria tipoCategoria= categoriaController.consultar(tipo.getIdCategoria(), TipoConsulta.ID_CATEGORIA);
-            listaCategorias.add(tipoCategoria);
+            try {
+                Categoria tipoCategoria = categoriaController.consultar(tipo.getIdCategoria(), TipoConsulta.ID_CATEGORIA);
+                listaCategorias.add(tipoCategoria);
+            }catch (Exception e) {
+                Seguimiento.registrarLog(3, "Ocurrio un error en la filtración de categoria: " + e.getMessage());
+            }
         }
         ObservableList<Categoria> observableCategoriaList = FXCollections.observableArrayList(listaCategorias);
 
