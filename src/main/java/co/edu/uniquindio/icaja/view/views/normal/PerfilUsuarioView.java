@@ -92,7 +92,7 @@ public class PerfilUsuarioView {
     }
 
     @FXML
-    void cambiarContraseñaIngresoAction(ActionEvent event) {
+    void cambiarContrasenaIngresoAction(ActionEvent event) {
         ViewTools.cambiarPantalla(paneCambiarContrasenaIng,0.225, paneActualizarDatos, panelCambiarClaveTran);
     }
     @FXML
