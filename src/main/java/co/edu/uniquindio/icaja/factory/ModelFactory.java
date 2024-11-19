@@ -68,7 +68,6 @@ public class ModelFactory {
         icaja.excluirAdmin(listaUsuarioObservable);
 
         guardarPersistencia();
-        registrarLog(1, "Se sincronizó la base de datos");
     }
 
 
@@ -141,6 +140,7 @@ public class ModelFactory {
     private void cargarConfiguracion() {
         String cedula = Persistencia.cargarConfiguracion("admin");
         String contrasena = Persistencia.cargarConfiguracion("contrasena");
+        String categoria = Persistencia.cargarConfiguracion("categoria_movimientos");
 
         icaja.excluirAdmin(icaja.getListaUsuarios());
 
@@ -149,8 +149,12 @@ public class ModelFactory {
         admin.setCedula(cedula);
         admin.setHashclave(contrasena);
         admin.setAdministrador();
+        icaja.add(admin);
 
-        icaja.getListaUsuarios().add(admin);
+        Categoria categoriaSistema = new Categoria(categoria, categoria);
+        categoriaSistema.setIdCategoria("SYSTEM");
+        icaja.add(categoriaSistema);
+
         Seguimiento.registrarLog(1, "Se cargó la configuración de las credenciales de administrador");
     }
 

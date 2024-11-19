@@ -124,7 +124,6 @@ public class EstadisticaView {
         for(Transaccion transaccion: listaTransaccionesDeUsuario){
             if(transaccion.getTipo().equals(TipoTransaccion.RETIRO)){
                 listaRetiros.add(transaccion);
-                System.out.println("estamos añadiendo retiros de tipo transaccion");
             }
         }
 

@@ -12,6 +12,7 @@ import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.model.enums.EntidadBancaria;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
+import co.edu.uniquindio.icaja.utils.tools.NumTool;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
@@ -93,7 +94,7 @@ public class CuentaView {
         EntidadBancaria entidad = cbxEntidadAdmin.getValue();
         String numeroCuenta = txtNumeroCuentaAdmin.getText().replaceAll("-", "");
         TipoCuenta tipo = cbxTipoCuentaAdmin.getValue();
-        String saldo = txtSaldoAdmin.getText().replaceAll("[^0-9]", "");
+        String saldo = NumTool.formatearNumero(txtSaldoAdmin.getText());
         String cedulaPropietario = cbxPropietarioCuentaAdmin.getValue();
 
 
@@ -163,8 +164,7 @@ public class CuentaView {
         entradaNumeroCuenta();
 
         txtSaldoAdmin.textProperty().addListener((observable, oldValue, newValue) -> {
-            txtSaldoAdmin.setText(formaterarMonto(newValue));
-            txtSaldoAdmin.positionCaret(txtSaldoAdmin.getText().length());
+            txtSaldoAdmin.setText(NumTool.formatearMonto(newValue));
         });
 
 
@@ -180,7 +180,7 @@ public class CuentaView {
     private void initDataBinging() {
         tcEntidadAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getEntidad()));
         tcNumeroCuentaAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNumeroCuenta()));
-        tcSaldoAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getSaldo().toString()));
+        tcSaldoAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(NumTool.formatearMonto(cellData.getValue().getSaldo().toString())));
         tcTipoCuentaAdmin.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTipo()));
         tcPropietarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(getCedulaPropietario(cellData.getValue().getIdpropietario()))));
     }
@@ -188,11 +188,8 @@ public class CuentaView {
     private String getCedulaPropietario(String idPropietario) {
         try {
             Seguimiento.registrarLog(1, "Consultando propietarios de cuenta bancaria");
-            System.out.println(usuarioController.consultar(idPropietario, TipoConsulta.ID_USUARIO));
-            String cedual = usuarioController.consultar(idPropietario, TipoConsulta.ID_USUARIO).getCedula();
-            System.out.println(cedual);
+            return usuarioController.consultar(idPropietario, TipoConsulta.ID_USUARIO).getCedula();
 
-            return cedual;
         } catch (Exception e) {
             Seguimiento.registrarLog(3, "Ocurrio un error en la consulta de propietarios: " + e.getMessage());
         }
@@ -238,39 +235,6 @@ public class CuentaView {
             // Actualiza el campo con el valor formateado
             txtNumeroCuentaAdmin.setText(formateado.toString());
         });
-    }
-
-
-
-    private String formaterarMonto(String input) {
-        // Limitar la entrada a un máximo de 20 dígitos
-        String cleanedValue = input.replaceAll("[^0-9]", "");
-        if (cleanedValue.length() > 20) {
-            cleanedValue = cleanedValue.substring(0, 21); // Limitar a 20 dígitos
-        }
-
-        if (cleanedValue.isEmpty()) {
-            return ""; // Si no hay nada, retornar vacío
-        }
-
-        // Invertir el número para hacer más fácil el formateo
-        StringBuilder reversed = new StringBuilder(cleanedValue).reverse();
-
-        // Insertar comas cada 3 dígitos (en la versión invertida)
-        StringBuilder formatted = new StringBuilder(reversed.toString());
-        for (int i = 3; i < formatted.length(); i += 4) {
-            formatted.insert(i, ',');
-        }
-
-        // Sí hay más de 6 dígitos, reemplazar la última coma por una comilla
-        int commaIndex = formatted.lastIndexOf(",");
-        if (cleanedValue.length() > 6 && commaIndex != -1) {
-            // Aseguramos que el índice de la coma es válido antes de reemplazar
-            formatted.replace(commaIndex, commaIndex + 1, "'");
-        }
-
-        // Invertir de nuevo para obtener el número en su formato original
-        return formatted.reverse().toString();
     }
 
 }

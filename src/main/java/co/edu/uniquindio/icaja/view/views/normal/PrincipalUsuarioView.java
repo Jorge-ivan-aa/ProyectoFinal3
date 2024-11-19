@@ -131,7 +131,7 @@ public class PrincipalUsuarioView {
     @FXML
     void volverRetiroAction() {
         ViewTools.cambiarPantalla(panelUnoUsuario,0.225, panelDepositarUsuario,panelRetirarUsuario,panelTransferirUsuario);
-        System.out.println("pasó por acá");
+
 
     }
 

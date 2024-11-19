@@ -16,6 +16,7 @@ import co.edu.uniquindio.icaja.model.Cuenta;
 import co.edu.uniquindio.icaja.model.Transaccion;
 import co.edu.uniquindio.icaja.model.enums.TipoTransaccion;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
+import co.edu.uniquindio.icaja.utils.tools.NumTool;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import javafx.beans.property.SimpleStringProperty;
@@ -28,7 +29,7 @@ import java.util.Objects;
 public class TransaccionView {
     TransaccionController transaccionController = new TransaccionController();
     CuentaController cuentaController = new CuentaController();
-    CategoriaController categoriaController= new CategoriaController();
+    CategoriaController categoriaController = new CategoriaController();
 
     @FXML
     private MFXFilterComboBox<String> cbxCuentaDestinoTransaccionAdmin;
@@ -77,7 +78,7 @@ public class TransaccionView {
 
     @FXML
     void crearTransaccionAction() {
-        String monto = txtMontoTransaccionAdmin.getText();
+        String monto = NumTool.formatearNumero(txtMontoTransaccionAdmin.getText());
         String motivo = txtMotivoTransaccionAdmin.getText();
 
         if (ViewTools.NoHayCamposVacios(monto, motivo)) {
@@ -151,6 +152,11 @@ public class TransaccionView {
 
         });
 
+        txtMontoTransaccionAdmin.textProperty().addListener((observable, oldValue, newValue) -> {
+            txtMontoTransaccionAdmin.setText(NumTool.formatearMonto(newValue));
+            txtMontoTransaccionAdmin.positionCaret(txtMontoTransaccionAdmin.getText().length());
+        });
+
         initview();
         ViewTools.inicializarComboBox(cbxCuentaDestinoTransaccionAdmin, cuentaController.getListaCuentaObservable(), Cuenta::getNumeroCuenta);
         ViewTools.inicializarComboBox(cbxCuentaTransaccionAdmin, cuentaController.getListaCuentaObservable(), Cuenta::getNumeroCuenta);
@@ -168,7 +174,7 @@ public class TransaccionView {
         tcIdTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdTransaccion()));
         tcCategoriaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(consultarCategoria(cellData.getValue().getIdTransaccion())));
         tcFechaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFecha().toString()));
-        tcMontoTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMonto()));
+        tcMontoTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(NumTool.formatearMonto(cellData.getValue().getMonto())));
         tcMotivoTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMotivo()));
     }
 
@@ -203,12 +209,11 @@ public class TransaccionView {
             Seguimiento.registrarLog(3, "Ocurrio un error en la consulta de propietarios: " + e.getMessage());
         }
 
-
         return "Propietario No encontrado";
     }
 
     private String consultarCategoria(String idCategoria) {
-        System.out.println(categoriaController.getListaCategoriasObservable());
+
         try {
             Seguimiento.registrarLog(1, "Consultando Categoria");
 

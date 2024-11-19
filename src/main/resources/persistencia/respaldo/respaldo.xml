@@ -1,43 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="21.0.4" class="java.beans.XMLDecoder">
  <object class="co.edu.uniquindio.icaja.model.ICaja" id="ICaja0">
-  <void property="listaCuentas">
-   <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Cuenta">
-     <void property="entidad">
-      <object class="java.lang.Enum" method="valueOf">
-       <class>co.edu.uniquindio.icaja.model.enums.EntidadBancaria</class>
-       <string>BANCOLOMBIA</string>
-      </object>
-     </void>
-     <void property="idCuenta">
-      <string>241765b7-5cfa-48b3-aea2-dcd02f8a5965</string>
-     </void>
-     <void property="idpropietario">
-      <string>232fe130-6656-4db2-9ae1-6adc7aae66e9</string>
-     </void>
-     <void property="numeroCuenta">
-      <string>2312312321</string>
-     </void>
-     <void property="tipo">
-      <object class="java.lang.Enum" method="valueOf">
-       <class>co.edu.uniquindio.icaja.model.enums.TipoCuenta</class>
-       <string>AHORRO</string>
-      </object>
-     </void>
-    </object>
-   </void>
-  </void>
   <void property="listaTransacciones">
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.Transaccion">
      <void property="idCategoria">
-      <string>e16aec52-cc8e-4e3d-ace9-4bc00fbc14d5</string>
+      <string>673d289d-3d9f-4760-bb06-564ef68bd9e4</string>
      </void>
      <void property="idCuentas">
       <array class="java.lang.String" length="2">
        <void index="0">
-        <string>241765b7-5cfa-48b3-aea2-dcd02f8a5965</string>
+        <string>a01f47cd-7d6d-41d6-af16-768de9b4ed29</string>
        </void>
        <void index="1">
         <string></string>
@@ -45,90 +18,31 @@
       </array>
      </void>
      <void property="idTransaccion">
-      <string>b0dd1ef7-c2fa-45ee-9ebf-7e05a44830f9</string>
+      <string>bf370fb6-2e60-4fa0-b2d2-c2621dc404f9</string>
      </void>
      <void property="monto">
-      <string>12232133</string>
+      <string>10000</string>
      </void>
      <void property="motivo">
-      <string>prueba</string>
+      <string>nose</string>
      </void>
      <void property="tipo">
-      <object class="java.lang.Enum" id="TipoTransaccion0" method="valueOf">
+      <object class="java.lang.Enum" method="valueOf">
        <class>co.edu.uniquindio.icaja.model.enums.TipoTransaccion</class>
        <string>RETIRO</string>
       </object>
      </void>
     </object>
    </void>
-   <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Transaccion">
-     <void property="idCategoria">
-      <string>402734f9-cd93-4ceb-876b-68fe07f63737</string>
-     </void>
-     <void property="idCuentas">
-      <array class="java.lang.String" length="2">
-       <void index="0">
-        <string>241765b7-5cfa-48b3-aea2-dcd02f8a5965</string>
-       </void>
-       <void index="1">
-        <string></string>
-       </void>
-      </array>
-     </void>
-     <void property="idTransaccion">
-      <string>15b22e09-043e-49b6-89d3-2c2ba2acb7a9</string>
-     </void>
-     <void property="monto">
-      <string>12232133</string>
-     </void>
-     <void property="motivo">
-      <string>prueba</string>
-     </void>
-     <void property="tipo">
-      <object idref="TipoTransaccion0"/>
-     </void>
-    </object>
-   </void>
   </void>
   <void property="listaUsuarios">
-   <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Usuario" id="Usuario0">
-     <void property="cedula">
-      <string>1004827105</string>
-     </void>
-     <void property="clave">
-      <string>$2a$10$XXzU8uCZXb2YJG2RipQ.QeAWDf3urTEteqv.Y.DXNjpVKhU.00L/C</string>
-     </void>
-     <void property="claveTransaccional">
-      <string>$2a$10$5piXuqdf6cnjBzaZL9HOJOaRtzxgytk23aF1HUfkSnU0JZZrEYQn6</string>
-     </void>
-     <void property="correo">
-      <string>dsadsdas</string>
-     </void>
-     <void property="idPresupuestos">
-      <void method="add">
-       <string>241765b7-5cfa-48b3-aea2-dcd02f8a5965</string>
-      </void>
-     </void>
-     <void property="idUsuario">
-      <string>232fe130-6656-4db2-9ae1-6adc7aae66e9</string>
-     </void>
-     <void property="nombre">
-      <string>jorge</string>
-     </void>
-     <void property="telefono">
-      <string>2312312312</string>
-     </void>
-    </object>
-   </void>
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.Usuario">
      <void property="cedula">
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$WT.G848tbvbIXVrMXQOBke3d07z8uhllLsflAWYHg8cK2OqDXmaLO</string>
+      <string>$2a$10$DPr6RIZYou18e30DY2a0velWWnsl0FtZZ.3AdzpGfBWzPPRo47iAe</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>

@@ -20,7 +20,6 @@ public class Presupuesto implements Serializable {
     private BigDecimal montoAsignado = new BigDecimal(BigInteger.ZERO);
     private BigDecimal montoGastado = new BigDecimal(BigInteger.ZERO);
     private String[] idCategorias;
-    //private Categoria categoriaPresupuesto;
     public static final long serialVersionID = 9L;
 
     public Presupuesto(String nombre, BigDecimal montoAsignado, String... categoria) {
@@ -33,4 +32,5 @@ public class Presupuesto implements Serializable {
     private String generarId() {
         return UUID.randomUUID().toString();
     }
+
 }

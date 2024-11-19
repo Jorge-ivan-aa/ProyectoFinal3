@@ -9,10 +9,9 @@ import java.util.function.Function;
 
 import co.edu.uniquindio.icaja.exception.almacenamiento.ElementoNoEncontrado;
 import co.edu.uniquindio.icaja.exception.almacenamiento.TipoNoMapeado;
-import co.edu.uniquindio.icaja.model.enums.TipoTransaccion;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.utils.tools.ListTools;
-import co.edu.uniquindio.icaja.utils.tools.NumTool;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -93,11 +92,12 @@ public class ICaja implements Serializable {
                 try {
                     Cuenta cuentaOrigen = (Cuenta) buscarPorId(Cuenta.class, transaccion.getIdCuentas()[0]);
                     Usuario propietario1 = (Usuario) buscarPorId(Usuario.class, cuentaOrigen.getIdpropietario());
-
                     Cuenta cuentaDestino = (Cuenta) buscarPorId(Cuenta.class, transaccion.getIdCuentas()[1]);
                     Usuario propietario2 = (Usuario) buscarPorId(Usuario.class, cuentaDestino.getIdpropietario());
 
                     transaccion.hacerTransferencia(cuentaOrigen, propietario1, cuentaDestino, propietario2);
+                    propietario1.agregarTransaccion(transaccion);
+                    propietario2.agregarTransaccion(transaccion);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -110,6 +110,7 @@ public class ICaja implements Serializable {
                     Usuario propietario = (Usuario) buscarPorId(Usuario.class, cuentaOrigen.getIdpropietario());
 
                     transaccion.hacerRetiro(cuentaOrigen, propietario);
+                    propietario.agregarTransaccion(transaccion);
                 }  catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -119,6 +120,7 @@ public class ICaja implements Serializable {
                     Usuario propietario = (Usuario) buscarPorId(Usuario.class, cuentaOrigen.getIdpropietario());
 
                     transaccion.hacerDeposito(cuentaOrigen, propietario);
+                    propietario.agregarTransaccion(transaccion);
                 }  catch (Exception e) {
                     e.printStackTrace();
                 }

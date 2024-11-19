@@ -97,7 +97,7 @@ public class PerfilUsuarioView {
     }
     @FXML
     void calificarAction(ActionEvent event) {
-        System.out.println("ola");
+
     }
     @FXML
     void configurarAction(ActionEvent event) {

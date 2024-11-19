@@ -6,7 +6,7 @@ import co.edu.uniquindio.icaja.model.Transaccion;
 
 public class TransaccionMapper {
 
-    public static Transaccion toTransaccion(TransferenciaDto transaccionDto){
+    public static Transaccion toTransaccion(TransferenciaDto transaccionDto) {
         return new Transaccion(
                 transaccionDto.tipo(),
                 transaccionDto.monto(),

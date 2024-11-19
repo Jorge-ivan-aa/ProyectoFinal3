@@ -31,7 +31,6 @@ public class TransaccionController implements GenericController<ITransaccionDto,
 
     public TransaccionController() {
         this.listaTransaccionObservable = factory.getListaTransaccionObservable();
-        System.out.println(listaTransaccionObservable.toString());
         this.sincronizarData();
     }
 
