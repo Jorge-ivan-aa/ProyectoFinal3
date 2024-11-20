@@ -1,7 +1,6 @@
 package co.edu.uniquindio.icaja.utils.tools;
 
 import co.edu.uniquindio.icaja.App;
-import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import javafx.animation.FadeTransition;
@@ -15,7 +14,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -25,7 +24,6 @@ import javafx.scene.shape.ArcType;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.util.Objects;
 import java.util.function.Function;
@@ -35,7 +33,7 @@ public class ViewTools {
     /**
      * Muestra un mensaje para dar información del usuario
      *
-     * @param title   El titulo de la ventana.
+     * @param title   El título de la ventana.
      * @param header  Subtitulo de la ventana.
      * @param message Mensaje que describe la información a dar
      * @param type    El tipo de mensaje: Alert.Alertype.<Enumeracion>, donde Enumeracion puede ser:
@@ -222,6 +220,27 @@ public class ViewTools {
 
     }
 
+    /**
+     * Cambia los colores de los botones primario y secundarios con un efecto de desvanecimiento.
+     *
+     * @param primario El botón principal al que se le aplica el color destacado.
+     * @param duracion La duración del efecto de desvanecimiento (en segundos).
+     * @param claseCSS La clase CSS que define el color del botón primario.
+     * @param secundarios Los botones secundarios a los que se les quita la clase CSS y se les aplica el efecto de desvanecimiento.
+     */
+    public static void cambiarColores(Button primario, String claseCSS, Button... secundarios) {
+        if (primario == null || secundarios == null) {
+            Seguimiento.registrarLog(3, "No se pudo cambiar de pantalla, algun panel es nulo.");
+        } else {
+            for (Button secundario : secundarios) {
+                secundario.getStyleClass().remove(claseCSS);
+            }
+            primario.getStyleClass().add(claseCSS);
+
+        }
+    }
+
+
 
     /**
      * Aplica una animación de desvanecimiento gradual a un nodo, haciéndolo desaparecer.
@@ -286,10 +305,5 @@ public class ViewTools {
         // Actualizar el ComboBox al inicio en el hilo de JavaFX
         Platform.runLater(() -> actualizarComboBox(comboBox, listaObservable, mapper));
     }
-
-
-
-
-
 
 }

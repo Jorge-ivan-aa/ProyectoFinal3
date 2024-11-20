@@ -29,6 +29,7 @@ TextField, .mfx-password-field .text-field {
     -fx-border-color: #FC6DAB;          /* Color del borde */
     -fx-border-width: 1;                 /* Ancho del borde */
     -fx-outline: none; /* Elimina el contorno */
+
 }
 
 .mfx-password-field .mfx-icon-wrapper {
@@ -57,4 +58,40 @@ TextField, .mfx-password-field .text-field {
 .text-field:active {
     -fx-border-color: red;
     -fx-outline: #039B59;/* Cambia <tu_color> al color que desees para el texto */
+}
+
+.mfx-filter-combo-box {
+    -fx-pref-height: 30px;  /* Altura fija */
+    -fx-max-height: 30px;
+    -fx-min-height: 35px;
+    -fx-overflow: hidden;   /* Recortar contenido que sobresalga */
+}
+
+
+/* Menu */
+
+.menu {
+    -fx-background-color: #C80459;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+.menu_option {
+    -fx-background-color: #C80459;
+    -fx-effect: none;
+    -fx-color: green;
+    -fx-cursor: pointer;
+}
+
+.menu_option FontAwesomeIconView {
+    -fx-fill: #FC6DAB;
+    -fx-cursor: pointer;
+}
+
+.menu_opt_selected FontAwesomeIconView {
+    -fx-fill: #6DFCBE;
+}
+
+.menu_option:hover FontAwesomeIconView {
+    -fx-fill: #6DFCBE;
 }

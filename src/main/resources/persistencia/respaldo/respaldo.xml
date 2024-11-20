@@ -1,36 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="21.0.4" class="java.beans.XMLDecoder">
  <object class="co.edu.uniquindio.icaja.model.ICaja" id="ICaja0">
-  <void property="listaTransacciones">
+  <void property="listaCategorias">
    <void method="add">
-    <object class="co.edu.uniquindio.icaja.model.Transaccion">
+    <object class="co.edu.uniquindio.icaja.model.Categoria">
+     <void property="descripcion">
+      <string>&quot;Movimiento del sistema&quot;</string>
+     </void>
      <void property="idCategoria">
-      <string>673d289d-3d9f-4760-bb06-564ef68bd9e4</string>
+      <string>SYSTEM</string>
      </void>
-     <void property="idCuentas">
-      <array class="java.lang.String" length="2">
-       <void index="0">
-        <string>a01f47cd-7d6d-41d6-af16-768de9b4ed29</string>
-       </void>
-       <void index="1">
-        <string></string>
-       </void>
-      </array>
-     </void>
-     <void property="idTransaccion">
-      <string>bf370fb6-2e60-4fa0-b2d2-c2621dc404f9</string>
-     </void>
-     <void property="monto">
-      <string>10000</string>
-     </void>
-     <void property="motivo">
-      <string>nose</string>
-     </void>
-     <void property="tipo">
-      <object class="java.lang.Enum" method="valueOf">
-       <class>co.edu.uniquindio.icaja.model.enums.TipoTransaccion</class>
-       <string>RETIRO</string>
-      </object>
+     <void property="nombre">
+      <string>&quot;Movimiento del sistema&quot;</string>
      </void>
     </object>
    </void>
@@ -42,7 +23,7 @@
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$DPr6RIZYou18e30DY2a0velWWnsl0FtZZ.3AdzpGfBWzPPRo47iAe</string>
+      <string>$2a$10$NBHXXOzaKqKSIX6VPYatwes9UWIFR0VW6TZBtuNDAaPvT6FjSU1o6</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>
