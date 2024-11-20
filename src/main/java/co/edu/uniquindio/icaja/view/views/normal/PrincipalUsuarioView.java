@@ -162,38 +162,64 @@ public class PrincipalUsuarioView {
         }
     }
     private AnchorPane crearMensaje(String text, boolean isSentByUser) {
-        VBox chatBox = new VBox(10); // Espaciado de 10 píxeles entre mensajes
-        chatBox.setPadding(new Insets(10));
-        Label messageLabel = new Label(text);
-        messageLabel.setWrapText(true);
-        // Permitir que el texto se ajuste automáticamente
+//        VBox chatBox = new VBox(10); // Espaciado de 10 píxeles entre mensajes
+//        chatBox.setPadding(new Insets(10));
+//        Label messageLabel = new Label(text);
+//        messageLabel.setWrapText(true);
+//        messageLabel.setMaxHeight(200);
+//        // Permitir que el texto se ajuste automáticamente
+//
+//        //messageLabel.setPadding(new Insets());
+//
+//        // Estilo diferente para mensajes enviados y recibidos
+//        if (isSentByUser) {
+//            messageLabel.setStyle("-fx-background-color: lightblue; -fx-background-radius: 10;");
+//        } else {
+//            messageLabel.setStyle("-fx-background-color: lightgray; -fx-background-radius: 10;");
+//        }
+//
+//        AnchorPane messagePane = new AnchorPane(messageLabel);
+//        if (isSentByUser) {
+//            // Alinear a la derecha
+//            AnchorPane.setTopAnchor(messageLabel, 10.0);
+//            AnchorPane.setLeftAnchor(messageLabel, 10.0);
+//            messagePane.setPadding(new Insets(15));
+//
+//            //AnchorPane.setBottomAnchor(messageLabel, 50.0);
+//        } else {
+//            //Alinear a la izquierda
+//            AnchorPane.setTopAnchor(messageLabel, 10.0);
+//            AnchorPane.setRightAnchor(messageLabel, 50.0);
+//            messagePane.setPadding(new Insets(5));
+//           // AnchorPane.setTopAnchor(messageLabel, 50.0);
+//        }
+//
+//
+//        //messageLabel.setPrefWidth(250);
+//        //messagePane.setPadding(new Insets(0x5));
+//        return messagePane;
+        // Crear el contenedor del mensaje
+        AnchorPane messagePane = new AnchorPane();
 
-        //messageLabel.setPadding(new Insets());
+        // Crear el Label con el texto del mensaje
+        Label messageLabel = new Label(text);
+        messageLabel.setWrapText(true); // Permitir que el texto se ajuste automáticamente
+        messageLabel.setMaxWidth(250); // Ancho máximo para el texto antes de hacer wrap
+        messageLabel.setPadding(new Insets(10)); // Espaciado interno para el mensaje
 
         // Estilo diferente para mensajes enviados y recibidos
         if (isSentByUser) {
             messageLabel.setStyle("-fx-background-color: lightblue; -fx-background-radius: 10;");
+            AnchorPane.setRightAnchor(messageLabel, 10.0); // Alinear a la derecha
         } else {
             messageLabel.setStyle("-fx-background-color: lightgray; -fx-background-radius: 10;");
+            AnchorPane.setLeftAnchor(messageLabel, 10.0); // Alinear a la izquierda
         }
 
-        AnchorPane messagePane = new AnchorPane(messageLabel);
-        if (isSentByUser) {
-            // Alinear a la derecha
-            AnchorPane.setLeftAnchor(messageLabel, 370.0);
-            messagePane.setPadding(new Insets(5));
+        // Asegurar que el mensaje esté correctamente alineado dentro del AnchorPane
+        AnchorPane.setTopAnchor(messageLabel, 10.0); // Espaciado superior
+        messagePane.getChildren().add(messageLabel); // Añadir el mensaje al AnchorPane
 
-            //AnchorPane.setBottomAnchor(messageLabel, 50.0);
-        } else {
-            //Alinear a la izquierda
-            AnchorPane.setRightAnchor(messageLabel, 50.0);
-            messagePane.setPadding(new Insets(5));
-           // AnchorPane.setTopAnchor(messageLabel, 50.0);
-        }
-
-
-        //messageLabel.setPrefWidth(250);
-        //messagePane.setPadding(new Insets(0x5));
         return messagePane;
 
     }

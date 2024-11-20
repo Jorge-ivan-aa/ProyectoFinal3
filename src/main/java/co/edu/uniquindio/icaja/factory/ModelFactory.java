@@ -46,7 +46,8 @@ public class ModelFactory {
         transaccionPersistente = new TransaccionPersistente();
 
         icaja = new ICaja();
-        cargarPersistencia();
+
+        if (!cargarPersistencia()) cargaRespaldo();
         cargarConfiguracion();
     }
 
@@ -71,7 +72,7 @@ public class ModelFactory {
     }
 
 
-    private void cargarPersistencia() {
+    private boolean cargarPersistencia() {
         List<Usuario> usuarios;
         List<Cuenta> cuentasBancarias;
         List<Transaccion> transacciones;
@@ -89,9 +90,10 @@ public class ModelFactory {
             agregarElementos(categorias);
             presupuestos = presupuestoPersistente.leer("presupuesto.txt");
             agregarElementos(presupuestos);
-
-        } catch (IOException e) {
+            return  true;
+        } catch (Exception e) {
             Seguimiento.registrarLog(3, "No se han podido cargar los archivos de persistencia: " + e.getMessage());
+            return false;
         }
 
     }
