@@ -54,9 +54,7 @@ public class CuentaController implements GenericController<CuentaDto, Cuenta> {
 
     @Override
     public Cuenta consultar(String consulta, TipoConsulta tipoConsulta) throws ElementoNoExiste {
-        Seguimiento.registrarLog(1, "Se hace una consulta de cuenta con el id: " + consulta);
         try {
-            // Llamada al método de consulta avanzada
             return (Cuenta) ConsultaAvanzada(factory.getIcaja().getListaCuentas(),
                     tipoConsulta.getBuscador(),
                     consulta,

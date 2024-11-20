@@ -31,9 +31,8 @@ public class UsuarioPersistente implements Persistible<Usuario> {
                     .append(usuario.getGastos().toString()).append("@@");
 
             contenido.append("<<<@@");
+            System.out.println(usuario.getIdCuentas());
             usuario.getIdCuentas().forEach(idCuenta -> contenido.append(idCuenta).append("@@"));
-
-
             contenido.append("<<<@@");
             usuario.getIdPresupuestos().forEach(idPresupuesto -> contenido.append(idPresupuesto).append("@@"));
             contenido.append("<<<@@");
@@ -84,11 +83,12 @@ public class UsuarioPersistente implements Persistible<Usuario> {
         usuario.setIngresos(NumTool.parseToDinero(linea[8]));
         usuario.setGastos(NumTool.parseToDinero(linea[9]));
 
-        int idx = 10;
-
+        int idx = 10+1;
 //         Restauramos las listas de Cuentas, Presupuestos, Categorias y Transacciones usando el método genérico
         usuario.setIdCuentas(restaurarLista(linea, idx));
         idx += usuario.getIdCuentas().size() + 1;
+
+        System.out.println("aqui estamos leyendo: " + usuario.getIdCuentas());
 
         usuario.setIdPresupuestos(restaurarLista(linea, idx));
         idx += usuario.getIdPresupuestos().size() + 1;
@@ -104,9 +104,11 @@ public class UsuarioPersistente implements Persistible<Usuario> {
 
     private ArrayList<String> restaurarLista(String[] datosUsuario, int indice) {
         ArrayList<String> lista = new ArrayList<>();
-        while (!datosUsuario[indice].equals("<<<")) {
-            lista.add(datosUsuario[indice]);
-            indice++;
+        if (indice < datosUsuario.length) {
+            while (!datosUsuario[indice].equals("<<<")) {
+                lista.add(datosUsuario[indice]);
+                indice++;
+            }
         }
 
         return lista;

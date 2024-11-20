@@ -50,7 +50,9 @@ public class Cuenta implements Serializable {
                 this.saldo = this.saldo.add(monto);
                 break;
             case RETIRO:
-                if (this.saldo.compareTo(monto) >= 0) {
+                int ejem = saldo.intValue() + monto.intValue();
+                if ( ejem >= 0) {
+                    System.out.println("ejem aqui entro al subtract");
                     this.saldo = this.saldo.subtract(monto);
                 } else {
                     throw new SaldoInsuficiente("No se puede hacer el retiro, saldo insuficiente");

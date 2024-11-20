@@ -120,6 +120,7 @@ public class Transaccion implements Serializable {
     public void hacerDeposito(Cuenta cuenta, Usuario propietario) throws MontoInvalido {
         cuenta.modificarSaldo(TipoTransaccion.DEPOSITO, NumTool.parseToDinero(monto,
                 "No se puede realizar el deposito, el monto ingresado es invalido"));
+
         propietario.sumarSaldoTotal(NumTool.parseToDinero(monto));
         propietario.calcularIngresos(NumTool.parseToDinero(monto));
 
@@ -129,6 +130,7 @@ public class Transaccion implements Serializable {
     public void hacerRetiro(Cuenta cuenta, Usuario propietario) throws MontoInvalido, SaldoInsuficiente {
         cuenta.modificarSaldo(TipoTransaccion.RETIRO, NumTool.parseToDinero(monto,
                 "No se puede realizar el retiro, el monto ingresado es invalido"));
+
         propietario.restarSaldoTotal(NumTool.parseToDinero(monto));
         propietario.calcularGastos(NumTool.parseToDinero(monto));
     }

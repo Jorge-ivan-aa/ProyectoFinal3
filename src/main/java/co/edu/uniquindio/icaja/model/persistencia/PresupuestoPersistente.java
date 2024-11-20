@@ -40,9 +40,8 @@ public class PresupuestoPersistente implements Persistible<Presupuesto> {
             presupuesto.setIdPresupuesto(linea[1]);
             presupuesto.setMontoAsignado(NumTool.parseToDinero(linea[2]));
             presupuesto.setMontoGastado(NumTool.parseToDinero(linea[3]));
-            int idx = 4;
+            int idx = 5;
 
-//         Restauramos las listas de Cuentas, Presupuestos, Categorias y Transacciones usando el método genérico
             presupuesto.setIdCategorias(restaurarLista(linea, idx));
             presupuestos.add(presupuesto);
         }
@@ -51,9 +50,11 @@ public class PresupuestoPersistente implements Persistible<Presupuesto> {
 
     private String[] restaurarLista(String[] datosPresupuestos, int indice) {
         ArrayList<String> lista = new ArrayList<>();
-        while (!datosPresupuestos[indice].equals("<<<")) {
-            lista.add(datosPresupuestos[indice]);
-            indice++;
+        if (indice < datosPresupuestos.length) {
+            while (!datosPresupuestos[indice].equals("<<<")) {
+                lista.add(datosPresupuestos[indice]);
+                indice++;
+            }
         }
 
         return new String[]{String.valueOf(lista)};

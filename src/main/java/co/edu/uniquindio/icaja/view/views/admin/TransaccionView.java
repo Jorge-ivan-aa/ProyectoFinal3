@@ -85,8 +85,15 @@ public class TransaccionView {
             boolean condicion = cbTipoTransaccionAdmin.getValue() != null && cbxCuentaTransaccionAdmin.getValue() != null;
             if (condicion) {
                 TipoTransaccion tipo = cbTipoTransaccionAdmin.getValue();
-                Cuenta cuentaOrigen = cuentaController.consultar(cbxCuentaTransaccionAdmin.getValue(), TipoConsulta.NUMERO_CUENTA);
-                Categoria categoria = new Categoria("Movimiento realizado por el sistema", "Transferencia realizada por el administrador");
+                Cuenta cuentaOrigen = new Cuenta();
+                Categoria categoria = new Categoria();
+                try {
+                    cuentaOrigen = cuentaController.consultar(cbxCuentaTransaccionAdmin.getValue(), TipoConsulta.NUMERO_CUENTA);
+                    categoria = categoriaController.consultar("SYSTEM", TipoConsulta.ID_CATEGORIA);
+                } catch (Exception e) {
+                    Seguimiento.registrarLog(3, "Error al hacer la consulta de cuenta de origen o categoria para realizar la transaccion");
+                }
+
                 ITransaccionDto transaccionDto;
 
                 if (Objects.requireNonNull(tipo) == TipoTransaccion.TRANSFERENCIA) {
@@ -172,7 +179,7 @@ public class TransaccionView {
 
     private void initDataBinging() {
         tcIdTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdTransaccion()));
-        tcCategoriaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(consultarCategoria(cellData.getValue().getIdTransaccion())));
+        tcCategoriaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(consultarCategoria(cellData.getValue().getIdCategoria())));
         tcFechaTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFecha().toString()));
         tcMontoTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(NumTool.formatearMonto(cellData.getValue().getMonto())));
         tcMotivoTransaccionAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMotivo()));
@@ -201,10 +208,8 @@ public class TransaccionView {
 
     private String consultarNumeroCuenta(String idCuenta) {
         try {
-            Seguimiento.registrarLog(1, "Consultando Numero de cuenta bancaria");
-
-
             return cuentaController.consultar(idCuenta, TipoConsulta.ID_CUENTA).getNumeroCuenta();
+
         } catch (Exception e) {
             Seguimiento.registrarLog(3, "Ocurrio un error en la consulta de propietarios: " + e.getMessage());
         }
@@ -215,10 +220,8 @@ public class TransaccionView {
     private String consultarCategoria(String idCategoria) {
 
         try {
-            Seguimiento.registrarLog(1, "Consultando Categoria");
-
-
             return categoriaController.consultar(idCategoria, TipoConsulta.ID_CATEGORIA).getNombre();
+
         } catch (Exception e) {
             Seguimiento.registrarLog(3, "Ocurrio un error en la consulta de categoria: " + e.getMessage());
         }

@@ -187,7 +187,6 @@ public class CuentaView {
 
     private String getCedulaPropietario(String idPropietario) {
         try {
-            Seguimiento.registrarLog(1, "Consultando propietarios de cuenta bancaria");
             return usuarioController.consultar(idPropietario, TipoConsulta.ID_USUARIO).getCedula();
 
         } catch (Exception e) {

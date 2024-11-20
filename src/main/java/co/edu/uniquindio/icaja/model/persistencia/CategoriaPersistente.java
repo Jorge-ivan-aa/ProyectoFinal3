@@ -16,7 +16,7 @@ public class CategoriaPersistente implements Persistible<Categoria> {
         for(Categoria categoria:categorias)
         {
             contenido.append(categoria.getIdCategoria()).append("@@")
-                    .append(categoria.getNombre())
+                    .append(categoria.getNombre()).append("@@")
                     .append(categoria.getDescripcion()).append("@@")
                     .append("\n");
         }

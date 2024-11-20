@@ -97,9 +97,15 @@ public class Usuario implements Serializable, Login {
         gastos = gastos.add(monto);
     }
 
-    public void sumarSaldoTotal(BigDecimal monto) {saldoTotal = saldoTotal.add(monto);}
-    public void restarSaldoTotal(BigDecimal monto) {saldoTotal = saldoTotal.subtract(monto);}
+    public void sumarSaldoTotal(BigDecimal monto) {
+        calcularIngresos(monto);
+        saldoTotal = saldoTotal.add(monto);
+    }
 
+    public void restarSaldoTotal(BigDecimal monto) {
+        calcularGastos(monto);
+        this.saldoTotal = this.saldoTotal.subtract(monto);
+    }
 
     public void agregarTransaccion(Transaccion transaccion) {
         List<String> nuevaLista = new ArrayList<>(this.idTransacciones);

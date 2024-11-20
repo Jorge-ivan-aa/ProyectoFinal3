@@ -95,3 +95,8 @@ TextField, .mfx-password-field .text-field {
 .menu_option:hover FontAwesomeIconView {
     -fx-fill: #6DFCBE;
 }
+
+.nombre_ventana {
+    -fx-font-size: 16px;
+    -fx-fill: #6DFCBE;
+}

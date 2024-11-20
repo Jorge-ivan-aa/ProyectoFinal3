@@ -72,7 +72,6 @@ public class TransaccionController implements GenericController<ITransaccionDto,
 
     @Override
     public Transaccion consultar(String consulta, TipoConsulta tipoConsulta) throws ElementoNoExiste {
-        registrarLog(1, "Se hace una consulta de transaccion con el id: " + consulta);
 
         try {
             return (Transaccion) ConsultaAvanzada(factory.getIcaja().getListaTransacciones(),

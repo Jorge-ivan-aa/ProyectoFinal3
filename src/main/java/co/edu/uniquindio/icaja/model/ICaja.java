@@ -111,6 +111,7 @@ public class ICaja implements Serializable {
 
                     transaccion.hacerRetiro(cuentaOrigen, propietario);
                     propietario.agregarTransaccion(transaccion);
+
                 }  catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -125,7 +126,6 @@ public class ICaja implements Serializable {
                     e.printStackTrace();
                 }
         }
-
 
         listaTransacciones.add(transaccion);
     }
@@ -152,9 +152,10 @@ public class ICaja implements Serializable {
      * Elimina todos los usuarios de tipo administrador de una lista.
      * @param usuarios lista de usuario.
      */
-    public void excluirAdmin(List<Usuario> usuarios) {
-        if (usuarios != null) {
+    public void excluirAdmin(List<Usuario> usuarios, List<Categoria> categorias) {
+        if (usuarios != null && categorias != null) {
             usuarios.removeIf(usuario -> usuario.getTipoUsuario().equals(TipoUsuario.ADMINISTRADOR));
+            categorias.removeIf(categoria -> categoria.getIdCategoria().equals("SYSTEM"));
         }
     }
 

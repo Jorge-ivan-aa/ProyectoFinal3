@@ -50,7 +50,7 @@ public class CategoriaController implements GenericController<CategoriaDto, Cate
 
     @Override
     public Categoria consultar(String consulta, TipoConsulta tipoConsulta) throws ElementoNoExiste {
-        Seguimiento.registrarLog(1, "Se hace una consulta de tipo " + tipoConsulta + " con el criterio: " + consulta);
+
         try {
             return (Categoria) ConsultaAvanzada(factory.getIcaja().getListaCategorias(),
                     tipoConsulta.getBuscador(),

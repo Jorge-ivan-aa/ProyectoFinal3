@@ -2,13 +2,14 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.baseAdminView">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" stylesheets="@../styles/main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.baseAdminView">
     <GridPane layoutX="45.0" layoutY="93.0" prefHeight="535.0" prefWidth="70.0" style="-fx-background-radius: 8px;" styleClass="menu" stylesheets="@../styles/main.css">
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -73,4 +74,5 @@
     <AnchorPane fx:id="estadisticaBox" layoutX="162.0" layoutY="47.0" prefHeight="626.0" prefWidth="1073.0" visible="false">
         <fx:include source="admin/estadistica.fxml" />
     </AnchorPane>
+   <Label fx:id="lbNombreVentana" layoutX="162.0" layoutY="26.0" style="-fx-text-fill: #C80459;" styleClass="nombre_ventana" text="Titulo ventana" />
 </AnchorPane>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXPasswordField?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -95,7 +96,7 @@
                                        </font>
                                     </Label>
                                     <Hyperlink onAction="#registrarUsuario" styleClass="registro_link" text="Registrate" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                                    <Button mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="34.0" prefWidth="150.0" text="Iniciar Sesión" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                    <Button mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="34.0" prefWidth="150.0" styleClass="iniciar_btn" stylesheets="@styles/login.css" text="Iniciar Sesión" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                                  </children>
                               </GridPane>
                            </children>
@@ -117,4 +118,8 @@
          </image>
       </ImageView>
    </children>
+   <stylesheets>
+      <URL value="@styles/main.css" />
+      <URL value="@styles/login.css" />
+   </stylesheets>
 </Pane>

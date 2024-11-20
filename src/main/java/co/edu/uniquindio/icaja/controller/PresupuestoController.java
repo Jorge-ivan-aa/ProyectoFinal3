@@ -51,7 +51,6 @@ public class PresupuestoController implements GenericController<PresupuestoDto, 
 
     @Override
     public Presupuesto consultar(String consulta, TipoConsulta tipoConsulta) throws ElementoNoExiste {
-        Seguimiento.registrarLog(1, "Se hace una consulta de presupuesto con el id: " + tipoConsulta);
 
         try {
             return (Presupuesto) ConsultaAvanzada(factory.getIcaja().getListaPresupuestos(),

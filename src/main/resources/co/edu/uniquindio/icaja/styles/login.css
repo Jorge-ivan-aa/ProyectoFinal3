@@ -20,3 +20,9 @@
 .registro_link {
     -fx-text-fill: C80459;
 }
+
+.iniciar_btn {
+    -fx-background-color: #6DFCBE;
+    -fx-text-fill: #039B59;
+    -fx-background-radius: 8px;
+}

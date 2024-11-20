@@ -66,7 +66,7 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
 
     @Override
     public Usuario consultar(String consulta, TipoConsulta tipoConsulta) throws ElementoNoExiste {
-        Seguimiento.registrarLog(1, "Se hace una consulta de tipo " + tipoConsulta + " con el criterio: " + consulta);
+
         try {
             return (Usuario) ConsultaAvanzada(factory.getIcaja().getListaUsuarios(),
                     tipoConsulta.getBuscador(),

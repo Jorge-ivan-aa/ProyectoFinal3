@@ -144,7 +144,7 @@
                <Font size="17.0" />
             </font>
          </Label>
-         <Pane layoutX="369.0" layoutY="362.0" prefHeight="228.0" prefWidth="284.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
+         <Pane layoutX="369.0" layoutY="362.0" prefHeight="218.0" prefWidth="284.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
             <children>
                <Label layoutX="52.0" layoutY="8.0" text="¿Qué vamos a hacer hoy ?">
                   <font>
@@ -168,7 +168,7 @@
                </MFXButton>
             </children>
          </Pane>
-         <ListView fx:id="lvListaPresupuestosUsuario" layoutX="669.0" layoutY="228.0" prefHeight="362.0" prefWidth="378.0" />
+         <ListView fx:id="lvListaPresupuestosUsuario" layoutX="669.0" layoutY="218.0" prefHeight="362.0" prefWidth="378.0" />
          <Label fx:id="lbPonerPresupuesto" layoutX="692.0" layoutY="246.0" prefHeight="36.0" prefWidth="138.0" text="2.000.000">
             <font>
                <Font size="26.0" />
@@ -211,7 +211,7 @@
    </Pane>
    <Pane fx:id="panelTransferirUsuario" layoutX="1.0" layoutY="-1.0" prefHeight="628.0" prefWidth="538.0" style="-fx-background-color: ebe8ff; -fx-background-radius: 15;" visible="false">
       <children>
-         <Label layoutX="228.0" layoutY="50.0" text="Transferir">
+         <Label layoutX="218.0" layoutY="50.0" text="Transferir">
             <font>
                <Font size="19.0" />
             </font>

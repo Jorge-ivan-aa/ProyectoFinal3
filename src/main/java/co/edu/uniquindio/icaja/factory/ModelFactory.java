@@ -10,18 +10,14 @@ import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 import static co.edu.uniquindio.icaja.utils.tools.ListTools.sincronizarLista;
 
 @Getter
 public class ModelFactory {
     private static ModelFactory instance;
-    private final ICaja icaja;
+    private ICaja icaja;
 
     // SINCRONIZACION
     private final ObservableList<Cuenta> listaCuentaObservable = FXCollections.observableArrayList();
@@ -46,8 +42,8 @@ public class ModelFactory {
         transaccionPersistente = new TransaccionPersistente();
 
         icaja = new ICaja();
+        if (!cargarPersistencia()) icaja = cargaRespaldo();
 
-        if (!cargarPersistencia()) cargaRespaldo();
         cargarConfiguracion();
     }
 
@@ -66,7 +62,7 @@ public class ModelFactory {
         sincronizarLista(listaPresupuestoObservable, icaja.getListaPresupuestos());
         sincronizarLista(listaTransaccionObservable, icaja.getListaTransacciones());
         sincronizarLista(listaCategoriasObservable, icaja.getListaCategorias());
-        icaja.excluirAdmin(listaUsuarioObservable);
+        icaja.excluirAdmin(listaUsuarioObservable, listaCategoriasObservable);
 
         guardarPersistencia();
     }
@@ -81,16 +77,25 @@ public class ModelFactory {
 
         try {
             cuentasBancarias = cuentaPersistente.leer("cuenta.txt");
-            agregarElementos(cuentasBancarias);
             usuarios = usuarioPersistente.leer("usuario.txt");
-            agregarElementos(usuarios);
             transacciones = transaccionPersistente.leer("transaccion.txt");
-            agregarElementos(transacciones);
-            categorias=categoriaPersistente.leer("categoria.txt");
-            agregarElementos(categorias);
+            categorias = categoriaPersistente.leer("categoria.txt");
             presupuestos = presupuestoPersistente.leer("presupuesto.txt");
-            agregarElementos(presupuestos);
-            return  true;
+
+            if (!usuarios.isEmpty()) {
+                agregarElementos(cuentasBancarias);
+                agregarElementos(usuarios);
+                agregarElementos(transacciones);
+                agregarElementos(categorias);
+                agregarElementos(presupuestos);
+                Seguimiento.registrarLog(1, "Se ha cargado la persistencia correctamente.");
+                return  true;
+
+            } else {
+                Seguimiento.registrarLog(2, "No se han podido cargar los archivos de persistencia, la persistencia de usuario está vacia.");
+                return false;
+
+            }
         } catch (Exception e) {
             Seguimiento.registrarLog(3, "No se han podido cargar los archivos de persistencia: " + e.getMessage());
             return false;
@@ -101,12 +106,13 @@ public class ModelFactory {
     private void guardarPersistencia() {
 
         List<Usuario> usuarios = new ArrayList<>(icaja.getListaUsuarios());
-        icaja.excluirAdmin(usuarios);
+        List<Categoria> categorias = new ArrayList<>(icaja.getListaCategorias());
+        icaja.excluirAdmin(usuarios, categorias);
 
         guardar("usuario.txt", usuarioPersistente, usuarios);
         guardar("cuenta.txt", cuentaPersistente, icaja.getListaCuentas());
         guardar("transaccion.txt",transaccionPersistente,icaja.getListaTransacciones());
-        guardar("categoria.txt", categoriaPersistente, icaja.getListaCategorias());
+        guardar("categoria.txt", categoriaPersistente, categorias);
         guardar("presupuesto.txt",presupuestoPersistente, icaja.getListaPresupuestos());
     }
 
@@ -146,7 +152,7 @@ public class ModelFactory {
             String contrasena = Persistencia.cargarConfiguracion("contrasena");
             String categoria = Persistencia.cargarConfiguracion("transacciones");
 
-            icaja.excluirAdmin(icaja.getListaUsuarios());
+            icaja.excluirAdmin(icaja.getListaUsuarios(), icaja.getListaCategorias());
 
             Usuario admin = new Usuario();
             admin.setNombre("Administrador");
