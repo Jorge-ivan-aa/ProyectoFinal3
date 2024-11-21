@@ -40,8 +40,8 @@ public class PresupuestoPersistente implements Persistible<Presupuesto> {
             Presupuesto presupuesto = new Presupuesto();
             presupuesto.setNombre(linea[0]);
             presupuesto.setIdPresupuesto(linea[1]);
-            presupuesto.setMontoAsignado(NumTool.parseToDinero(linea[2]));
-            presupuesto.setMontoGastado(NumTool.parseToDinero(linea[3]));
+            presupuesto.setMontoAsignado(linea[2]);
+            presupuesto.setMontoGastado(linea[3]);
             int idx = 5 + 1;
 
             presupuesto.setIdCategorias(restaurarLista(linea, idx));

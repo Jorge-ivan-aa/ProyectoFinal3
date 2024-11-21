@@ -47,6 +47,20 @@ public class CategoriaController implements GenericController<CategoriaDto, Cate
         }
     }
 
+    public void crear(Categoria nuevaCategoria) throws ElementoYaExiste {
+
+        try {
+            this.consultar(nuevaCategoria.getIdCategoria(), ID_CATEGORIA);
+            registrarLog(2, "No se pudo crear el elemento, la categoria ya existe");
+            throw new ElementoYaExiste("No se pudo crear el elemento, la categoria ya existe");
+
+        } catch (ElementoNoExiste ignored) {
+            factory.getIcaja().getListaCategorias().add(nuevaCategoria);
+            listaCategoriasObservable.add(nuevaCategoria);
+            registrarLog(1, "Se ha creado una categoria");
+        }
+    }
+
     @Override
     public Categoria consultar(String consulta, TipoConsulta tipoConsulta) throws ElementoNoExiste {
 

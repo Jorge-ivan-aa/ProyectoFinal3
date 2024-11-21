@@ -1,3 +1,125 @@
-.bandeja_notificacion {
-    -fx-background-color: red;
+
+@font-face {
+    font-family: 'montserrat-bold';
+    src: url('fonts/Montserrat-Bold.ttf');
 }
+
+/* Afectar a todos los ListView */
+.list-view {
+    -fx-background-color: transparent; /* Elimina el fondo */
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+}
+
+/* Afectar también a las celdas dentro del ListView */
+.list-cell {
+    -fx-background-color: #fff; /* Fondo transparente para las celdas */
+    -fx-background-radius: 8px;
+    -fx-border-color: transparent;    /* Sin bordes para la celda */
+    -fx-padding: 8px;                /* Espacio interno (simula el margen) */
+    -fx-background-insets: 5px;
+}
+
+/* -_-_-_-_-_ Banner principal */
+
+.main_visualizer {
+    -fx-background-color: #FECDE2;
+    -fx-background-radius: 8px;
+}
+
+.saldo_usuario {
+    -fx-font-family: 'montserrat-bold';
+    -fx-text-fill: #fff;
+    -fx-font-size: 38px;
+}
+
+
+/* -_-_-_-_-_ Tarjetas Cuentas principal*/
+
+.tarjeta {
+    -fx-background-radius: 8px;
+}
+
+.tarjeta Label {
+    -fx-text-fill: #039B59;
+    -fx-font-size: 12px;
+}
+
+.tarjeta1 {
+   -fx-background-color: #FD9BC5;
+}
+.tarjeta1 Label {
+    -fx-text-fill: #FECDE2;
+}
+
+.tarjeta2 {
+   -fx-background-color: #C80459;
+}
+.tarjeta2 Label {
+    -fx-text-fill: #FC6DAB;
+}
+
+.tarjeta3 {
+   -fx-background-color: #320116;
+}
+.tarjeta3 Label {
+    -fx-text-fill: #C80459;
+}
+
+
+/* -_-_-_-_-_ Transacciones principal*/
+
+.transacciones_container .list-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #6DFCBE;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+}
+
+.transacciones_container .list-view .list-cell {
+    -fx-background-color: #fff;
+    -fx-background-radius: 8px;
+    -fx-border-color: transparent;
+    -fx-padding: 8px;
+    -fx-background-insets: 5px;
+}
+
+.transacciones_container {
+        -fx-background-color: #6DFCBE;
+        -fx-background-radius: 8px;
+}
+
+.transacciones_title {
+        -fx-text-fill: #039B59;
+}
+
+
+/* -_-_-_-_-_ Presupuestos principal */
+
+.container_presupuestos {
+        -fx-border-radius: 8px;
+        -fx-border-color: #320116;
+}
+
+.progress-bar {
+    -fx-background-radius: 5px;
+}
+
+.progress-bar .bar {
+    -fx-background-color: #FECDE2;
+    -fx-background-radius: 5px;
+}
+
+/* -_-_-_-_-_ Transacciones principal */
+
+.tooltip_transaccion {
+        -fx-background-color: #fff;
+        -fx-border-color: #320116;
+        -fx-border-radius: 5px;
+}
+
+.tooltip_transaccion Label {
+    -fx-text-fill: #320116;
+}
+

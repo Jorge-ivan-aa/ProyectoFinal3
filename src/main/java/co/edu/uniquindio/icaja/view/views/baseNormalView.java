@@ -80,6 +80,7 @@ public class baseNormalView {
 
     @FXML
     void initialize() {
+        lbNombreVentana.setText("Principal");
         ViewTools.cambiarColores(btnHome, "menu_opt_selected", btnCuentas, btnPerfil, btnSalir, btnPresupues);
         ViewTools.cambiarPantalla(principalUsuarioBox, 0.125, cuentasUsuarioBox, estadisticasUsuarioBox, perfilUsuarioBox);
 

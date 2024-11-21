@@ -19,7 +19,7 @@ MenuItem,
 Menu,
 Hyperlink {
     -fx-font-family: 'montserrat-regular';
-    -fx-font-size: 16px;
+    -fx-font-size: 15px;
     -fx-text-fill: #FC6DAB;
 }
 

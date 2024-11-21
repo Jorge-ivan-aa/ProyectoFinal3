@@ -17,20 +17,28 @@ import java.util.UUID;
 public class Presupuesto implements Serializable {
     private String idPresupuesto;
     private String nombre;
-    private BigDecimal montoAsignado = new BigDecimal(BigInteger.ZERO);
-    private BigDecimal montoGastado = new BigDecimal(BigInteger.ZERO);
+    private String montoAsignado;
+    private String montoGastado="0";
     private String[] idCategorias;
     public static final long serialVersionID = 9L;
 
     public Presupuesto(String nombre, BigDecimal montoAsignado, String... categoria) {
         this.idPresupuesto = generarId();
         this.nombre = nombre;
-        this.montoAsignado = NumTool.parseToDinero(String.valueOf(montoAsignado), "No se pudo asignar el presupuesto, monto ingresado no valido ");
+        this.montoAsignado = NumTool.parseToDinero(String.valueOf(montoAsignado), "No se pudo asignar el presupuesto, monto ingresado no valido ").toString();
         this.idCategorias = categoria;
     }
 
     private String generarId() {
         return UUID.randomUUID().toString();
+    }
+
+    public void sumarGastos(BigDecimal monto, String idCategoria) {
+        for (String id: idCategorias) {
+            if (idCategoria.equals(id)) {
+                montoGastado = NumTool.parseToDinero(montoGastado).add(monto).toString();
+            }
+        }
     }
 
 }
