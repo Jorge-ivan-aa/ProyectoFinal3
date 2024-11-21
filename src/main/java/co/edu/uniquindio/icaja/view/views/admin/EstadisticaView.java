@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.icaja.controller.CategoriaController;
+import co.edu.uniquindio.icaja.controller.CuentaController;
 import co.edu.uniquindio.icaja.controller.TransaccionController;
 import co.edu.uniquindio.icaja.controller.UsuarioController;
 import co.edu.uniquindio.icaja.controller.enums.TipoConsulta;
 import co.edu.uniquindio.icaja.model.Categoria;
+import co.edu.uniquindio.icaja.model.Cuenta;
 import co.edu.uniquindio.icaja.model.Transaccion;
-import co.edu.uniquindio.icaja.model.Usuario;
+import co.edu.uniquindio.icaja.model.enums.CategoriasComunes;
 import co.edu.uniquindio.icaja.model.enums.TipoTransaccion;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.beans.property.SimpleObjectProperty;
@@ -28,10 +30,11 @@ public class EstadisticaView {
     TransaccionController transaccionController= new TransaccionController();
     CategoriaController categoriaController = new CategoriaController();
     UsuarioController usuarioController = new UsuarioController();
+    CuentaController cuentaController = new CuentaController();
+
     ObservableList<Transaccion> listaTransaccionesDeUsuario= FXCollections.observableArrayList();
-    ObservableList<Usuario> listaDeUsuarios= FXCollections.observableArrayList();
-    double promedioSaldos= 0;
-    double sumaSaldos =0 ;
+    ObservableList<String> listaEstadisticasGastosCategoria= FXCollections.observableArrayList();
+
 
 
     @FXML
@@ -65,16 +68,16 @@ public class EstadisticaView {
     private TableColumn<Transaccion, String> tcCantidadTransacciones;
 
     @FXML
-    private TableColumn<Categoria, String> tcGastosPorCategoria;
+    private TableColumn<String, String> tcGastosPorCategoria;
 
     @FXML
-    private TableColumn<Categoria, String> tcPorcentajePorCategoria;
+    private TableColumn<String, String> tcPorcentajePorCategoria;
 
     @FXML
     private TableColumn<Transaccion, String> tcTransaccionesPorUsuario;
 
     @FXML
-    private TableView<Categoria> tvGastosPorCategoria;
+    private TableView<String> tvGastosPorCategoria;
 
     @FXML
     private TableView<Transaccion> tvTransaccionesPorUsuario;
@@ -86,104 +89,70 @@ public class EstadisticaView {
     }
     @FXML
     void initview() {
-        initDataBinding();
-        crearGraficos();
-        filtrarRetiros();
-        filtrarSaldos();
-        tvGastosPorCategoria.setItems(filtrarCategorias());
-        //tvGastosPorCategoria.setItems(categoriaController.getListaCategoriasObservable());
+//        initDataBinding();
+//        crearGraficos();
+//        List<String> resultadoCategoriasGasto = estadisticasGastosCategoria(filtrarCategorias());
+//        listaEstadisticasGastosCategoria.clear();
+//        listaEstadisticasGastosCategoria.setAll(resultadoCategoriasGasto);
+//        tvGastosPorCategoria.setItems(listaEstadisticasGastosCategoria);
+
     }
     @FXML
     void initDataBinding(){
-        tcGastosPorCategoria.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getNombre()));
-        double porcentaje = crearporcentajes();
-        tcPorcentajePorCategoria.setCellValueFactory(cellData -> new SimpleObjectProperty<>(porcentaje).asString());
+//        tcGastosPorCategoria.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue()));
+//        tcPorcentajePorCategoria.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue()));
     }
 
-
-    public void crearGraficos (){
-        //al piechart se le pone el nombre y el porcentaje de ocupación
-        //es una prueba
-        PieChart.Data Grafico=  new PieChart.Data("Cuenta",39 );
-        pcGraficaUno.setTitle("Grafica de cosas");
-        pcGraficaUno.getData().add(Grafico);
-
-    }
-    public double crearporcentajes (){
-        ObservableList<Categoria> listaCat= filtrarCategorias();
-        for(int i=0; i<listaCat.size();i++){
-
-        }
-        return 3;
-    }
-
-
-    public List<Transaccion> filtrarRetiros(){
-        listaTransaccionesDeUsuario = transaccionController.getListaTransaccionObservable();
-        List<Transaccion> listaRetiros= new ArrayList<>();
-        for(Transaccion transaccion: listaTransaccionesDeUsuario){
-            if(transaccion.getTipo().equals(TipoTransaccion.RETIRO)){
-                listaRetiros.add(transaccion);
-            }
-        }
-
-        return listaRetiros;
-
-    }
-
-    public ObservableList<Categoria> filtrarCategorias(){
-        List<Transaccion> listaRetiros2= filtrarRetiros();
-        List<Categoria> listaCategorias = new ArrayList<>();
-        for (int i = 0; i < listaRetiros2.size(); i++) {
-            //Sacar los Id categorias para hacer la busqueda por el Id y almacenarlos en la lista
-            Transaccion tipo = listaTransaccionesDeUsuario.get(i);
-            try {
-                Categoria tipoCategoria = categoriaController.consultar(tipo.getIdCategoria(), TipoConsulta.ID_CATEGORIA);
-                listaCategorias.add(tipoCategoria);
-            }catch (Exception e) {
-                Seguimiento.registrarLog(3, "Ocurrio un error en la filtración de categoria: " + e.getMessage());
-            }
-        }
-        ObservableList<Categoria> observableCategoriaList = FXCollections.observableArrayList(listaCategorias);
-
-        return observableCategoriaList;
-    }
-
-    public void filtrarSaldos(){
-//        listaDeUsuarios = usuarioController.getListaUsuarioObservable();
-//        List<Double> listaDeSaldos = new ArrayList<>();
-//        List<Transaccion> listaDetransacciones= new ArrayList<>();
-//        double saldoMayor = 0;
-//        String nombreMayor="";
-//        for (int i = 0; i < listaDeUsuarios.size()-1; i++) {
-//            Usuario usuario = listaDeUsuarios.get(i);
-//            //Añadir transacciones de los usuarios a la lista
 //
-//            Usuario usuario2 = listaDeUsuarios.get(i+1);
-//            sumaSaldos = usuario.getSaldoTotal().doubleValue();
-//            promedioSaldos= (sumaSaldos/listaDeUsuarios.size());
+//    public void crearGraficos (){
+//        //al piechart se le pone el nombre y el porcentaje de ocupación
+//        //es una prueba
+//        PieChart.Data Grafico=  new PieChart.Data("Cuenta",39 );
+//        pcGraficaUno.setTitle("Grafica de cosas");
+//        pcGraficaUno.getData().add(Grafico);
 //
-//            //Validar cual es el usuario con el mayor saldo de la app
-//            double saldo = usuario.getSaldoTotal().doubleValue();
-//            if(saldo>usuario2.getSaldoTotal().doubleValue()){
-//                saldoMayor = saldo;
-//                nombreMayor=usuario.getNombre();
-//            }else{
-//                saldoMayor= usuario2.getSaldoTotal().doubleValue();
-//                nombreMayor= usuario2.getNombre();
+//    }
+//
+//    public  List<String> estadisticasGastosCategoria(List<String> categoriasUsuarios) {
+//        return CategoriasComunes.calcularEstadisticas(categoriasUsuarios);
+//    }
+//
+//
+//    public List<Transaccion> filtrarGastos(){
+//        listaTransaccionesDeUsuario = transaccionController.getListaTransaccionObservable();
+//        List<Transaccion> listaRetiros= new ArrayList<>();
+//        for(Transaccion transaccion: listaTransaccionesDeUsuario){
+//            if(transaccion.getTipo().equals(TipoTransaccion.RETIRO)){
+//                listaRetiros.add(transaccion);
+//            } else if (transaccion.getTipo().equals(TipoTransaccion.TRANSFERENCIA)) {
+//                Cuenta cuentaO = cuentaController.consultar(transaccion.getIdCuentas()[0], TipoConsulta.ID_CUENTA);
+//                Cuenta cuentaD = cuentaController.consultar(transaccion.getIdCuentas()[1], TipoConsulta.ID_CUENTA);
+//
+//                if (!cuentaO.getIdpropietario().equals(cuentaD.getIdpropietario())) {
+//                    listaRetiros.add(transaccion);
+//                }
 //            }
-//            listaDeSaldos.add(saldo);
-//
 //        }
 //
-//        lbSaldoPromedioUsuario.setText(String.valueOf(promedioSaldos));
-//        lbUsuarioMayorSaldoNombre.setText(nombreMayor);
-//        lbUsuarioMayorSaldoSaldo.setText(String.valueOf(saldoMayor));
+//        return listaRetiros;
+//    }
 //
-
-    }
-
-
-
+//    public List<String> filtrarCategorias(){
+//        List<Transaccion> listaTransacciones = filtrarGastos();
+//
+//        String[] listaCategorias = new String[listaTransacciones.size()];
+//        for (int i = 0; i < listaTransacciones.size(); i++) {
+//            Transaccion transaccion = listaTransaccionesDeUsuario.get(i);
+//            try {
+//                Categoria categoriaTransaccion = categoriaController.consultar(transaccion.getIdCategoria(), TipoConsulta.ID_CATEGORIA);
+//                listaCategorias[i] = categoriaTransaccion.getNombre();
+//
+//            }catch (Exception e) {
+//                Seguimiento.registrarLog(3, "Ocurrio un error en la filtración de categoria: " + e.getMessage());
+//            }
+//        }
+//
+//        return List.of(listaCategorias);
+//    }
 
 }

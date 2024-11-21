@@ -25,6 +25,7 @@ public class Transaccion implements Serializable {
     private String[] idCuentas;
     private String idCategoria = "";
 
+
     public static final long serialVersionID = 9L;
 
     /**

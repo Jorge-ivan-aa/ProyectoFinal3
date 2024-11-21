@@ -38,7 +38,7 @@ public class ModelFactory {
 
 
     private ModelFactory() {
-        obtenerActualizaciones();
+      //  obtenerActualizaciones();
         Persistencia.setRutaArchivos(Config.RUTA_PERSISTENCIA.getValor());
 
         usuarioPersistente = new UsuarioPersistente();
@@ -73,7 +73,7 @@ public class ModelFactory {
         icaja.excluirAdmin(listaUsuarioObservable, listaCategoriasObservable);
 
         guardarPersistencia();
-        sincronizarInstancias();
+      //  sincronizarInstancias();
     }
 
     private void obtenerActualizaciones() {

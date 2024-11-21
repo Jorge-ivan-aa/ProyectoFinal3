@@ -12,7 +12,6 @@ import co.edu.uniquindio.icaja.model.Categoria;
 import static co.edu.uniquindio.icaja.controller.enums.TipoConsulta.ID_CATEGORIA;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
-import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 

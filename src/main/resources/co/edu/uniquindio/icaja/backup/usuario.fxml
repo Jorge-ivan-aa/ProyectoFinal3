@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.mfxcore.controls.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="626" prefWidth="1073" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.UsuarioView">
+   <HBox alignment="CENTER" layoutX="548.0" layoutY="266.0" prefHeight="47.0" prefWidth="510.0">
+      <children>
+         <MFXButton alignment="CENTER" onAction="#limpiarCamposUsuarioAction" prefHeight="30.0" prefWidth="100.0" text=" " HBox.hgrow="ALWAYS">
+            <graphic>
+               <FontAwesomeIconView glyphName="ERASER" size="20" styleClass="icon" text="" />
+            </graphic>
+            <tooltip>
+               <Tooltip text="Limpiar campos." />
+            </tooltip>
+         </MFXButton>
+         <MFXButton alignment="CENTER" onAction="#crearUsuario" prefHeight="30.0" prefWidth="100.0" text="Crear" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+               <Insets left="20.0" />
+            </HBox.margin></MFXButton>
+         <MFXButton alignment="CENTER" onAction="#actualizarUsuario" prefHeight="30.0" prefWidth="100.0" text="Actualizar" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+               <Insets left="20.0" />
+            </HBox.margin></MFXButton>
+         <MFXButton alignment="CENTER" onAction="#eliminarUsuario" prefHeight="30.0" prefWidth="100.0" text="Eliminar" HBox.hgrow="ALWAYS">
+            <HBox.margin>
+               <Insets left="20.0" />
+            </HBox.margin></MFXButton>
+      </children>
+   </HBox>
+   <VBox layoutX="18.0" layoutY="33.0" prefHeight="271.0" prefWidth="249.0">
+      <children>
+         <Label prefHeight="40.0" prefWidth="96.0" text="Nombre:" />
+         <TextField fx:id="txtNombreAdmin" />
+         <Region prefHeight="21.0" prefWidth="249.0" />
+         <Label prefHeight="40.0" prefWidth="96.0" text="Cedula:" />
+         <TextField fx:id="txtCedulaAdmin" />
+         <Region prefHeight="21.0" prefWidth="249.0" />
+      </children>
+   </VBox>
+   <VBox layoutX="410.0" layoutY="32.0" prefHeight="203.0" prefWidth="249.0">
+      <children>
+         <Label prefHeight="40.0" prefWidth="151.0" text="Telefono:" />
+         <TextField fx:id="txtTelefonoAdmin" />
+         <Region prefHeight="21.0" prefWidth="249.0" />
+         <Label prefHeight="40.0" prefWidth="151.0" text="Correo:" />
+         <TextField fx:id="txtCorreoAdmin" />
+      </children>
+   </VBox>
+   <VBox layoutX="809.0" layoutY="32.0" prefHeight="203.0" prefWidth="249.0">
+      <children>
+         <Label prefHeight="40.0" prefWidth="96.0" text="Clave:" />
+         <TextField fx:id="txtClaveAdmin" />
+         <Region prefHeight="21.0" prefWidth="249.0" />
+         <Label prefHeight="40.0" prefWidth="156.0" text="Clave transaccional:" />
+         <TextField fx:id="txtClaveTransaccionalAdmin" />
+      </children>
+   </VBox>
+
+   <TableView fx:id="tbUsuariosAdmin" layoutX="14.0" layoutY="339.0" prefHeight="273.0" prefWidth="1047.0">
+      <columns>
+         <TableColumn fx:id="tbcNombreUsuarioAdmin" prefWidth="171.6666717529297" style="-fx-background-radius: 10;" text="Nombre" />
+         <TableColumn fx:id="tbcCedulaUsuarioAdmin" prefWidth="140.66668701171875" style="-fx-background-radius: 10;" text="Cédula " />
+         <TableColumn fx:id="tbcCorreoUsuarioAdmin" prefWidth="202.66668701171875" style="-fx-background-radius: 10;" text="Correo" />
+         <TableColumn fx:id="tbcTelefonoUsuarioAdmin" prefWidth="144.3333740234375" style="-fx-background-radius: 10;" text="Telefono" />
+         <TableColumn fx:id="tbcClaveUsuarioAdmin" prefWidth="106.0" style="-fx-background-radius: 10;" text="Clave" />
+         <TableColumn fx:id="tbcClaveTransaccionalAdmin" prefWidth="189.33331298828125" style="-fx-background-radius: 10;" text="Clave Transaccional" />
+         <TableColumn fx:id="tbcSaldoTotalAdmin" prefWidth="189.33331298828125" style="-fx-background-radius: 10;" text="Saldo" />
+      </columns>
+   </TableView>
+</AnchorPane>
