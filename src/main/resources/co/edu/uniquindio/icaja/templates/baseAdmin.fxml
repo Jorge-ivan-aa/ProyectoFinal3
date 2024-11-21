@@ -2,7 +2,10 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -74,5 +77,9 @@
     <AnchorPane fx:id="estadisticaBox" layoutX="162.0" layoutY="47.0" prefHeight="626.0" prefWidth="1073.0" visible="false">
         <fx:include source="admin/estadistica.fxml" />
     </AnchorPane>
-   <Label fx:id="lbNombreVentana" layoutX="162.0" layoutY="26.0" style="-fx-text-fill: #C80459;" styleClass="nombre_ventana" text="Titulo ventana" />
+   <AnchorPane layoutX="175.0" prefHeight="35.0" prefWidth="332.0" styleClass="container_nombre_ventana">
+      <children>
+         <Label fx:id="lbNombreVentana" layoutX="23.0" layoutY="8.0" styleClass="nombre_ventana" text="Titulo ventana" />
+      </children>
+   </AnchorPane>
 </AnchorPane>

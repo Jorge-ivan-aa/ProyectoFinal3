@@ -150,36 +150,36 @@ public class EstadisticaView {
     }
 
     public void filtrarSaldos(){
-        listaDeUsuarios = usuarioController.getListaUsuarioObservable();
-        List<Double> listaDeSaldos = new ArrayList<>();
-        List<Transaccion> listaDetransacciones= new ArrayList<>();
-        double saldoMayor = 0;
-        String nombreMayor="";
-        for (int i = 0; i < listaDeUsuarios.size()-1; i++) {
-            Usuario usuario = listaDeUsuarios.get(i);
-            //Añadir transacciones de los usuarios a la lista
-
-            Usuario usuario2 = listaDeUsuarios.get(i+1);
-            sumaSaldos = usuario.getSaldoTotal().doubleValue();
-            promedioSaldos= (sumaSaldos/listaDeUsuarios.size());
-
-            //Validar cual es el usuario con el mayor saldo de la app
-            double saldo = usuario.getSaldoTotal().doubleValue();
-            if(saldo>usuario2.getSaldoTotal().doubleValue()){
-                saldoMayor = saldo;
-                nombreMayor=usuario.getNombre();
-            }else{
-                saldoMayor= usuario2.getSaldoTotal().doubleValue();
-                nombreMayor= usuario2.getNombre();
-            }
-            listaDeSaldos.add(saldo);
-
-        }
-
-        lbSaldoPromedioUsuario.setText(String.valueOf(promedioSaldos));
-        lbUsuarioMayorSaldoNombre.setText(nombreMayor);
-        lbUsuarioMayorSaldoSaldo.setText(String.valueOf(saldoMayor));
-
+//        listaDeUsuarios = usuarioController.getListaUsuarioObservable();
+//        List<Double> listaDeSaldos = new ArrayList<>();
+//        List<Transaccion> listaDetransacciones= new ArrayList<>();
+//        double saldoMayor = 0;
+//        String nombreMayor="";
+//        for (int i = 0; i < listaDeUsuarios.size()-1; i++) {
+//            Usuario usuario = listaDeUsuarios.get(i);
+//            //Añadir transacciones de los usuarios a la lista
+//
+//            Usuario usuario2 = listaDeUsuarios.get(i+1);
+//            sumaSaldos = usuario.getSaldoTotal().doubleValue();
+//            promedioSaldos= (sumaSaldos/listaDeUsuarios.size());
+//
+//            //Validar cual es el usuario con el mayor saldo de la app
+//            double saldo = usuario.getSaldoTotal().doubleValue();
+//            if(saldo>usuario2.getSaldoTotal().doubleValue()){
+//                saldoMayor = saldo;
+//                nombreMayor=usuario.getNombre();
+//            }else{
+//                saldoMayor= usuario2.getSaldoTotal().doubleValue();
+//                nombreMayor= usuario2.getNombre();
+//            }
+//            listaDeSaldos.add(saldo);
+//
+//        }
+//
+//        lbSaldoPromedioUsuario.setText(String.valueOf(promedioSaldos));
+//        lbUsuarioMayorSaldoNombre.setText(nombreMayor);
+//        lbUsuarioMayorSaldoSaldo.setText(String.valueOf(saldoMayor));
+//
 
     }
 

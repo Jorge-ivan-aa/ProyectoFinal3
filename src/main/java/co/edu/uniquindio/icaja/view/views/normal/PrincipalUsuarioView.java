@@ -1,6 +1,5 @@
 package co.edu.uniquindio.icaja.view.views.normal;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,19 +10,17 @@ import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 
 public class PrincipalUsuarioView {
     UsuarioController usuarioController = new UsuarioController();
-    Sesion sesion = usuarioController.getFactory().getIcaja().getSesion();
-    Usuario usuarioLogueado = sesion.getUsuario();
+    Usuario usuarioLogueado = usuarioController.getFactory().getIcaja().getSesion().getUsuario();
+
     List<String> listaMensajes = new ArrayList<>();
     ChatBot chatBot = new ChatBot();
 
@@ -80,12 +77,9 @@ public class PrincipalUsuarioView {
         AnchorPane userMessage2 = crearMensaje(mensajeInicial, false);
         lvListaChatConIA.getItems().add(userMessage2);
     }
-    //con true envia mensaje por parte del usuario, con false envia mensaje por parte del chatBot
+
     @FXML
     void EnviarMensajeIaAction() {
-//        String mensaje = txtMensajeParaIA.getText();
-//        listaMensajes.add(mensaje);
-//        lvListaChatConIA.setItems((ObservableList<AnchorPane>) listaMensajes);
         String texto = txtMensajeParaIA.getText();
         if (!texto.isEmpty()) {
             AnchorPane userMessage = crearMensaje(texto, true);

@@ -5,7 +5,7 @@ import co.edu.uniquindio.icaja.model.enums.EntidadBancaria;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 import co.edu.uniquindio.icaja.model.services.Persistible;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
-import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
+import co.edu.uniquindio.icaja.utils.almacenamiento.Persistencia;
 
 import java.io.IOException;
 import java.util.ArrayList;

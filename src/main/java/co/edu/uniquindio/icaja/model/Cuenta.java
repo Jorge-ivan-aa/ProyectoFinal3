@@ -23,7 +23,7 @@ public class Cuenta implements Serializable {
     private EntidadBancaria entidad;
     private String numeroCuenta;
     private TipoCuenta tipo;
-    private BigDecimal saldo = BigDecimal.ZERO;
+    private String saldo;
     private String idpropietario;
     public static final long serialVersionID = 7L;
 
@@ -32,12 +32,12 @@ public class Cuenta implements Serializable {
         this.entidad = entidad;
         this.numeroCuenta = numeroCuenta;
         this.tipo = tipo;
-        this.saldo = NumTool.parseToDinero(saldo, "No se pudo crear la cuenta, el monto ingresado no es valido");
+        this.saldo = NumTool.parseToDinero(saldo, "No se pudo crear la cuenta, el monto ingresado no es valido").toString();
         this.idpropietario = propietario;
     }
 
     public Cuenta(String saldo) {
-        this.saldo = NumTool.parseToDinero(saldo, "No se pudo crear la cuenta, el monto ingresado no es valido");
+        this.saldo = NumTool.parseToDinero(saldo, "No se pudo crear la cuenta, el monto ingresado no es valido").toString();
     }
 
     private String generarId() {
@@ -47,13 +47,13 @@ public class Cuenta implements Serializable {
     public void modificarSaldo(TipoTransaccion tipo, BigDecimal monto) throws SaldoInsuficiente {
         switch (tipo) {
             case DEPOSITO:
-                this.saldo = this.saldo.add(monto);
+                this.saldo = NumTool.parseToDinero(this.saldo).add(monto).toString();
                 break;
             case RETIRO:
-                int ejem = saldo.intValue() + monto.intValue();
-                if ( ejem >= 0) {
-                    System.out.println("ejem aqui entro al subtract");
-                    this.saldo = this.saldo.subtract(monto);
+                int diferencia =  NumTool.parseToDinero(saldo).intValue() - monto.intValue();
+                if ( diferencia >= 0) {
+
+                    this.saldo = NumTool.parseToDinero(this.saldo).subtract(monto).toString();
                 } else {
                     throw new SaldoInsuficiente("No se puede hacer el retiro, saldo insuficiente");
                 }

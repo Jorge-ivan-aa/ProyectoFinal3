@@ -31,6 +31,7 @@ public class Sesion implements Login, Serializable {
             }
         }
 
+        Seguimiento.registrarLog(3, "La cuentra no se encontró");
         return null;
     }
 

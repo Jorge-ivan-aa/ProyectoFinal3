@@ -12,6 +12,7 @@ import co.edu.uniquindio.icaja.exception.almacenamiento.TipoNoMapeado;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.utils.tools.ListTools;
 
+import co.edu.uniquindio.icaja.utils.tools.NumTool;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -60,7 +61,7 @@ public class ICaja implements Serializable {
     public void add(Cuenta cuenta) {
         Usuario propietario = (Usuario) buscarPorId(Usuario.class, cuenta.getIdpropietario());
         propietario.getIdCuentas().add(cuenta.getIdCuenta());
-        propietario.sumarSaldoTotal(cuenta.getSaldo());
+        propietario.sumarSaldoTotal(NumTool.parseToDinero(cuenta.getSaldo()));
 
         listaCuentas.add(cuenta);
     }
@@ -68,7 +69,7 @@ public class ICaja implements Serializable {
     public void remove(Cuenta cuenta) {
         Usuario propietario = (Usuario) buscarPorId(Usuario.class, cuenta.getIdpropietario());
         propietario.getIdCuentas().remove(cuenta.getIdCuenta());
-        propietario.restarSaldoTotal(cuenta.getSaldo());
+        propietario.restarSaldoTotal(NumTool.parseToDinero(cuenta.getSaldo()));
 
         listaCuentas.remove(cuenta);
     }
@@ -104,6 +105,7 @@ public class ICaja implements Serializable {
                 }
 
                 break;
+
             case RETIRO:
                 try {
                     Cuenta cuentaOrigen = (Cuenta) buscarPorId(Cuenta.class, transaccion.getIdCuentas()[0]);
@@ -115,6 +117,8 @@ public class ICaja implements Serializable {
                 }  catch (Exception e) {
                     e.printStackTrace();
                 }
+                break;
+
             case DEPOSITO:
                 try {
                     Cuenta cuentaOrigen = (Cuenta) buscarPorId(Cuenta.class, transaccion.getIdCuentas()[0]);
@@ -125,6 +129,8 @@ public class ICaja implements Serializable {
                 }  catch (Exception e) {
                     e.printStackTrace();
                 }
+                break;
+
         }
 
         listaTransacciones.add(transaccion);

@@ -2,7 +2,7 @@ package co.edu.uniquindio.icaja.model.persistencia;
 
 import co.edu.uniquindio.icaja.model.Presupuesto;
 import co.edu.uniquindio.icaja.model.services.Persistible;
-import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
+import co.edu.uniquindio.icaja.utils.almacenamiento.Persistencia;
 import co.edu.uniquindio.icaja.utils.tools.NumTool;
 
 import java.io.IOException;
@@ -20,11 +20,13 @@ public class PresupuestoPersistente implements Persistible<Presupuesto> {
                             presupuesto.getNombre()).append("@@")
                     .append(presupuesto.getIdPresupuesto()).append("@@")
                     .append(presupuesto.getMontoAsignado()).append("@@")
-                    .append(presupuesto.getMontoGastado()).append("@@")
-                    .append("<<<@@")
-                    .append(presupuesto.getIdPresupuesto()).append("@@")
-                    .append("@@").append("\n");
+                    .append(presupuesto.getMontoGastado()).append("@@");
+
+            contenido.append("<<<@@");
+            List.of(presupuesto.getIdCategorias()).forEach(idCategoria -> contenido.append(idCategoria).append("@@"));
+            contenido.append("<<<").append("\n");
         }
+
         Persistencia.guardarArchivo("presupuesto.txt", contenido.toString(), false);
     }
 
@@ -40,7 +42,7 @@ public class PresupuestoPersistente implements Persistible<Presupuesto> {
             presupuesto.setIdPresupuesto(linea[1]);
             presupuesto.setMontoAsignado(NumTool.parseToDinero(linea[2]));
             presupuesto.setMontoGastado(NumTool.parseToDinero(linea[3]));
-            int idx = 5;
+            int idx = 5 + 1;
 
             presupuesto.setIdCategorias(restaurarLista(linea, idx));
             presupuestos.add(presupuesto);

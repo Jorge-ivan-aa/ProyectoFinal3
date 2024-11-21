@@ -1,4 +1,4 @@
-package co.edu.uniquindio.icaja.utils.respaldo;
+package co.edu.uniquindio.icaja.utils.almacenamiento;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;

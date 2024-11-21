@@ -1,16 +1,21 @@
-package co.edu.uniquindio.icaja.utils.respaldo;
+package co.edu.uniquindio.icaja.model.respaldo;
 
 import co.edu.uniquindio.icaja.model.ICaja;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
+import co.edu.uniquindio.icaja.utils.almacenamiento.Serializado;
 
 public class ICajaRespaldo {
 
-    private static final String RUTA_RESPALDO_DAT = "src/main/resources/persistencia/respaldo/respaldo.dat";
+    private static String RUTA_RESPALDO_DAT = "src/main/resources/persistencia/respaldo/respaldo.dat";
     private static final String RUTA_RESPALDO_XML = "src/main/resources/persistencia/respaldo/respaldo.xml";
 
 
     //------------------------------------SERIALIZACIÓN  y XML
 
+
+    public static void setRutaRespaldoXml(String rutaRespaldoDat) {
+        RUTA_RESPALDO_DAT = rutaRespaldoDat;
+    }
 
     public static ICaja cargarRecursoICajaBinario() {
 

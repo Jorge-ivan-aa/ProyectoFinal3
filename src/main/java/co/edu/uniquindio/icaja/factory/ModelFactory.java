@@ -4,9 +4,12 @@ package co.edu.uniquindio.icaja.factory;
 import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.model.persistencia.*;
 import co.edu.uniquindio.icaja.model.services.Persistible;
+import co.edu.uniquindio.icaja.server.consumidor.Consumidor;
+import co.edu.uniquindio.icaja.server.productor.Productor;
+import co.edu.uniquindio.icaja.utils.almacenamiento.Config;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
-import co.edu.uniquindio.icaja.utils.respaldo.ICajaRespaldo;
-import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
+import co.edu.uniquindio.icaja.model.respaldo.ICajaRespaldo;
+import co.edu.uniquindio.icaja.utils.almacenamiento.Persistencia;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
@@ -35,6 +38,9 @@ public class ModelFactory {
 
 
     private ModelFactory() {
+        obtenerActualizaciones();
+        Persistencia.setRutaArchivos(Config.RUTA_PERSISTENCIA.getValor());
+
         usuarioPersistente = new UsuarioPersistente();
         cuentaPersistente = new CuentaPersistente();
         categoriaPersistente = new CategoriaPersistente();
@@ -42,7 +48,9 @@ public class ModelFactory {
         transaccionPersistente = new TransaccionPersistente();
 
         icaja = new ICaja();
+
         if (!cargarPersistencia()) icaja = cargaRespaldo();
+        if (icaja == null) icaja = new ICaja();
 
         cargarConfiguracion();
     }
@@ -65,6 +73,15 @@ public class ModelFactory {
         icaja.excluirAdmin(listaUsuarioObservable, listaCategoriasObservable);
 
         guardarPersistencia();
+        sincronizarInstancias();
+    }
+
+    private void obtenerActualizaciones() {
+        Consumidor.escuchandoActualizaciones();
+    }
+
+    private void sincronizarInstancias() {
+        Productor.enviarNotificacion("Mensaje de prueba");
     }
 
 
@@ -148,20 +165,20 @@ public class ModelFactory {
     private void cargarConfiguracion() {
 
         try {
-            String cedula = Persistencia.cargarConfiguracion("Dadmin");
-            String contrasena = Persistencia.cargarConfiguracion("contrasena");
-            String categoria = Persistencia.cargarConfiguracion("transacciones");
+            String cedula_admin= Config.CEDULA_ADMIN.getValor();
+            String clave_admin = Config.CLAVE_ADMIN.getValor();
+            String categoria_admin = Config.CATEGORIA_ADMIN.getValor();
 
             icaja.excluirAdmin(icaja.getListaUsuarios(), icaja.getListaCategorias());
 
             Usuario admin = new Usuario();
             admin.setNombre("Administrador");
-            admin.setCedula(cedula);
-            admin.setHashclave(contrasena);
+            admin.setCedula(cedula_admin);
+            admin.setHashclave(clave_admin);
             admin.setAdministrador();
             icaja.add(admin);
 
-            Categoria categoriaSistema = new Categoria(categoria, categoria);
+            Categoria categoriaSistema = new Categoria(categoria_admin, categoria_admin);
             categoriaSistema.setIdCategoria("SYSTEM");
             icaja.add(categoriaSistema);
 

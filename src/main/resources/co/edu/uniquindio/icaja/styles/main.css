@@ -98,5 +98,10 @@ TextField, .mfx-password-field .text-field {
 
 .nombre_ventana {
     -fx-font-size: 16px;
-    -fx-fill: #6DFCBE;
+    -fx-text-fill: #039B59;
+}
+
+.container_nombre_ventana {
+    -fx-background-color: #6DFCBE;
+    -fx-background-radius: 0 0 8px 8px;
 }

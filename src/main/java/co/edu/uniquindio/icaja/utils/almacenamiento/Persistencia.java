@@ -1,42 +1,24 @@
-package co.edu.uniquindio.icaja.utils.respaldo;
+package co.edu.uniquindio.icaja.utils.almacenamiento;
 
-import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 public class Persistencia {
 
-    private static final String RUTA_ARCHIVOS = "src/main/resources/persistencia/archivos/";
-    private static ResourceBundle CONFIG;
+    private static String RUTA_ARCHIVOS = "";
 
-    static {
-        try {
-            CONFIG = ResourceBundle.getBundle("persistencia.config");
-        } catch (Exception e) {
-            Seguimiento.registrarLog(3, "No se pudó cargar la configuración:" + e.getMessage());
-        }
+    public static void setRutaArchivos(String rutaArchivos) {
+        RUTA_ARCHIVOS = rutaArchivos;
     }
-
 
     public Persistencia() {
 
     }
 
-
-    /**
-    * Este metodo se usa para cargar datos del archivo de propiedades.
-    *
-    * @param propiedad es la configuracion que se quiere cargar
-    */
-    public static String cargarConfiguracion(String propiedad) {
-        return  CONFIG.getString(propiedad);
-    }
-
     /**
      * Este metodo recibe una cadena con el contenido que se quiere guardar en el archivo
      *
-     * @param ruta es la ruta o path donde esta ubicado el archivo
+     * @param ruta es la ruta o path donde está ubicado el archivo
      */
     public static void guardarArchivo(String ruta, String contenido, Boolean flagAnexarContenido) throws IOException {
 

@@ -87,11 +87,13 @@ public class CuentaController implements GenericController<CuentaDto, Cuenta> {
     public void actualizar(CuentaDto cuentaDto) throws ElementoNoExiste {
         try {
             Cuenta actualizable = this.consultar(cuentaDto.id(), ID_CUENTA);
+
             actualizable.setEntidad(cuentaDto.entidad());
-            actualizable.setSaldo(NumTool.parseToDinero(cuentaDto.saldo()));
+            actualizable.setSaldo(NumTool.parseToDinero(cuentaDto.saldo()).toString());
             actualizable.setTipo(cuentaDto.tipo());
             actualizable.setIdpropietario(cuentaDto.propietario());
 
+            sincronizarVinculos(actualizable.getIdpropietario(), cuentaDto.saldo());
             sincronizarData();
             registrarLog(1, "Se ha actualizado la cuenta bancaria de numero" + cuentaDto.numeroCuenta() + " exitosamente :)");
 
@@ -101,5 +103,27 @@ public class CuentaController implements GenericController<CuentaDto, Cuenta> {
         }
     }
 
+    public void sincronizarVinculos(String idPropietario, String monto ) {
+        System.out.println(idPropietario);
+        factory.getIcaja().getListaUsuarios().forEach(usuario -> System.out.println(usuario.getIdUsuario()));
+        System.out.println(factory.getIcaja().getListaUsuarios());
+        Usuario propietario = (Usuario) ConsultaAvanzada(factory.getIcaja().getListaUsuarios(),
+                ID_USUARIO.getBuscador(),
+                idPropietario,
+                0
+                );
+
+        int diferencia = NumTool.parseToDinero(propietario.getSaldoTotal()).subtract(NumTool.parseToDinero(monto)).intValue();
+
+        if (diferencia < 0) {
+            propietario.calcularIngresos(NumTool.parseToDinero(String.valueOf(diferencia).replace("-", "")));
+        }
+
+        if (diferencia > 0) {
+            propietario.calcularGastos(NumTool.parseToDinero(String.valueOf(diferencia)));
+        }
+
+        propietario.setSaldoTotal(NumTool.parseToDinero(monto).toString());
+    }
 
 }

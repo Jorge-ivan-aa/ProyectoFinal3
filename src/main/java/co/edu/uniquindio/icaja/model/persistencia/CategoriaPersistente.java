@@ -3,7 +3,7 @@ package co.edu.uniquindio.icaja.model.persistencia;
 import co.edu.uniquindio.icaja.exception.almacenamiento.PersistenciaNoCargada;
 import co.edu.uniquindio.icaja.model.Categoria;
 import co.edu.uniquindio.icaja.model.services.Persistible;
-import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
+import co.edu.uniquindio.icaja.utils.almacenamiento.Persistencia;
 
 import java.io.IOException;
 import java.util.ArrayList;

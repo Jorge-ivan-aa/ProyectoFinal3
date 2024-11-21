@@ -3,8 +3,7 @@ package co.edu.uniquindio.icaja.model.persistencia;
 import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.model.services.Persistible;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
-import co.edu.uniquindio.icaja.utils.respaldo.Persistencia;
-import co.edu.uniquindio.icaja.utils.tools.NumTool;
+import co.edu.uniquindio.icaja.utils.almacenamiento.Persistencia;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,12 +25,11 @@ public class UsuarioPersistente implements Persistible<Usuario> {
                     .append(usuario.getTelefono()).append("@@")
                     .append(usuario.getClave()).append("@@")
                     .append(usuario.getClaveTransaccional()).append("@@")
-                    .append(usuario.getSaldoTotal().toString()).append("@@")
-                    .append(usuario.getIngresos().toString()).append("@@")
-                    .append(usuario.getGastos().toString()).append("@@");
+                    .append(usuario.getSaldoTotal()).append("@@")
+                    .append(usuario.getIngresos()).append("@@")
+                    .append(usuario.getGastos()).append("@@");
 
             contenido.append("<<<@@");
-            System.out.println(usuario.getIdCuentas());
             usuario.getIdCuentas().forEach(idCuenta -> contenido.append(idCuenta).append("@@"));
             contenido.append("<<<@@");
             usuario.getIdPresupuestos().forEach(idPresupuesto -> contenido.append(idPresupuesto).append("@@"));
@@ -39,7 +37,7 @@ public class UsuarioPersistente implements Persistible<Usuario> {
             usuario.getIdCategorias().forEach(idCategoria -> contenido.append(idCategoria).append("@@"));
             contenido.append("<<<@@");
             usuario.getIdTransacciones().forEach(idTransaccion -> contenido.append(idTransaccion).append("@@"));
-            contenido.append("\n");
+            contenido.append("<<<").append("\n");
         }
 
 
@@ -79,16 +77,14 @@ public class UsuarioPersistente implements Persistible<Usuario> {
         usuario.setTelefono(linea[4]);
         usuario.setClave(linea[5]);
         usuario.setClaveTransaccional(linea[6]);
-        usuario.setSaldoTotal(NumTool.parseToDinero(linea[7]));
-        usuario.setIngresos(NumTool.parseToDinero(linea[8]));
-        usuario.setGastos(NumTool.parseToDinero(linea[9]));
+        usuario.setSaldoTotal(linea[7]);
+        usuario.setIngresos(linea[8]);
+        usuario.setGastos(linea[9]);
 
-        int idx = 10+1;
+        int idx = 10 + 1;
 //         Restauramos las listas de Cuentas, Presupuestos, Categorias y Transacciones usando el método genérico
         usuario.setIdCuentas(restaurarLista(linea, idx));
         idx += usuario.getIdCuentas().size() + 1;
-
-        System.out.println("aqui estamos leyendo: " + usuario.getIdCuentas());
 
         usuario.setIdPresupuestos(restaurarLista(linea, idx));
         idx += usuario.getIdPresupuestos().size() + 1;
@@ -104,11 +100,10 @@ public class UsuarioPersistente implements Persistible<Usuario> {
 
     private ArrayList<String> restaurarLista(String[] datosUsuario, int indice) {
         ArrayList<String> lista = new ArrayList<>();
-        if (indice < datosUsuario.length) {
-            while (!datosUsuario[indice].equals("<<<")) {
-                lista.add(datosUsuario[indice]);
-                indice++;
-            }
+
+        while (!datosUsuario[indice].equals("<<<")) {
+            lista.add(datosUsuario[indice]);
+            indice++;
         }
 
         return lista;

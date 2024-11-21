@@ -51,7 +51,7 @@ public class LoginView {
                 ViewTools.generarVentana("templates/baseAdmin.fxml", "ICaja - Administrador", "carga.fxml",  "styles/main.css");
                 break;
             case NORMAL:
-                ViewTools.generarVentana("templates/baseNormal.fxml", "ICaja - " + usuario, "carga.fxml", "styles/main.css");
+                ViewTools.generarVentana("templates/baseNormal.fxml", "ICaja - " + usuario, "carga.fxml","styles/baseNormal.css", "styles/main.css");
                 break;
         }
     }

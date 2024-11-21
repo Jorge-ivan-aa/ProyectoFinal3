@@ -4,7 +4,6 @@ import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,9 +26,9 @@ public class Usuario implements Serializable, Login {
     private String telefono;
     private String clave;
     private String claveTransaccional;
-    private BigDecimal saldoTotal = new BigDecimal(BigInteger.ZERO);
-    private BigDecimal ingresos = new BigDecimal(BigInteger.ZERO);
-    private BigDecimal gastos = new BigDecimal(BigInteger.ZERO);
+    private String saldoTotal;
+    private String ingresos;
+    private String gastos;
     private TipoUsuario tipoUsuario = TipoUsuario.NORMAL;
     private ArrayList<String> idCuentas = new ArrayList<>();
     private ArrayList<String> idPresupuestos = new ArrayList<>();
@@ -45,9 +44,9 @@ public class Usuario implements Serializable, Login {
         this.telefono = telefono;
         this.clave = encriptarClave(clave);
         this.claveTransaccional = encriptarClave(claveTransaccional);
-        this.saldoTotal = BigDecimal.ZERO;
-        this.ingresos = BigDecimal.ZERO;
-        this.gastos = BigDecimal.ZERO;
+        this.saldoTotal = "0";
+        this.ingresos = "0";
+        this.gastos = "0";
     }
 
     private String generarId() {
@@ -90,21 +89,21 @@ public class Usuario implements Serializable, Login {
     }
 
     public void calcularIngresos(BigDecimal monto) {
-        ingresos = ingresos.add(monto);
+        ingresos = NumTool.parseToDinero(ingresos).add(monto).toString();
     }
 
     public void calcularGastos(BigDecimal monto) {
-        gastos = gastos.add(monto);
+        gastos = NumTool.parseToDinero(gastos).add(monto).toString();
     }
 
     public void sumarSaldoTotal(BigDecimal monto) {
         calcularIngresos(monto);
-        saldoTotal = saldoTotal.add(monto);
+        saldoTotal = NumTool.parseToDinero(saldoTotal).add(monto).toString();
     }
 
     public void restarSaldoTotal(BigDecimal monto) {
         calcularGastos(monto);
-        this.saldoTotal = this.saldoTotal.subtract(monto);
+        this.saldoTotal = NumTool.parseToDinero(saldoTotal).subtract(monto).toString();
     }
 
     public void agregarTransaccion(Transaccion transaccion) {

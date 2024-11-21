@@ -25,6 +25,8 @@ import javafx.scene.shape.StrokeLineCap;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -224,7 +226,6 @@ public class ViewTools {
      * Cambia los colores de los botones primario y secundarios con un efecto de desvanecimiento.
      *
      * @param primario El botón principal al que se le aplica el color destacado.
-     * @param duracion La duración del efecto de desvanecimiento (en segundos).
      * @param claseCSS La clase CSS que define el color del botón primario.
      * @param secundarios Los botones secundarios a los que se les quita la clase CSS y se les aplica el efecto de desvanecimiento.
      */
@@ -280,12 +281,16 @@ public class ViewTools {
      * @param mapper Función para mapear cada elemento a un String.
      */
     private static <T> void actualizarComboBox(MFXFilterComboBox<String> comboBox, ObservableList<T> listaObservable, Function<T, String> mapper) {
-
         comboBox.getItems().clear();
-        for (T item : listaObservable) {
+
+        // Crea una copia inmutable de la lista para iterar
+        List<T> copia = new ArrayList<>(listaObservable);
+
+        for (T item : copia) {
             comboBox.getItems().add(mapper.apply(item));  // Convierte el elemento a String y lo agrega
         }
     }
+
 
 
     /**
