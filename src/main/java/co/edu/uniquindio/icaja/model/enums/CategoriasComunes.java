@@ -1,8 +1,13 @@
 package co.edu.uniquindio.icaja.model.enums;
 
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import lombok.Getter;
 
 import java.util.*;
+import java.util.logging.Level;
+
+
+
 
 @Getter
 public enum CategoriasComunes {
@@ -101,11 +106,15 @@ public enum CategoriasComunes {
         }
 
         // Ordenar de mayor a menor porcentaje
-        estadisticas.sort((a, b) -> {
-            double porcentajeA = Double.parseDouble(a.split("@@")[1]);
-            double porcentajeB = Double.parseDouble(b.split("@@")[1]);
-            return Double.compare(porcentajeB, porcentajeA);
-        });
+        try {
+            estadisticas.sort((a, b) -> {
+                double porcentajeA = Double.parseDouble(a.split("@@")[1]);
+                double porcentajeB = Double.parseDouble(b.split("@@")[1]);
+                return Double.compare(porcentajeB, porcentajeA);
+            });
+        } catch (Exception e) {
+             Seguimiento.registrarLog(3, "Error al ordenar de mayor a menor las estadisticas: " + e.getMessage());
+        }
 
         return estadisticas;
     }

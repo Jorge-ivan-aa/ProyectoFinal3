@@ -115,8 +115,13 @@ public class EstadisticaView {
             String[] parts = categoria.split("@@");
             if (parts.length == 2) {
                 String nombreCategoria = parts[0];
-                double porcentaje = Double.parseDouble(parts[1]);
-                pieChartData.add(new PieChart.Data(nombreCategoria, porcentaje));
+                try {
+                    double porcentaje = Double.parseDouble(NumTool.formatearNumero(parts[1]));
+                    pieChartData.add(new PieChart.Data(nombreCategoria, porcentaje));
+                }catch (Exception e){
+                    Seguimiento.registrarLog(3,"Error en crear grafico de categorias: "+e.getMessage());
+                }
+
             }
         }
 
