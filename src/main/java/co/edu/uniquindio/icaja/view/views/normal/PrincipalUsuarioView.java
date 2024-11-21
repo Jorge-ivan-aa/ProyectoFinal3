@@ -23,6 +23,7 @@ public class PrincipalUsuarioView {
 
     List<String> listaMensajes = new ArrayList<>();
     ChatBot chatBot = new ChatBot();
+    String contexto= "Inicial";
 
     @FXML
     private ResourceBundle resources;
@@ -73,22 +74,25 @@ public class PrincipalUsuarioView {
 
         ViewTools.cambiarPantalla(panelCharlarIA,0.225, panelDepositarUsuario, panelTransferirUsuario );
         //Agregar un mensaje inicial por parte del chatbot
-        String mensajeInicial = "¡Hola! Soy tu asistente. ¿En qué puedo ayudarte?";
+        String mensajeInicial = "¡Hola! Soy tu asistente virtual digita inicial para información general, digita estrategias para consultas en terminos de fisica  ";
         AnchorPane userMessage2 = crearMensaje(mensajeInicial, false);
         lvListaChatConIA.getItems().add(userMessage2);
     }
 
     @FXML
     void EnviarMensajeIaAction() {
+
         String texto = txtMensajeParaIA.getText();
+
         if (!texto.isEmpty()) {
             AnchorPane userMessage = crearMensaje(texto, true);
             lvListaChatConIA.getItems().add(userMessage); // Agregar mensaje del usuario
 
             // Simulación de respuesta del "otro usuario"
-            String respuestaBot = chatBot.procesarEntrada(texto);
-            AnchorPane responseMessage = crearMensaje("IcajaBot: " + respuestaBot, false);
+            String [] respuestaBot = chatBot.procesarEntrada(texto,contexto);
+            AnchorPane responseMessage = crearMensaje("IcajaBot: " + respuestaBot[1], false);
             lvListaChatConIA.getItems().add(responseMessage);
+            contexto=respuestaBot[0];
 
             txtMensajeParaIA.clear(); // Limpiar el campo de entrada
         }
@@ -115,7 +119,7 @@ public class PrincipalUsuarioView {
     void salirChatIaAction() {
 
         ViewTools.cambiarPantalla(panelUnoUsuario,0.225, panelCharlarIA,panelDepositarUsuario,panelRetirarUsuario,panelTransferirUsuario);
-
+        lvListaChatConIA.getItems().clear();
     }
     @FXML
     void volverDepositoAction() {
@@ -156,6 +160,8 @@ public class PrincipalUsuarioView {
         }
     }
     private AnchorPane crearMensaje(String text, boolean isSentByUser) {
+
+
 //        VBox chatBox = new VBox(10); // Espaciado de 10 píxeles entre mensajes
 //        chatBox.setPadding(new Insets(10));
 //        Label messageLabel = new Label(text);
@@ -213,6 +219,8 @@ public class PrincipalUsuarioView {
         // Asegurar que el mensaje esté correctamente alineado dentro del AnchorPane
         AnchorPane.setTopAnchor(messageLabel, 10.0); // Espaciado superior
         messagePane.getChildren().add(messageLabel); // Añadir el mensaje al AnchorPane
+
+        // dar opciones al usuario numéricamente
 
         return messagePane;
 
