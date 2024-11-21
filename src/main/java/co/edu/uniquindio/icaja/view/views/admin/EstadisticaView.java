@@ -198,9 +198,14 @@ public class EstadisticaView {
             return 0.0;
         }
 
-        double totalSaldo = usuarios.stream()
-                .mapToDouble(usuario -> Double.parseDouble(usuario.getSaldoTotal()))
-                .sum();
+        double totalSaldo = 0;
+        try {
+            totalSaldo = usuarios.stream()
+                    .mapToDouble(usuario -> Double.parseDouble(usuario.getSaldoTotal()))
+                    .sum();
+        } catch (Exception ignore) {}
+
+
         return totalSaldo / usuarios.size();
     }
 
