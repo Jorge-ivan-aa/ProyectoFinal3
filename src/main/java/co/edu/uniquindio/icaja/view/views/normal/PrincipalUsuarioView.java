@@ -88,6 +88,9 @@ public class PrincipalUsuarioView {
     private ListView<Transaccion> lvListaTransaccionesUsuario;
 
     @FXML
+    private TextArea textAreaChat;
+
+    @FXML
     private Pane panelCharlarIA;
 
     @FXML
@@ -122,7 +125,8 @@ public class PrincipalUsuarioView {
         //Agregar un mensaje inicial por parte del chatbot
         String mensajeInicial = "¡Hola! Soy tu asistente Icaja virtual, digita: 1. Para generalidades de la app. Digita: 2. Para estrategias de ahorros";
         AnchorPane userMessage2 = crearMensaje(mensajeInicial, false);
-        lvListaChatConIA.getItems().add(userMessage2);
+        textAreaChat.setText(String.valueOf(userMessage2));
+        //lvListaChatConIA.getItems().add(userMessage2);
     }
 
     @FXML
@@ -130,17 +134,33 @@ public class PrincipalUsuarioView {
 
         String texto = txtMensajeParaIA.getText();
 
+//        if (!texto.isEmpty()) {
+//            AnchorPane userMessage = crearMensaje(texto, true);
+//            lvListaChatConIA.getItems().add(userMessage); // Agregar mensaje del usuario
+//
+//            // Simulación de respuesta del "otro usuario"
+//            String [] respuestaBot = chatBot.procesarEntrada(texto,contexto);
+//            AnchorPane responseMessage = crearMensaje("IcajaBot: " + respuestaBot[1], false);
+//            lvListaChatConIA.getItems().add(responseMessage);
+//            contexto=respuestaBot[0];
+//
+//            txtMensajeParaIA.clear(); // Limpiar el campo de entrada
+//        }
         if (!texto.isEmpty()) {
-            AnchorPane userMessage = crearMensaje(texto, true);
-            lvListaChatConIA.getItems().add(userMessage); // Agregar mensaje del usuario
+            // Concatenar el mensaje del usuario en el TextArea
+            String mensajeUsuario = "Usuario: " + texto + "\n";
+            textAreaChat.appendText(mensajeUsuario);
 
             // Simulación de respuesta del "otro usuario"
-            String [] respuestaBot = chatBot.procesarEntrada(texto,contexto);
-            AnchorPane responseMessage = crearMensaje("IcajaBot: " + respuestaBot[1], false);
-            lvListaChatConIA.getItems().add(responseMessage);
-            contexto=respuestaBot[0];
+            String[] respuestaBot = chatBot.procesarEntrada(texto, contexto);
+            String mensajeBot = "IcajaBot: " + respuestaBot[1] + "\n";
+            textAreaChat.appendText(mensajeBot);
 
-            txtMensajeParaIA.clear(); // Limpiar el campo de entrada
+            // Actualizar el contexto
+            contexto = respuestaBot[0];
+
+            // Limpiar el campo de entrada
+            txtMensajeParaIA.clear();
         }
     }
 
