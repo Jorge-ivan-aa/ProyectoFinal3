@@ -1,56 +1,47 @@
 package co.edu.uniquindio.icaja.server.consumidor.controller;
 
-
-
 import co.edu.uniquindio.icaja.server.config.RabbitFactory;
+import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.server.consumidor.controller.service.IModelFactoryService;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-import com.rabbitmq.client.DeliverCallback;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
+import com.rabbitmq.client.*;
 
 import static co.edu.uniquindio.icaja.server.util.Constantes.QUEUE_NUEVA_PUBLICACION;
 
 public class ModelFactoryController implements IModelFactoryService, Runnable {
+    private ConnectionFactory connectionFactory;
+    private Thread hiloServicioConsumer1;
+    private final ModelFactory factory = ModelFactory.getInstance(); // Instancia de ModelFactory
 
-    RabbitFactory rabbitFactory;
-    ConnectionFactory connectionFactory;
+    // Singleton revisado
+    private static ModelFactoryController instance;
 
-    Thread hiloServicioConsumer1;
-
-
-
-    //------------------------------  Singleton ------------------------------------------------
-    // Clase estatica oculta. Tan solo se instanciara el singleton una vez
-    private static class SingletonHolder {
-        private final static ModelFactoryController eINSTANCE = new ModelFactoryController();
-    }
-
-    // Método para obtener la instancia de nuestra clase
-    public static ModelFactoryController getInstance() {
-        return SingletonHolder.eINSTANCE;
-    }
-
-    public ModelFactoryController() {
+    private ModelFactoryController() {
         initRabbitConnection();
     }
 
-    private void initRabbitConnection() {
-        rabbitFactory = new RabbitFactory();
-        connectionFactory = rabbitFactory.getConnectionFactory();
-        System.out.println("conexion establecidad");
+    public static synchronized ModelFactoryController getInstance() {
+        if (instance == null) {
+            instance = new ModelFactoryController();
+        }
+        return instance;
     }
 
-    public void consumirMensajesServicio(){
+    private void initRabbitConnection() {
+        RabbitFactory rabbitFactory = new RabbitFactory();
+        connectionFactory = rabbitFactory.getConnectionFactory();
+        System.out.println("Conexión establecida");
+    }
+
+    public void consumirMensajesServicio() {
         hiloServicioConsumer1 = new Thread(this);
         hiloServicioConsumer1.start();
     }
 
-
     @Override
     public void run() {
         Thread currentThread = Thread.currentThread();
-        if(currentThread == hiloServicioConsumer1){
+        if (currentThread == hiloServicioConsumer1) {
             consumirMensajes();
         }
     }
@@ -63,10 +54,9 @@ public class ModelFactoryController implements IModelFactoryService, Runnable {
 
             DeliverCallback deliverCallback = (consumerTag, delivery) -> {
                 String message = new String(delivery.getBody());
-                System.out.println("Mensaje recibido: " + message);
-
-
-
+                Seguimiento.registrarLog(2, message);
+                factory.setIcaja();
+                factory.sincronizarData();
             };
 
             while (true) {

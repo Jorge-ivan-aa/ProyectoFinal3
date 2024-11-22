@@ -49,6 +49,7 @@ public class TransaccionController implements GenericController<ITransaccionDto,
             Transaccion nuevaTransaccion = getNuevaTransaccion(transaccionDto);
             factory.getIcaja().add(nuevaTransaccion);
             setTransaccionPendiente(null);
+            factory.sincronizarInstancias("Se ha realizado una nueva transacción");
             sincronizarData();
             registrarLog(1, "Se ha realizado una transaccion exitosamente :)");
         }

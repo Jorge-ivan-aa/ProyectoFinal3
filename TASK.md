@@ -14,7 +14,7 @@
 - [x] **Gestionar usuarios**: crear, actualizar, eliminar, listar.
 - [x] **Gestionar cuentas**: crear, actualizar, eliminar.
 - [X] **Gestionar transacciones**: crear, listar.
-- [ ] **Mostrar estadisticas**: gastos comunes, usuarios con más transacciones, saldo promedio de usuarios.
+- [X] **Mostrar estadisticas**: gastos comunes, usuarios con más transacciones, saldo promedio de usuarios.
 - [ ] **Mostrar graficas**: graficas con JavaFX Charts.
 
 
@@ -23,7 +23,7 @@
 
 - [x] **Registrarse y loguearse.**
 - [ ] **Modificar perfil**: nombre, correo, telefono.
-- [ ] **Agregar, retirar y transferir.**
+- [X] **Agregar, retirar y transferir.**
 - [ ] **Crear, modificar y eliminar presupuestos.**
 - [ ] **Consultar y categorizar transacciones.**
 - [ ] **Ver detalle de transacciones**: fecha, monto, descripción.

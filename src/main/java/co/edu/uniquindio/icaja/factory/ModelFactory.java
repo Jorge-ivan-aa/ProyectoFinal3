@@ -13,10 +13,13 @@ import co.edu.uniquindio.icaja.utils.almacenamiento.Persistencia;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 import static co.edu.uniquindio.icaja.utils.tools.ListTools.sincronizarLista;
 
+@Setter
 @Getter
 public class ModelFactory {
     private static ModelFactory instance;
@@ -38,7 +41,6 @@ public class ModelFactory {
 
 
     private ModelFactory() {
-      //  obtenerActualizaciones();
         Persistencia.setRutaArchivos(Config.RUTA_PERSISTENCIA.getValor());
 
         usuarioPersistente = new UsuarioPersistente();
@@ -51,10 +53,9 @@ public class ModelFactory {
 
         if (!cargarPersistencia()) icaja = cargaRespaldo();
         if (icaja == null) icaja = new ICaja();
-
+        obtenerActualizaciones();
         cargarConfiguracion();
     }
-
 
     public static ModelFactory getInstance() {
         if (instance == null) {
@@ -63,6 +64,9 @@ public class ModelFactory {
         return instance;
     }
 
+    public void setIcaja() {
+        cargarPersistencia();
+    }
 
     public void sincronizarData() {
         sincronizarLista(listaCuentaObservable, icaja.getListaCuentas());
@@ -80,8 +84,8 @@ public class ModelFactory {
         Consumidor.escuchandoActualizaciones();
     }
 
-    private void sincronizarInstancias() {
-        Productor.enviarNotificacion("Mensaje de prueba");
+    public void sincronizarInstancias(String msj) {
+        Productor.enviarNotificacion(msj);
     }
 
 

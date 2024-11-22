@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="21.0.2" class="java.beans.XMLDecoder">
+<java version="21.0.4" class="java.beans.XMLDecoder">
  <object class="co.edu.uniquindio.icaja.model.ICaja" id="ICaja0">
   <void property="listaCategorias">
    <void method="add">
@@ -16,14 +16,522 @@
     </object>
    </void>
   </void>
+  <void property="listaCuentas">
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Cuenta">
+     <void property="entidad">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.EntidadBancaria</class>
+       <string>BBVA</string>
+      </object>
+     </void>
+     <void property="idCuenta">
+      <string>209189bc-5528-4303-b28b-1dac5d0a8edd</string>
+     </void>
+     <void property="idpropietario">
+      <string>c1f18a9b-c379-4ebd-8a36-5af5e6bd5bdb</string>
+     </void>
+     <void property="numeroCuenta">
+      <string>4522257888</string>
+     </void>
+     <void property="saldo">
+      <string>131446</string>
+     </void>
+     <void property="tipo">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.TipoCuenta</class>
+       <string>AHORRO</string>
+      </object>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Cuenta">
+     <void property="entidad">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.EntidadBancaria</class>
+       <string>ITAU</string>
+      </object>
+     </void>
+     <void property="idCuenta">
+      <string>de363cde-9e8c-4395-b099-f39fbe44efd9</string>
+     </void>
+     <void property="idpropietario">
+      <string>f686e1c7-d681-4e03-9bec-b1f9e277c3c5</string>
+     </void>
+     <void property="numeroCuenta">
+      <string>7867867878</string>
+     </void>
+     <void property="saldo">
+      <string>1923213</string>
+     </void>
+     <void property="tipo">
+      <object class="java.lang.Enum" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.TipoCuenta</class>
+       <string>CORRIENTE</string>
+      </object>
+     </void>
+    </object>
+   </void>
+  </void>
+  <void property="listaTransacciones">
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Transaccion">
+     <void property="idCategoria">
+      <string>SYSTEM</string>
+     </void>
+     <void property="idCuentas">
+      <array class="java.lang.String" length="2">
+       <void index="0">
+        <string>209189bc-5528-4303-b28b-1dac5d0a8edd</string>
+       </void>
+       <void index="1">
+        <string></string>
+       </void>
+      </array>
+     </void>
+     <void property="idTransaccion">
+      <string>1b0312f5-af2f-4540-9001-5c9ebea0ae18</string>
+     </void>
+     <void property="monto">
+      <string>15000</string>
+     </void>
+     <void property="motivo">
+      <string>couta de manejo</string>
+     </void>
+     <void property="tipo">
+      <object class="java.lang.Enum" id="TipoTransaccion0" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.TipoTransaccion</class>
+       <string>RETIRO</string>
+      </object>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Transaccion">
+     <void property="idCategoria">
+      <string>SYSTEM</string>
+     </void>
+     <void property="idCuentas">
+      <array class="java.lang.String" length="2">
+       <void index="0">
+        <string>209189bc-5528-4303-b28b-1dac5d0a8edd</string>
+       </void>
+       <void index="1">
+        <string></string>
+       </void>
+      </array>
+     </void>
+     <void property="idTransaccion">
+      <string>b719164c-9f05-4344-88d0-e91b8c37e9e8</string>
+     </void>
+     <void property="monto">
+      <string>59000</string>
+     </void>
+     <void property="motivo">
+      <string>inversiones</string>
+     </void>
+     <void property="tipo">
+      <object class="java.lang.Enum" id="TipoTransaccion1" method="valueOf">
+       <class>co.edu.uniquindio.icaja.model.enums.TipoTransaccion</class>
+       <string>DEPOSITO</string>
+      </object>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Transaccion">
+     <void property="idCategoria">
+      <string>SYSTEM</string>
+     </void>
+     <void property="idCuentas">
+      <array class="java.lang.String" length="2">
+       <void index="0">
+        <string>209189bc-5528-4303-b28b-1dac5d0a8edd</string>
+       </void>
+       <void index="1">
+        <string></string>
+       </void>
+      </array>
+     </void>
+     <void property="idTransaccion">
+      <string>a46d9993-cd53-4ba6-a14f-57dc52426ddd</string>
+     </void>
+     <void property="monto">
+      <string>43213</string>
+     </void>
+     <void property="motivo">
+      <string>dsadas</string>
+     </void>
+     <void property="tipo">
+      <object idref="TipoTransaccion1"/>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Transaccion">
+     <void property="idCategoria">
+      <string>SYSTEM</string>
+     </void>
+     <void property="idCuentas">
+      <array class="java.lang.String" length="2">
+       <void index="0">
+        <string>209189bc-5528-4303-b28b-1dac5d0a8edd</string>
+       </void>
+       <void index="1">
+        <string></string>
+       </void>
+      </array>
+     </void>
+     <void property="idTransaccion">
+      <string>34021f6d-6408-4be4-b186-c30dac2c30ca</string>
+     </void>
+     <void property="monto">
+      <string>123233</string>
+     </void>
+     <void property="motivo">
+      <string>asdasd</string>
+     </void>
+     <void property="tipo">
+      <object idref="TipoTransaccion1"/>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Transaccion">
+     <void property="idCategoria">
+      <string>SYSTEM</string>
+     </void>
+     <void property="idCuentas">
+      <array class="java.lang.String" length="2">
+       <void index="0">
+        <string>209189bc-5528-4303-b28b-1dac5d0a8edd</string>
+       </void>
+       <void index="1">
+        <string></string>
+       </void>
+      </array>
+     </void>
+     <void property="idTransaccion">
+      <string>a890f4c0-5b4e-48de-a58c-5263cd566176</string>
+     </void>
+     <void property="monto">
+      <string>100000</string>
+     </void>
+     <void property="motivo">
+      <string>lol</string>
+     </void>
+     <void property="tipo">
+      <object idref="TipoTransaccion0"/>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Transaccion">
+     <void property="idCategoria">
+      <string>SYSTEM</string>
+     </void>
+     <void property="idCuentas">
+      <array class="java.lang.String" length="2">
+       <void index="0">
+        <string>209189bc-5528-4303-b28b-1dac5d0a8edd</string>
+       </void>
+       <void index="1">
+        <string></string>
+       </void>
+      </array>
+     </void>
+     <void property="idTransaccion">
+      <string>48a8df62-2887-4d10-a3d6-bf6ee2e7e86a</string>
+     </void>
+     <void property="monto">
+      <string>1000</string>
+     </void>
+     <void property="motivo">
+      <string>jeje</string>
+     </void>
+     <void property="tipo">
+      <object idref="TipoTransaccion1"/>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Transaccion">
+     <void property="idCategoria">
+      <string>SYSTEM</string>
+     </void>
+     <void property="idCuentas">
+      <array class="java.lang.String" length="2">
+       <void index="0">
+        <string>de363cde-9e8c-4395-b099-f39fbe44efd9</string>
+       </void>
+       <void index="1">
+        <string></string>
+       </void>
+      </array>
+     </void>
+     <void property="idTransaccion">
+      <string>4223cfac-eab9-4621-a9b3-a0cd238b4465</string>
+     </void>
+     <void property="monto">
+      <string>2000000</string>
+     </void>
+     <void property="motivo">
+      <string>multa</string>
+     </void>
+     <void property="tipo">
+      <object idref="TipoTransaccion0"/>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Transaccion">
+     <void property="idCategoria">
+      <string>SYSTEM</string>
+     </void>
+     <void property="idCuentas">
+      <array class="java.lang.String" length="2">
+       <void index="0">
+        <string>de363cde-9e8c-4395-b099-f39fbe44efd9</string>
+       </void>
+       <void index="1">
+        <string></string>
+       </void>
+      </array>
+     </void>
+     <void property="idTransaccion">
+      <string>89c1b685-9d91-45ce-86ff-8822e511af85</string>
+     </void>
+     <void property="monto">
+      <string>324234</string>
+     </void>
+     <void property="motivo">
+      <string>sasdasd</string>
+     </void>
+     <void property="tipo">
+      <object idref="TipoTransaccion0"/>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Transaccion">
+     <void property="idCategoria">
+      <string>SYSTEM</string>
+     </void>
+     <void property="idCuentas">
+      <array class="java.lang.String" length="2">
+       <void index="0">
+        <string>de363cde-9e8c-4395-b099-f39fbe44efd9</string>
+       </void>
+       <void index="1">
+        <string></string>
+       </void>
+      </array>
+     </void>
+     <void property="idTransaccion">
+      <string>43371ebd-f752-4054-8a18-e41e09f89513</string>
+     </void>
+     <void property="monto">
+      <string>2123123</string>
+     </void>
+     <void property="motivo">
+      <string>dsadssda</string>
+     </void>
+     <void property="tipo">
+      <object idref="TipoTransaccion1"/>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Transaccion">
+     <void property="idCategoria">
+      <string>SYSTEM</string>
+     </void>
+     <void property="idCuentas">
+      <array class="java.lang.String" length="2">
+       <void index="0">
+        <string>de363cde-9e8c-4395-b099-f39fbe44efd9</string>
+       </void>
+       <void index="1">
+        <string></string>
+       </void>
+      </array>
+     </void>
+     <void property="idTransaccion">
+      <string>68496c4a-d991-48ef-b535-6b7264877c89</string>
+     </void>
+     <void property="monto">
+      <string>10000</string>
+     </void>
+     <void property="motivo">
+      <string>dsadssda</string>
+     </void>
+     <void property="tipo">
+      <object idref="TipoTransaccion1"/>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Transaccion">
+     <void property="idCategoria">
+      <string>SYSTEM</string>
+     </void>
+     <void property="idCuentas">
+      <array class="java.lang.String" length="2">
+       <void index="0">
+        <string>de363cde-9e8c-4395-b099-f39fbe44efd9</string>
+       </void>
+       <void index="1">
+        <string></string>
+       </void>
+      </array>
+     </void>
+     <void property="idTransaccion">
+      <string>8c75ec51-1c09-4c35-8853-abc0ca229ffa</string>
+     </void>
+     <void property="monto">
+      <string>1231232</string>
+     </void>
+     <void property="motivo">
+      <string>wqqweqw</string>
+     </void>
+     <void property="tipo">
+      <object idref="TipoTransaccion0"/>
+     </void>
+    </object>
+   </void>
+  </void>
   <void property="listaUsuarios">
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario" id="Usuario0">
+     <void property="cedula">
+      <string>1002344455</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$4zdHXmuEa7daW8JhwZcx/eeReOlGb49cr7Tx46oB.Jm.k2NjporVa</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>$2a$10$iUjmVburgsGLjPDmqcTEMecR5Ax8yVs.cICSzXACdEp2UPSyIkfQi</string>
+     </void>
+     <void property="correo">
+      <string>pepito@gmail.com</string>
+     </void>
+     <void property="gastos">
+      <string>230000</string>
+     </void>
+     <void property="idCuentas">
+      <void method="add">
+       <string>209189bc-5528-4303-b28b-1dac5d0a8edd</string>
+      </void>
+     </void>
+     <void property="idTransacciones">
+      <object class="java.util.Collections" method="unmodifiableList">
+       <object class="java.util.ArrayList">
+        <void method="add">
+         <string>1b0312f5-af2f-4540-9001-5c9ebea0ae18</string>
+        </void>
+        <void method="add">
+         <string>b719164c-9f05-4344-88d0-e91b8c37e9e8</string>
+        </void>
+        <void method="add">
+         <string>a46d9993-cd53-4ba6-a14f-57dc52426ddd</string>
+        </void>
+        <void method="add">
+         <string>34021f6d-6408-4be4-b186-c30dac2c30ca</string>
+        </void>
+        <void method="add">
+         <string>a890f4c0-5b4e-48de-a58c-5263cd566176</string>
+        </void>
+        <void method="add">
+         <string>48a8df62-2887-4d10-a3d6-bf6ee2e7e86a</string>
+        </void>
+       </object>
+      </object>
+     </void>
+     <void property="idUsuario">
+      <string>c1f18a9b-c379-4ebd-8a36-5af5e6bd5bdb</string>
+     </void>
+     <void property="ingresos">
+      <string>472892</string>
+     </void>
+     <void property="nombre">
+      <string>pepito</string>
+     </void>
+     <void property="saldoTotal">
+      <string>131446</string>
+     </void>
+     <void property="telefono">
+      <string>3205083402</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario" id="Usuario1">
+     <void property="cedula">
+      <string>3243234234</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$.Kxdu91hdJZ57uy6fzujI.tWkGn/2WN9770DAJ.rZoqBB9ZUGICKm</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>$2a$10$rsomDZyCOYWjLQhU.kEYP.c4uWnEXyeUcYdQaD6RZTWZ5qM0Eg6jS</string>
+     </void>
+     <void property="correo">
+      <string>ccasdsad</string>
+     </void>
+     <void property="gastos">
+      <string>7110932</string>
+     </void>
+     <void property="idCuentas">
+      <void method="add">
+       <string>de363cde-9e8c-4395-b099-f39fbe44efd9</string>
+      </void>
+     </void>
+     <void property="idTransacciones">
+      <object class="java.util.Collections" method="unmodifiableList">
+       <object class="java.util.ArrayList">
+        <void method="add">
+         <string>4223cfac-eab9-4621-a9b3-a0cd238b4465</string>
+        </void>
+        <void method="add">
+         <string>89c1b685-9d91-45ce-86ff-8822e511af85</string>
+        </void>
+        <void method="add">
+         <string>43371ebd-f752-4054-8a18-e41e09f89513</string>
+        </void>
+        <void method="add">
+         <string>68496c4a-d991-48ef-b535-6b7264877c89</string>
+        </void>
+        <void method="add">
+         <string>8c75ec51-1c09-4c35-8853-abc0ca229ffa</string>
+        </void>
+       </object>
+      </object>
+     </void>
+     <void property="idUsuario">
+      <string>f686e1c7-d681-4e03-9bec-b1f9e277c3c5</string>
+     </void>
+     <void property="ingresos">
+      <string>7611802</string>
+     </void>
+     <void property="nombre">
+      <string>juan</string>
+     </void>
+     <void property="saldoTotal">
+      <string>1923213</string>
+     </void>
+     <void property="telefono">
+      <string>21313123</string>
+     </void>
+    </object>
+   </void>
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.Usuario">
      <void property="cedula">
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$pgMHJL/duRJFQTP0st5SNuLGXhf9CHBZFL7NXhZBbPH6146LR616.</string>
+      <string>$2a$10$P3PyMwzz/VrTQfZf.7h3COMgREN/rJyRqF0HNCD6JkQbTfYzVxPtC</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>

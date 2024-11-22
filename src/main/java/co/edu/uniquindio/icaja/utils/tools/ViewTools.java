@@ -6,6 +6,7 @@ import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import javafx.animation.FadeTransition;
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -281,14 +282,17 @@ public class ViewTools {
      * @param mapper Función para mapear cada elemento a un String.
      */
     private static <T> void actualizarComboBox(MFXFilterComboBox<String> comboBox, ObservableList<T> listaObservable, Function<T, String> mapper) {
-        comboBox.getItems().clear();
+        Platform.runLater(() -> {
+            comboBox.getItems().clear();
 
-        // Crea una copia inmutable de la lista para iterar
-        List<T> copia = new ArrayList<>(listaObservable);
+            // Convierte la lista observable en una lista de strings
+            ObservableList<String> items = FXCollections.observableArrayList();
+            for (T item : listaObservable) {
+                items.add(mapper.apply(item));  // Convierte el elemento a String y lo agrega
+            }
 
-        for (T item : copia) {
-            comboBox.getItems().add(mapper.apply(item));  // Convierte el elemento a String y lo agrega
-        }
+            comboBox.setItems(items);  // Establece la lista de items en el ComboBox
+        });
     }
 
 
