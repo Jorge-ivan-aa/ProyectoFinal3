@@ -367,9 +367,9 @@ public class PrincipalUsuarioView {
         ObservableList<Transaccion> transaccionesObservableUsuario = FXCollections.observableArrayList();
         List<Transaccion> transacciones = transaccionController.getListaTransaccionObservable();
 
-        for (int i = 0; i <= 4; i++) {
+        for (String id: transaccionesUsuario) {
             for (Transaccion transaccion : transacciones) {
-                if (transaccion.getIdTransaccion().equals(transaccionesUsuario.get(i))) {
+                if (transaccion.getIdTransaccion().equals(id)) {
                     transaccionesObservableUsuario.add(transaccion);
                 }
             }

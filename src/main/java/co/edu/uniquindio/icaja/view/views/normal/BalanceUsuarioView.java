@@ -173,7 +173,7 @@ public class BalanceUsuarioView {
     @FXML
     void initialize() {
         initview();
-        cbCategoriasBalance.getItems().addAll(CategoriasComunes.values());
+        cbCategoriasBalance.getItems().addAll();
     }
 
     private void initview(){
@@ -210,7 +210,7 @@ public class BalanceUsuarioView {
 //            txtClaveAdmin.setPromptText(seleccionado.getClave());
         }
     }
-    private ObservableList<Cuenta> obtenerCategoriasPorId(List<String> idCategorias) {
+    private ObservableList<Categoria> obtenerCategoriasPorId(List<String> idCategorias) {
         return obtenerEntidadesPorIds(idCategorias, id -> categoriaController.consultar(id, TipoConsulta.ID_CATEGORIA));
     }
 
