@@ -54,14 +54,13 @@ public class PerfilUsuarioView {
         String nombre = txtNuevoNombreUsuario.getText();
         String cedula = txtNuevaCedulaUsuario.getText();
         String correo = txtNuevoCorreoUsuario.getText();
-        //String clave = txtClaveAdmin.getText();
-        //String claveTransaccional = txtClaveTransaccionalAdmin.getText();
+        String id = usuarioLoggeado.getIdUsuario();
         String telefono = txtNuevoTelefonoUsuario.getText();
 
         //boolean cambioClaves =  !clave.isEmpty() || !claveTransaccional.isEmpty();
 
         if (ViewTools.NoHayCamposVacios(nombre, cedula, correo, telefono)) {
-            UsuarioDto usuarioDto = new UsuarioDto(null,nombre,  cedula,  correo,  telefono, "" ,"" );
+            UsuarioDto usuarioDto = new UsuarioDto(id, nombre,  cedula,  correo,  telefono, "" ,"" );
             try {
                 usuarioController.actualizar(usuarioDto);
                 String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
@@ -96,11 +95,10 @@ public class PerfilUsuarioView {
     }
     @FXML
     void configurarAction() {
-        //DEJAR LAS CONTRASEÑAS CON ""
         String nuevaContra =txtNuevaContrasena.getText();
         String confirmarContra = txtConfirmarContrasena.getText();
-        if (nuevaContra== confirmarContra){
-            UsuarioDto usuarioDto = new UsuarioDto(null,null,  null,  null,  null, confirmarContra ,""  );
+        if (nuevaContra.equals(confirmarContra)){
+            UsuarioDto usuarioDto = new UsuarioDto(usuarioLoggeado.getIdUsuario(), usuarioLoggeado.getNombre(), usuarioLoggeado.getCedula(), usuarioLoggeado.getCorreo(), usuarioLoggeado.getTelefono(), confirmarContra ,"");
             try {
                 usuarioController.actualizar(usuarioDto);
                 String msj = "Se ha actualizado la contraseña del usuario correctamente";
@@ -109,7 +107,7 @@ public class PerfilUsuarioView {
             } catch (ElementoNoExiste e) {
                 ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
             }
-            String msj = "Se ha actualizado la contraseña correctamente";
+            String msj = "Las contraseñas no coinciden";
             ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
         }else{
             String msj = "No se pudo actualizar la contraseña correctamente";
@@ -134,7 +132,7 @@ public class PerfilUsuarioView {
             String msj = "Se ha actualizado la contraseña transaccional correctamente";
             ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
         }else{
-            String msj = "No se pudo actualizar la contraseña transaccional correctamente";
+            String msj = "Las claves no coinciden";
             ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
         }
 

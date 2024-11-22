@@ -7,7 +7,7 @@ module co.edu.uniquindio.icaja {
     requires com.rabbitmq.client;
     requires com.fasterxml.jackson.datatype.jsr310;
     requires com.fasterxml.jackson.databind;
-    requires java.logging;
+    requires com.google.gson;
 
     exports co.edu.uniquindio.icaja.mapping.mappers;
     exports co.edu.uniquindio.icaja.mapping.dto;
