@@ -51,7 +51,7 @@ public class ChatBot implements Serializable {
     private String[] volver(int opcion){
         switch (opcion) {
             case 1:  //contexto 1,
-                return new String[] {"inicial","Volviendo a Inicial"};
+                return new String[] {"inicial","Digite 1: como realizar presupuestos?, Digite 2: como generar mi reporte financiero?, Digite 3: como puedo cambiar mi contraseña de ingreso?  "};
             case 2:
                 return new String[] {"estrategias","Volviendo a estrategias "};
             default:

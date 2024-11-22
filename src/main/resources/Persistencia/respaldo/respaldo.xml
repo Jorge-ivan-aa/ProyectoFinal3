@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="21.0.5" class="java.beans.XMLDecoder">
+<java version="21.0.4" class="java.beans.XMLDecoder">
  <object class="co.edu.uniquindio.icaja.model.ICaja" id="ICaja0">
   <void property="listaCategorias">
    <void method="add">
@@ -845,7 +845,7 @@
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$J.9XksubPX2Nln6NCpHnDusJ8s823zarW1rDXtdiXKnxt5grpRAXO</string>
+      <string>$2a$10$YfE.24Qyxiwria.c4hi00.Ge6Ow9fMVlpWNj.zmpVmIT72oPx/.Kq</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>
