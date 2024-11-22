@@ -23,7 +23,7 @@
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$pgMHJL/duRJFQTP0st5SNuLGXhf9CHBZFL7NXhZBbPH6146LR616.</string>
+      <string>$2a$10$DSI7s5c6cQI/feH3WcIzYesa9jm0MUYb8TRAZOwWeym3AExB9g4Cy</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>
@@ -33,6 +33,176 @@
        <class>co.edu.uniquindio.icaja.model.enums.TipoUsuario</class>
        <string>ADMINISTRADOR</string>
       </object>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
+      <string>103477</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$DqEv2eMODX3nDlWdiZzUfOSikFAgvaRx5Aq7vtMX8THYEYeO.1YIK</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>$2a$10$qrDHF1q3hRAzLvrJaLMSn.8QSHPLuIudVTnH5t8EQPd3rF5rMQTx6</string>
+     </void>
+     <void property="correo">
+      <string>hudahfshdfshf</string>
+     </void>
+     <void property="gastos">
+      <string>0</string>
+     </void>
+     <void property="idUsuario">
+      <string>fce4c306-40f1-46e7-ac92-f69bffe16bca</string>
+     </void>
+     <void property="ingresos">
+      <string>0</string>
+     </void>
+     <void property="nombre">
+      <string>Oscar</string>
+     </void>
+     <void property="saldoTotal">
+      <string>0</string>
+     </void>
+     <void property="telefono">
+      <string>11112233333</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
+      <string>1016</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$APSRmDDnFsVs9MYvS0o9dueV8VVif4qj4JkrlnODDHmqYYlxEdMja</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>$2a$10$z4suHzQCYZ8wNNWqTJVDb.VSqacfTfvSGkIdAxN2bdim.XMQdlWjq</string>
+     </void>
+     <void property="correo">
+      <string>dahdjdfj</string>
+     </void>
+     <void property="gastos">
+      <string>0</string>
+     </void>
+     <void property="idUsuario">
+      <string>e3f267a0-e4e5-40ce-81e2-1ff56e495d42</string>
+     </void>
+     <void property="ingresos">
+      <string>0</string>
+     </void>
+     <void property="nombre">
+      <string>Carlos</string>
+     </void>
+     <void property="saldoTotal">
+      <string>0</string>
+     </void>
+     <void property="telefono">
+      <string>332424</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
+      <string>3020</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$WH3sfeyoqIkIreRRHhACYeDp9qOA6UshmjRYd6FOvcg3C.783bFbi</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>$2a$10$Gb7kEpCNjLephCa6EgqKv.dF349Kobk0UVl5FBbH.ykJcYjaFPkh2</string>
+     </void>
+     <void property="correo">
+      <string>dhnfnkfsnkn</string>
+     </void>
+     <void property="gastos">
+      <string>0</string>
+     </void>
+     <void property="idUsuario">
+      <string>26ccf65c-b4b4-4c04-a23c-0d44fd014967</string>
+     </void>
+     <void property="ingresos">
+      <string>0</string>
+     </void>
+     <void property="nombre">
+      <string>Juan</string>
+     </void>
+     <void property="saldoTotal">
+      <string>0</string>
+     </void>
+     <void property="telefono">
+      <string>333332222222</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
+      <string>4433</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$ik4UkOnz90eT6oVg5Uibqu4PUKGTumasOnScwNKGh6PILeZIQYIIa</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>$2a$10$HYjpCqyXIbXq76Olvr3YLO4ETu1KaX8GazuSAjPibVoqaR/75sOsi</string>
+     </void>
+     <void property="correo">
+      <string>fhsjfjjbfwbb</string>
+     </void>
+     <void property="gastos">
+      <string>0</string>
+     </void>
+     <void property="idUsuario">
+      <string>9da60304-917a-4ee3-8526-fb93452cfc57</string>
+     </void>
+     <void property="ingresos">
+      <string>0</string>
+     </void>
+     <void property="nombre">
+      <string>Alejo</string>
+     </void>
+     <void property="saldoTotal">
+      <string>0</string>
+     </void>
+     <void property="telefono">
+      <string>3334444333</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
+      <string>2233</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$movu/G.7Jyi1toK8dLvX3OOy2U.r3VsySxkG33yZwmfxPalM2lCEe</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>$2a$10$dG9kMxvnWU6TVU9tQqn/B.C0nepptP7cFRGDGw7irxCDO/AzbjX56</string>
+     </void>
+     <void property="correo">
+      <string>hfsjfsjfsjfsjf</string>
+     </void>
+     <void property="gastos">
+      <string>0</string>
+     </void>
+     <void property="idUsuario">
+      <string>db3c7597-1a6b-41b8-b732-02e16f7669a3</string>
+     </void>
+     <void property="ingresos">
+      <string>0</string>
+     </void>
+     <void property="nombre">
+      <string>Nicoll</string>
+     </void>
+     <void property="saldoTotal">
+      <string>0</string>
+     </void>
+     <void property="telefono">
+      <string>6665554444</string>
      </void>
     </object>
    </void>
