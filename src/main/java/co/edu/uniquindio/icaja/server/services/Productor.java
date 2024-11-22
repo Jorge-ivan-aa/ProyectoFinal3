@@ -15,6 +15,6 @@ public interface Productor {
      *
      * @throws Exception Si ocurre algún error al intentar enviar el mensaje a la cola.
      */
-    void enviarMensaje(MensajeDTO dto) throws Exception;
+    void enviarNotificacion(MensajeDTO dto) throws Exception;
 
 }

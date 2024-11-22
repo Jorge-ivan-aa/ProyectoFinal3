@@ -8,6 +8,7 @@ import co.edu.uniquindio.icaja.utils.almacenamiento.Config;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.model.respaldo.ICajaRespaldo;
 import co.edu.uniquindio.icaja.utils.almacenamiento.Persistencia;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lombok.Getter;
@@ -21,6 +22,8 @@ import static co.edu.uniquindio.icaja.utils.tools.ListTools.sincronizarLista;
 @Getter
 public class ModelFactory {
     private static ModelFactory instance;
+    @Getter
+    private static String IdInstanciaMensajera = java.util.UUID.randomUUID().toString();
     private ICaja icaja;
 
     // SINCRONIZACION
@@ -62,15 +65,26 @@ public class ModelFactory {
         return instance;
     }
 
-    public void sincronizarData() {
-        sincronizarLista(listaCuentaObservable, icaja.getListaCuentas());
-        sincronizarLista(listaUsuarioObservable, icaja.getListaUsuarios());
-        sincronizarLista(listaPresupuestoObservable, icaja.getListaPresupuestos());
-        sincronizarLista(listaTransaccionObservable, icaja.getListaTransacciones());
-        sincronizarLista(listaCategoriasObservable, icaja.getListaCategorias());
-        icaja.excluirAdmin(listaUsuarioObservable, listaCategoriasObservable);
+    public void sincronizarInstancia() {
+        icaja.clear();
+        cargarConfiguracion();
+        cargarPersistencia();
+        sincronizarData();
+        Seguimiento.registrarLog(1, "Sincronizando instancia");
+    }
 
-        guardarPersistencia();
+
+    public void sincronizarData() {
+        Platform.runLater(() -> {
+            sincronizarLista(listaCuentaObservable, icaja.getListaCuentas());
+            sincronizarLista(listaUsuarioObservable, icaja.getListaUsuarios());
+            sincronizarLista(listaPresupuestoObservable, icaja.getListaPresupuestos());
+            sincronizarLista(listaTransaccionObservable, icaja.getListaTransacciones());
+            sincronizarLista(listaCategoriasObservable, icaja.getListaCategorias());
+            icaja.excluirAdmin(listaUsuarioObservable, listaCategoriasObservable);
+
+            guardarPersistencia();
+        });
     }
 
 

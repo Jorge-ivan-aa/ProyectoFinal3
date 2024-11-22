@@ -11,6 +11,9 @@ import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.CuentaDto;
 import co.edu.uniquindio.icaja.mapping.mappers.CuentaBancariaMapper;
 import co.edu.uniquindio.icaja.model.*;
+import co.edu.uniquindio.icaja.server.ProductorBase;
+import co.edu.uniquindio.icaja.server.mapping.MensajeDTO;
+import co.edu.uniquindio.icaja.server.services.Productor;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.tools.NumTool;
 import javafx.collections.ObservableList;
@@ -21,7 +24,7 @@ import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
 
 @Getter
-public class CuentaController implements GenericController<CuentaDto, Cuenta> {
+public class CuentaController implements GenericController<CuentaDto, Cuenta>, Productor {
 
     private final ModelFactory factory;
     private final ObservableList<Cuenta> listaCuentaObservable;
@@ -47,6 +50,9 @@ public class CuentaController implements GenericController<CuentaDto, Cuenta> {
             Cuenta nuevaCuenta = CuentaBancariaMapper.toCuentaBancaria(cuentaDto);
             factory.getIcaja().add(nuevaCuenta);
             sincronizarData();
+
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
             registrarLog(1, "Se ha creado una cuenta bancaria exitosamente :)");
         }
     }
@@ -72,6 +78,8 @@ public class CuentaController implements GenericController<CuentaDto, Cuenta> {
             Cuenta eliminable = this.consultar(consulta, NUMERO_CUENTA);
             factory.getIcaja().remove(eliminable);
             sincronizarData();
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
             registrarLog(1, "Se eliminó la cuenta Bancaria");
 
         } catch (ElementoNoExiste e) {
@@ -95,6 +103,10 @@ public class CuentaController implements GenericController<CuentaDto, Cuenta> {
 
             sincronizarVinculos(actualizable.getIdpropietario(), cuentaDto.saldo());
             sincronizarData();
+
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
+
             registrarLog(1, "Se ha actualizado la cuenta bancaria de numero" + cuentaDto.numeroCuenta() + " exitosamente :)");
 
         } catch (ElementoNoExiste e) {
@@ -126,4 +138,19 @@ public class CuentaController implements GenericController<CuentaDto, Cuenta> {
         propietario.setSaldoTotal(NumTool.parseToDinero(monto).toString());
     }
 
+
+    @Override
+    public void enviarNotificacion(MensajeDTO dto) {
+        try {
+
+            ProductorBase productor = ProductorBase.obtenerInstancia();
+            for (int i = 0; i < 3; i++) {
+                productor.enviarMensaje(dto);
+            }
+
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error en la sincronización con el servidor de parte del productor, revisalo: " + e.getMessage());
+        }
+
+    }
 }

@@ -5,9 +5,8 @@ module co.edu.uniquindio.icaja {
     requires de.jensd.fx.glyphs.fontawesome;
     requires jbcrypt;
     requires com.rabbitmq.client;
-    requires com.fasterxml.jackson.datatype.jsr310;
-    requires com.fasterxml.jackson.databind;
     requires com.google.gson;
+    requires java.logging;
 
     exports co.edu.uniquindio.icaja.mapping.mappers;
     exports co.edu.uniquindio.icaja.mapping.dto;
@@ -37,6 +36,7 @@ module co.edu.uniquindio.icaja {
     opens co.edu.uniquindio.icaja.utils.almacenamiento to javafx.fxml;
     exports co.edu.uniquindio.icaja.utils.tools;
     opens co.edu.uniquindio.icaja.utils.tools to javafx.fxml;
+    exports co.edu.uniquindio.icaja.server.mapping;
 
     // excepciones
     exports co.edu.uniquindio.icaja.exception.constructores;

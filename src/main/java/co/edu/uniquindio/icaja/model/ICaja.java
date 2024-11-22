@@ -41,6 +41,14 @@ public class ICaja implements Serializable {
         inicializarMappers();
     }
 
+    public void clear() {
+        listaUsuarios.clear();
+        listaCuentas.clear();
+        listaTransacciones.clear();
+        listaCategorias.clear();
+        listaPresupuestos.clear();
+    }
+
 
     private void inicializarMappers() {
         // listas

@@ -5,17 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ada5fe2d-2761-46ee-a6e3-c25417f6b649" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/mapping/MensajeDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/mapping/MensajeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/config/Cola.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/factory/ModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/factory/ModelFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/ICaja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/model/ICaja.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/ConsumidorBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/ConsumidorBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/ProductorBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/ProductorBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/config/RabbitFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/config/RabbitFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/services/Consumidor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/services/Consumidor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/mapping/MensajeDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/mapping/MensajeDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/services/Productor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/services/Productor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/normal/PerfilUsuarioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/normal/PerfilUsuarioView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/utils/loggin/Seguimiento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/utils/loggin/Seguimiento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/utils/tools/ListTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/utils/tools/ListTools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/admin/UsuarioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/admin/UsuarioView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Persistencia/respaldo/respaldo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/categoria.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/categoria.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/cuenta.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/cuenta.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/transaccion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/transaccion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/usuario.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/usuario.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/log/logs.txt.1" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/log/logs.txt.1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/respaldo/respaldo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/respaldo/respaldo.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,10 +37,10 @@
       <list>
         <option value="Exception" />
         <option value="FxmlFile" />
-        <option value="Enum" />
         <option value="Interface" />
         <option value="Record" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -67,6 +76,7 @@
     "Application.FontTestFX.executor": "Run",
     "Application.HelloApplication.executor": "Run",
     "Application.USER1.executor": "Run",
+    "Application.USER2.executor": "Run",
     "Application.pablo.executor": "Run",
     "Application.pedro.executor": "Run",
     "Maven.ProyectoFinal3 [clean].executor": "Run",
@@ -99,6 +109,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/persistencia/respaldo" />
       <recent name="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates" />
       <recent name="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/styles" />
     </key>
@@ -106,7 +117,7 @@
       <recent name="co.edu.uniquindio.icaja.services" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.USER1">
+  <component name="RunManager" selected="Application.ADMIN">
     <configuration name="ADMIN" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="co.edu.uniquindio.icaja.App" />
       <module name="ProyectoFinal3" />

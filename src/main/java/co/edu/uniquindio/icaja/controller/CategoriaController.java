@@ -12,12 +12,17 @@ import co.edu.uniquindio.icaja.model.Categoria;
 import static co.edu.uniquindio.icaja.controller.enums.TipoConsulta.ID_CATEGORIA;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
+
+import co.edu.uniquindio.icaja.server.ProductorBase;
+import co.edu.uniquindio.icaja.server.mapping.MensajeDTO;
+import co.edu.uniquindio.icaja.server.services.Productor;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 
 
 @Getter
-public class CategoriaController implements GenericController<CategoriaDto, Categoria> {
+public class CategoriaController implements GenericController<CategoriaDto, Categoria>, Productor {
     private final ModelFactory factory;
     private final ObservableList<Categoria> listaCategoriasObservable;
 
@@ -41,8 +46,12 @@ public class CategoriaController implements GenericController<CategoriaDto, Cate
 
         } catch (ElementoNoExiste ignored) {
             Categoria nuevaCategoria = CategoriaMapper.toCategoria(categoriaDto);
-            factory.getIcaja().getListaCategorias().add(nuevaCategoria);
-            listaCategoriasObservable.add(nuevaCategoria);
+            factory.getIcaja().add(nuevaCategoria);
+            sincronizarData();
+
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
+
             registrarLog(1, "Se ha creado una categoria");
         }
     }
@@ -55,8 +64,12 @@ public class CategoriaController implements GenericController<CategoriaDto, Cate
             throw new ElementoYaExiste("No se pudo crear el elemento, la categoria ya existe");
 
         } catch (ElementoNoExiste ignored) {
-            factory.getIcaja().getListaCategorias().add(nuevaCategoria);
-            listaCategoriasObservable.add(nuevaCategoria);
+            factory.getIcaja().add(nuevaCategoria);
+            sincronizarData();
+
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
+
             registrarLog(1, "Se ha creado una categoria");
         }
     }
@@ -81,8 +94,11 @@ public class CategoriaController implements GenericController<CategoriaDto, Cate
 
         try {
             Categoria eliminable = this.consultar(id, ID_CATEGORIA);
-            listaCategoriasObservable.remove(eliminable);
-            factory.getIcaja().getListaCategorias().add(eliminable);
+            factory.getIcaja().remove(eliminable);
+            sincronizarData();
+
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
             registrarLog(1, "Se eliminó la categoria");
 
         } catch (ElementoNoExiste e) {
@@ -97,4 +113,18 @@ public class CategoriaController implements GenericController<CategoriaDto, Cate
         // No se necesita actualizar las categorias según la logica del negocio.
     }
 
+    @Override
+    public void enviarNotificacion(MensajeDTO dto) {
+        try {
+
+            ProductorBase productor = ProductorBase.obtenerInstancia();
+            for (int i = 0; i < 3; i++) {
+                productor.enviarMensaje(dto);
+            }
+
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error en la sincronización con el servidor de parte del productor, revisalo: " + e.getMessage());
+        }
+
+    }
 }

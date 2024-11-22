@@ -14,6 +14,10 @@ import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
 import co.edu.uniquindio.icaja.mapping.mappers.TransaccionMapper;
 import co.edu.uniquindio.icaja.mapping.services.ITransaccionDto;
 import co.edu.uniquindio.icaja.model.Transaccion;
+import co.edu.uniquindio.icaja.server.ProductorBase;
+import co.edu.uniquindio.icaja.server.mapping.MensajeDTO;
+import co.edu.uniquindio.icaja.server.services.Productor;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +27,7 @@ import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
 
 @Getter
 @Setter
-public class TransaccionController implements GenericController<ITransaccionDto, Transaccion> {
+public class TransaccionController implements GenericController<ITransaccionDto, Transaccion>, Productor {
 
     private static final ModelFactory factory = ModelFactory.getInstance();
     private ObservableList<Transaccion> listaTransaccionObservable;
@@ -50,6 +54,8 @@ public class TransaccionController implements GenericController<ITransaccionDto,
             factory.getIcaja().add(nuevaTransaccion);
             setTransaccionPendiente(null);
             sincronizarData();
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
             registrarLog(1, "Se ha realizado una transaccion exitosamente :)");
         }
 
@@ -97,4 +103,18 @@ public class TransaccionController implements GenericController<ITransaccionDto,
         //No se necesita actualizar las transacciones según la logica del negocio.
     }
 
+    @Override
+    public void enviarNotificacion(MensajeDTO dto) {
+        try {
+
+            ProductorBase productor = ProductorBase.obtenerInstancia();
+            for (int i = 0; i < 3; i++) {
+                productor.enviarMensaje(dto);
+            }
+
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error en la sincronización con el servidor de parte del productor, revisalo: " + e.getMessage());
+        }
+
+    }
 }

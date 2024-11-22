@@ -1,7 +1,10 @@
 package co.edu.uniquindio.icaja.server;
 
+import co.edu.uniquindio.icaja.factory.ModelFactory;
+import co.edu.uniquindio.icaja.server.config.Cola;
 import co.edu.uniquindio.icaja.server.config.RabbitFactory;
 import co.edu.uniquindio.icaja.server.mapping.MensajeDTO;
+import co.edu.uniquindio.icaja.server.mapping.MensajeMapper;
 import co.edu.uniquindio.icaja.server.services.Consumidor;
 import com.rabbitmq.client.*;
 import java.io.IOException;
@@ -16,7 +19,7 @@ public class ConsumidorBase {
         ConnectionFactory factory = new RabbitFactory().getConnectionFactory();
         Connection conexion = factory.newConnection();
         canal = conexion.createChannel();
-        canal.queueDeclare("cola_mensajes", false, false, false, null); // Declaramos la cola
+        canal.queueDeclare(Cola.COLA_SYNC.getCola(), false, false, false, null); // Declaramos la cola
     }
 
     public static ConsumidorBase obtenerInstancia() throws Exception {
@@ -37,11 +40,11 @@ public class ConsumidorBase {
      */
     public void consumirMensaje(Consumidor consumidor) throws Exception {
         // Llamamos al consumidor para recibir el mensaje
-        canal.basicConsume("cola_sync", true, new DefaultConsumer(canal) {
+        canal.basicConsume(Cola.COLA_SYNC.getCola(), true, new DefaultConsumer(canal) {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                 String mensaje = new String(body, StandardCharsets.UTF_8);
-                MensajeDTO dto = new MensajeDTO(mensaje);  // Creamos el DTO a partir del mensaje recibido
+                MensajeDTO dto = MensajeMapper.fromJson(mensaje);  // Creamos el DTO a partir del mensaje recibido
                 procesarMensaje(dto, consumidor);
             }
         });
@@ -55,6 +58,7 @@ public class ConsumidorBase {
      * @param consumidor El objeto Consumidor que procesará el DTO.
      */
     private void procesarMensaje(MensajeDTO dto, Consumidor consumidor) {
+
         consumidor.procesarDTO(dto);
     }
 

@@ -8,10 +8,6 @@ public class Seguimiento {
     private static String RUTALOG = "src/main/resources/persistencia/log/logs.txt";
     private static final Logger LOGGER = Logger.getLogger(Seguimiento.class.getName());
 
-    public static void setRUTALOG(String RUTALOG) {
-        Seguimiento.RUTALOG = RUTALOG;
-    }
-
     static {
         // Configurar el logger para que no imprima en la consola por defecto
         LOGGER.setUseParentHandlers(false);

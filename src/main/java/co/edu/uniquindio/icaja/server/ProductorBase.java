@@ -1,5 +1,6 @@
 package co.edu.uniquindio.icaja.server;
 
+import co.edu.uniquindio.icaja.server.config.Cola;
 import co.edu.uniquindio.icaja.server.config.RabbitFactory;
 import co.edu.uniquindio.icaja.server.mapping.MensajeDTO;
 import co.edu.uniquindio.icaja.server.mapping.MensajeMapper;
@@ -15,7 +16,7 @@ public class ProductorBase {
         ConnectionFactory factory = new RabbitFactory().getConnectionFactory();
         Connection conexion = factory.newConnection();
         this.canal = conexion.createChannel();
-        canal.queueDeclare("miCola", false, false, false, null);
+        canal.queueDeclare(Cola.COLA_SYNC.getCola(), false, false, false, null);
     }
 
     public static ProductorBase obtenerInstancia() throws Exception {
@@ -34,7 +35,6 @@ public class ProductorBase {
      */
     public void enviarMensaje(MensajeDTO dto) throws IOException {
         String mensaje = MensajeMapper.toJson(dto);  // Convierte DTO a JSON o string
-        canal.basicPublish("", "cola_sync", null, mensaje.getBytes());
-        System.out.println("Mensaje enviado: " + mensaje);
+        canal.basicPublish("", Cola.COLA_SYNC.getCola(), null, mensaje.getBytes());
     }
 }

@@ -9,6 +9,9 @@ import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.PresupuestoDto;
 import co.edu.uniquindio.icaja.mapping.mappers.PresupuestoMapper;
 import co.edu.uniquindio.icaja.model.Presupuesto;
+import co.edu.uniquindio.icaja.server.ProductorBase;
+import co.edu.uniquindio.icaja.server.mapping.MensajeDTO;
+import co.edu.uniquindio.icaja.server.services.Productor;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.ObservableList;
 import lombok.Getter;
@@ -18,7 +21,7 @@ import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
 
 @Getter
-public class PresupuestoController implements GenericController<PresupuestoDto, Presupuesto> {
+public class PresupuestoController implements GenericController<PresupuestoDto, Presupuesto>, Productor {
 
     private final ModelFactory factory;
     private final ObservableList<Presupuesto> listaPresupuestoObservable;
@@ -46,6 +49,8 @@ public class PresupuestoController implements GenericController<PresupuestoDto, 
             factory.getIcaja().add(nuevoPresupuesto);
             listaPresupuestoObservable.add(nuevoPresupuesto);
             sincronizarData();
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
             registrarLog(1, "Se ha creado el usuario " + presupuestoDto.nombre());
 
         }
@@ -75,6 +80,8 @@ public class PresupuestoController implements GenericController<PresupuestoDto, 
             Presupuesto eliminable = consultar(identificador, ID_PRESUPUESTO);
             factory.getIcaja().remove(eliminable);
             sincronizarData();
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
             registrarLog(1, "Se eliminó el presupuesto de ID " + identificador + ".");
 
         } catch (ElementoNoExiste e) {
@@ -91,6 +98,8 @@ public class PresupuestoController implements GenericController<PresupuestoDto, 
             actualizable.setNombre(presupuestoDto.nombre());
             actualizable.setIdCategorias(presupuestoDto.categorias());
             sincronizarData();
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
             registrarLog(1, "Se actualizó el Presupuesto de Id " + actualizable.getIdPresupuesto() + " correctamente.");
 
         } catch (ElementoNoExiste e) {
@@ -99,4 +108,18 @@ public class PresupuestoController implements GenericController<PresupuestoDto, 
         }
     }
 
+    @Override
+    public void enviarNotificacion(MensajeDTO dto) {
+        try {
+
+            ProductorBase productor = ProductorBase.obtenerInstancia();
+            for (int i = 0; i < 3; i++) {
+                productor.enviarMensaje(dto);
+            }
+
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error en la sincronización con el servidor de parte del productor, revisalo: " + e.getMessage());
+        }
+
+    }
 }

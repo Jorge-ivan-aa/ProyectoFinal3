@@ -4,15 +4,20 @@ import co.edu.uniquindio.icaja.controller.UsuarioController;
 import co.edu.uniquindio.icaja.exception.crud.AtributoUtilizado;
 import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
+import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.model.Usuario;
+import co.edu.uniquindio.icaja.server.ConsumidorBase;
+import co.edu.uniquindio.icaja.server.mapping.MensajeDTO;
+import co.edu.uniquindio.icaja.server.services.Consumidor;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import javafx.beans.property.SimpleStringProperty;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class UsuarioView {
+public class UsuarioView implements Consumidor {
     UsuarioController usuarioController = new UsuarioController();
     String idUsuarioConsultado = "";
 
@@ -58,6 +63,7 @@ public class UsuarioView {
     @FXML
     private TextField txtTelefonoAdmin;
 
+
     @FXML
     void actualizarUsuario() {
         String nombre = txtNombreAdmin.getText();
@@ -83,6 +89,7 @@ public class UsuarioView {
         }
 
     }
+
 
     @FXML
     void crearUsuario() {
@@ -111,6 +118,7 @@ public class UsuarioView {
 
     }
 
+
     @FXML
     void eliminarUsuario() {
         try {
@@ -124,6 +132,7 @@ public class UsuarioView {
 
 
     }
+
 
     @FXML
     void limpiarCamposUsuarioAction() {
@@ -139,9 +148,11 @@ public class UsuarioView {
                 txtClaveTransaccionalAdmin);
     }
 
+
     @FXML
     void initialize() {
         initview();
+        consumirMensaje();
     }
 
     private void initview() {
@@ -163,6 +174,7 @@ public class UsuarioView {
         });
     }
 
+
     private void initDataBinging() {
         tbcNombreUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
         tbcCorreoUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCorreo()));
@@ -173,10 +185,12 @@ public class UsuarioView {
         tbcClaveUsuarioAdmin.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getClave()));
     }
 
+
     private void listenerSelectionUsuario() {
         tbUsuariosAdmin.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection)
                 -> this.mostrarInformacion(newSelection));
     }
+
 
     private void mostrarInformacion(Usuario seleccionado) {
         if (seleccionado != null) {
@@ -189,6 +203,7 @@ public class UsuarioView {
             txtClaveAdmin.setPromptText(seleccionado.getClave());
         }
     }
+
 
     public String formatearNumeroEntrada(String input, int limite) {
         // Filtrar solo los números de la entrada
@@ -203,4 +218,26 @@ public class UsuarioView {
     }
 
 
+    @Override
+    public void consumirMensaje() {
+        try {
+            ConsumidorBase consumidorBase = ConsumidorBase.obtenerInstancia();
+            consumidorBase.consumirMensaje(this);
+
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error en la sincronización con el servidor de parte del consumidor, revisalo: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void procesarDTO(MensajeDTO dto) {
+        if (!dto.IdInstanciaMensajera().equals(ModelFactory.getIdInstanciaMensajera())) {
+            usuarioController.getFactory().sincronizarInstancia();
+            limpiar();
+
+        } else {
+            Seguimiento.registrarLog(2, "No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje");
+        }
+    }
 }

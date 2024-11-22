@@ -13,16 +13,21 @@ import co.edu.uniquindio.icaja.model.Usuario;
 import static co.edu.uniquindio.icaja.controller.enums.TipoConsulta.*;
 import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
 import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
+
+import co.edu.uniquindio.icaja.server.ProductorBase;
+import co.edu.uniquindio.icaja.server.mapping.MensajeDTO;
+import co.edu.uniquindio.icaja.server.services.Productor;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 
 
 @Getter
-public class UsuarioController implements GenericController<UsuarioDto, Usuario> {
+public class UsuarioController implements GenericController<UsuarioDto, Usuario>, Productor {
 
     private final ModelFactory factory;
     private final ObservableList<Usuario> listaUsuarioObservable;
+
 
     public UsuarioController() {
         factory = ModelFactory.getInstance();
@@ -30,9 +35,11 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
         this.sincronizarData();
     }
 
+
     public void sincronizarData() {
         factory.sincronizarData();
     }
+
 
     @Override
     public void crear(UsuarioDto usuarioDto) throws ElementoYaExiste, AtributoUtilizado {
@@ -51,10 +58,13 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
             factory.getIcaja().add(nuevoUsuario);
             listaUsuarioObservable.add(nuevoUsuario);
             sincronizarData();
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
             registrarLog(1, "Se ha creado el usuario " + usuarioDto.nombre());
 
         }
     }
+
 
     private void verificarAtributoUtilizado(String valor, TipoConsulta tipo, String mensaje) throws AtributoUtilizado {
         if (consultar(valor, tipo) != null) {
@@ -90,6 +100,8 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
             Usuario eliminable = consultar(id, ID_USUARIO);
             factory.getIcaja().remove(eliminable);
             sincronizarData();
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
             registrarLog(1, "Se eliminó el usuario con id " + id + ".");
 
         } catch (ElementoNoExiste e) {
@@ -97,6 +109,7 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
             throw new ElementoNoExiste("No se pudo eliminar el elemento, " + e.getMessage());
         }
     }
+
 
     @Override
     public void actualizar(UsuarioDto usuarioDto) throws ElementoNoExiste {
@@ -117,6 +130,10 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
 
                 if (usuarioDto.correo()!=null)actualizable.setCorreo(usuarioDto.correo());
                 sincronizarData();
+
+                MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+                enviarNotificacion(mensaje);
+
                 registrarLog(1, "Se actualizó el usuario de cedula " + actualizable.getCedula() + " correctamente.");
             } else {
                 throw new ElementoNoExiste("No se puede modificar la cedula.");
@@ -129,11 +146,24 @@ public class UsuarioController implements GenericController<UsuarioDto, Usuario>
         }
     }
 
-
     public void cerrarSesion() {
         Seguimiento.registrarLog(1, "Se cerró la sesion correctamente");
         factory.getIcaja().setSesion(null);
         factory.guardarRespaldo();
     }
 
+    @Override
+    public void enviarNotificacion(MensajeDTO dto) {
+        try {
+
+            ProductorBase productor = ProductorBase.obtenerInstancia();
+            for (int i = 0; i < 3; i++) {
+                productor.enviarMensaje(dto);
+            }
+
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error en la sincronización con el servidor de parte del productor, revisalo: " + e.getMessage());
+        }
+
+    }
 }
