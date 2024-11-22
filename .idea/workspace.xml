@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1175ed9-e8ba-4d1e-a676-9e478e60b028" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/nbactions.xml" beforeDir="false" />
+    <list default="true" id="ada5fe2d-2761-46ee-a6e3-c25417f6b649" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,25 +17,26 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
-        <option value="Class" />
-        <option value="Record" />
         <option value="Interface" />
+        <option value="Exception" />
+        <option value="FxmlFile" />
+        <option value="Record" />
+        <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/21/javafx-controls-21-sources.jar!/javafx/scene/control/TextInputControl.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -48,23 +51,54 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.ADMIN.executor&quot;: &quot;Run&quot;,
     &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CategoriasComunes.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FontAwesomeIconsDemoApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FontTestFX.executor&quot;: &quot;Run&quot;,
     &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.USER1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.pablo.executor&quot;: &quot;Run&quot;,
+    &quot;Application.pedro.executor&quot;: &quot;Run&quot;,
     &quot;Maven.ProyectoFinal3 [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.ProyectoFinal3 [compile].executor&quot;: &quot;Run&quot;,
     &quot;Maven.ProyectoFinal3 [test].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jorge/Downloads/ProyectoFinal3&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jorge/Projects/java/ProyectoFinal3/src/main/java/co/edu/uniquindio/icaja&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.App">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja" />
+      <recent name="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/Productor" />
+      <recent name="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/server/Consumidor" />
+      <recent name="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates" />
+      <recent name="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/styles" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="co.edu.uniquindio.icaja.services" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.USER1">
+    <configuration name="ADMIN" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="co.edu.uniquindio.icaja.App" />
       <module name="ProyectoFinal3" />
       <extension name="coverage">
@@ -77,39 +111,63 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="co.edu.uniquindio.proyectofinal3.HelloApplication" />
+    <configuration name="USER1" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="co.edu.uniquindio.icaja.App" />
       <module name="ProyectoFinal3" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="co.edu.uniquindio.proyectofinal3.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="USER2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="co.edu.uniquindio.icaja.App" />
+      <module name="ProyectoFinal3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.USER1" />
+      <item itemvalue="Application.USER2" />
+      <item itemvalue="Application.ADMIN" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
-        <item itemvalue="Application.HelloApplication" />
+        <item itemvalue="Application.ADMIN" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d1175ed9-e8ba-4d1e-a676-9e478e60b028" name="Changes" comment="" />
+      <changelist id="ada5fe2d-2761-46ee-a6e3-c25417f6b649" name="Changes" comment="" />
       <created>1727399749953</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1727399749953</updated>
+      <workItem from="1729468591616" duration="33000" />
+      <workItem from="1729469166870" duration="900000" />
+      <workItem from="1729530499633" duration="776000" />
+      <workItem from="1729534420625" duration="526000" />
+      <workItem from="1730685853627" duration="8492000" />
+      <workItem from="1730694652776" duration="24700000" />
     </task>
+    <task id="LOCAL-00001" summary="Se configuró baseNormalView para adminitir el menu horizontal y el cambio entre opciones. Además se modificó RegistroUsuarioView para incluir alertas y controlar el flujo del usuario.">
+      <option name="closed" value="true" />
+      <created>1730403527202</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730403527202</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.cmd" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -121,5 +179,26 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Se configuró baseNormalView para adminitir el menu horizontal y el cambio entre opciones. Además se modificó RegistroUsuarioView para incluir alertas y controlar el flujo del usuario." />
+    <option name="LAST_COMMIT_MESSAGE" value="Se configuró baseNormalView para adminitir el menu horizontal y el cambio entre opciones. Además se modificó RegistroUsuarioView para incluir alertas y controlar el flujo del usuario." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="44" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="co.edu.uniquindio.icaja.model.ICaja" memberName="sesion" />
+        <PinnedItemInfo parentTag="java.lang.String" memberName="value" />
+        <PinnedItemInfo parentTag="co.edu.uniquindio.icaja.factory.ModelFactory" memberName="icaja" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
