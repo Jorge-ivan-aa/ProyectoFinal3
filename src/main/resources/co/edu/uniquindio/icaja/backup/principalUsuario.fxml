@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXListView?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -15,19 +23,15 @@
 <AnchorPane prefHeight="626.0" prefWidth="1073.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.normal.PrincipalUsuarioView">
    <Pane fx:id="panelUnoUsuario" prefHeight="626.0" prefWidth="1073.0">
       <children>
-         <Pane layoutX="18.0" layoutY="35.0" prefHeight="127.0" prefWidth="636.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
+         <Pane layoutX="18.0" layoutY="35.0" prefHeight="148.0" prefWidth="636.0" styleClass="main_visualizer">
             <children>
-               <Label fx:id="lbSaldoUsuario" layoutX="36.0" layoutY="23.0" prefHeight="50.0" prefWidth="328.0" text="500.000">
-                  <font>
-                     <Font size="34.0" />
-                  </font>
-               </Label>
-               <Label layoutX="39.0" layoutY="71.0" text="Disponibles">
+               <Label fx:id="lbSaldoUsuario" layoutX="36.0" layoutY="36.0" prefHeight="50.0" prefWidth="328.0" styleClass="saldo_usuario" text="0" />
+               <Label layoutX="36.0" layoutY="95.0" text="Disponibles">
                   <font>
                      <Font size="18.0" />
                   </font>
                </Label>
-               <TilePane layoutX="376.0" layoutY="12.0" prefHeight="72.0" prefWidth="138.0" style="-fx-background-color: red; -fx-background-radius: 8;" tileAlignment="TOP_LEFT">
+               <TilePane layoutX="375.0" layoutY="18.0" prefHeight="72.0" prefWidth="138.0" tileAlignment="TOP_LEFT">
                   <children>
                      <Label prefHeight="14.0" prefWidth="82.0" text="Banco">
                         <font>
@@ -46,8 +50,12 @@
                   <padding>
                      <Insets bottom="10.0" left="10.0" top="5.0" />
                   </padding>
+                  <styleClass>
+                     <String fx:value="tarjeta" />
+                     <String fx:value="tarjeta1" />
+                  </styleClass>
                </TilePane>
-               <TilePane layoutX="419.0" layoutY="30.0" prefHeight="72.0" prefWidth="138.0" style="-fx-background-color: blue; -fx-background-radius: 8;" tileAlignment="TOP_LEFT">
+               <TilePane layoutX="418.0" layoutY="36.0" prefHeight="72.0" prefWidth="138.0" tileAlignment="TOP_LEFT">
                   <children>
                      <Label prefHeight="14.0" prefWidth="82.0" text="Banco">
                         <font>
@@ -66,8 +74,12 @@
                   <padding>
                      <Insets bottom="10.0" left="10.0" top="5.0" />
                   </padding>
+                  <styleClass>
+                     <String fx:value="tarjeta" />
+                     <String fx:value="tarjeta2" />
+                  </styleClass>
                </TilePane>
-               <TilePane layoutX="465.0" layoutY="48.0" prefHeight="72.0" prefWidth="138.0" style="-fx-background-color: gray; -fx-background-radius: 8;" tileAlignment="TOP_LEFT">
+               <TilePane layoutX="464.0" layoutY="54.0" prefHeight="72.0" prefWidth="138.0" tileAlignment="TOP_LEFT">
                   <children>
                      <Label prefHeight="14.0" prefWidth="82.0" text="Banco">
                         <font>
@@ -86,146 +98,206 @@
                   <padding>
                      <Insets bottom="10.0" left="10.0" top="5.0" />
                   </padding>
+                  <styleClass>
+                     <String fx:value="tarjeta" />
+                     <String fx:value="tarjeta3" />
+                  </styleClass>
                </TilePane>
             </children>
             <padding>
                <Insets top="50.0" />
             </padding>
          </Pane>
-         <Pane layoutX="668.0" layoutY="35.0" prefHeight="182.0" prefWidth="381.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
+         <Pane layoutX="677.0" layoutY="35.0" prefHeight="182.0" prefWidth="372.0" styleClass="ia_container">
             <children>
-               <VBox alignment="CENTER" layoutX="-2.0" layoutY="2.0" prefHeight="179.0" prefWidth="380.0">
+               <VBox alignment="CENTER" layoutX="-2.0" layoutY="2.0" prefHeight="179.0" prefWidth="372.0">
                   <children>
                      <Label fx:id="lbSaltoLinea" prefHeight="95.0" prefWidth="339.0" text="¿No sabes como plantear tu estrategia de ahorro?" textAlignment="JUSTIFY" wrapText="true">
+                        <VBox.margin>
+                           <Insets bottom="10.0" />
+                        </VBox.margin>
+                     </Label>
+                     <MFXButton contentDisplay="CENTER" onAction="#CharlarConIaAction" prefHeight="35.0" prefWidth="150.0" text="Charla con IA" textAlignment="CENTER" />
+                  </children>
+               </VBox>
+            </children>
+         </Pane>
+         <Pane layoutX="367.0" layoutY="203.0" prefHeight="141.0" prefWidth="286.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
+            <children>
+               <VBox alignment="CENTER" layoutX="10.0" layoutY="9.0" prefHeight="121.0" prefWidth="266.0" spacing="5.0">
+                  <children>
+                     <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="195.0">
+                        <children>
+                           <Label fx:id="lbPonerIngresos" prefHeight="40.0" prefWidth="194.0" text="+ 1.500.000" />
+                           <Label text="Ingresos" />
+                        </children>
+                     </HBox>
+                     <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="266.0">
+                        <children>
+                           <Label fx:id="lbPonerGastos" prefHeight="36.0" prefWidth="193.0" text="- 1.500.000" />
+                           <Label text="Gastos" />
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+            </children>
+         </Pane>
+         <Pane layoutX="368.0" layoutY="362.0" prefHeight="236.0" prefWidth="284.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
+            <children>
+               <VBox alignment="CENTER" layoutX="3.0" layoutY="3.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="236.0" prefWidth="284.0" spacing="20.0">
+                  <children>
+                     <Label text="¿Qué vamos a hacer hoy ?">
                         <font>
-                           <Font size="18.0" />
+                           <Font size="16.0" />
                         </font>
                         <VBox.margin>
                            <Insets bottom="10.0" />
                         </VBox.margin>
                      </Label>
-                     <MFXButton contentDisplay="CENTER" onAction="#CharlarConIaAction" prefHeight="24.0" prefWidth="150.0" text="Charla con IA" textAlignment="CENTER">
-                        <font>
-                           <Font size="16.0" />
-                        </font>
-                     </MFXButton>
+                     <MFXButton onAction="#RetirarUsuarioAction" prefWidth="137.0" text="Retirar" />
+                     <MFXButton onAction="#DepositarUsuarioAction" prefWidth="137.0" text="Depositar" />
+                     <MFXButton onAction="#TransferirUsuarioAction" prefWidth="137.0" text="Transferir" />
                   </children>
                </VBox>
             </children>
          </Pane>
-         <Pane layoutX="367.0" layoutY="176.0" prefHeight="175.0" prefWidth="286.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
+         <VBox alignment="CENTER" layoutX="18.0" layoutY="203.0" prefHeight="387.0" prefWidth="328.0" spacing="10.0" styleClass="transacciones_container">
             <children>
-               <Label fx:id="lbPonerIngresos" layoutX="30.0" layoutY="23.0" prefHeight="40.0" prefWidth="150.0" text="+ 1.500.000">
+               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="192.0" styleClass="transacciones_title" text="Ultimas Transacciones" textAlignment="CENTER">
                   <font>
-                     <Font size="26.0" />
+                     <Font size="17.0" />
                   </font>
+                  <VBox.margin>
+                     <Insets top="10.0" />
+                  </VBox.margin>
                </Label>
-               <Label fx:id="lbPonerGastos" layoutX="29.0" layoutY="93.0" prefHeight="36.0" prefWidth="138.0" text="- 1.500.000">
-                  <font>
-                     <Font size="26.0" />
-                  </font>
-               </Label>
-               <Label layoutX="47.0" layoutY="61.0" text="Ingresos">
-                  <font>
-                     <Font size="16.0" />
-                  </font>
-               </Label>
-               <Label layoutX="50.0" layoutY="127.0" text="Gastos">
-                  <font>
-                     <Font size="16.0" />
-                  </font>
-               </Label>
+               <ListView fx:id="lvListaTransaccionesUsuario" prefHeight="362.0" prefWidth="328.0" />
             </children>
-         </Pane>
-         <ListView fx:id="lvListaTransaccionesUsuario" layoutX="19.0" layoutY="177.0" prefHeight="412.0" prefWidth="328.0" />
-         <Label layoutX="98.0" layoutY="191.0" text="Ultimas Transacciones">
-            <font>
-               <Font size="17.0" />
-            </font>
-         </Label>
-         <Pane layoutX="369.0" layoutY="362.0" prefHeight="218.0" prefWidth="284.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
+         </VBox>
+         <VBox alignment="CENTER" layoutX="677.0" layoutY="238.0" prefHeight="360.0" prefWidth="372.0" spacing="10.0" styleClass="container_presupuestos">
             <children>
-               <Label layoutX="52.0" layoutY="8.0" text="¿Qué vamos a hacer hoy ?">
+               <Label text="Presupuestos">
                   <font>
                      <Font size="16.0" />
                   </font>
+                  <VBox.margin>
+                     <Insets top="10.0" />
+                  </VBox.margin>
                </Label>
-               <MFXButton layoutX="77.0" layoutY="47.0" onAction="#RetirarUsuarioAction" prefHeight="48.0" prefWidth="137.0" text="Retirar">
-                  <font>
-                     <Font size="16.0" />
-                  </font>
-               </MFXButton>
-               <MFXButton layoutX="78.0" layoutY="106.0" onAction="#DepositarUsuarioAction" prefHeight="48.0" prefWidth="137.0" text="Depositar">
-                  <font>
-                     <Font size="16.0" />
-                  </font>
-               </MFXButton>
-               <MFXButton layoutX="79.0" layoutY="166.0" onAction="#TransferirUsuarioAction" prefHeight="48.0" prefWidth="137.0" text="Transferir">
-                  <font>
-                     <Font size="16.0" />
-                  </font>
-               </MFXButton>
+               <ListView fx:id="lvListaPresupuestosUsuario" prefHeight="319.0" prefWidth="236.0" />
             </children>
-         </Pane>
-         <ListView fx:id="lvListaPresupuestosUsuario" layoutX="669.0" layoutY="218.0" prefHeight="362.0" prefWidth="378.0" />
-         <Label fx:id="lbPonerPresupuesto" layoutX="692.0" layoutY="246.0" prefHeight="36.0" prefWidth="138.0" text="2.000.000">
-            <font>
-               <Font size="26.0" />
-            </font>
-         </Label>
-         <Label layoutX="691.0" layoutY="289.0" text="Presupuesto Mensual">
-            <font>
-               <Font size="16.0" />
-            </font>
-         </Label>
+            <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+         </VBox>
       </children>
    </Pane>
    <Pane fx:id="panelCharlarIA" layoutX="-2.0" layoutY="-2.0" prefHeight="628.0" prefWidth="603.0" visible="false">
       <children>
-         <Pane opacity="0.72" prefHeight="631.0" prefWidth="643.0" style="-fx-background-color: black;" />
-         <Pane layoutX="541.0" layoutY="1.0" prefHeight="630.0" prefWidth="535.0" style="-fx-background-color: c2c3c5;">
+         <Pane opacity="0.72" prefHeight="631.0" prefWidth="643.0" style="-fx-background-color: #fff;" />
+         <Pane layoutX="541.0" layoutY="1.0" prefHeight="630.0" prefWidth="535.0" style="-fx-background-color: #C80459;">
             <children>
-               <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="11.0" layoutY="27.0" onAction="#salirChatIaAction" prefHeight="24.0" prefWidth="59.0" style="-fx-background-radius: 20;" text="Salir" />
+               <MFXButton buttonType="RAISED" depthLevel="LEVEL4" layoutX="11.0" layoutY="27.0" onAction="#salirChatIaAction" prefWidth="59.0" style="-fx-background-radius: 20;" text="Salir" />
                <Label contentDisplay="TEXT_ONLY" layoutX="232.0" layoutY="25.0" opacity="0.98" text="IcajaBot ">
                   <font>
                      <Font name="System Bold" size="21.0" />
                   </font>
                </Label>
-               <MFXListView fx:id="lvListaChatConIA" layoutX="14.0" layoutY="87.0" prefHeight="471.0" prefWidth="506.0" style="-fx-background-radius: 20;" />
                <MFXTextField fx:id="txtMensajeParaIA" layoutX="12.0" layoutY="571.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="438.0" />
-               <MFXButton buttonType="RAISED" layoutX="462.0" layoutY="577.0" onAction="#EnviarMensajeIaAction" prefHeight="24.0" prefWidth="54.0" style="-fx-background-radius: 10;" text="Enviar" />
+               <MFXButton buttonType="RAISED" layoutX="462.0" layoutY="577.0" onAction="#EnviarMensajeIaAction" prefWidth="54.0" style="-fx-background-radius: 10;" text="Enviar" />
+               <TextArea fx:id="textAreaChat" layoutX="17.0" layoutY="64.0" prefHeight="493.0" prefWidth="505.0" />
             </children>
          </Pane>
       </children>
    </Pane>
-   <Pane fx:id="panelRetirarUsuario" layoutX="272.0" layoutY="-1.0" prefHeight="628.0" prefWidth="538.0" style="-fx-background-color: f5e8ff; -fx-background-radius: 15;" visible="false">
+   <Pane fx:id="panelTransaccionUsuario" layoutX="-1.0" layoutY="-1.0" prefHeight="626.0" prefWidth="1073.0" visible="false">
       <children>
-         <Label layoutX="255.0" layoutY="49.0" text="Retirar">
-            <font>
-               <Font size="23.0" />
-            </font>
-         </Label>
-         <MFXButton layoutX="36.0" layoutY="571.0" onAction="#volverRetiroAction" text="volver" />
-      </children>
-   </Pane>
-   <Pane fx:id="panelTransferirUsuario" layoutX="1.0" layoutY="-1.0" prefHeight="628.0" prefWidth="538.0" style="-fx-background-color: ebe8ff; -fx-background-radius: 15;" visible="false">
-      <children>
-         <Label layoutX="218.0" layoutY="50.0" text="Transferir">
-            <font>
-               <Font size="19.0" />
-            </font>
-         </Label>
-         <MFXButton layoutX="24.0" layoutY="585.0" onAction="#volverTransferenciaAction" text="volver" />
-      </children>
-   </Pane>
-   <Pane fx:id="panelDepositarUsuario" layoutX="270.0" layoutY="1.0" prefHeight="628.0" prefWidth="538.0" style="-fx-background-color: fff7e8; -fx-background-radius: 15;" visible="false">
-      <children>
-         <Label layoutX="217.0" layoutY="29.0" text="Deposito">
-            <font>
-               <Font size="23.0" />
-            </font>
-         </Label>
-         <MFXButton layoutX="24.0" layoutY="567.0" onAction="#volverDepositoAction" text="volver" />
+         <Pane opacity="0.7" prefHeight="626.0" prefWidth="1073.0" style="-fx-background-color: #fff;" />
+         <Pane layoutX="237.0" layoutY="113.0" prefHeight="400.0" prefWidth="600.0" styleClass="tooltip_transaccion">
+            <children>
+               <Label fx:id="lbTipoTransaccion" layoutX="213.0" layoutY="26.0" text="Realizar Transaccion">
+                  <font>
+                     <Font size="19.0" />
+                  </font>
+               </Label>
+               <MFXButton layoutX="178.0" layoutY="344.0" onAction="#volverTransaccionAction" text="Cancelar" />
+               <MFXButton layoutX="273.0" layoutY="344.0" onAction="#realizarTransaccionAction" prefHeight="32.0" prefWidth="150.0" text="Realizar transaccion" />
+               <VBox layoutX="41.0" layoutY="68.0" prefHeight="216.0" prefWidth="235.0" spacing="10.0">
+                  <children>
+                     <Label text="Clave Transaccional" />
+                     <PasswordField fx:id="txtclaveTransaccional" />
+                     <Label text="Monto">
+                        <VBox.margin>
+                           <Insets top="10.0" />
+                        </VBox.margin></Label>
+                     <TextField fx:id="txtMontoTransaccion" prefHeight="28.0" prefWidth="231.0" promptText="\$$$$" />
+                     <Label text="Cuentas involucradas">
+                        <padding>
+                           <Insets top="20.0" />
+                        </padding></Label>
+                   <TitledPane animated="false" expanded="false" text="Cuentas">
+                        <content>
+                           <VBox prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                                 <Label fx:id="lbCuentaOrigen" text="Cuenta origen">
+                                    <VBox.margin>
+                                       <Insets top="10.0" />
+                                    </VBox.margin>
+                                 </Label>
+                                 <MFXFilterComboBox fx:id="cbxCuentaOrigen" maxHeight="35.0" prefHeight="35.0" prefWidth="231.0" text="Cuenta origen" />
+                                 <Label fx:id="lbCuentaDestino" text="Cuenta destino" visible="false">
+                                    <VBox.margin>
+                                       <Insets top="10.0" />
+                                    </VBox.margin>
+                                 </Label>
+                                 <MFXFilterComboBox fx:id="cbxCuentaDestino" maxHeight="35.0" prefHeight="35.0" prefWidth="231.0" text="Cuenta Destino" visible="false" />
+                              </children>
+                           </VBox>
+                        </content>
+                        <VBox.margin>
+                           <Insets />
+                        </VBox.margin>
+                   </TitledPane>
+                  </children>
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </VBox>
+               <VBox layoutX="321.0" layoutY="68.0" prefHeight="131.0" prefWidth="235.0" spacing="10.0">
+                  <children>
+                     <Label text="Motivo" />
+                     <TextField fx:id="txtMotivoTransaccion" />
+                     <Label text="Seleccionar Categoria">
+                        <VBox.margin>
+                           <Insets top="10.0" />
+                        </VBox.margin></Label>
+                     <MFXFilterComboBox fx:id="cbxCategoriaTransaccion" prefHeight="35.0" prefWidth="231.0" promptText="Categoria" />
+                     <Region prefHeight="21.0" prefWidth="235.0" />
+                     <Label text="O crear categoria:" />
+                   <TitledPane animated="false" expanded="false" text="crear">
+                        <content>
+                           <VBox prefHeight="200.0" prefWidth="231.0" spacing="10.0" style="-fx-background-color: #fff;">
+                              <children>
+                                 <Label text="Nombre" />
+                                 <TextField fx:id="txtNombreCategoriaTransaccion" promptText="Descripcion" />
+                                 <Label text="Descripcion" />
+                                 <TextField fx:id="txtDescripcionCategoriaTransaccion" />
+                              </children>
+                              <padding>
+                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              </padding>
+                           </VBox>
+                        </content>
+                   </TitledPane>
+                  </children>
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </VBox>
+               <Accordion layoutX="384.0" layoutY="306.0" />
+               <Accordion layoutX="455.0" layoutY="328.0" />
+            </children>
+         </Pane>
       </children>
    </Pane>
    

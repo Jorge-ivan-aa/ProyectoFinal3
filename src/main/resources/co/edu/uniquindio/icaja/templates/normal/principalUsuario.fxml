@@ -124,7 +124,7 @@
          </Pane>
          <Pane layoutX="367.0" layoutY="203.0" prefHeight="141.0" prefWidth="286.0" style="-fx-border-color: #717d7e; -fx-border-radius: 10;">
             <children>
-               <VBox alignment="CENTER" layoutX="10.0" layoutY="9.0" prefHeight="122.0" prefWidth="266.0" spacing="5.0">
+               <VBox alignment="CENTER" layoutX="10.0" layoutY="9.0" prefHeight="121.0" prefWidth="266.0" spacing="5.0">
                   <children>
                      <HBox alignment="CENTER_LEFT" prefHeight="44.0" prefWidth="195.0">
                         <children>
@@ -192,7 +192,7 @@
          </VBox>
       </children>
    </Pane>
-   <Pane fx:id="panelCharlarIA" layoutX="-2.0" layoutY="-2.0" prefHeight="628.0" prefWidth="603.0">
+   <Pane fx:id="panelCharlarIA" layoutX="-2.0" layoutY="-2.0" prefHeight="628.0" prefWidth="603.0" visible="false">
       <children>
          <Pane opacity="0.72" prefHeight="631.0" prefWidth="643.0" style="-fx-background-color: #fff;" />
          <Pane layoutX="541.0" layoutY="1.0" prefHeight="630.0" prefWidth="535.0" style="-fx-background-color: #C80459;">
@@ -215,14 +215,14 @@
          <Pane opacity="0.7" prefHeight="626.0" prefWidth="1073.0" style="-fx-background-color: #fff;" />
          <Pane layoutX="237.0" layoutY="113.0" prefHeight="400.0" prefWidth="600.0" styleClass="tooltip_transaccion">
             <children>
-               <Label fx:id="lbTipoTransaccion" layoutX="223.0" layoutY="26.0" text="Realizar Transaccion">
+               <Label fx:id="lbTipoTransaccion" layoutX="213.0" layoutY="26.0" text="Realizar Transaccion">
                   <font>
                      <Font size="19.0" />
                   </font>
                </Label>
                <MFXButton layoutX="178.0" layoutY="344.0" onAction="#volverTransaccionAction" text="Cancelar" />
                <MFXButton layoutX="273.0" layoutY="344.0" onAction="#realizarTransaccionAction" prefHeight="32.0" prefWidth="150.0" text="Realizar transaccion" />
-               <VBox layoutX="41.0" layoutY="68.0" prefHeight="226.0" prefWidth="235.0" spacing="10.0">
+               <VBox layoutX="41.0" layoutY="68.0" prefHeight="216.0" prefWidth="235.0" spacing="10.0">
                   <children>
                      <Label text="Clave Transaccional" />
                      <PasswordField fx:id="txtclaveTransaccional" />
@@ -272,7 +272,7 @@
                            <Insets top="10.0" />
                         </VBox.margin></Label>
                      <MFXFilterComboBox fx:id="cbxCategoriaTransaccion" prefHeight="35.0" prefWidth="231.0" promptText="Categoria" />
-                     <Region prefHeight="22.0" prefWidth="235.0" />
+                     <Region prefHeight="21.0" prefWidth="235.0" />
                      <Label text="O crear categoria:" />
                    <TitledPane animated="false" expanded="false" text="crear">
                         <content>

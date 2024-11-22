@@ -3,6 +3,7 @@ package co.edu.uniquindio.icaja.view.views.normal;
 import co.edu.uniquindio.icaja.controller.UsuarioController;
 import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.icaja.model.Usuario;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.net.URL;
@@ -14,12 +15,8 @@ import javafx.scene.layout.Pane;
 
 public class PerfilUsuarioView {
     UsuarioController usuarioController= new UsuarioController();
+    Usuario usuarioLoggeado = usuarioController.getFactory().getIcaja().getSesion().getUsuario();
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
     @FXML
     private Pane paneActualizarDatos;
 
@@ -53,7 +50,7 @@ public class PerfilUsuarioView {
     private MFXTextField txtNuevoTelefonoUsuario;
 
     @FXML
-    void ActualizarDatosUsuarioAction(ActionEvent event) {
+    void ActualizarDatosUsuarioAction() {
         String nombre = txtNuevoNombreUsuario.getText();
         String cedula = txtNuevaCedulaUsuario.getText();
         String correo = txtNuevoCorreoUsuario.getText();
@@ -82,25 +79,23 @@ public class PerfilUsuarioView {
                 txtNuevoCorreoUsuario,
                 txtNuevoTelefonoUsuario
                 );
-
-
     }
 
     @FXML
-    void cambiarClaveTransaccionalUsuarioAction(ActionEvent event) {
+    void cambiarClaveTransaccionalUsuarioAction() {
         ViewTools.cambiarPantalla(panelCambiarClaveTran,0.225, paneActualizarDatos, paneCambiarContrasenaIng);
     }
 
     @FXML
-    void cambiarContrasenaIngresoAction(ActionEvent event) {
+    void cambiarContrasenaIngresoAction() {
         ViewTools.cambiarPantalla(paneCambiarContrasenaIng,0.225, paneActualizarDatos, panelCambiarClaveTran);
     }
     @FXML
-    void calificarAction(ActionEvent event) {
+    void calificarAction() {
 
     }
     @FXML
-    void configurarAction(ActionEvent event) {
+    void configurarAction() {
         //DEJAR LAS CONTRASEÑAS CON ""
         String nuevaContra =txtNuevaContrasena.getText();
         String confirmarContra = txtConfirmarContrasena.getText();
@@ -123,10 +118,10 @@ public class PerfilUsuarioView {
 
     }
     @FXML
-    void configurarTranAction(ActionEvent event) {
+    void configurarTranAction() {
         String nuevaContraTran= txtNuevaContrasenaTran.getText();
         String configurarContraTran = txtConfirmarContrasenaTran.getText();
-        if (nuevaContraTran== configurarContraTran){
+        if (nuevaContraTran == configurarContraTran){
             UsuarioDto usuarioDto = new UsuarioDto(null,null,  null,  null,  null, "" ,configurarContraTran  );
             try {
                 usuarioController.actualizar(usuarioDto);
@@ -146,18 +141,21 @@ public class PerfilUsuarioView {
     }
 
     @FXML
-    void SalirTranAction(ActionEvent event) {
+    void SalirTranAction() {
         ViewTools.cambiarPantalla(paneActualizarDatos,0.225, panelCambiarClaveTran, paneCambiarContrasenaIng);
     }
 
     @FXML
-    void salirAction(ActionEvent event) {
+    void salirAction() {
         ViewTools.cambiarPantalla(paneActualizarDatos,0.225, paneCambiarContrasenaIng, panelCambiarClaveTran);
     }
 
     @FXML
     void initialize() {
-
+        mostrarInformacion();
     }
 
+    public void mostrarInformacion() {
+        txtNuevoNombreUsuario.setText(usuarioLoggeado.getNombre());
+    }
 }

@@ -124,9 +124,7 @@ public class PrincipalUsuarioView {
         ViewTools.cambiarPantalla(panelCharlarIA,0.225, panelTransaccionUsuario);
         //Agregar un mensaje inicial por parte del chatbot
         String mensajeInicial = "¡Hola! Soy tu asistente Icaja virtual, digita: 1. Para generalidades de la app. Digita: 2. Para estrategias de ahorros";
-        AnchorPane userMessage2 = crearMensaje(mensajeInicial, false);
-        textAreaChat.setText(String.valueOf(userMessage2));
-        //lvListaChatConIA.getItems().add(userMessage2);
+        textAreaChat.setText(mensajeInicial);
     }
 
     @FXML
@@ -187,7 +185,7 @@ public class PrincipalUsuarioView {
     @FXML
     void salirChatIaAction() {
         ViewTools.cambiarPantalla(panelUnoUsuario,0.225, panelCharlarIA, panelTransaccionUsuario);
-        lvListaChatConIA.getItems().clear();
+        textAreaChat.clear();
     }
 
     @FXML
@@ -347,36 +345,6 @@ public class PrincipalUsuarioView {
             lbPonerIngresos.setText(NumTool.formatearMonto(usuarioLogueado.getIngresos()));
 
         }
-    }
-    private AnchorPane crearMensaje(String text, boolean isSentByUser) {
-
-        // Crear el contenedor del mensaje
-        AnchorPane messagePane = new AnchorPane();
-
-        // Crear el Label con el texto del mensaje
-        Label messageLabel = new Label(text);
-        messageLabel.setWrapText(true); // Permitir que el texto se ajuste automáticamente
-        messageLabel.setMaxWidth(250); // Ancho máximo para el texto antes de hacer wrap
-        messageLabel.setPadding(new Insets(10)); // Espaciado interno para el mensaje
-
-        // Aplicar estilo según el tipo de mensaje
-        if (isSentByUser) {
-            messageLabel.setStyle("-fx-background-color: lightblue; -fx-background-radius: 10;");
-            AnchorPane.setRightAnchor(messageLabel, 10.0); // Alinear a la derecha
-        } else {
-            messageLabel.setStyle("-fx-background-color: lightgray; -fx-background-radius: 10;");
-            AnchorPane.setLeftAnchor(messageLabel, 10.0); // Alinear a la izquierda
-        }
-
-        // Asegurar que el mensaje esté correctamente alineado dentro del AnchorPane
-        AnchorPane.setTopAnchor(messageLabel, 10.0); // Espaciado superior dentro del mensaje
-        messagePane.getChildren().add(messageLabel); // Añadir el mensaje al AnchorPane
-
-        // Aplicar espaciado externo para separar mensajes
-        messagePane.setPadding(new Insets(5, 0, 5, 0)); // Espaciado vertical externo
-
-        return messagePane;
-
     }
 
 

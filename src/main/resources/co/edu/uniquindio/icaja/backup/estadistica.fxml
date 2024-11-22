@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="estadisticasPanel" prefHeight="626.0" prefWidth="1073.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.admin.EstadisticaView">
    <children>
-      <PieChart fx:id="pcGraficaUno" layoutX="404.0" layoutY="60.0" prefHeight="237.0" prefWidth="246.0" style="-fx-background-color: orange;" />
-      <PieChart fx:id="pcGraficaDos" layoutX="403.0" layoutY="350.0" prefHeight="237.0" prefWidth="246.0" style="-fx-background-color: orange;" />
-      <TableView fx:id="tvGastosPorCategoria" layoutX="41.0" layoutY="60.0" prefHeight="237.0" prefWidth="312.0">
+      <PieChart fx:id="pcGraficaUno" layoutX="404.0" layoutY="51.0" prefHeight="287.0" prefWidth="355.0" />
+      <TableView fx:id="tvGastosPorCategoria" layoutX="41.0" layoutY="49.0" prefHeight="248.0" prefWidth="312.0">
         <columns>
           <TableColumn fx:id="tcGastosPorCategoria" prefWidth="230.9333610534668" text="Gastos por Categoria" />
           <TableColumn fx:id="tcPorcentajePorCategoria" prefWidth="81.0666275024414" text="\%" />
@@ -24,34 +27,48 @@
             <TableColumn fx:id="tcCantidadTransacciones" prefWidth="81.0666275024414" text="#" />
          </columns>
       </TableView>
-      <Pane layoutX="718.0" layoutY="47.0" prefHeight="538.0" prefWidth="311.0" style="-fx-border-color: purple;">
+      <VBox alignment="CENTER" layoutX="781.0" layoutY="47.0" prefHeight="533.0" prefWidth="258.0" spacing="20.0">
          <children>
-            <Label layoutX="48.0" layoutY="52.0" text="Saldo Promedio de Usuarios">
+            <Label prefHeight="68.0" prefWidth="239.0" text="Saldo Promedio de Usuarios" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label layoutX="55.0" layoutY="319.0" text="Usuario con Mayor Saldo">
+            <Label fx:id="lbSaldoPromedioUsuario" text="#######">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Label prefHeight="53.0" prefWidth="211.0" text="Usuario con Mayor Saldo" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="17.0" />
                </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </Label>
-            <Label fx:id="lbSaldoPromedioUsuario" layoutX="105.0" layoutY="156.0" text="#######">
+            <Label fx:id="lbUsuarioMayorSaldoNombre" text="#######">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
-            <Label fx:id="lbUsuarioMayorSaldoNombre" layoutX="116.0" layoutY="367.0" text="#######">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Label>
-            <Label fx:id="lbUsuarioMayorSaldoSaldo" layoutX="116.0" layoutY="397.0" text="#######">
+            <Label fx:id="lbUsuarioMayorSaldoSaldo" text="#######">
                <font>
                   <Font size="23.0" />
                </font>
             </Label>
          </children>
-      </Pane>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
+      <BarChart fx:id="barChart" layoutX="380.0" layoutY="350.0" prefHeight="237.0" prefWidth="393.0">
+        <xAxis>
+          <CategoryAxis label="Usuario" side="BOTTOM" fx:id="xAxis" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="yAxis" label="Cantidad de Transacciones" side="LEFT" />
+        </yAxis>
+      </BarChart>
    </children>
 </AnchorPane>

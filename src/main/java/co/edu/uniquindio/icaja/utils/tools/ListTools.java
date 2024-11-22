@@ -1,8 +1,6 @@
 package co.edu.uniquindio.icaja.utils.tools;
 
 import co.edu.uniquindio.icaja.exception.almacenamiento.ElementoNoEncontrado;
-import co.edu.uniquindio.icaja.exception.almacenamiento.TipoNoMapeado;
-
 import java.util.List;
 import java.util.function.Function;
 

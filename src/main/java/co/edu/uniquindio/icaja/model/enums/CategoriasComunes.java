@@ -4,7 +4,6 @@ import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import lombok.Getter;
 
 import java.util.*;
-import java.util.logging.Level;
 
 
 

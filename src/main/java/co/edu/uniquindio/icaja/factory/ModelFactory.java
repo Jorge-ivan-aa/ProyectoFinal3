@@ -4,8 +4,6 @@ package co.edu.uniquindio.icaja.factory;
 import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.model.persistencia.*;
 import co.edu.uniquindio.icaja.model.services.Persistible;
-import co.edu.uniquindio.icaja.server.consumidor.Consumidor;
-import co.edu.uniquindio.icaja.server.productor.Productor;
 import co.edu.uniquindio.icaja.utils.almacenamiento.Config;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.model.respaldo.ICajaRespaldo;
@@ -54,7 +52,6 @@ public class ModelFactory {
 
         if (!cargarPersistencia()) icaja = cargaRespaldo();
         if (icaja == null) icaja = new ICaja();
-        obtenerActualizaciones();
         cargarConfiguracion();
     }
 
@@ -63,10 +60,6 @@ public class ModelFactory {
             instance = new  ModelFactory();
         }
         return instance;
-    }
-
-    public void setIcaja() {
-        cargarPersistencia();
     }
 
     public void sincronizarData() {
@@ -78,15 +71,6 @@ public class ModelFactory {
         icaja.excluirAdmin(listaUsuarioObservable, listaCategoriasObservable);
 
         guardarPersistencia();
-      //  sincronizarInstancias();
-    }
-
-    private void obtenerActualizaciones() {
-        Consumidor.escuchandoActualizaciones();
-    }
-
-    public void sincronizarInstancias(String msj) {
-        Productor.enviarNotificacion(msj);
     }
 
 

@@ -83,7 +83,7 @@
             <Label fx:id="lbNombreVentana" layoutX="23.0" layoutY="8.0" styleClass="nombre_ventana" text="Titulo ventana" />
         </children>
     </AnchorPane>
-    <MenuButton layoutX="1190.0" layoutY="19.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="45.0" styleClass=".bandeja_notificacion">
+    <MenuButton fx:id="menuNotificaciones" layoutX="1190.0" layoutY="19.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="45.0" styleClass=".bandeja_notificacion">
         <graphic>
             <FontAwesomeIconView glyphName="BELL" size="24" styleClass="icon" />
         </graphic>

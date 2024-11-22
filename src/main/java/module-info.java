@@ -3,9 +3,11 @@ module co.edu.uniquindio.icaja {
     requires MaterialFX;
     requires atlantafx.base;
     requires de.jensd.fx.glyphs.fontawesome;
-    requires java.logging;
     requires jbcrypt;
     requires com.rabbitmq.client;
+    requires com.fasterxml.jackson.datatype.jsr310;
+    requires com.fasterxml.jackson.databind;
+    requires java.logging;
 
     exports co.edu.uniquindio.icaja.mapping.mappers;
     exports co.edu.uniquindio.icaja.mapping.dto;

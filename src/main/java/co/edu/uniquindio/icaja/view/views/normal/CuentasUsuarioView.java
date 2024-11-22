@@ -13,7 +13,6 @@ import co.edu.uniquindio.icaja.model.enums.EntidadBancaria;
 import co.edu.uniquindio.icaja.model.enums.TipoCuenta;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
-import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -102,7 +101,7 @@ public class CuentasUsuarioView {
     void initialize() {
         cbEntidadCuentaUsuario.getItems().addAll(EntidadBancaria.values());
         cbTipoCuentaUsuario.getItems().addAll(TipoCuenta.values());
-        //llenarTablaCuentasUsuario();
+        llenarTablaCuentasUsuario();
 
     }
 
@@ -120,8 +119,12 @@ public class CuentasUsuarioView {
         // Filtrar las cuentas que pertenecen al usuario
         List<String> cuentasFormateadas = cuentaController.getListaCuentaObservable().stream()
                 .filter(cuenta -> cuentasUsuario.contains(cuenta.getIdCuenta())) // Filtrar cuentas válidas
-                .map(cuenta -> String.format("%s:%.2f", cuenta.getNumeroCuenta(), cuenta.getSaldo())) // Formatear como String
+                .map(cuenta -> {
+                    double saldo = Double.parseDouble(cuenta.getSaldo()); // Convertir saldo a double
+                    return String.format("%s:%.2f", cuenta.getNumeroCuenta(), saldo); // Formatear como String
+                })
                 .toList();
+
 
         // Convertir la lista formateada a ObservableList y asignarla al MFXListView
         ObservableList<String> cuentasObservable = FXCollections.observableArrayList(cuentasFormateadas);
