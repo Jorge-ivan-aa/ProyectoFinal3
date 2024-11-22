@@ -9,6 +9,7 @@ import co.edu.uniquindio.icaja.controller.*;
 import co.edu.uniquindio.icaja.controller.enums.TipoConsulta;
 import co.edu.uniquindio.icaja.mapping.dto.RetiroODepostoDto;
 import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
+import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.mapping.services.ITransaccionDto;
 import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.model.enums.TipoTransaccion;
@@ -87,6 +88,9 @@ public class PrincipalUsuarioView {
     private ListView<Transaccion> lvListaTransaccionesUsuario;
 
     @FXML
+    private TextArea textAreaChat;
+
+    @FXML
     private Pane panelCharlarIA;
 
     @FXML
@@ -119,9 +123,10 @@ public class PrincipalUsuarioView {
 
         ViewTools.cambiarPantalla(panelCharlarIA,0.225, panelTransaccionUsuario);
         //Agregar un mensaje inicial por parte del chatbot
-        String mensajeInicial = "¡Hola! Soy tu asistente virtual digita inicial para información general, digita estrategias para consultas en terminos de fisica  ";
+        String mensajeInicial = "¡Hola! Soy tu asistente Icaja virtual, digita: 1. Para generalidades de la app. Digita: 2. Para estrategias de ahorros";
         AnchorPane userMessage2 = crearMensaje(mensajeInicial, false);
-        lvListaChatConIA.getItems().add(userMessage2);
+        textAreaChat.setText(String.valueOf(userMessage2));
+        //lvListaChatConIA.getItems().add(userMessage2);
     }
 
     @FXML
@@ -129,17 +134,33 @@ public class PrincipalUsuarioView {
 
         String texto = txtMensajeParaIA.getText();
 
+//        if (!texto.isEmpty()) {
+//            AnchorPane userMessage = crearMensaje(texto, true);
+//            lvListaChatConIA.getItems().add(userMessage); // Agregar mensaje del usuario
+//
+//            // Simulación de respuesta del "otro usuario"
+//            String [] respuestaBot = chatBot.procesarEntrada(texto,contexto);
+//            AnchorPane responseMessage = crearMensaje("IcajaBot: " + respuestaBot[1], false);
+//            lvListaChatConIA.getItems().add(responseMessage);
+//            contexto=respuestaBot[0];
+//
+//            txtMensajeParaIA.clear(); // Limpiar el campo de entrada
+//        }
         if (!texto.isEmpty()) {
-            AnchorPane userMessage = crearMensaje(texto, true);
-            lvListaChatConIA.getItems().add(userMessage); // Agregar mensaje del usuario
-            lvListaChatConIA.getItems().add(new AnchorPane());
-            // Simulación de respuesta del "otro usuario"
-            String [] respuestaBot = chatBot.procesarEntrada(texto,contexto);
-            AnchorPane responseMessage = crearMensaje("IcajaBot: " + respuestaBot[1], false);
-            lvListaChatConIA.getItems().add(responseMessage);
-            contexto=respuestaBot[0];
+            // Concatenar el mensaje del usuario en el TextArea
+            String mensajeUsuario = "Usuario: " + texto + "\n";
+            textAreaChat.appendText(mensajeUsuario);
 
-            txtMensajeParaIA.clear(); // Limpiar el campo de entrada
+            // Simulación de respuesta del "otro usuario"
+            String[] respuestaBot = chatBot.procesarEntrada(texto, contexto);
+            String mensajeBot = "IcajaBot: " + respuestaBot[1] + "\n";
+            textAreaChat.appendText(mensajeBot);
+
+            // Actualizar el contexto
+            contexto = respuestaBot[0];
+
+            // Limpiar el campo de entrada
+            txtMensajeParaIA.clear();
         }
     }
 
@@ -328,6 +349,7 @@ public class PrincipalUsuarioView {
         }
     }
     private AnchorPane crearMensaje(String text, boolean isSentByUser) {
+
         // Crear el contenedor del mensaje
         AnchorPane messagePane = new AnchorPane();
 
@@ -354,6 +376,7 @@ public class PrincipalUsuarioView {
         messagePane.setPadding(new Insets(5, 0, 5, 0)); // Espaciado vertical externo
 
         return messagePane;
+
     }
 
 
