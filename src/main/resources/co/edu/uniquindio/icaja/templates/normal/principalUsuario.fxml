@@ -221,14 +221,14 @@
          <Pane opacity="0.52" prefHeight="626.0" prefWidth="1073.0" style="-fx-background-color: #fff;" />
          <Pane layoutX="237.0" layoutY="91.0" prefHeight="452.0" prefWidth="600.0" styleClass="tooltip_transaccion">
             <children>
-               <Label fx:id="lbTipoTransaccion" layoutX="223.0" layoutY="26.0" text="Realizar Transaccion">
+               <Label fx:id="lbTipoTransaccion" layoutX="213.0" layoutY="25.0" style="-fx-font-weight: bold;" text="Realizar Transaccion">
                   <font>
                      <Font size="19.0" />
                   </font>
                </Label>
-               <MFXButton layoutX="191.0" layoutY="364.0" onAction="#volverTransaccionAction" text="Cancelar" />
-               <MFXButton layoutX="286.0" layoutY="364.0" onAction="#realizarTransaccionAction" prefHeight="32.0" prefWidth="166.0" text="Realizar transaccion" />
-               <VBox layoutX="41.0" layoutY="68.0" prefHeight="245.0" prefWidth="235.0" spacing="10.0">
+               <MFXButton layoutX="162.0" layoutY="376.0" onAction="#volverTransaccionAction" text="Cancelar" />
+               <MFXButton layoutX="257.0" layoutY="376.0" onAction="#realizarTransaccionAction" prefHeight="32.0" prefWidth="182.0" text="Realizar transaccion" />
+               <VBox layoutX="43.0" layoutY="72.0" prefHeight="245.0" prefWidth="235.0" spacing="10.0">
                   <children>
                      <Label text="Clave Transaccional" />
                      <PasswordField fx:id="txtclaveTransaccional" />
@@ -275,7 +275,7 @@
                      <Insets top="10.0" />
                   </padding>
                </VBox>
-               <VBox layoutX="321.0" layoutY="68.0" prefHeight="217.0" prefWidth="235.0" spacing="10.0">
+               <VBox layoutX="323.0" layoutY="72.0" prefHeight="217.0" prefWidth="235.0" spacing="10.0">
                   <children>
                      <Label text="Motivo" />
                      <TextField fx:id="txtMotivoTransaccion" />

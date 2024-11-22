@@ -73,11 +73,7 @@ public class PerfilUsuarioView {
             ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
 
         }
-        ViewTools.limpiarCampos(txtNuevaCedulaUsuario,
-                txtNuevoNombreUsuario,
-                txtNuevoCorreoUsuario,
-                txtNuevoTelefonoUsuario
-                );
+
     }
 
     @FXML

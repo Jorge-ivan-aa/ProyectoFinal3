@@ -428,7 +428,7 @@
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$z6LREsN5ZbRCuLUe2WTJSuJ/yQxUEwRXPTVc16yLDkEX40KmpGlcW</string>
+      <string>$2a$10$Go/mf7mgDmDYK5rdr4xCiOMBXYLlH3P9FvTUeGYxwaWsWlLbOkAg6</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>
