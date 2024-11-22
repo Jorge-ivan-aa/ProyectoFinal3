@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="21.0.4" class="java.beans.XMLDecoder">
+<java version="21.0.2" class="java.beans.XMLDecoder">
  <object class="co.edu.uniquindio.icaja.model.ICaja" id="ICaja0">
   <void property="listaCategorias">
    <void method="add">
@@ -528,10 +528,44 @@
    <void method="add">
     <object class="co.edu.uniquindio.icaja.model.Usuario">
      <void property="cedula">
+      <string>12345</string>
+     </void>
+     <void property="clave">
+      <string>$2a$10$0K378gVadbqfghE4nwWxrOOplcMZyOG2T4CJDZlILezyJK0objkjS</string>
+     </void>
+     <void property="claveTransaccional">
+      <string>$2a$10$fLUGNA3885lnO8GoUT5Tl.NmlNZ0evAHyaRa00RwdTdigCFjwm7kO</string>
+     </void>
+     <void property="correo">
+      <string>dhgfhgfhfh</string>
+     </void>
+     <void property="gastos">
+      <string>0</string>
+     </void>
+     <void property="idUsuario">
+      <string>776d5520-d8e1-4265-8d76-e2c59996ab53</string>
+     </void>
+     <void property="ingresos">
+      <string>0</string>
+     </void>
+     <void property="nombre">
+      <string>Jose</string>
+     </void>
+     <void property="saldoTotal">
+      <string>0</string>
+     </void>
+     <void property="telefono">
+      <string>34453345344</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="co.edu.uniquindio.icaja.model.Usuario">
+     <void property="cedula">
       <string>admin</string>
      </void>
      <void property="clave">
-      <string>$2a$10$P3PyMwzz/VrTQfZf.7h3COMgREN/rJyRqF0HNCD6JkQbTfYzVxPtC</string>
+      <string>$2a$10$FOHvPiIoTzwWWN6WasQgLe8srGLKnhF97u9QT6PcsTrqFNAifbN82</string>
      </void>
      <void property="nombre">
       <string>Administrador</string>

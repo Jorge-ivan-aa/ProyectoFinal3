@@ -15,6 +15,13 @@ import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -31,12 +38,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 
+import javax.imageio.ImageIO;
+
 public class BalanceUsuarioView {
+    //GenerarReporte generarReporte = new GenerarReporte();
     PresupuestoController presupuestoController = new PresupuestoController();
     UsuarioController usuarioController = new UsuarioController();
     CategoriaController categoriaController = new CategoriaController();
     String balanceSeleccionado="";
     Usuario usuarioLogueado = usuarioController.getFactory().getIcaja().getSesion().getUsuario();
+
+    String pdfPath = "reporte.png"; // Como PDF es una imagen simulada
+    String csvPath = "reporte.csv";
     @FXML
     private ResourceBundle resources;
 
@@ -154,7 +167,9 @@ public class BalanceUsuarioView {
 
     @FXML
     void generarReporteFinancieroBalanceAction() {
-
+        generateCSV(csvPath);
+        generatePDF(pdfPath);
+        System.out.println("Se generó un reporte en la ubicación"+pdfPath);
     }
 
     @FXML
@@ -173,7 +188,7 @@ public class BalanceUsuarioView {
     @FXML
     void initialize() {
         initview();
-        cbCategoriasBalance.getItems().addAll(CategoriasComunes.values());
+        //cbCategoriasBalance.getItems().addAll(CategoriasComunes.values());
     }
 
     private void initview(){
@@ -210,9 +225,9 @@ public class BalanceUsuarioView {
 //            txtClaveAdmin.setPromptText(seleccionado.getClave());
         }
     }
-    private ObservableList<Cuenta> obtenerCategoriasPorId(List<String> idCategorias) {
-        return obtenerEntidadesPorIds(idCategorias, id -> categoriaController.consultar(id, TipoConsulta.ID_CATEGORIA));
-    }
+//    private ObservableList<Cuenta> obtenerCategoriasPorId(List<String> idCategorias) {
+//        return obtenerEntidadesPorIds(idCategorias, id -> categoriaController.consultar(id, TipoConsulta.ID_CATEGORIA));
+//    }
 
     private <T> ObservableList<T> obtenerEntidadesPorIds(List<String> ids, Function<String, T> consulta) {
         ObservableList<T> entidades = FXCollections.observableArrayList();
@@ -231,6 +246,84 @@ public class BalanceUsuarioView {
         } catch (Exception e) {
             Seguimiento.registrarLog(3, "Error al consultar: " + e.getMessage());
             return null;
+        }
+    }
+
+    public static void generatePDF(String filePath) {
+        UsuarioController usuarioController1 = new UsuarioController();
+        try {
+            // Crear una imagen para simular un PDF básico
+            int width = 500, height = 300;
+            BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2d = image.createGraphics();
+
+            // Fondo blanco
+            g2d.setColor(Color.WHITE);
+            g2d.fillRect(0, 0, width, height);
+
+            // Configuración del texto
+            g2d.setColor(Color.BLACK);
+            g2d.setFont(new Font("Arial", Font.BOLD, 16));
+            g2d.drawString("Reporte de Cuentas", 150, 30);
+
+            // Encabezados
+            g2d.setFont(new Font("Arial", Font.PLAIN, 14));
+            g2d.drawString("Cuenta", 50, 70);
+            g2d.drawString("Número de Cuenta", 150, 70);
+            g2d.drawString("Usuario", 300, 70);
+            g2d.drawString("Categoría", 400, 70);
+
+            // Datos de ejemplo
+            String[][] data = {
+                    {"1", "123456789", "Juan Pérez", "Ahorro"},
+                    {"2", "987654321", "Ana Gómez", "Corriente"},
+                    {"3", usuarioController1.getListaUsuarioObservable().get(1).getIdUsuario(),usuarioController1.getListaUsuarioObservable().get(1).getNombre(),"corriente"  },
+                    {"4", usuarioController1.getListaUsuarioObservable().get(2).getIdUsuario(),usuarioController1.getListaUsuarioObservable().get(2).getNombre(),"Ahorro"  }
+            };
+
+            int y = 100;
+            for (String[] row : data) {
+                g2d.drawString(row[0], 50, y);
+                g2d.drawString(row[1], 150, y);
+                g2d.drawString(row[2], 300, y);
+                g2d.drawString(row[3], 400, y);
+                g2d.drawString(row[4], 400, y);
+                y += 30;
+            }
+
+            g2d.dispose();
+
+            // Guardar la imagen como un archivo PDF simulado
+            ImageIO.write(image, "png", new File(filePath));
+            System.out.println("PDF generado como imagen en: " + filePath);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void generateCSV(String filePath) {
+        UsuarioController usuarioController2 = new UsuarioController();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            // Encabezados
+            writer.write("Cuenta,Número de Cuenta,Usuario,Categoría");
+            writer.newLine();
+
+            // Datos de ejemplo
+            String[][] data = {
+                    {"1", "123456789", "Juan Pérez", "Ahorro"},
+                    {"2", "987654321", "Ana Gómez", "Corriente"},
+                    {"3", usuarioController2.getListaUsuarioObservable().get(1).getIdUsuario(),usuarioController2.getListaUsuarioObservable().get(1).getNombre(),"corriente"  },
+                    {"4", usuarioController2.getListaUsuarioObservable().get(2).getIdUsuario(),usuarioController2.getListaUsuarioObservable().get(2).getNombre(),"Ahorro"  }
+            };
+
+            for (String[] row : data) {
+                writer.write(String.join(",", row));
+                writer.newLine();
+            }
+
+            System.out.println("CSV generado en: " + filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

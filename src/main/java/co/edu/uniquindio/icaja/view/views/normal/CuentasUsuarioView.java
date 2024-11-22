@@ -122,7 +122,7 @@ public class CuentasUsuarioView {
     void initialize() {
         cbEntidadCuentaUsuario.getItems().addAll(EntidadBancaria.values());
         cbTipoCuentaUsuario.getItems().addAll(TipoCuenta.values());
-        llenarTablaCuentasUsuario();
+        //llenarTablaCuentasUsuario();
 
     }
 

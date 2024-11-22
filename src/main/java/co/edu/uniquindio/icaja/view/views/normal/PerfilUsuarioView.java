@@ -104,22 +104,22 @@ public class PerfilUsuarioView {
         //DEJAR LAS CONTRASEÑAS CON ""
         String nuevaContra =txtNuevaContrasena.getText();
         String confirmarContra = txtConfirmarContrasena.getText();
-//        if (nuevaContra== confirmarContra){
-//            UsuarioDto usuarioDto = new UsuarioDto(null,null,  null,  null,  null, confirmarContra ,""  );
-//            try {
-//                usuarioController.actualizar(usuarioDto);
-//                String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
-//                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
-//
-//            } catch (ElementoNoExiste e) {
-//                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
-//            }
-//            String msj = "Se ha actualizado la contraseña correctamente";
-//            ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
-//        }else{
-//            String msj = "No se pudo actualizar la contraseña correctamente";
-//            ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
-//        }
+        if (nuevaContra== confirmarContra){
+            UsuarioDto usuarioDto = new UsuarioDto(null,null,  null,  null,  null, confirmarContra ,""  );
+            try {
+                usuarioController.actualizar(usuarioDto);
+                String msj = "Se ha actualizado el usuario correctamente";
+                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+
+            } catch (ElementoNoExiste e) {
+                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+            }
+            String msj = "Se ha actualizado la contraseña correctamente";
+            ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+        }else{
+            String msj = "No se pudo actualizar la contraseña correctamente";
+            ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+        }
 
     }
     @FXML
