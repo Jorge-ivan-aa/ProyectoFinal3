@@ -31,6 +31,7 @@ public class ModelFactory {
     private final ObservableList<Presupuesto> listaPresupuestoObservable = FXCollections.observableArrayList();
     private final ObservableList<Transaccion> listaTransaccionObservable = FXCollections.observableArrayList();
     private final ObservableList<Categoria> listaCategoriasObservable = FXCollections.observableArrayList();
+    private final ObservableList<String> notificaciones = FXCollections.observableArrayList();
 
     // PERSISTENCIA
     private final UsuarioPersistente usuarioPersistente;

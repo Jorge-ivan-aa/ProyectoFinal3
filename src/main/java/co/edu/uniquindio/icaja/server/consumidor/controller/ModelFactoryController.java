@@ -57,6 +57,7 @@ public class ModelFactoryController implements IModelFactoryService, Runnable {
                 Seguimiento.registrarLog(2, message);
                 factory.setIcaja();
                 factory.sincronizarData();
+                factory.getNotificaciones().add(message);
             };
 
             while (true) {

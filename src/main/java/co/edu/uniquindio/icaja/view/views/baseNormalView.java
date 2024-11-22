@@ -2,9 +2,14 @@ package co.edu.uniquindio.icaja.view.views;
 
 import co.edu.uniquindio.icaja.controller.UsuarioController;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
+import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 
 
@@ -41,6 +46,9 @@ public class baseNormalView {
 
     @FXML
     private AnchorPane principalUsuarioBox;
+
+    @FXML
+    private MenuButton menuNotificaciones;
 
     @FXML
     void VolverAction() {
@@ -87,6 +95,34 @@ public class baseNormalView {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             usuarioController.cerrarSesion();
         }));
+
+        sincronizarMenuConLista(usuarioController.getFactory().getNotificaciones(), menuNotificaciones);
+    }
+
+    public void sincronizarMenuConLista(ObservableList<String> lista, MenuButton menuButton) {
+        // Escucha cambios en la lista
+        lista.addListener((ListChangeListener<String>) cambio -> {
+            while (cambio.next()) {
+                if (cambio.wasAdded() || cambio.wasRemoved() || cambio.wasUpdated()) {
+                    actualizarMenu(lista, menuButton); // Actualiza el menú
+                }
+            }
+        });
+
+        // Inicializa el menú con los elementos actuales de la lista
+        actualizarMenu(lista, menuButton);
+    }
+
+    void actualizarMenu(ObservableList<String> lista, MenuButton menuButton) {
+        Platform.runLater(() -> {
+            menuButton.getItems().clear(); // Limpia los items existentes
+            int index = 1; // Índice para numerar los elementos
+            for (String item : lista) {
+                MenuItem menuItem = new MenuItem(index + ". " + item); // Texto con índice
+                menuButton.getItems().add(menuItem);
+                index++;
+            }
+        });
     }
 
 }

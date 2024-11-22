@@ -9,7 +9,6 @@ import co.edu.uniquindio.icaja.controller.*;
 import co.edu.uniquindio.icaja.controller.enums.TipoConsulta;
 import co.edu.uniquindio.icaja.mapping.dto.RetiroODepostoDto;
 import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
-import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.mapping.services.ITransaccionDto;
 import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.model.enums.TipoTransaccion;
@@ -133,7 +132,7 @@ public class PrincipalUsuarioView {
         if (!texto.isEmpty()) {
             AnchorPane userMessage = crearMensaje(texto, true);
             lvListaChatConIA.getItems().add(userMessage); // Agregar mensaje del usuario
-
+            lvListaChatConIA.getItems().add(new AnchorPane());
             // Simulación de respuesta del "otro usuario"
             String [] respuestaBot = chatBot.procesarEntrada(texto,contexto);
             AnchorPane responseMessage = crearMensaje("IcajaBot: " + respuestaBot[1], false);
@@ -329,7 +328,6 @@ public class PrincipalUsuarioView {
         }
     }
     private AnchorPane crearMensaje(String text, boolean isSentByUser) {
-
         // Crear el contenedor del mensaje
         AnchorPane messagePane = new AnchorPane();
 
@@ -339,7 +337,7 @@ public class PrincipalUsuarioView {
         messageLabel.setMaxWidth(250); // Ancho máximo para el texto antes de hacer wrap
         messageLabel.setPadding(new Insets(10)); // Espaciado interno para el mensaje
 
-        // Estilo diferente para mensajes enviados y recibidos
+        // Aplicar estilo según el tipo de mensaje
         if (isSentByUser) {
             messageLabel.setStyle("-fx-background-color: lightblue; -fx-background-radius: 10;");
             AnchorPane.setRightAnchor(messageLabel, 10.0); // Alinear a la derecha
@@ -349,14 +347,15 @@ public class PrincipalUsuarioView {
         }
 
         // Asegurar que el mensaje esté correctamente alineado dentro del AnchorPane
-        AnchorPane.setTopAnchor(messageLabel, 10.0); // Espaciado superior
+        AnchorPane.setTopAnchor(messageLabel, 10.0); // Espaciado superior dentro del mensaje
         messagePane.getChildren().add(messageLabel); // Añadir el mensaje al AnchorPane
 
-        // dar opciones al usuario numéricamente
+        // Aplicar espaciado externo para separar mensajes
+        messagePane.setPadding(new Insets(5, 0, 5, 0)); // Espaciado vertical externo
 
         return messagePane;
-
     }
+
 
     private void llenarListaTransaccionesUsuario() {
         // Obtener la lista de transacciones del usuario
