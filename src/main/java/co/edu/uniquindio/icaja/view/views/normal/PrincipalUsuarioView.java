@@ -120,7 +120,7 @@ public class PrincipalUsuarioView {
 
         ViewTools.cambiarPantalla(panelCharlarIA,0.225, panelTransaccionUsuario);
         //Agregar un mensaje inicial por parte del chatbot
-        String mensajeInicial = "¡Hola! Soy tu asistente virtual digita inicial para información general, digita estrategias para consultas en terminos de fisica  ";
+        String mensajeInicial = "¡Hola! Soy tu asistente virtual, digita: 1. Para generalidades de la app. Digita: 2. Para estrategias de ahorros";
         AnchorPane userMessage2 = crearMensaje(mensajeInicial, false);
         lvListaChatConIA.getItems().add(userMessage2);
     }
