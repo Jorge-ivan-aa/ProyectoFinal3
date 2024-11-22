@@ -2,6 +2,7 @@ package co.edu.uniquindio.icaja.view.views.normal;
 
 import co.edu.uniquindio.icaja.controller.CategoriaController;
 import co.edu.uniquindio.icaja.controller.PresupuestoController;
+import co.edu.uniquindio.icaja.controller.TransaccionController;
 import co.edu.uniquindio.icaja.controller.UsuarioController;
 import co.edu.uniquindio.icaja.controller.enums.TipoConsulta;
 import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
@@ -11,8 +12,10 @@ import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.model.enums.CategoriasComunes;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
+import co.edu.uniquindio.icaja.utils.tools.NumTool;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import io.github.palexdev.materialfx.controls.MFXComboBox;
+import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
 
@@ -23,6 +26,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Function;
@@ -32,17 +37,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import javax.imageio.ImageIO;
 
 public class BalanceUsuarioView {
     //GenerarReporte generarReporte = new GenerarReporte();
     PresupuestoController presupuestoController = new PresupuestoController();
+    TransaccionController transaccionController = new TransaccionController();
     UsuarioController usuarioController = new UsuarioController();
     CategoriaController categoriaController = new CategoriaController();
     String balanceSeleccionado="";
@@ -57,7 +64,7 @@ public class BalanceUsuarioView {
     private URL location;
 
     @FXML
-    private MFXComboBox<Categoria> cbCategoriasBalance;
+    private MFXFilterComboBox<String> cbCategoriasBalance;
 
     @FXML
     private MFXListView<Presupuesto> lvListaPresupuestosEstadisticas;
@@ -84,7 +91,7 @@ public class BalanceUsuarioView {
     private RadioButton rbTodosBalance;
 
     @FXML
-    private TableColumn<Presupuesto, String> tcCategoriaBalance;
+    private TableColumn<Categoria, String> tcCategoriaBalance;
 
     @FXML
     private TableColumn<Presupuesto, String> tcIdBalance;
@@ -113,42 +120,63 @@ public class BalanceUsuarioView {
     private MFXTextField txtNombreParaCategoria;
 
     @FXML
-    void actualizarBalanceAction(ActionEvent event) {
+    void actualizarBalanceAction() {
+        String monto = txtMontoBalance.getText();
+        String nombre = txtNombreBalance.getText();
+        String[] categoria = new String[]{String.valueOf(cbCategoriasBalance.getValue())};
 
+        if (ViewTools.NoHayCamposVacios(monto, nombre)) {
+            PresupuestoDto presupuestoDto = new PresupuestoDto(null,nombre,  monto,  "", categoria);
+
+            try {
+                presupuestoController.actualizar(presupuestoDto);
+                String msj = "Se ha actualizado el Presupuesto " + nombre + "correctamente";
+                ViewTools.mostrarMensaje("Información: ", null, msj, Alert.AlertType.INFORMATION);
+            } catch (ElementoYaExiste e) {
+                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+            }
+        } else {
+            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+
+        }
+
+        ViewTools.limpiarCampos(txtMontoBalance,
+                txtNombreBalance
+        );
     }
 
     @FXML
-    void ajustarPresupuestoBalanceAction(ActionEvent event) {
+    void ajustarPresupuestoBalanceAction() {
         ViewTools.cambiarPantalla(panelBalanceUsuario2,0.225, panelBalanceUsuario1);
 
     }
 
     @FXML
-    void crearBalanceAction(ActionEvent event) {
-//        String monto = txtMontoBalance.getText();
-//        String nombre = txtNombreBalance.getText();
-//        String categoria = cbCategoriasBalance.getSelectedText();
-//
-//
-//
-//        if (ViewTools.NoHayCamposVacios(monto, nombre, categoria)) {
-//            PresupuestoDto presupuestoDto = new PresupuestoDto(null,nombre,  monto,  "", null);
-//
-//            try {
-//                presupuestoController.crear(presupuestoDto);
-//                String msj = "Se ha creado el Presupuesto " + nombre + "correctamente";
-//                ViewTools.mostrarMensaje("Información: ", null, msj, Alert.AlertType.INFORMATION);
-//            } catch (ElementoYaExiste e) {
-//                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
-//            }
-//        } else {
-//            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
-//
-//        }
-//
-//        ViewTools.limpiarCampos(txtMontoBalance,
-//                txtNombreBalance
-//                );
+    void crearBalanceAction() {
+        String monto = txtMontoBalance.getText();
+        String nombre = txtNombreBalance.getText();
+        String[] categoria = new String[]{String.valueOf(cbCategoriasBalance.getValue())};
+
+
+
+        if (ViewTools.NoHayCamposVacios(monto, nombre)) {
+            PresupuestoDto presupuestoDto = new PresupuestoDto(null,nombre,  monto,  "", categoria);
+
+            try {
+                presupuestoController.crear(presupuestoDto);
+                String msj = "Se ha creado el Presupuesto " + nombre + "correctamente";
+                ViewTools.mostrarMensaje("Información: ", null, msj, Alert.AlertType.INFORMATION);
+            } catch (ElementoYaExiste e) {
+                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+            }
+        } else {
+            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+
+        }
+
+        ViewTools.limpiarCampos(txtMontoBalance,
+                txtNombreBalance
+                );
     }
 
     @FXML
@@ -188,24 +216,34 @@ public class BalanceUsuarioView {
     @FXML
     void initialize() {
         initview();
-        //cbCategoriasBalance.getItems().addAll(CategoriasComunes.values());
+        ViewTools.inicializarComboBox(cbCategoriasBalance, obtenerCategoriasPorId(usuarioLogueado.getIdCategorias()), Categoria::getNombre);
+        llenarListaTransaccionesUsuario();
+        llenarListaPresupuestosUsuario();
     }
 
     private void initview(){
         initDataBinding();
         tvListaBalances.getItems().clear();
-        //tvListaBalances.setItems(presupuestoController.getListaPresupuestoObservable());
-
+        tvListaBalances.setItems(presupuestoController.getListaPresupuestoObservable());
         listenerSelectionUsuario();
     }
 
     private void initDataBinding(){
         tcNombreBalance.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
         tcIdBalance.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getIdPresupuesto()));
-//        tcMontoAsignadoBalance.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMontoAsignado().doubleValue()));
-//        tcMontoGastadoBalance.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getMontoGastado().doubleValue()));
-//        tcCategoriaBalance.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategorias()));
+        tcMontoAsignadoBalance.setCellValueFactory(cellData -> new SimpleStringProperty(NumTool.formatearMonto(cellData.getValue().getMontoAsignado())));
+        tcMontoGastadoBalance.setCellValueFactory(cellData -> new SimpleStringProperty(NumTool.formatearMonto(cellData.getValue().getMontoGastado())));
+        tcCategoriaBalance.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(getCategoriaPropietario((cellData.getValue().getIdCategoria())))));
 
+    }
+    private String getCategoriaPropietario(String idCategoria) {
+        try {
+            return categoriaController.consultar(idCategoria, TipoConsulta.ID_CATEGORIA).getNombre();
+
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error en la consulta de categorias: " + e.getMessage());
+        }
+        return "categoria No encontrada";
     }
     private void listenerSelectionUsuario() {
         tvListaBalances.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection)
@@ -225,9 +263,7 @@ public class BalanceUsuarioView {
 //            txtClaveAdmin.setPromptText(seleccionado.getClave());
         }
     }
-//    private ObservableList<Cuenta> obtenerCategoriasPorId(List<String> idCategorias) {
-//        return obtenerEntidadesPorIds(idCategorias, id -> categoriaController.consultar(id, TipoConsulta.ID_CATEGORIA));
-//    }
+
 
     private <T> ObservableList<T> obtenerEntidadesPorIds(List<String> ids, Function<String, T> consulta) {
         ObservableList<T> entidades = FXCollections.observableArrayList();
@@ -238,6 +274,9 @@ public class BalanceUsuarioView {
             }
         }
         return entidades;
+    }
+    private ObservableList<Categoria> obtenerCategoriasPorId(List<String> idCategorias) {
+        return obtenerEntidadesPorIds(idCategorias, id -> categoriaController.consultar(id, TipoConsulta.ID_CATEGORIA));
     }
 
     private <T> T consultarPorId(String id, Function<String, T> consulta) {
@@ -325,6 +364,123 @@ public class BalanceUsuarioView {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    private void llenarListaTransaccionesUsuario() {
+        // Obtener la lista de transacciones del usuario
+        List<String> transaccionesUsuario = new ArrayList<>(usuarioLogueado.getIdTransacciones());
+        Collections.reverse(transaccionesUsuario);
+
+        // Convertir la lista a un ObservableList
+        ObservableList<Transaccion> transaccionesObservableBalance = FXCollections.observableArrayList();
+        List<Transaccion> transacciones = transaccionController.getListaTransaccionObservable();
+
+        for (String id: transaccionesUsuario) {
+            for (Transaccion transaccion : transacciones) {
+                if (transaccion.getIdTransaccion().equals(id)) {
+                    transaccionesObservableBalance.add(transaccion);
+                }
+            }
+        }
+
+        // Asignar la lista al ListView
+        lvListaTransaccionesBalance.setItems(transaccionesObservableBalance);
+
+        // Configurar la forma en que se muestran las transacciones
+        lvListaTransaccionesBalance.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(Transaccion transaccion, boolean empty) {
+                super.updateItem(transaccion,empty);
+
+                if (empty || transaccion == null) {
+                    setGraphic(null); // No mostramos nada si está vacío o es nulo.
+                    setText(null);
+                } else {
+                    // Crear los Labels
+                    String tipoYMonto = transaccion.getTipo() + " de " + NumTool.formatearMonto(transaccion.getMonto());
+                    javafx.scene.control.Label lblTipoMonto = new javafx.scene.control.Label(tipoYMonto);
+
+                    String categoria;
+                    try {
+                        Categoria categoriaObj = categoriaController.consultar(transaccion.getIdCategoria(), TipoConsulta.ID_CATEGORIA);
+                        categoria = categoriaObj.getNombre();
+                    } catch (Exception e) {
+                        categoria = "Categoría no encontrada";
+                    }
+                    javafx.scene.control.Label lblCategoria = new Label(categoria);
+
+                    // Estilo para los Labels
+                    lblTipoMonto.setStyle("-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #666");
+                    lblCategoria.setStyle("-fx-font-size: 12px; -fx-text-fill: #666;");
+
+                    // Crear el VBox y configurar estilo
+                    VBox vbox = new VBox(5, lblTipoMonto, lblCategoria);
+                    vbox.setPadding(new Insets(5));
+                    vbox.setAlignment(Pos.CENTER_LEFT);
+
+                    // Asignar el VBox como gráfico de la celda
+                    setGraphic(vbox);
+                    setText(null); // Eliminar texto por defecto
+                }
+            }
+        });
+    }
+    private void llenarListaPresupuestosUsuario(){
+        // Obtener la lista de transacciones del usuario
+        List<String> presupuestoUsuario = new ArrayList<>(usuarioLogueado.getIdPresupuestos());
+        Collections.reverse(presupuestoUsuario);
+
+        // Convertir la lista a un ObservableList
+        ObservableList<Presupuesto> presupuestosObservableBalance = FXCollections.observableArrayList();
+        List<Presupuesto> presupuesto = presupuestoController.getListaPresupuestoObservable();
+
+        for (String id: presupuestoUsuario) {
+            for (Presupuesto presupuestos : presupuesto) {
+                if (presupuestos.getIdPresupuesto().equals(id)) {
+                    presupuestosObservableBalance.add(presupuestos);
+                }
+            }
+        }
+
+        // Asignar la lista al ListView
+        lvListaPresupuestosEstadisticas.setItems(presupuestosObservableBalance);
+        // Configurar la forma en que se muestran las transacciones
+        lvListaTransaccionesBalance.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(Presupuesto presupuesto1, boolean empty) {
+                super.updateItem(presupuesto1,empty);
+
+                if (empty || presupuesto1 == null) {
+                    setGraphic(null); // No mostramos nada si está vacío o es nulo.
+                    setText(null);
+                } else {
+                    // Crear los Labels
+                    String NombreYMonto = presupuesto1.getNombre() + " de " + NumTool.formatearMonto(presupuesto1.getMontoAsignado());
+                    javafx.scene.control.Label lblTipoMonto = new javafx.scene.control.Label(NombreYMonto);
+
+                    String presupuestico;
+                    try {
+                        Presupuesto presupuestoObj = presupuestoController.consultar(presupuesto1.getIdPresupuesto(), TipoConsulta.ID_PRESUPUESTO);
+                        presupuestico = presupuestoObj.getNombre();
+                    } catch (Exception e) {
+                        presupuestico = "presupuesto no encontrado";
+                    }
+                    javafx.scene.control.Label lblCategoria = new Label(presupuestico);
+
+                    // Estilo para los Labels
+                    lblTipoMonto.setStyle("-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #666");
+                    lblCategoria.setStyle("-fx-font-size: 12px; -fx-text-fill: #666;");
+
+                    // Crear el VBox y configurar estilo
+                    VBox vbox = new VBox(5, lblTipoMonto, lblCategoria);
+                    vbox.setPadding(new Insets(5));
+                    vbox.setAlignment(Pos.CENTER_LEFT);
+
+                    // Asignar el VBox como gráfico de la celda
+                    setGraphic(vbox);
+                    setText(null); // Eliminar texto por defecto
+                }
+            }
+        });
     }
 
 
