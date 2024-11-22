@@ -34,6 +34,7 @@ public class ProductorBase {
      * @throws IOException Si ocurre algún error durante el envío del mensaje.
      */
     public void enviarMensaje(MensajeDTO dto) throws IOException {
+        System.out.println("Se envia una notificación");
         String mensaje = MensajeMapper.toJson(dto);  // Convierte DTO a JSON o string
         canal.basicPublish("", Cola.COLA_SYNC.getCola(), null, mensaje.getBytes());
     }

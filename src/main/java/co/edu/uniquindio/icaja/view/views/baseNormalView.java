@@ -1,6 +1,12 @@
 package co.edu.uniquindio.icaja.view.views;
 
 import co.edu.uniquindio.icaja.controller.UsuarioController;
+import co.edu.uniquindio.icaja.factory.ModelFactory;
+import co.edu.uniquindio.icaja.server.ConsumidorBase;
+import co.edu.uniquindio.icaja.server.mapping.MensajeDTO;
+import co.edu.uniquindio.icaja.server.services.Consumidor;
+import co.edu.uniquindio.icaja.server.services.Productor;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
@@ -13,7 +19,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 
 
-public class baseNormalView {
+public class baseNormalView implements Consumidor {
 
     UsuarioController usuarioController = new UsuarioController();
 
@@ -88,6 +94,7 @@ public class baseNormalView {
 
     @FXML
     void initialize() {
+        consumirMensaje();
         lbNombreVentana.setText("Principal");
         ViewTools.cambiarColores(btnHome, "menu_opt_selected", btnCuentas, btnPerfil, btnSalir, btnPresupues);
         ViewTools.cambiarPantalla(principalUsuarioBox, 0.125, cuentasUsuarioBox, estadisticasUsuarioBox, perfilUsuarioBox);
@@ -96,33 +103,45 @@ public class baseNormalView {
             usuarioController.cerrarSesion();
         }));
 
-        sincronizarMenuConLista(usuarioController.getFactory().getNotificaciones(), menuNotificaciones);
     }
 
-    public void sincronizarMenuConLista(ObservableList<String> lista, MenuButton menuButton) {
-        // Escucha cambios en la lista
-        lista.addListener((ListChangeListener<String>) cambio -> {
-            while (cambio.next()) {
-                if (cambio.wasAdded() || cambio.wasRemoved() || cambio.wasUpdated()) {
-                    actualizarMenu(lista, menuButton); // Actualiza el menú
-                }
-            }
-        });
-
-        // Inicializa el menú con los elementos actuales de la lista
-        actualizarMenu(lista, menuButton);
-    }
-
-    void actualizarMenu(ObservableList<String> lista, MenuButton menuButton) {
+    public void sincronizarMenuConDTO(MensajeDTO dto, MenuButton menuButton) {
         Platform.runLater(() -> {
-            menuButton.getItems().clear(); // Limpia los items existentes
-            int index = 1; // Índice para numerar los elementos
-            for (String item : lista) {
-                MenuItem menuItem = new MenuItem(index + ". " + item); // Texto con índice
-                menuButton.getItems().add(menuItem);
-                index++;
-            }
+            // Crea un nuevo ítem con el contenido del mensaje
+            String nuevoMensaje = dto.contenido(); // Obtiene el contenido del DTO
+            MenuItem menuItem = new MenuItem(nuevoMensaje); // Agrega con índice
+            menuButton.getItems().add(menuItem); // Añade al menú
         });
     }
+
+    @Override
+    public void consumirMensaje() {
+        try {
+            ConsumidorBase consumidorBase = ConsumidorBase.obtenerInstancia();
+            consumidorBase.consumirMensaje(this);
+
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrió un error en la sincronización con el servidor de parte del consumidor, revísalo: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void procesarDTO(MensajeDTO dto) {
+        // Verifica que la instancia no sea la misma
+        if (!dto.IdInstanciaMensajera().equals(ModelFactory.getIdInstanciaMensajera())) {
+            usuarioController.getFactory().sincronizarInstancia();
+
+
+        } else {
+            Seguimiento.registrarLog(2, "No se va a sincronizar la instancia porque es la misma instancia que envía el mensaje");
+        }
+
+        // Añade el nuevo mensaje al menú
+        sincronizarMenuConDTO(dto, menuNotificaciones);
+
+    }
+
+
 
 }

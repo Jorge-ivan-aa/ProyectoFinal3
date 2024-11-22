@@ -7,19 +7,25 @@ import java.util.function.Function;
 
 import co.edu.uniquindio.icaja.controller.*;
 import co.edu.uniquindio.icaja.controller.enums.TipoConsulta;
+import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.RetiroODepostoDto;
 import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.mapping.services.ITransaccionDto;
 import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.model.enums.TipoTransaccion;
+import co.edu.uniquindio.icaja.server.ConsumidorBase;
+import co.edu.uniquindio.icaja.server.mapping.MensajeDTO;
+import co.edu.uniquindio.icaja.server.services.Consumidor;
 import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import co.edu.uniquindio.icaja.utils.tools.NumTool;
 import co.edu.uniquindio.icaja.utils.tools.ViewTools;
 import io.github.palexdev.materialfx.controls.MFXFilterComboBox;
 import io.github.palexdev.materialfx.controls.MFXListView;
 import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -29,7 +35,7 @@ import javafx.scene.layout.Pane;
 import javafx.geometry.Insets;
 import javafx.scene.layout.VBox;
 
-public class PrincipalUsuarioView {
+public class PrincipalUsuarioView implements Consumidor {
     UsuarioController usuarioController = new UsuarioController();
     TransaccionController transaccionController = new TransaccionController();
     CategoriaController categoriaController = new CategoriaController();
@@ -38,9 +44,8 @@ public class PrincipalUsuarioView {
 
     Usuario usuarioLogueado = usuarioController.getFactory().getIcaja().getSesion().getUsuario();
 
-    List<String> listaMensajes = new ArrayList<>();
     ChatBot chatBot = new ChatBot();
-    String contexto= "Inicial";
+    String contexto = "Inicial";
     TipoTransaccion tipoTransaccion = null;
 
 
@@ -121,7 +126,7 @@ public class PrincipalUsuarioView {
     @FXML
     void CharlarConIaAction() {
 
-        ViewTools.cambiarPantalla(panelCharlarIA,0.225, panelTransaccionUsuario);
+        ViewTools.cambiarPantalla(panelCharlarIA, 0.225, panelTransaccionUsuario);
         //Agregar un mensaje inicial por parte del chatbot
         String mensajeInicial = "¡Hola! Soy tu asistente Icaja virtual, digita: 1. Para generalidades de la app. Digita: 2. Para estrategias de ahorros";
         textAreaChat.setText(mensajeInicial);
@@ -132,18 +137,6 @@ public class PrincipalUsuarioView {
 
         String texto = txtMensajeParaIA.getText();
 
-//        if (!texto.isEmpty()) {
-//            AnchorPane userMessage = crearMensaje(texto, true);
-//            lvListaChatConIA.getItems().add(userMessage); // Agregar mensaje del usuario
-//
-//            // Simulación de respuesta del "otro usuario"
-//            String [] respuestaBot = chatBot.procesarEntrada(texto,contexto);
-//            AnchorPane responseMessage = crearMensaje("IcajaBot: " + respuestaBot[1], false);
-//            lvListaChatConIA.getItems().add(responseMessage);
-//            contexto=respuestaBot[0];
-//
-//            txtMensajeParaIA.clear(); // Limpiar el campo de entrada
-//        }
         if (!texto.isEmpty()) {
             // Concatenar el mensaje del usuario en el TextArea
             String mensajeUsuario = "Usuario: " + texto + "\n";
@@ -164,27 +157,30 @@ public class PrincipalUsuarioView {
 
     @FXML
     void DepositarUsuarioAction() {
+        lbTipoTransaccion.setText("Realizar deposito");
         ViewTools.cambiarPantalla(panelTransaccionUsuario, 0.225, panelUnoUsuario, panelCharlarIA);
         tipoTransaccion = TipoTransaccion.DEPOSITO;
     }
 
     @FXML
     void RetirarUsuarioAction() {
+        lbTipoTransaccion.setText("Realizar Retiro");
         ViewTools.cambiarPantalla(panelTransaccionUsuario, 0.225, panelUnoUsuario, panelCharlarIA);
         tipoTransaccion = TipoTransaccion.RETIRO;
     }
 
     @FXML
     void TransferirUsuarioAction() {
+        lbTipoTransaccion.setText("Realizar Transferencia");
         ViewTools.cambiarPantalla(panelTransaccionUsuario, 0.225, panelUnoUsuario, panelCharlarIA);
         lbCuentaDestino.setVisible(true);
         cbxCuentaDestino.setVisible(true);
         tipoTransaccion = TipoTransaccion.TRANSFERENCIA;
-
     }
+
     @FXML
     void salirChatIaAction() {
-        ViewTools.cambiarPantalla(panelUnoUsuario,0.225, panelCharlarIA, panelTransaccionUsuario);
+        ViewTools.cambiarPantalla(panelUnoUsuario, 0.225, panelCharlarIA, panelTransaccionUsuario);
         textAreaChat.clear();
     }
 
@@ -194,7 +190,7 @@ public class PrincipalUsuarioView {
     }
 
     void salir() {
-        ViewTools.cambiarPantalla(panelUnoUsuario,0.225, panelCharlarIA, panelTransaccionUsuario);
+        ViewTools.cambiarPantalla(panelUnoUsuario, 0.225, panelCharlarIA, panelTransaccionUsuario);
         lbCuentaDestino.setVisible(false);
         cbxCuentaDestino.setVisible(false);
         tipoTransaccion = null;
@@ -203,7 +199,7 @@ public class PrincipalUsuarioView {
 
     @FXML
     void initialize() {
-        ViewTools.cambiarPantalla(panelUnoUsuario,0.225, panelTransaccionUsuario);
+        ViewTools.cambiarPantalla(panelUnoUsuario, 0.225, panelTransaccionUsuario);
         ViewTools.inicializarComboBox(cbxCuentaOrigen, obtenerCuentasPorId(usuarioLogueado.getIdCuentas()), Cuenta::getNumeroCuenta);
         ViewTools.inicializarComboBox(cbxCuentaDestino, cuentaController.getListaCuentaObservable(), Cuenta::getNumeroCuenta);
         ViewTools.inicializarComboBox(cbxCategoriaTransaccion, obtenerCategoriasPorId(usuarioLogueado.getIdCategorias()), Categoria::getNombre);
@@ -211,9 +207,10 @@ public class PrincipalUsuarioView {
         mostrarInformacion(usuarioLogueado);
         llenarListaTransaccionesUsuario();
         llenarListaPresupuestosUsuario();
+        consumirMensaje();
+
     }
 
-    // Métodos generales de consulta
     private <T> T consultarPorId(String id, Function<String, T> consulta) {
         try {
             return consulta.apply(id);
@@ -278,6 +275,7 @@ public class PrincipalUsuarioView {
                 limpiar();
                 salir();
             }
+
         } catch (Exception e) {
             Seguimiento.registrarLog(3, "Error al procesar la transacción: " + e.getMessage());
             ViewTools.mostrarMensaje("¡Error!", null, "Ocurrió un error inesperado", Alert.AlertType.ERROR);
@@ -320,6 +318,10 @@ public class PrincipalUsuarioView {
         return null;
     }
 
+
+    // _-_-_-_-_-_ TRANSACCIONES
+
+
     private void realizarTransferencia(Cuenta cuentaOrigen, Categoria categoria) throws Exception {
         Cuenta cuentaDestino = obtenerCuenta(cbxCuentaDestino.getValue());
         ITransaccionDto transaccionDto = new TransferenciaDto(
@@ -328,6 +330,7 @@ public class PrincipalUsuarioView {
         );
         transaccionController.crear(transaccionDto);
     }
+
 
     private void realizarRetiroODeposito(Cuenta cuentaOrigen, Categoria categoria) throws Exception {
         ITransaccionDto transaccionDto = new RetiroODepostoDto(
@@ -349,23 +352,38 @@ public class PrincipalUsuarioView {
 
 
     private void llenarListaTransaccionesUsuario() {
-        // Obtener la lista de transacciones del usuario
-        List<String> transaccionesUsuario = new ArrayList<>(usuarioLogueado.getIdTransacciones());
-        Collections.reverse(transaccionesUsuario);
-
-        // Convertir la lista a un ObservableList
+        // Obtener la lista observable de transacciones
         ObservableList<Transaccion> transaccionesObservableUsuario = FXCollections.observableArrayList();
-        List<Transaccion> transacciones = transaccionController.getListaTransaccionObservable();
+        ObservableList<Transaccion> transacciones = transaccionController.getListaTransaccionObservable();
 
-        for (String id: transaccionesUsuario) {
-            for (Transaccion transaccion : transacciones) {
-                if (transaccion.getIdTransaccion().equals(id)) {
-                    transaccionesObservableUsuario.add(transaccion);
+        // Método para sincronizar la lista
+        Runnable sincronizarLista = () -> {
+            transaccionesObservableUsuario.clear();
+            List<String> transaccionesUsuario = new ArrayList<>(usuarioLogueado.getIdTransacciones());
+            Collections.reverse(transaccionesUsuario);
+
+            for (String id : transaccionesUsuario) {
+                for (Transaccion transaccion : transacciones) {
+                    if (transaccion.getIdTransaccion().equals(id)) {
+                        transaccionesObservableUsuario.add(transaccion);
+                    }
                 }
             }
-        }
+        };
 
-        // Asignar la lista al ListView
+        // Sincronizar inicialmente
+        sincronizarLista.run();
+
+        // Observar cambios en la lista principal
+        transacciones.addListener((ListChangeListener<Transaccion>) change -> {
+            while (change.next()) {
+                if (change.wasAdded() || change.wasRemoved()) {
+                    sincronizarLista.run();
+                }
+            }
+        });
+
+        // Asignar la lista observable al ListView
         lvListaTransaccionesUsuario.setItems(transaccionesObservableUsuario);
 
         // Configurar la forma en que se muestran las transacciones
@@ -375,7 +393,7 @@ public class PrincipalUsuarioView {
                 super.updateItem(transaccion, empty);
 
                 if (empty || transaccion == null) {
-                    setGraphic(null); // No mostramos nada si está vacío o es nulo.
+                    setGraphic(null);
                     setText(null);
                 } else {
                     // Crear los Labels
@@ -409,6 +427,8 @@ public class PrincipalUsuarioView {
     }
 
 
+    // _-_-_-_-_-_ PRESUPUESTOS
+
     private void llenarListaPresupuestosUsuario() {
         // Obtener la lista de presupuestos del usuario
         List<String> presupuestosUsuario = new ArrayList<>(usuarioLogueado.getIdPresupuestos());
@@ -426,10 +446,6 @@ public class PrincipalUsuarioView {
             }
         }
 
-        Presupuesto presupuesto = new Presupuesto("algo", NumTool.parseToDinero("50000"), "SYSTEM");
-        presupuesto.sumarGastos(NumTool.parseToDinero("10000"), "SYSTEM");
-        presupuestosObservableUsuario.add(presupuesto);
-        System.out.println("Tamaño de la lista de presupuestos: " + presupuestosObservableUsuario.size());
         // Asignar la lista al ListView
         lvListaPresupuestosUsuario.setItems(presupuestosObservableUsuario);
 
@@ -483,5 +499,55 @@ public class PrincipalUsuarioView {
         });
     }
 
+    // _-_-_-_-_-_ Sincronizacion
+
+    @Override
+    public void consumirMensaje() {
+        try {
+            ConsumidorBase consumidorBase = ConsumidorBase.obtenerInstancia();
+            consumidorBase.consumirMensaje(this);
+
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error en la sincronización con el servidor de parte del consumidor, revisalo: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void procesarDTO(MensajeDTO dto) {
+        if (!dto.IdInstanciaMensajera().equals(ModelFactory.getIdInstanciaMensajera())) {
+            usuarioController.getFactory().sincronizarInstancia();
+            limpiar();
+
+        } else {
+            Seguimiento.registrarLog(2, "No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje");
+        }
+        sincronizarUsuarioLogueado();
+    }
+
+    private void sincronizarUsuarioLogueado() {
+        try {
+            // Obtener el usuario actualizado desde el controlador
+            Usuario usuarioActualizado = usuarioController.consultar(usuarioLogueado.getIdUsuario(), TipoConsulta.ID_USUARIO);
+
+            if (usuarioActualizado != null) {
+                Platform.runLater(() -> {
+                    // Actualizar los datos del usuario logueado
+                    usuarioLogueado.setSaldoTotal(usuarioActualizado.getSaldoTotal());
+                    usuarioLogueado.setIngresos(usuarioActualizado.getIngresos());
+                    usuarioLogueado.setGastos(usuarioActualizado.getGastos());
+                    usuarioLogueado.setIdTransacciones(usuarioActualizado.getIdTransacciones());
+
+                    // Actualizar la UI: labels y lista
+                    mostrarInformacion(usuarioLogueado);
+                    llenarListaTransaccionesUsuario();
+                });
+            }
+
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Error al sincronizar el usuario logueado: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
 }

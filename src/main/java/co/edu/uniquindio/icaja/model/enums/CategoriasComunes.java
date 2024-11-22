@@ -14,6 +14,7 @@ public enum CategoriasComunes {
     ENTRETENIMIENTO("entretenimiento"),
     SALUD("salud"),
     TRANSPORTE("transporte"),
+    TECNOLOGIA("salud"),
     EDUCACION("educación"),
     HOGAR("hogar"),
     ROPA("ropa"),

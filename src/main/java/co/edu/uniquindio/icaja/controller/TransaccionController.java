@@ -54,7 +54,8 @@ public class TransaccionController implements GenericController<ITransaccionDto,
             factory.getIcaja().add(nuevaTransaccion);
             setTransaccionPendiente(null);
             sincronizarData();
-            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "Se ha realizado una nueva transaccion de tipo " + transaccionDto.tipo());
             enviarNotificacion(mensaje);
             registrarLog(1, "Se ha realizado una transaccion exitosamente :)");
         }

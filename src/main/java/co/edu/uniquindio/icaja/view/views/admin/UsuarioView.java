@@ -77,7 +77,7 @@ public class UsuarioView implements Consumidor {
             UsuarioDto usuarioDto = new UsuarioDto(idUsuarioConsultado, nombre, cedula, correo, telefono, clave, claveTransaccional);
             try {
                 usuarioController.actualizar(usuarioDto);
-                String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
+                String msj = "Se ha actualizado el usuario de cedula " + cedula + " correctamente";
                 ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
                 limpiar();
             } catch (ElementoNoExiste e) {
@@ -106,7 +106,7 @@ public class UsuarioView implements Consumidor {
 
             try {
                 usuarioController.crear(usuarioDto);
-                String msj = "Se ha creado el usuario " + nombre + "correctamente";
+                String msj = "Se ha creado el usuario " + nombre + " correctamente";
                 ViewTools.mostrarMensaje("Información: ", null, msj, Alert.AlertType.INFORMATION);
                 limpiar();
             } catch (ElementoYaExiste | AtributoUtilizado e) {
