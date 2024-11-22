@@ -157,5 +157,8 @@ public class PerfilUsuarioView {
 
     public void mostrarInformacion() {
         txtNuevoNombreUsuario.setText(usuarioLoggeado.getNombre());
+        txtNuevaCedulaUsuario.setText(usuarioLoggeado.getCedula());
+        txtNuevoCorreoUsuario.setText(usuarioLoggeado.getCorreo());
+        txtNuevoTelefonoUsuario.setText(usuarioLoggeado.getTelefono());
     }
 }
