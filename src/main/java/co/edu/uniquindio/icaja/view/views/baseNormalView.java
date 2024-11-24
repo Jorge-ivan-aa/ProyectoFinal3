@@ -109,8 +109,11 @@ public class baseNormalView implements Consumidor {
         Platform.runLater(() -> {
             // Crea un nuevo ítem con el contenido del mensaje
             String nuevoMensaje = dto.contenido(); // Obtiene el contenido del DTO
-            MenuItem menuItem = new MenuItem(nuevoMensaje); // Agrega con índice
-            menuButton.getItems().add(menuItem); // Añade al menú
+            if (!nuevoMensaje.isEmpty()) {
+                MenuItem menuItem = new MenuItem(nuevoMensaje); // Agrega con índice
+                menuButton.getItems().add(menuItem); // Añade al menú
+                menuItem.setText(Integer.toString(menuButton.getItems().size()));
+            }
         });
     }
 

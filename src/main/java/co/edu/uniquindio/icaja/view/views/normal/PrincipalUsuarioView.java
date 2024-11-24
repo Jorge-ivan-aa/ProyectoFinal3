@@ -10,7 +10,6 @@ import co.edu.uniquindio.icaja.controller.enums.TipoConsulta;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.RetiroODepostoDto;
 import co.edu.uniquindio.icaja.mapping.dto.TransferenciaDto;
-import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.mapping.services.ITransaccionDto;
 import co.edu.uniquindio.icaja.model.*;
 import co.edu.uniquindio.icaja.model.enums.TipoTransaccion;
@@ -352,84 +351,110 @@ public class PrincipalUsuarioView implements Consumidor {
 
 
     private void llenarListaTransaccionesUsuario() {
-        // Obtener la lista observable de transacciones
-        ObservableList<Transaccion> transaccionesObservableUsuario = FXCollections.observableArrayList();
-        ObservableList<Transaccion> transacciones = transaccionController.getListaTransaccionObservable();
+        if (usuarioLogueado != null && usuarioLogueado.getIdTransacciones() != null) {
+            // Obtener las transacciones actualizadas
+            List<String> idTransacciones = usuarioLogueado.getIdTransacciones();
+            List<Transaccion> transacciones = new ArrayList<>();
 
-        // Método para sincronizar la lista
-        Runnable sincronizarLista = () -> {
-            transaccionesObservableUsuario.clear();
-            List<String> transaccionesUsuario = new ArrayList<>(usuarioLogueado.getIdTransacciones());
-            Collections.reverse(transaccionesUsuario);
-
-            for (String id : transaccionesUsuario) {
-                for (Transaccion transaccion : transacciones) {
+            for (String id: idTransacciones) {
+                for (Transaccion transaccion: transaccionController.getListaTransaccionObservable()) {
                     if (transaccion.getIdTransaccion().equals(id)) {
-                        transaccionesObservableUsuario.add(transaccion);
+                        transacciones.add(transaccion);
                     }
                 }
             }
-        };
 
-        // Sincronizar inicialmente
-        sincronizarLista.run();
+            // Configurar el ListView con las transacciones actualizadas
+            ObservableList<Transaccion> observableTransacciones = FXCollections.observableArrayList(transacciones);
+            lvListaTransaccionesUsuario.setItems(observableTransacciones);
 
-        // Observar cambios en la lista principal
-        transacciones.addListener((ListChangeListener<Transaccion>) change -> {
-            while (change.next()) {
-                if (change.wasAdded() || change.wasRemoved()) {
-                    sincronizarLista.run();
-                }
-            }
-        });
+            // Configurar el CellFactory con el bloque proporcionado
+            lvListaTransaccionesUsuario.setCellFactory(lv -> new ListCell<>() {
+                @Override
+                protected void updateItem(Transaccion transaccion, boolean empty) {
+                    super.updateItem(transaccion, empty);
 
-        // Asignar la lista observable al ListView
-        lvListaTransaccionesUsuario.setItems(transaccionesObservableUsuario);
+                    if (empty || transaccion == null) {
+                        setGraphic(null);
+                        setText(null);
+                    } else {
+                        // Crear los Labels
+                        String tipoYMonto = transaccion.getTipo() + " de " + NumTool.formatearMonto(transaccion.getMonto());
+                        Label lblTipoMonto = new Label(tipoYMonto);
 
-        // Configurar la forma en que se muestran las transacciones
-        lvListaTransaccionesUsuario.setCellFactory(lv -> new ListCell<>() {
-            @Override
-            protected void updateItem(Transaccion transaccion, boolean empty) {
-                super.updateItem(transaccion, empty);
+                        String categoria;
+                        try {
+                            Categoria categoriaObj = categoriaController.consultar(transaccion.getIdCategoria(), TipoConsulta.ID_CATEGORIA);
+                            categoria = categoriaObj.getNombre();
+                        } catch (Exception e) {
+                            categoria = "Categoría no encontrada";
+                        }
+                        Label lblCategoria = new Label(categoria);
 
-                if (empty || transaccion == null) {
-                    setGraphic(null);
-                    setText(null);
-                } else {
-                    // Crear los Labels
-                    String tipoYMonto = transaccion.getTipo() + " de " + NumTool.formatearMonto(transaccion.getMonto());
-                    Label lblTipoMonto = new Label(tipoYMonto);
+                        // Estilo para los Labels
+                        lblTipoMonto.setStyle("-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #666");
+                        lblCategoria.setStyle("-fx-font-size: 12px; -fx-text-fill: #666;");
 
-                    String categoria;
-                    try {
-                        Categoria categoriaObj = categoriaController.consultar(transaccion.getIdCategoria(), TipoConsulta.ID_CATEGORIA);
-                        categoria = categoriaObj.getNombre();
-                    } catch (Exception e) {
-                        categoria = "Categoría no encontrada";
+                        // Crear el VBox y configurar estilo
+                        VBox vbox = new VBox(5, lblTipoMonto, lblCategoria);
+                        vbox.setPadding(new Insets(5));
+                        vbox.setAlignment(Pos.CENTER_LEFT);
+
+                        // Asignar el VBox como gráfico de la celda
+                        setGraphic(vbox);
+                        setText(null); // Eliminar texto por defecto
                     }
-                    Label lblCategoria = new Label(categoria);
-
-                    // Estilo para los Labels
-                    lblTipoMonto.setStyle("-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #666");
-                    lblCategoria.setStyle("-fx-font-size: 12px; -fx-text-fill: #666;");
-
-                    // Crear el VBox y configurar estilo
-                    VBox vbox = new VBox(5, lblTipoMonto, lblCategoria);
-                    vbox.setPadding(new Insets(5));
-                    vbox.setAlignment(Pos.CENTER_LEFT);
-
-                    // Asignar el VBox como gráfico de la celda
-                    setGraphic(vbox);
-                    setText(null); // Eliminar texto por defecto
                 }
-            }
-        });
+            });
+        } else {
+            // Limpiar la lista si no hay transacciones o el usuario no es válido
+            lvListaTransaccionesUsuario.getItems().clear();
+            System.out.println("No hay transacciones para mostrar o usuario no válido.");
+        }
     }
+
 
 
     // _-_-_-_-_-_ PRESUPUESTOS
 
-    private void llenarListaPresupuestosUsuario() {
+    private void llenarListaPresupuestosUsuario() {   lvListaTransaccionesUsuario.setCellFactory(lv -> new ListCell<>() {
+        @Override
+        protected void updateItem(Transaccion transaccion, boolean empty) {
+            super.updateItem(transaccion, empty);
+
+            if (empty || transaccion == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                // Crear los Labels
+                String tipoYMonto = transaccion.getTipo() + " de " + NumTool.formatearMonto(transaccion.getMonto());
+                Label lblTipoMonto = new Label(tipoYMonto);
+
+                String categoria;
+                try {
+                    Categoria categoriaObj = categoriaController.consultar(transaccion.getIdCategoria(), TipoConsulta.ID_CATEGORIA);
+                    categoria = categoriaObj.getNombre();
+                } catch (Exception e) {
+                    categoria = "Categoría no encontrada";
+                }
+                Label lblCategoria = new Label(categoria);
+
+                // Estilo para los Labels
+                lblTipoMonto.setStyle("-fx-font-size: 12px; -fx-font-weight: bold; -fx-text-fill: #666");
+                lblCategoria.setStyle("-fx-font-size: 12px; -fx-text-fill: #666;");
+
+                // Crear el VBox y configurar estilo
+                VBox vbox = new VBox(5, lblTipoMonto, lblCategoria);
+                vbox.setPadding(new Insets(5));
+                vbox.setAlignment(Pos.CENTER_LEFT);
+
+                // Asignar el VBox como gráfico de la celda
+                setGraphic(vbox);
+                setText(null); // Eliminar texto por defecto
+            }
+        }
+    });
+
         // Obtener la lista de presupuestos del usuario
         List<String> presupuestosUsuario = new ArrayList<>(usuarioLogueado.getIdPresupuestos());
         Collections.reverse(presupuestosUsuario);
@@ -537,10 +562,13 @@ public class PrincipalUsuarioView implements Consumidor {
                     usuarioLogueado.setIngresos(usuarioActualizado.getIngresos());
                     usuarioLogueado.setGastos(usuarioActualizado.getGastos());
                     usuarioLogueado.setIdTransacciones(usuarioActualizado.getIdTransacciones());
+                    usuarioLogueado.setIdPresupuestos(usuarioActualizado.getIdPresupuestos());
+                    usuarioLogueado.setIdCategorias(usuarioActualizado.getIdCategorias());
 
                     // Actualizar la UI: labels y lista
                     mostrarInformacion(usuarioLogueado);
                     llenarListaTransaccionesUsuario();
+                    llenarListaPresupuestosUsuario();
                 });
             }
 
