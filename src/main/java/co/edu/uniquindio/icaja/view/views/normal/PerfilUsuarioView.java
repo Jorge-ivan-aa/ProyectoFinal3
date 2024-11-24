@@ -1,4 +1,158 @@
 package co.edu.uniquindio.icaja.view.views.normal;
 
+import co.edu.uniquindio.icaja.controller.UsuarioController;
+import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
+import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.icaja.model.Usuario;
+import co.edu.uniquindio.icaja.utils.tools.ViewTools;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.layout.Pane;
+
 public class PerfilUsuarioView {
+    UsuarioController usuarioController= new UsuarioController();
+    Usuario usuarioLoggeado = usuarioController.getFactory().getIcaja().getSesion().getUsuario();
+
+    @FXML
+    private Pane paneActualizarDatos;
+
+    @FXML
+    private Pane paneCambiarContrasenaIng;
+
+    @FXML
+    private Pane panelCambiarClaveTran;
+
+    @FXML
+    private MFXTextField txtConfirmarContrasenaTran;
+
+    @FXML
+    private MFXTextField txtNuevaContrasenaTran;
+
+    private MFXTextField txtConfirmarContrasena;
+
+    @FXML
+    private MFXTextField txtNuevaContrasena;
+
+    @FXML
+    private MFXTextField txtNuevaCedulaUsuario;
+
+    @FXML
+    private MFXTextField txtNuevoCorreoUsuario;
+
+    @FXML
+    private MFXTextField txtNuevoNombreUsuario;
+
+    @FXML
+    private MFXTextField txtNuevoTelefonoUsuario;
+
+    @FXML
+    void ActualizarDatosUsuarioAction() {
+        String nombre = txtNuevoNombreUsuario.getText();
+        String cedula = txtNuevaCedulaUsuario.getText();
+        String correo = txtNuevoCorreoUsuario.getText();
+        String id = usuarioLoggeado.getIdUsuario();
+        String telefono = txtNuevoTelefonoUsuario.getText();
+
+        //boolean cambioClaves =  !clave.isEmpty() || !claveTransaccional.isEmpty();
+
+        if (ViewTools.NoHayCamposVacios(nombre, cedula, correo, telefono)) {
+            UsuarioDto usuarioDto = new UsuarioDto(id, nombre,  cedula,  correo,  telefono, "" ,"" );
+            try {
+                usuarioController.actualizar(usuarioDto);
+                String msj = "Se ha actualizado el usuario de cedula" + cedula + "correctamente";
+                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+
+            } catch (ElementoNoExiste e) {
+                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+            }
+        } else {
+            ViewTools.mostrarMensaje("Error", null, "Hay campos vacíos", Alert.AlertType.ERROR);
+
+        }
+
+    }
+
+    @FXML
+    void cambiarClaveTransaccionalUsuarioAction() {
+        ViewTools.cambiarPantalla(panelCambiarClaveTran,0.225, paneActualizarDatos, paneCambiarContrasenaIng);
+    }
+
+    @FXML
+    void cambiarContrasenaIngresoAction() {
+        ViewTools.cambiarPantalla(paneCambiarContrasenaIng,0.225, paneActualizarDatos, panelCambiarClaveTran);
+    }
+    @FXML
+    void calificarAction() {
+
+    }
+    @FXML
+    void configurarAction() {
+        String nuevaContra =txtNuevaContrasena.getText();
+        String confirmarContra = txtConfirmarContrasena.getText();
+        if (nuevaContra.equals(confirmarContra)){
+            UsuarioDto usuarioDto = new UsuarioDto(usuarioLoggeado.getIdUsuario(), usuarioLoggeado.getNombre(), usuarioLoggeado.getCedula(), usuarioLoggeado.getCorreo(), usuarioLoggeado.getTelefono(), confirmarContra ,"");
+            try {
+                usuarioController.actualizar(usuarioDto);
+                String msj = "Se ha actualizado la contraseña del usuario correctamente";
+                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+
+            } catch (ElementoNoExiste e) {
+                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+            }
+            String msj = "Las contraseñas no coinciden";
+            ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+        }else{
+            String msj = "No se pudo actualizar la contraseña correctamente";
+            ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+        }
+
+    }
+    @FXML
+    void configurarTranAction() {
+        String nuevaContraTran= txtNuevaContrasenaTran.getText();
+        String configurarContraTran = txtConfirmarContrasenaTran.getText();
+        if (nuevaContraTran == configurarContraTran){
+            UsuarioDto usuarioDto = new UsuarioDto(null,null,  null,  null,  null, "" ,configurarContraTran  );
+            try {
+                usuarioController.actualizar(usuarioDto);
+                String msj = "Se ha actualizado la contraseña transaccional del usuario ";
+                ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+
+            } catch (ElementoNoExiste e) {
+                ViewTools.mostrarMensaje("Error", null, e.getMessage(), Alert.AlertType.ERROR);
+            }
+            String msj = "Se ha actualizado la contraseña transaccional correctamente";
+            ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+        }else{
+            String msj = "Las claves no coinciden";
+            ViewTools.mostrarMensaje("Información", null, msj, Alert.AlertType.INFORMATION);
+        }
+
+    }
+
+    @FXML
+    void SalirTranAction() {
+        ViewTools.cambiarPantalla(paneActualizarDatos,0.225, panelCambiarClaveTran, paneCambiarContrasenaIng);
+    }
+
+    @FXML
+    void salirAction() {
+        ViewTools.cambiarPantalla(paneActualizarDatos,0.225, paneCambiarContrasenaIng, panelCambiarClaveTran);
+    }
+
+    @FXML
+    void initialize() {
+        mostrarInformacion();
+    }
+
+    public void mostrarInformacion() {
+        txtNuevoNombreUsuario.setText(usuarioLoggeado.getNombre());
+        txtNuevaCedulaUsuario.setText(usuarioLoggeado.getCedula());
+        txtNuevoCorreoUsuario.setText(usuarioLoggeado.getCorreo());
+        txtNuevoTelefonoUsuario.setText(usuarioLoggeado.getTelefono());
+    }
 }

@@ -5,27 +5,25 @@ import co.edu.uniquindio.icaja.model.Usuario;
 
 public class UsuarioMapper {
 
-    public static UsuarioDto usuarioToUsuarioDTo(Usuario usuario) {
+    public static UsuarioDto toDto(Usuario usuario) {
         return new UsuarioDto(
+                usuario.getIdUsuario(),
                 usuario.getNombre(),
                 usuario.getCedula(),
                 usuario.getCorreo(),
                 usuario.getTelefono(),
                 usuario.getClave(),
-                usuario.getClaveTransaccional(),
-                usuario.getPresupuestoMensual()
+                usuario.getClaveTransaccional()
         );
     }
 
-    public static Usuario usuarioDtoToUsuario(UsuarioDto usuarioDto) {
+    public static Usuario toUsuario(UsuarioDto usuarioDto) {
         return new Usuario(
                 usuarioDto.nombre(),
                 usuarioDto.cedula(),
                 usuarioDto.correo(),
                 usuarioDto.telefono(),
                 usuarioDto.clave(),
-                usuarioDto.claveTransaccional(),
-                usuarioDto.presupuestoMensual()
-        );
+                usuarioDto.claveTransaccional());
     }
 }

@@ -1,4 +1,7 @@
-target/
+## logs
+**/logs.txt
+
+/target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -7,6 +10,7 @@ target/
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
+.idea/workspace.xml
 .idea/libraries/
 *.iws
 *.iml
@@ -40,6 +44,3 @@ build/
 ### drawio
 *.bkp
 *.dtmp
-
-## logs
-**/logs.txt

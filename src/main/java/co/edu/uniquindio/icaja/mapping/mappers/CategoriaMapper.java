@@ -1,28 +1,22 @@
 package co.edu.uniquindio.icaja.mapping.mappers;
 
 import co.edu.uniquindio.icaja.mapping.dto.CategoriaDto;
-import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.model.Categoria;
-import co.edu.uniquindio.icaja.model.Usuario;
 
 
 public class CategoriaMapper {
 
-    public static CategoriaDto categoriaToCategoriaDto(Categoria categoria){
+    public static CategoriaDto toDto(Categoria categoria){
         return new CategoriaDto(
+                categoria.getIdCategoria(),
                 categoria.getNombre(),
-                categoria.getDescripcion(),
-                categoria.getTipoCategoria(),
-                categoria.getTransacciones()
-
+                categoria.getDescripcion()
         );
     }
-    public static Categoria categoriaDtoToCategoria(CategoriaDto categoriaDto){
+    public static Categoria toCategoria(CategoriaDto categoriaDto){
         return new Categoria(
                 categoriaDto.nombre(),
-                categoriaDto.descripcion(),
-                categoriaDto.tipoCategoria(),
-                categoriaDto.transacciones()
+                categoriaDto.descripcion()
         );
     }
 

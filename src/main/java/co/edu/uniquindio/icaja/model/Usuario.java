@@ -1,119 +1,116 @@
 package co.edu.uniquindio.icaja.model;
-
+import co.edu.uniquindio.icaja.exception.login.CredencialesNoCoinciden;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
-
-import java.io.IOException;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
-import co.edu.uniquindio.icaja.model.services.Persistible;
-import co.edu.uniquindio.icaja.utils.Seguimiento;
-import co.edu.uniquindio.icaja.utils.Persistencia;
+import java.util.UUID;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
+import co.edu.uniquindio.icaja.utils.tools.NumTool;
 import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.mindrot.jbcrypt.BCrypt;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
-public class Usuario implements Serializable, Login, Persistible<Usuario> {
+public class Usuario implements Serializable, Login {
+    private String idUsuario;
     private String nombre;
     private String cedula;
     private String correo;
     private String telefono;
     private String clave;
     private String claveTransaccional;
-    private double saldoTotal;
-    private double ingresos;
-    private double gastos;
-    private double presupuestoMensual;
-    private TipoUsuario tipoUsuario;
-    private ArrayList<CuentaBancaria> listaCuentas;
+    private String saldoTotal;
+    private String ingresos;
+    private String gastos;
+    private TipoUsuario tipoUsuario = TipoUsuario.NORMAL;
+    private ArrayList<String> idCuentas = new ArrayList<>();
+    private ArrayList<String> idPresupuestos = new ArrayList<>();
+    private ArrayList<String> idCategorias =  new ArrayList<>();
+    private List<String> idTransacciones = Collections.unmodifiableList(new ArrayList<>());
     public static final long serialVersionID = 5L;
 
-    public Usuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional, double presupuestoMensual) {
+    public Usuario(String nombre, String cedula, String correo, String telefono, String clave, String claveTransaccional) {
+        this.idUsuario = generarId();
         this.nombre = nombre;
         this.cedula = cedula;
         this.correo = correo;
         this.telefono = telefono;
-        this.clave = clave;
-        this.claveTransaccional = claveTransaccional;
-        this.saldoTotal = 0;
-        this.ingresos = 0;
-        this.gastos = 0;
-        this.presupuestoMensual = presupuestoMensual;
-        this.listaCuentas = new ArrayList<>();
-        this.tipoUsuario = TipoUsuario.NORMAL;
+        this.clave = encriptarClave(clave);
+        this.claveTransaccional = encriptarClave(claveTransaccional);
+        this.saldoTotal = "0";
+        this.ingresos = "0";
+        this.gastos = "0";
+    }
+
+    private String generarId() {
+        return UUID.randomUUID().toString();
     }
 
     @Override
-    public TipoUsuario ingresar() {
-        Seguimiento.registrarLog(1, "El usuario" + nombre + " ingresó satisfactoriamente");
+    public TipoUsuario ingresar(String clave_ingresada) throws CredencialesNoCoinciden {
+        if (verificarCredenciales(this.getClave(), clave_ingresada)) {
+            Seguimiento.registrarLog(1, "El usuario " + nombre + " ingresó satisfactoriamente");
+        } else {
+            throw new CredencialesNoCoinciden("Contraseña incorrecta, intenta nuevamente.");
+        }
+
         return getTipoUsuario();
     }
 
-
-    @Override
-    public void guardar(List<Usuario> usuarios) throws IOException {
-        String contenido = "";
-        for(Usuario usuario:usuarios)
-        {
-            contenido+= usuario.getNombre()+
-                    "@@"+usuario.getCedula()+
-                    "@@"+usuario.getCorreo()+
-                    "@@"+usuario.getTelefono()+
-                    "@@"+usuario.getClave()+
-                    "@@"+usuario.getClaveTransaccional()+
-                    "@@"+usuario.getSaldoTotal()+
-                    "@@"+usuario.getIngresos()+
-                    "@@"+usuario.getGastos()+
-                    "@@"+usuario.getPresupuestoMensual()+
-                    "@@"+usuario.getTipoUsuario()+"\n";
-        }
-        Persistencia.guardarArchivo("usuario.txt", contenido, false);
+    public boolean verificarCredenciales(String hash_almacenado, String clave) {
+        return BCrypt.checkpw(clave, hash_almacenado);
     }
 
-    @Override
-    public List<Usuario> leer(String ruta) throws IOException {
-        ArrayList<Usuario> usuarios =new ArrayList<Usuario>();
-        ArrayList<String> contenido = Persistencia.leerArchivo(ruta);
-        String linea="";
-        for (String s : contenido) {
-            linea = s;
-            Usuario usuario = new Usuario();
-            usuario.setNombre(linea.split("@@")[0]);
-            usuario.setCedula(linea.split("@@")[1]);
-            usuario.setCorreo(linea.split("@@")[2]);
-            usuario.setTelefono(linea.split("@")[3]);
-            usuario.setClave(linea.split("@@")[4]);
-            usuario.setClaveTransaccional(linea.split("@@")[5]);
-            usuario.setSaldoTotal(Double.parseDouble(linea.split("@@")[6]));
-            usuario.setIngresos(Double.parseDouble(linea.split("@@")[7]));
-            usuario.setGastos(Double.parseDouble(linea.split("@@")[8]));
-            usuario.setTipoUsuario(TipoUsuario.valueOf(linea.split("@@")[10]));
-            usuarios.add(usuario);
-        }
-        return usuarios;
+    public String encriptarClave(String clave) {
+        return BCrypt.hashpw(clave, BCrypt.gensalt());
     }
 
     public void setAdministrador() {
         this.tipoUsuario = TipoUsuario.ADMINISTRADOR;
     }
 
-    public void setNormal() {
-        this.tipoUsuario = TipoUsuario.NORMAL;
+    public void setHashclave(String hashclave) {
+        this.clave = encriptarClave(hashclave);
     }
 
-    public void addCuenta(CuentaBancaria cuenta) {
-        this.listaCuentas.add(cuenta);
+    public void  setHashclaveTransaccional(String hashclaveTransaccional) {
+        this.claveTransaccional = encriptarClave(hashclaveTransaccional);
     }
 
-    public void removeCuenta(CuentaBancaria cuenta) {
-        this.listaCuentas.remove(cuenta);
+    public void setTransacciones(List<String> transacciones) {
+        this.idTransacciones = Collections.unmodifiableList(transacciones);
     }
 
+    public void calcularIngresos(BigDecimal monto) {
+        ingresos = NumTool.parseToDinero(ingresos).add(monto).toString();
+    }
+
+    public void calcularGastos(BigDecimal monto) {
+        gastos = NumTool.parseToDinero(gastos).add(monto).toString();
+    }
+
+    public void sumarSaldoTotal(BigDecimal monto) {
+        calcularIngresos(monto);
+        saldoTotal = NumTool.parseToDinero(saldoTotal).add(monto).toString();
+    }
+
+    public void restarSaldoTotal(BigDecimal monto) {
+        calcularGastos(monto);
+        this.saldoTotal = NumTool.parseToDinero(saldoTotal).subtract(monto).toString();
+    }
+
+    public void agregarTransaccion(Transaccion transaccion) {
+        List<String> nuevaLista = new ArrayList<>(this.idTransacciones);
+        nuevaLista.add(transaccion.getIdTransaccion());
+
+        // Asigna la nueva lista como una lista inmutable
+        this.idTransacciones = Collections.unmodifiableList(nuevaLista);
+    }
 }

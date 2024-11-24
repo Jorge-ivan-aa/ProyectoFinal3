@@ -1,31 +1,29 @@
 package co.edu.uniquindio.icaja.mapping.mappers;
 
-import co.edu.uniquindio.icaja.mapping.dto.CategoriaDto;
-import co.edu.uniquindio.icaja.mapping.dto.CuentaBancariaDto;
-import co.edu.uniquindio.icaja.model.Categoria;
-import co.edu.uniquindio.icaja.model.CuentaBancaria;
+import co.edu.uniquindio.icaja.mapping.dto.CuentaDto;
+import co.edu.uniquindio.icaja.model.Cuenta;
 
 
 public class CuentaBancariaMapper {
-    public static CuentaBancariaDto cuentaBancariaToCuentaBancariaDto(CuentaBancaria cuentaBancaria){
-        return new CuentaBancariaDto(
-                cuentaBancaria.getEntidad(),
-                cuentaBancaria.getNumeroCuenta(),
-                cuentaBancaria.getTipoCuenta(),
-                cuentaBancaria.getSaldo(),
-                cuentaBancaria.getLimite(),
-                cuentaBancaria.getPropietario()
+
+    public static CuentaDto toDto(Cuenta cuenta){
+        return new CuentaDto (
+                cuenta.getIdCuenta(),
+                cuenta.getEntidad(),
+                cuenta.getNumeroCuenta(),
+                cuenta.getTipo(),
+                cuenta.getSaldo().toString(),
+                cuenta.getIdpropietario()
         );
     }
 
-    public static CuentaBancaria cuentaBancariaDtoToCuentaBancaria(CuentaBancariaDto cuentaBancariaDto){
-        return new CuentaBancaria(
-                cuentaBancariaDto.entidad(),
-                cuentaBancariaDto.numeroCuenta(),
-                cuentaBancariaDto.tipoCuenta(),
-                cuentaBancariaDto.saldo(),
-                cuentaBancariaDto.limite(),
-                cuentaBancariaDto.propietario()
+    public static Cuenta toCuentaBancaria(CuentaDto cuentaDto){
+        return new Cuenta(
+                cuentaDto.entidad(),
+                cuentaDto.numeroCuenta(),
+                cuentaDto.tipo(),
+                cuentaDto.saldo(),
+                cuentaDto.propietario()
         );
     }
 

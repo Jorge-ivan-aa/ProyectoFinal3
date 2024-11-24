@@ -1,19 +1,16 @@
 package co.edu.uniquindio.icaja.view;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import co.edu.uniquindio.icaja.controller.UsuarioController;
-import co.edu.uniquindio.icaja.exception.CredencialesNoCoinciden;
-import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
+import co.edu.uniquindio.icaja.exception.login.CredencialesNoCoinciden;
+import co.edu.uniquindio.icaja.exception.login.UsuarioNoExiste;
 import co.edu.uniquindio.icaja.model.Sesion;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
-import co.edu.uniquindio.icaja.utils.ViewTools;
-import javafx.event.ActionEvent;
+import co.edu.uniquindio.icaja.utils.tools.ViewTools;
+import io.github.palexdev.materialfx.controls.MFXPasswordField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
+
 public class LoginView {
 
     UsuarioController usuarioController = new UsuarioController();
@@ -22,29 +19,19 @@ public class LoginView {
     private TextField txtCedulaUsuario;
 
     @FXML
-    private PasswordField txtClaveUsuario;
+    private MFXPasswordField txtClaveUsuario;
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    void cancelarIniciarSesion(ActionEvent event) {
-
-    }
-
-    @FXML
-    void iniciarSesion(ActionEvent event) {
+    void iniciarSesion() {
         String clave = txtClaveUsuario.getText();
         String cedula = txtCedulaUsuario.getText();
 
-        if (!ViewTools.hayCamposVacios(clave, cedula)) {
-            Sesion sesion = new Sesion(cedula, clave);
+        if (ViewTools.NoHayCamposVacios(clave, cedula)) {
+
+            Sesion sesion = new Sesion(cedula);
 
             try {
-                TipoUsuario tipoUsuario = sesion.ingresar();
+                TipoUsuario tipoUsuario = sesion.ingresar(clave);
                 usuarioController.getFactory().getIcaja().setSesion(sesion);
                 seleccionarInterfax(tipoUsuario, sesion.getUsuario().getNombre());
                 ViewTools.cerrarVentana(txtCedulaUsuario);
@@ -61,22 +48,21 @@ public class LoginView {
     void seleccionarInterfax(TipoUsuario tipoUsuario, String usuario) {
         switch(tipoUsuario) {
             case ADMINISTRADOR:
-                ViewTools.ventanaEmergente("templates/mainAdmin.fxml", "ICaja - Administrador", "styles/main.css");
+                ViewTools.generarVentana("templates/baseAdmin.fxml", "ICaja - Administrador", "carga.fxml",  "styles/main.css");
                 break;
             case NORMAL:
-                ViewTools.ventanaEmergente("templates/mainNormal.fxml", "ICaja - " + usuario, "styles/main.css");
+                ViewTools.generarVentana("templates/baseNormal.fxml", "ICaja - " + usuario, "carga.fxml","styles/baseNormal.css", "styles/main.css");
                 break;
         }
     }
 
     @FXML
-    void registrarUsuario(ActionEvent event) {
-        ViewTools.ventanaEmergente("templates/registroUsuario.fxml", "ICaja - Registro de usuario", "styles/main.css");
+    void registrarUsuario() {
+        ViewTools.generarVentana("templates/registroUsuario.fxml", "ICaja - Registro de usuario", "carga.fxml", "styles/main.css");
         ViewTools.cerrarVentana(txtCedulaUsuario);
     }
 
     @FXML
     void initialize() {
-
     }
 }

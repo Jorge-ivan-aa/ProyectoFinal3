@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="623.0" prefWidth="1073.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.icaja.view.views.normal.BalanceUsuarioView">
+   <children>
+      <Pane fx:id="panelBalanceUsuario1" layoutY="1.0" prefHeight="621.0" prefWidth="1071.0">
+         <children>
+            <RadioButton fx:id="rbTodosBalance" layoutX="53.0" layoutY="38.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="113.0" selected="true" text="Todos">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="mostrar" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rbGastosBalance" layoutX="180.0" layoutY="32.0" mnemonicParsing="false" text="Gastos" toggleGroup="$mostrar">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="rbIngresosBalance" layoutX="302.0" layoutY="32.0" mnemonicParsing="false" text="Ingresos" toggleGroup="$mostrar">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
+            <MFXButton layoutX="638.0" layoutY="450.0" onAction="#ajustarPresupuestoBalanceAction" prefHeight="39.0" prefWidth="210.0" text="Ajustar Presupuestos">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </MFXButton>
+            <MFXButton layoutX="638.0" layoutY="507.0" onAction="#generarReporteFinancieroBalanceAction" prefHeight="39.0" prefWidth="210.0" text="Generar Reporte Financiero">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </MFXButton>
+            <ListView fx:id="lvListaTransaccionesBalance" layoutX="53.0" layoutY="88.0" prefHeight="498.0" prefWidth="345.0" style="-fx-background-color: #fd9bc5; -fx-background-radius: 8px;" />
+            <ListView fx:id="lvListaPresupuestosEstadisticas" layoutX="471.0" layoutY="88.0" prefHeight="288.0" prefWidth="544.0" style="-fx-background-color: #6dfcbe; -fx-background-radius: 8px;" />
+         </children>
+      </Pane>
+      <Pane fx:id="panelBalanceUsuario2" layoutY="1.0" prefHeight="621.0" prefWidth="1072.0" visible="false">
+         <children>
+            <SplitPane dividerPositions="0.4984035759897828" layoutX="-1.0" orientation="VERTICAL" prefHeight="621.0" prefWidth="1074.0">
+               <items>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <MFXButton layoutX="792.0" layoutY="233.0" onAction="#eliminarBalanceAction" prefHeight="33.0" prefWidth="118.0" text="Eliminar">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton layoutX="635.0" layoutY="233.0" onAction="#actualizarBalanceAction" prefHeight="33.0" prefWidth="118.0" text="Actualizar">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton layoutX="482.0" layoutY="233.0" onAction="#crearBalanceAction" prefHeight="33.0" prefWidth="118.0" text="Crear">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton layoutX="397.0" layoutY="233.0" onAction="#limpiarCamposAction" prefHeight="34.0" prefWidth="48.0" text="Limpiar">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </MFXButton>
+                        <MFXButton layoutX="234.0" layoutY="233.0" onAction="#volverAction" prefHeight="33.0" prefWidth="118.0" text="Volver">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </MFXButton>
+                        <Pane fx:id="panelCrearCategoria" layoutX="557.0" layoutY="123.0" prefHeight="98.0" prefWidth="378.0" visible="false">
+                           <children>
+                              <Label layoutX="19.0" layoutY="17.0" text="Nombre Categoria:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="41.0" layoutY="64.0" text="Descripción:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <MFXTextField fx:id="txtNombreParaCategoria" layoutX="162.0" layoutY="15.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="29.0" prefWidth="205.0" />
+                              <MFXTextField fx:id="txtDescripcionParaCategoria" layoutX="163.0" layoutY="62.0" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="29.0" prefWidth="205.0" />
+                           </children>
+                        </Pane>
+                        <HBox layoutX="233.0" layoutY="72.0" prefHeight="100.0" prefWidth="649.0">
+                           <children>
+                              <VBox fillWidth="false" prefHeight="54.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="25.0" prefWidth="154.0" text="Nombre">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <MFXTextField fx:id="txtNombreBalance" minHeight="-Infinity" prefWidth="213.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </MFXTextField>
+                                 </children>
+                              </VBox>
+                              <Region prefHeight="100.0" prefWidth="66.0" HBox.hgrow="ALWAYS" />
+                              <VBox prefHeight="65.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="25.0" prefWidth="154.0" text="Monto">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <MFXTextField fx:id="txtMontoBalance" minHeight="-Infinity" prefWidth="210.0">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </MFXTextField>
+                                 </children>
+                              </VBox>
+                              <Region layoutX="179.0" layoutY="10.0" prefHeight="100.0" prefWidth="62.0" />
+                              <VBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                 <children>
+                                    <Label prefHeight="25.0" prefWidth="154.0" text="Categorias">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <MFXFilterComboBox fx:id="cbCategoriasBalance" minHeight="-Infinity" prefHeight="26.0" prefWidth="182.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="1005.0">
+                     <children>
+                        <TableView fx:id="tvListaBalances" layoutX="4.0" layoutY="-8.0" prefHeight="318.0" prefWidth="1070.0">
+                           <columns>
+                              <TableColumn fx:id="tcIdBalance" prefWidth="161.33333659172058" text="Id" />
+                              <TableColumn fx:id="tcNombreBalance" prefWidth="238.66664123535156" text="Nombre" />
+                              <TableColumn fx:id="tcMontoAsignadoBalance" prefWidth="201.86663818359375" text="Monto Asignado" />
+                              <TableColumn fx:id="tcMontoGastadoBalance" prefWidth="210.5333251953125" text="Monto Gastado" />
+                              <TableColumn fx:id="tcCategoriaBalance" prefWidth="187.20001210703125" text="Categoría" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

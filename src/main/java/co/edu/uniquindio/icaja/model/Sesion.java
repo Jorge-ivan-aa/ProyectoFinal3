@@ -1,22 +1,24 @@
 package co.edu.uniquindio.icaja.model;
 
-import co.edu.uniquindio.icaja.exception.CredencialesNoCoinciden;
-import co.edu.uniquindio.icaja.exception.UsuarioNoExiste;
+import co.edu.uniquindio.icaja.exception.login.UsuarioNoExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.model.enums.TipoUsuario;
 import co.edu.uniquindio.icaja.model.services.Login;
-import co.edu.uniquindio.icaja.utils.Seguimiento;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Sesion implements Login {
-    private final Usuario usuario;
-    private final String clave;
+ @Getter
+ @NoArgsConstructor
+public class Sesion implements Login, Serializable {
+    private Usuario usuario;
+    public static final long serialVersionID = 7L;
 
-
-    public Sesion(String cedula, String clave) {
+    public Sesion(String cedula) {
         this.usuario = this.buscarUsuario(cedula);
-        this.clave = clave;
     }
 
     public Usuario buscarUsuario(String cedula) {
@@ -29,22 +31,19 @@ public class Sesion implements Login {
             }
         }
 
+        Seguimiento.registrarLog(3, "La cuentra no se encontró");
         return null;
     }
 
     @Override
-    public TipoUsuario ingresar() throws UsuarioNoExiste, CredencialesNoCoinciden{
+    public TipoUsuario ingresar(String clave) throws UsuarioNoExiste {
         if (this.usuario == null) {
             Seguimiento.registrarLog(2, "Usuario no existe");
             throw new UsuarioNoExiste("Usuario no encontrado, revisa la cedula ingresada.");
-        } else if (!usuario.getClave().equals(clave)) {
-            throw new CredencialesNoCoinciden("Contraseña incorrecta, intenta nuevamente.");
         }
 
-        return this.usuario.ingresar();
+        return this.usuario.ingresar(clave);
+
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
 }

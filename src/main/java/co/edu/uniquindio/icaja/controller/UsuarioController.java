@@ -1,140 +1,169 @@
 package co.edu.uniquindio.icaja.controller;
 
+import co.edu.uniquindio.icaja.controller.enums.TipoConsulta;
+import co.edu.uniquindio.icaja.controller.services.GenericController;
+import co.edu.uniquindio.icaja.exception.almacenamiento.ElementoNoEncontrado;
+import co.edu.uniquindio.icaja.exception.crud.AtributoUtilizado;
+import co.edu.uniquindio.icaja.exception.crud.ElementoNoExiste;
+import co.edu.uniquindio.icaja.exception.crud.ElementoYaExiste;
 import co.edu.uniquindio.icaja.factory.ModelFactory;
 import co.edu.uniquindio.icaja.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.icaja.mapping.mappers.UsuarioMapper;
 import co.edu.uniquindio.icaja.model.Usuario;
-import co.edu.uniquindio.icaja.model.ICaja;
-import co.edu.uniquindio.icaja.utils.Seguimiento;
-import javafx.collections.FXCollections;
+import static co.edu.uniquindio.icaja.controller.enums.TipoConsulta.*;
+import static co.edu.uniquindio.icaja.utils.loggin.Seguimiento.registrarLog;
+import static co.edu.uniquindio.icaja.utils.tools.ListTools.ConsultaAvanzada;
+
+import co.edu.uniquindio.icaja.server.ProductorBase;
+import co.edu.uniquindio.icaja.server.mapping.MensajeDTO;
+import co.edu.uniquindio.icaja.server.services.Productor;
+import co.edu.uniquindio.icaja.utils.loggin.Seguimiento;
 import javafx.collections.ObservableList;
 import lombok.Getter;
 
-import static co.edu.uniquindio.icaja.utils.Seguimiento.registrarLog;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @Getter
-public class UsuarioController {
+public class UsuarioController implements GenericController<UsuarioDto, Usuario>, Productor {
 
     private final ModelFactory factory;
     private final ObservableList<Usuario> listaUsuarioObservable;
 
+
     public UsuarioController() {
-        this.factory = ModelFactory.getInstance();
-        this.listaUsuarioObservable = FXCollections.observableArrayList();
+        factory = ModelFactory.getInstance();
+        this.listaUsuarioObservable = this.factory.getListaUsuarioObservable();
         this.sincronizarData();
-
-    }
-
-    private void sincronizarData() {
-
-        registrarLog(1,"Se sincronizo la base de datos");
-
-        this.listaUsuarioObservable.addAll(this.factory.getIcaja().getListaUsuarios());
-        this.guardarUsuario();
-        Seguimiento.registrarLog(1,"Se sincronizo la base de datos");
-    }
-
-    public String crearUsuario(UsuarioDto usuarioDto) {
-
-        if (this.consultarUsuario(usuarioDto.cedula()) != null) {
-            registrarLog(1,"El usuario ya existe");
-            return "El usuario ingresado ya existe";
-        } else {
-            registrarLog(1,"Se ha creado el usuario");
-            Usuario nuevoUsuario = UsuarioMapper.usuarioDtoToUsuario(usuarioDto);
-
-            this.factory.getIcaja().addUsuario(nuevoUsuario);
-            this.listaUsuarioObservable.add(nuevoUsuario);
-            this.guardarUsuario();
-            return "Usuario registrado exitosamente";
-        }
     }
 
 
-    public String eliminarUsuario(String cedula) {
-
-        if (this.consultarUsuario(cedula) == null) {
-            registrarLog(1,"El usuario que no existe");
-            return "El usuario ingresado no existe";
-
-        } else {
-            int index = -1;
-            ArrayList<Usuario> Clientes = factory.getIcaja().getListaUsuarios();
-            for (int i = 0; i < Clientes.size(); i++) {
-                if (Objects.equals(Clientes.get(i).getCedula(), cedula)) {
-                    index = i;
-                }
-            }
-
-            if (index != -1) {
-                this.listaUsuarioObservable.remove(index);
-                Clientes.remove(index);
-            }
-            this.guardarUsuario();
-            registrarLog(1,"Se elimino el usuario");
-            return "El usuario fué eliminado correctamente";
-        }
-
-
-    }
-
-    public Usuario consultarUsuario(String cedula) {
-
-        registrarLog(1,"Se consultó el usuario");
-
-        ArrayList<Usuario> Usuarios = this.factory.getIcaja().getListaUsuarios();
-        for (Usuario value : Usuarios) {
-            if (value.getCedula().equals(cedula)) {
-                return value;
-            }
-        }
-        return null;
+    public void sincronizarData() {
+        factory.sincronizarData();
     }
 
 
-    public String actualizarUsuario(UsuarioDto usuarioDto) {
-        ArrayList<Usuario> Usuarios = factory.getIcaja().getListaUsuarios();
+    @Override
+    public void crear(UsuarioDto usuarioDto) throws ElementoYaExiste, AtributoUtilizado {
 
-        if (this.consultarUsuario(usuarioDto.cedula()) == null) {
-            registrarLog(1,"El usuario no existe");
-            return "El usuario ingresado no existe";
-
-        } else {
-            int index = -1;
-            for (int i = 0; i < Usuarios.size(); i++) {
-                if (Objects.equals(Usuarios.get(i).getCedula(), usuarioDto.cedula())) {
-                    index = i;
-                }
-            }
-
-            if (index != -1) {
-
-                registrarLog(1,"Se actualizo el usuario");
-
-                Usuario nuevoUsuario = UsuarioMapper.usuarioDtoToUsuario(usuarioDto);
-                Usuarios.remove(index);
-                Usuarios.add(nuevoUsuario);
-                this.listaUsuarioObservable.remove(index);
-                this.listaUsuarioObservable.add(nuevoUsuario);
-                this.guardarUsuario();
-            }
-
-            return "El Usuario fué actualizado correctamente";
-
-        }
-    }
-
-    public void guardarUsuario() {
-        List<Usuario> usuarios = this.factory.getIcaja().getListaUsuarios();
         try {
-            new Usuario().guardar(usuarios);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+            consultar(usuarioDto.id(), ID_USUARIO);
+            registrarLog(2, "No se puede crear el elemento, el usuario ya existe");
+            throw new ElementoYaExiste("No se puede crear el elemento, el usuario ya existe");
+
+        } catch (ElementoNoExiste ignored) {
+            verificarAtributoUtilizado(usuarioDto.cedula(), CEDULA, "No se puede crear el elemento, el usuario ya existe");
+            verificarAtributoUtilizado(usuarioDto.telefono(), TELEFONO, "El telefono: " + usuarioDto.telefono() + " ya está siendo utilizado por otro usuario");
+            verificarAtributoUtilizado(usuarioDto.correo(), CORREO, "El correo: " + usuarioDto.correo() + " ya está siendo utilizado por otro usuario");
+
+            Usuario nuevoUsuario = UsuarioMapper.toUsuario(usuarioDto);
+            factory.getIcaja().add(nuevoUsuario);
+            listaUsuarioObservable.add(nuevoUsuario);
+            sincronizarData();
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
+            registrarLog(1, "Se ha creado el usuario " + usuarioDto.nombre());
+
         }
+    }
+
+
+    private void verificarAtributoUtilizado(String valor, TipoConsulta tipo, String mensaje) throws AtributoUtilizado {
+        if (consultar(valor, tipo) != null) {
+            registrarLog(2, mensaje);
+            throw new AtributoUtilizado(mensaje);
+        }
+    }
+
+
+    @Override
+    public Usuario consultar(String consulta, TipoConsulta tipoConsulta) throws ElementoNoExiste {
+
+        try {
+            return (Usuario) ConsultaAvanzada(factory.getIcaja().getListaUsuarios(),
+                    tipoConsulta.getBuscador(),
+                    consulta,
+                    0);
+
+        } catch (ElementoNoEncontrado e) {
+            if (tipoConsulta.equals(ID_USUARIO)) {
+                throw new ElementoNoExiste("No se encontró un usuario con el id: " + consulta);
+            }
+
+            Seguimiento.registrarLog(2, "No se encontró el elemento con el criterio especificado");
+            return null;
+        }
+    }
+
+
+    @Override
+    public void eliminar(String id) throws ElementoNoExiste {
+        try {
+            Usuario eliminable = consultar(id, ID_USUARIO);
+            factory.getIcaja().remove(eliminable);
+            sincronizarData();
+            MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+            enviarNotificacion(mensaje);
+            registrarLog(1, "Se eliminó el usuario con id " + id + ".");
+
+        } catch (ElementoNoExiste e) {
+            registrarLog(2, "No se pudo eliminar el elemento, " + e.getMessage());
+            throw new ElementoNoExiste("No se pudo eliminar el elemento, " + e.getMessage());
+        }
+    }
+
+
+    @Override
+    public void actualizar(UsuarioDto usuarioDto) throws ElementoNoExiste {
+        try {
+            Usuario actualizable = consultar(usuarioDto.id(), ID_USUARIO);
+
+            if (actualizable.getCedula().equals(usuarioDto.cedula())) {
+                if (usuarioDto.nombre()!=null) actualizable.setNombre(usuarioDto.nombre());
+                if (usuarioDto.telefono()!=null) actualizable.setTelefono(usuarioDto.telefono());
+
+                if (!usuarioDto.clave().isEmpty()) {
+                    actualizable.setHashclave(usuarioDto.clave());
+                }
+
+                if (!usuarioDto.claveTransaccional().isEmpty()) {
+                    actualizable.setHashclaveTransaccional(usuarioDto.claveTransaccional());
+                }
+
+                if (usuarioDto.correo()!=null)actualizable.setCorreo(usuarioDto.correo());
+                sincronizarData();
+
+                MensajeDTO mensaje = new MensajeDTO(ModelFactory.getIdInstanciaMensajera(), "");
+                enviarNotificacion(mensaje);
+
+                registrarLog(1, "Se actualizó el usuario de cedula " + actualizable.getCedula() + " correctamente.");
+            } else {
+                throw new ElementoNoExiste("No se puede modificar la cedula.");
+            }
+
+
+        } catch (ElementoNoExiste e) {
+            registrarLog(2, "No se pudo actualizar el elemento, " + e.getMessage());
+            throw new ElementoNoExiste("No se pudo actualizar el elemento, " + e.getMessage());
+        }
+    }
+
+    public void cerrarSesion() {
+        Seguimiento.registrarLog(1, "Se cerró la sesion correctamente");
+        factory.getIcaja().setSesion(null);
+        factory.guardarRespaldo();
+    }
+
+    @Override
+    public void enviarNotificacion(MensajeDTO dto) {
+        try {
+
+            ProductorBase productor = ProductorBase.obtenerInstancia();
+            for (int i = 0; i < 3; i++) {
+                productor.enviarMensaje(dto);
+            }
+
+        } catch (Exception e) {
+            Seguimiento.registrarLog(3, "Ocurrio un error en la sincronización con el servidor de parte del productor, revisalo: " + e.getMessage());
+        }
+
     }
 }
