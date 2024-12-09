@@ -5,17 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ada5fe2d-2761-46ee-a6e3-c25417f6b649" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/baseNormalView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/baseNormalView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/normal/PrincipalUsuarioView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/icaja/view/views/normal/PrincipalUsuarioView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/normal/cuentasUsuario.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/co/edu/uniquindio/icaja/templates/normal/cuentasUsuario.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/categoria.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/categoria.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/cuenta.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/cuenta.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/presupuesto.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/presupuesto.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/transaccion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/transaccion.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/usuario.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/archivos/usuario.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/log/logs.txt.1" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/log/logs.txt.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/log/logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/log/logs.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/respaldo/respaldo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/respaldo/respaldo.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/CategoriaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/CategoriaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/TransaccionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/TransaccionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/controller/UsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/factory/ModelFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/factory/ModelFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/CategoriaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/CategoriaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/TransferenciaDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/TransferenciaDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/UsuarioDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/dto/UsuarioDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/CategoriaMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/CategoriaMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/CuentaBancariaMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/CuentaBancariaMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/TransaccionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/TransaccionMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/UsuarioMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/mapping/mappers/UsuarioMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Categoria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Categoria.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/ICaja.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/ICaja.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Sesion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Sesion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Transaccion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Transaccion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/enums/TipoCuenta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/enums/TipoCuenta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/services/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/model/services/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/LoginView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/LoginView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/LoginView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/LoginView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/RegistroUsuarioView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/RegistroUsuarioView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/admin/CategoriaView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/admin/CategoriaView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/admin/CuentaView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/admin/CuentaView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/admin/TransaccionView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/admin/TransaccionView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/normal/CuentasUsuarioView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/normal/CuentasUsuarioView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/normal/PerfilUsuarioView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/icaja/view/views/normal/PerfilUsuarioView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/module-info.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/module-info.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/persistencia/log/logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/persistencia/log/logs.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +100,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/home/jorge/Projects/java/virtual-wallet",
     "node.js.detected.package.eslint": "true",

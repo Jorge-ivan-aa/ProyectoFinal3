@@ -216,3 +216,68 @@ INFO [2024-10-13 20:13:53]: co.edu.uniquindio.icaja.controller.UsuarioController
 INFO [2024-10-13 20:13:54]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
 INFO [2024-11-22 05:01:11]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
 INFO [2024-11-22 05:01:11]: co.edu.uniquindio.icaja.controller.UsuarioController.sincronizarData(), Se sincronizo la base de datos
+INFO [2024-11-24 22:13:44]: co.edu.uniquindio.icaja.factory.ModelFactory.cargarPersistencia(), Se ha cargado la persistencia correctamente.
+INFO [2024-11-24 22:13:44]: co.edu.uniquindio.icaja.factory.ModelFactory.cargarConfiguracion(), Se cargó la configuración de las credenciales de administrador
+INFO [2024-11-24 22:14:28]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario Administrador ingresó satisfactoriamente
+INFO [2024-11-24 22:14:35]: co.edu.uniquindio.icaja.controller.UsuarioController.eliminar(), Se eliminó el usuario con id 289721fd-2dca-4a30-b9d1-956aaecc1f6c.
+WARNING [2024-11-24 22:14:35]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:14:35]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:14:35]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+INFO [2024-11-24 22:14:38]: co.edu.uniquindio.icaja.controller.UsuarioController.eliminar(), Se eliminó el usuario con id 13f3a95d-ea20-4c2d-a124-73c40427fcfb.
+WARNING [2024-11-24 22:14:38]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:14:38]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:14:38]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:14:55]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), No se encontró el elemento con el criterio especificado
+WARNING [2024-11-24 22:14:55]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), No se encontró el elemento con el criterio especificado
+WARNING [2024-11-24 22:14:55]: co.edu.uniquindio.icaja.controller.UsuarioController.consultar(), No se encontró el elemento con el criterio especificado
+INFO [2024-11-24 22:14:55]: co.edu.uniquindio.icaja.controller.UsuarioController.crear(), Se ha creado el usuario juan
+WARNING [2024-11-24 22:14:55]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:14:55]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:14:55]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:15:16]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:15:16]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+INFO [2024-11-24 22:15:16]: co.edu.uniquindio.icaja.controller.CuentaController.crear(), Se ha creado una cuenta bancaria exitosamente :)
+WARNING [2024-11-24 22:15:17]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:15:39]: co.edu.uniquindio.icaja.controller.TransaccionController.consultar(), No se encontró una transacción con el id: null
+INFO [2024-11-24 22:15:39]: co.edu.uniquindio.icaja.controller.TransaccionController.crear(), Se ha realizado una transaccion exitosamente :)
+WARNING [2024-11-24 22:15:39]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:15:39]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:15:39]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:16:11]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:16:11]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+INFO [2024-11-24 22:16:11]: co.edu.uniquindio.icaja.controller.UsuarioController.actualizar(), Se actualizó el usuario de cedula 12321 correctamente.
+WARNING [2024-11-24 22:16:11]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+INFO [2024-11-24 22:16:17]: co.edu.uniquindio.icaja.controller.UsuarioController.cerrarSesion(), Se cerró la sesion correctamente
+INFO [2024-11-24 22:16:17]: co.edu.uniquindio.icaja.model.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-11-24 22:16:27]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario juan ingresó satisfactoriamente
+WARNING [2024-11-24 22:17:10]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:17:10]: co.edu.uniquindio.icaja.view.views.normal.PrincipalUsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+INFO [2024-11-24 22:17:10]: co.edu.uniquindio.icaja.controller.CategoriaController.crear(), Se ha creado una categoria
+WARNING [2024-11-24 22:17:10]: co.edu.uniquindio.icaja.controller.TransaccionController.consultar(), No se encontró una transacción con el id: null
+WARNING [2024-11-24 22:17:10]: co.edu.uniquindio.icaja.view.views.baseNormalView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envía el mensaje
+WARNING [2024-11-24 22:17:10]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+INFO [2024-11-24 22:17:10]: co.edu.uniquindio.icaja.controller.TransaccionController.crear(), Se ha realizado una transaccion exitosamente :)
+WARNING [2024-11-24 22:17:10]: co.edu.uniquindio.icaja.view.views.normal.PrincipalUsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:17:10]: co.edu.uniquindio.icaja.view.views.baseNormalView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envía el mensaje
+WARNING [2024-11-24 22:17:29]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+INFO [2024-11-24 22:17:29]: co.edu.uniquindio.icaja.controller.UsuarioController.actualizar(), Se actualizó el usuario de cedula 12321 correctamente.
+WARNING [2024-11-24 22:17:29]: co.edu.uniquindio.icaja.view.views.normal.PrincipalUsuarioView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envia el mensaje
+WARNING [2024-11-24 22:17:29]: co.edu.uniquindio.icaja.view.views.baseNormalView.procesarDTO(), No se va a sincronizar la instancia porque es la misma instancia que envía el mensaje
+INFO [2024-11-24 22:17:31]: co.edu.uniquindio.icaja.controller.UsuarioController.cerrarSesion(), Se cerró la sesion correctamente
+INFO [2024-11-24 22:17:31]: co.edu.uniquindio.icaja.model.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-11-24 22:17:35]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario Administrador ingresó satisfactoriamente
+INFO [2024-11-24 22:17:39]: co.edu.uniquindio.icaja.controller.UsuarioController.cerrarSesion(), Se cerró la sesion correctamente
+INFO [2024-11-24 22:17:39]: co.edu.uniquindio.icaja.model.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-12-04 17:00:55]: co.edu.uniquindio.icaja.factory.ModelFactory.cargarPersistencia(), Se ha cargado la persistencia correctamente.
+INFO [2024-12-04 17:00:56]: co.edu.uniquindio.icaja.factory.ModelFactory.cargarConfiguracion(), Se cargó la configuración de las credenciales de administrador
+INFO [2024-12-04 17:01:30]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario Administrador ingresó satisfactoriamente
+SEVERE [2024-12-04 17:01:31]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.consumirMensaje(), Ocurrio un error en la sincronización con el servidor de parte del consumidor, revisalo: Connection refused
+INFO [2024-12-04 17:01:53]: co.edu.uniquindio.icaja.controller.UsuarioController.cerrarSesion(), Se cerró la sesion correctamente
+INFO [2024-12-04 17:01:54]: co.edu.uniquindio.icaja.model.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+SEVERE [2024-12-04 17:02:15]: co.edu.uniquindio.icaja.model.Sesion.buscarUsuario(), La cuentra no se encontró
+WARNING [2024-12-04 17:02:15]: co.edu.uniquindio.icaja.model.Sesion.ingresar(), Usuario no existe
+INFO [2024-12-04 17:02:24]: co.edu.uniquindio.icaja.model.Usuario.ingresar(), El usuario Administrador ingresó satisfactoriamente
+SEVERE [2024-12-04 17:02:24]: co.edu.uniquindio.icaja.view.views.admin.UsuarioView.consumirMensaje(), Ocurrio un error en la sincronización con el servidor de parte del consumidor, revisalo: Connection refused
+INFO [2024-12-04 17:54:28]: co.edu.uniquindio.icaja.controller.UsuarioController.cerrarSesion(), Se cerró la sesion correctamente
+INFO [2024-12-04 17:54:28]: co.edu.uniquindio.icaja.model.respaldo.ICajaRespaldo.guardarRecursoICajaXML(), Se guardó el recurso de respaldo xml correctamente
+INFO [2024-12-04 17:54:30]: co.edu.uniquindio.icaja.controller.UsuarioController.cerrarSesion(), Se cerró la sesion correctamente
